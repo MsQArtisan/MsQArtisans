@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-title>Settings</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list lines="none" class="menu-items">
+      <ion-item lines="none" (click)="isInfo === 1 ? isInfo = 0 : isInfo = 1">
+          <div>
+              <ion-icon name="information-circle"></ion-icon>
+              <ion-label (click)="accInfo()">Account Information</ion-label>
+          </div>
+      </ion-item>
+
+      <ion-item>
+          <div>
+              <ion-icon name="star-half"></ion-icon>
+              <ion-label>User Ratings</ion-label>
+          </div>
+      </ion-item>
+      <ion-item>
+          <div>
+              <ion-icon name="people-circle"></ion-icon>
+              <ion-label>Suki</ion-label>
+          </div>
+      </ion-item>
+      <ion-item>
+          <div>
+              <ion-icon name="alert-circle"></ion-icon>
+              <ion-label>Privacy Policy</ion-label>
+          </div>
+      </ion-item>
+      <ion-item>
+          <div>
+              <ion-icon name="newspaper"></ion-icon>
+              <ion-label>Terms and Condition</ion-label>
+          </div>
+      </ion-item>
+      <ion-item>
+          <div>
+              <ion-icon name="pricetags"></ion-icon>
+              <ion-label>Price Rates</ion-label>
+          </div>
+      </ion-item>
+      <ion-item>
+          <div>
+              <ion-icon name="help-circle"></ion-icon>
+              <ion-label>Frequently Ask Question</ion-label>
+          </div>
+      </ion-item>
+      <!-- 
+https://edupala.com/ionic-menu-with-example/
+       -->
+      <ion-item lines="none" (click)="isSetting === 1 ? isSetting = 0 : isSetting = 1">
+          <div>
+              <ion-icon name="md-construct" slot="start"></ion-icon>
+              <ion-label>All Settings</ion-label>
+          </div>
+      </ion-item>
+
+      <ion-card class="card" menuclose [hidden]="!isSetting">
+          <ion-list lines="none" class="subMenu">
+              <ion-item>
+                  <ion-icon name="notifications" slot="start"></ion-icon>
+                  <ion-label (click)="CreatePopover()">Notification Settings</ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-icon name="md-basket" slot="start"></ion-icon>
+                  <ion-label> New order notifications</ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-icon name="globe" slot="start"></ion-icon>
+                  <ion-label>Language</ion-label>
+                  <span>English</span>
+              </ion-item>
+              <ion-item>
+                  <ion-icon name="md-globe" slot="start"></ion-icon>
+                  <ion-label (click)="handleButtonClick()">Region / State</ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-icon name="md-share-alt" slot="start"></ion-icon>
+                  <ion-label>Share</ion-label>
+              </ion-item>
+          </ion-list>
+      </ion-card>
+      <!-- </ion-menu-toggle> -->
+  </ion-list>
+</ion-content>

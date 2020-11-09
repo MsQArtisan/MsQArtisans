@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-title>Tracker</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="orders">
+      <ion-segment-button value="ongoing">
+          On Going
+      </ion-segment-button>
+      <ion-segment-button value="completed">
+          Completed
+      </ion-segment-button>
+      <ion-segment-button value="rejected">
+          Rejected
+      </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="orders">
+      <ion-list *ngSwitchCase="'ongoing'">
+          <ion-list class="list">
+              <ion-item>
+                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
+              </ion-item>
+          </ion-list>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'completed'">
+          <ion-list class="list">
+              <ion-item>
+                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
+              </ion-item>
+          </ion-list>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'rejected'">
+          <ion-list class="list">
+              <ion-item>
+                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
+              </ion-item>
+          </ion-list>
+      </ion-list>
+  </div>
+
+</ion-content>

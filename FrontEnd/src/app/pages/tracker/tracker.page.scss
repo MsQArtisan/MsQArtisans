@@ -1,0 +1,25 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+ion-title {
+    color: white;
+    letter-spacing: 1.5px;
+}
+
+
+ion-segment-button:hover{
+    background-color: rgba(19, 144, 246, 0.11);
+    border-radius: 45% !important;
+
+}
+
+.list {
+    background-color: rgb(21, 160, 224);
+    padding: 10px;
+    ion-label {
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+    }
+}

@@ -59,10 +59,11 @@ exports.loginUser = (req, res) => {
 };
 
 exports.readUser = (req, res) => {
-    User.findById({id: req.body.id}, (error, user) => {
+    User.findOne({email: req.body.email}, (error, user) => {
         if (error) {
-            return next(error);
+            return error;
         } else {
+            console.log("backend data ", user)
             res.json(user)
         }
     })
