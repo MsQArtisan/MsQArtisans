@@ -1,16 +1,38 @@
-
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Dashboard</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>Dashboard</ion-title>
+    </ion-toolbar>
 </ion-header>
- 
+
 <ion-content padding>
-  jfl;asdj;lfjdsfkljsdklfjsdafjjljj
- 
-  <p>{{ data }}</p>
-  <!-- <ion-button expand="full" (click)="loadSpecialInfo()">Load Special Info</ion-button> -->
-  <ion-button expand="full" (click)="logout()">Logout</ion-button>
-  <!-- <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button> -->
- 
+    <center>
+        <h2>Get User</h2>
+    </center>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-input>Email: <span>{{account.email}}</span></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- <ion-col>
+                <ion-item>
+                    <ion-input>Email:{{each.email}}</ion-input>
+                </ion-item>
+            </ion-col> -->
+        </ion-row>
+
+    </ion-grid>
+    <!-- <ion-list>
+
+
+        <ion-item *ngfor="let each of passdata">
+            <ion-label>Email: <span>{{each.email}}</span></ion-label>
+        </ion-item>
+    </ion-list> -->
+    <!-- <p>{{ data }}</p> -->
+    <!-- <ion-button expand="full" (click)="loadSpecialInfo()">Load Special Info</ion-button> -->
+    <ion-button expand="full" (click)="logout()">Logout</ion-button>
+    <!-- <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button> -->
+
 </ion-content>

@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 
@@ -9,10 +9,18 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
-  data = '';
-  constructor(private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
+  data: string= '';
+  account: string = "";
+
+  @Input() passdata: Array<any>;
+  constructor(private authService: AuthService, private storage: Storage,
+     private toastController: ToastController) { }
 
   ngOnInit() {
+     this.getUser()
+ 
+     
+
   }
 
   loadSpecialInfo() {
@@ -31,6 +39,7 @@ export class JobOrdersPage implements OnInit {
     });
     toast.then(toast => toast.present());
   }
+
  
   // clearToken() {
   //   // ONLY FOR TESTING!
@@ -42,4 +51,13 @@ export class JobOrdersPage implements OnInit {
   //   });
   //   toast.then(toast => toast.present());
   // }
+
+  // jessa
+  getUser(){
+    this.authService.getUser().subscribe((data:any)=>{
+      this.account=data.info
+    });
+    
+    
+  }
 }
