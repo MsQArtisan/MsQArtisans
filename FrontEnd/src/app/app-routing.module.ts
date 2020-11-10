@@ -16,13 +16,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'job-orders',
-    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule),canActivate: [AuthGuardService]
+    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
+
 ];
 
 @NgModule({

@@ -57,13 +57,3 @@ exports.loginUser = (req, res) => {
         });
     });
 };
-
-exports.readUser = (req, res) => {
-    User.findById({id: req.body.id}, (error, user) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.json(user)
-        }
-    })
-}

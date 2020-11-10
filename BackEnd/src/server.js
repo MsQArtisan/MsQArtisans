@@ -18,11 +18,6 @@ app.use(passport.initialize());
 var passportMiddleware = require('./middleware/passport');
 passport.use(passportMiddleware);
  
-// Demo Route (GET http://localhost:5000)
-// app.get('/', function(req, res) {
-//   return res.send('Hello! The API is at http://localhost:' + port + '/api');
-// });
- 
 var routes = require('./routes');
 app.use('/api', routes);
  
@@ -41,4 +36,4 @@ connection.on('error', (err) => {
  
 // Start the server
 app.listen(port);
-console.log('MsQArtisan is listening on port ' + port);
+console.log('MsQArtisan is listening on http://localhost:' + port);
