@@ -31,7 +31,7 @@
     }
     h2 {
         font-weight: 300;
-        margin-left: 9px;
+        margin-left: 5px;
         font-size: 24px;
     }
     p {
@@ -47,7 +47,7 @@
 .menu-items {
     margin: 0px;
     ion-icon {
-        margin-right: 20px;
+        margin-right: 18px;
         color: black;
         position: absolute;
         font-size: 25px;
@@ -55,21 +55,21 @@
     ion-item {
         font-family: lato !important;
         padding-left: 0px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         font-size: 18px;
-        font-weight: bold;
+        font-weight: bold;  
         
         // background-color: $info;
     }
     ion-label {
-        margin-left: 53px;
+        margin-left: 50px;
     }
 }
 
 ion-item.item:hover div {
-    background-color: rgb(21, 160, 224) !important;
+    background-color: rgb(132, 210, 241) !important;
     color: white;
     width: 100%;
     padding: 10px;
-    font-size: 22px;
+    font-size: 20px;
 }

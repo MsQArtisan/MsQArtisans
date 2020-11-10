@@ -18,7 +18,7 @@ ion-title {
     }
     ion-item {
         padding-left: 0px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-size: 16px;
         font-weight: bold;
         // background-color: $info;
@@ -29,17 +29,17 @@ ion-title {
 }
 
 ion-item.item:hover div {
-    background-color: rgb(21, 160, 224) !important;
+    background-color: rgb(42, 163, 219) !important;
     color: white;
     width: 100%;
-    padding: 10px;
+    padding: 8px;
 }
 
 .subMenu {
     ion-item {
         font-size: 15px;
-        margin-left: 50px;
-        color: rgb(21, 160, 224);
+        margin-left: 20px;
+        color: rgb(56, 178, 230);
     }
     ion-icon {
         font-size: 20px;
@@ -51,7 +51,7 @@ ion-item.item:hover div {
         margin-left: 30px;
     }
     ion-item:hover {
-        background-color: rgb(21, 160, 224) !important;
+        background-color: rgb(93, 191, 236) !important;
     }
 }
 

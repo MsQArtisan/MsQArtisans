@@ -7,44 +7,27 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-segment [(ngModel)]="orders">
-      <ion-segment-button value="ongoing">
-          On Going
-      </ion-segment-button>
-      <ion-segment-button value="completed">
-          Completed
-      </ion-segment-button>
-      <ion-segment-button value="rejected">
-          Rejected
-      </ion-segment-button>
-  </ion-segment>
-
-  <div [ngSwitch]="orders">
-      <ion-list *ngSwitchCase="'ongoing'">
-          <ion-list class="list">
-              <ion-item>
-                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
-              </ion-item>
-          </ion-list>
-      </ion-list>
-
-      <ion-list *ngSwitchCase="'completed'">
-          <ion-list class="list">
-              <ion-item>
-                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
-              </ion-item>
-          </ion-list>
-      </ion-list>
-
-      <ion-list *ngSwitchCase="'rejected'">
-          <ion-list class="list">
-              <ion-item>
-                  <ion-label (click)="order()">{{Job-Title}}</ion-label>
-              </ion-item>
-          </ion-list>
-      </ion-list>
-  </div>
+     <!-- Icon top -->
+     <ion-segment color="secondary" value="favorite">
+            <ion-segment-button value="call">
+              <ion-label> On Going</ion-label>
+              <ion-icon name="refresh-circle-outline"></ion-icon>            
+            </ion-segment-button>
+    
+            <ion-segment-button value="favorite">
+              <ion-label>Completed</ion-label>
+              <ion-icon name="checkmark-circle-outline"></ion-icon>            
+            </ion-segment-button>
+              
+            
+            <ion-segment-button value="map">
+              <ion-label>Rejected</ion-label>
+              <ion-icon name="close-circle-outline"></ion-icon>
+             
+            </ion-segment-button>
+          </ion-segment>
 
 </ion-content>
+
+
