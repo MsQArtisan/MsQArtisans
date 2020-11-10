@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 export class RegisterPage implements OnInit {
 
   credentialsForm={
-    
     email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder, 
-    private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
  
   ngOnInit() {
   }
@@ -25,8 +25,6 @@ export class RegisterPage implements OnInit {
     console.log(this.credentialsForm);
     
     this.authService.register(this.credentialsForm).subscribe(res => {
-      // Call Login to automatically login the new user
-      // this.authService.login(this.credentialsForm.value).subscribe();
       this.router.navigate(['login']);
     });
   }
