@@ -21,8 +21,26 @@ const routes: Routes = [
   },
   {
     path: 'job-orders',
-    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule),canActivate: [AuthGuardService]
+    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
+  {
+    path: 'finance',
+    loadChildren: () => import('./pages/finance/finance.module').then( m => m.FinancePageModule)
+  },
+  {
+    path: 'tracker',
+    loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
+  },
+  {
+    path: 'livechat',
+    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+  },  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+
+
+  // ,canActivate: [AuthGuardService]
 ];
 
 @NgModule({

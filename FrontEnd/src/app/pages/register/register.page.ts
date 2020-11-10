@@ -10,25 +10,21 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
-  credentialsForm: FormGroup;
- 
+  credentialsForm={
+    
+    email: "",
+    password: ""
+  }
   constructor(private formBuilder: FormBuilder, 
     private authService: AuthService, private router: Router) { }
  
   ngOnInit() {
-    this.credentialsForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
- 
-  onSubmit() {
-    this.authService.login(this.credentialsForm.value).subscribe();
-
   }
  
   register() {
-    this.authService.register(this.credentialsForm.value).subscribe(res => {
+    console.log(this.credentialsForm);
+    
+    this.authService.register(this.credentialsForm).subscribe(res => {
       // Call Login to automatically login the new user
       // this.authService.login(this.credentialsForm.value).subscribe();
       this.router.navigate(['login']);
