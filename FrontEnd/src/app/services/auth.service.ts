@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject,Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
 
@@ -95,6 +95,12 @@ export class AuthService {
       buttons: ['OK']
     });
     alert.then(alert => alert.present());
+  }
+
+  getUser():Observable<any>{
+    console.log("klsdjfklj");
+    
+    return this.http.get<any>(`${this.url}/api/account`)
   }
   
 }

@@ -6,9 +6,11 @@
 </ion-header>
  
 <ion-content padding>
-  jfl;asdj;lfjdsfkljsdklfjsdafjjljj
+  <ion-list>
+    <ion-item>Email: <span>{{userAccount.email}}</span></ion-item>
+  </ion-list>
  
-  <p>{{ data }}</p>
+  <!-- <p>{{ data }}</p> -->
   <!-- <ion-button expand="full" (click)="loadSpecialInfo()">Load Special Info</ion-button> -->
   <ion-button expand="full" (click)="logout()">Logout</ion-button>
   <!-- <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button> -->
