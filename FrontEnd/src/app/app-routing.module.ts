@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: 'home',
@@ -16,10 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'forget-pass',
-    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
-  },
-  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
@@ -27,7 +22,21 @@ const routes: Routes = [
     path: 'job-orders',
     loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
+  {
+    path: 'finance',
+    loadChildren: () => import('./pages/finance/finance.module').then( m => m.FinancePageModule)
+  },
+  {
+    path: 'tracker',
+    loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
 
+
+  // ,canActivate: [AuthGuardService]
 ];
 
 @NgModule({

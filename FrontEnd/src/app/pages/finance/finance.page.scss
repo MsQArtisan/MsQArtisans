@@ -1,0 +1,25 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+ion-title {
+    color: white;
+    letter-spacing: 1.5px;
+}
+ion-content ion-segment {
+    margin: 5px 0;
+  }
+
+
+ion-card{
+    height: 20%;
+    text-align: center;
+}
+
+ion-item.item:hover div {
+    background-color: skyblue !important;
+    color: white;
+    width: 100%;
+    padding: 10px;
+}

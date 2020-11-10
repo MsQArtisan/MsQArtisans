@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-title>Tracker</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+     <!-- Icon top -->
+     <ion-segment color="secondary" value="favorite">
+            <ion-segment-button value="call">
+              <ion-label> On Going</ion-label>
+              <ion-icon name="refresh-circle-outline"></ion-icon>            
+            </ion-segment-button>
+    
+            <ion-segment-button value="favorite">
+              <ion-label>Completed</ion-label>
+              <ion-icon name="checkmark-circle-outline"></ion-icon>            
+            </ion-segment-button>
+              
+            
+            <ion-segment-button value="map">
+              <ion-label>Rejected</ion-label>
+              <ion-icon name="close-circle-outline"></ion-icon>
+             
+            </ion-segment-button>
+          </ion-segment>
+
+</ion-content>
+
+

@@ -41,4 +41,16 @@ export class AppComponent {
       });
     });
   }
+
+  
+  logout() {
+    this.authService.logout();
+    this.storage.remove('access_token');
+ 
+    let toast = this.toastController.create({
+      message: 'JWT removed',
+      duration: 3000
+    });
+    toast.then(toast => toast.present());
+  }
 }
