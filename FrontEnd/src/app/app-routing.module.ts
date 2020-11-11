@@ -43,7 +43,10 @@ const routes: Routes = [
     path: 'notif-setting',
     loadChildren: () => import('./pages/notif-setting/notif-setting.module').then( m => m.NotifSettingPageModule)
   },
-
+  {
+    path: 'acc-info',
+    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
+  },
 
   // ,canActivate: [AuthGuardService]
 ];

@@ -29,17 +29,22 @@
           </ion-item>
       </div>
   </ion-list>
-  <h1>Job orders from customer</h1>
-  <ion-list class="list">
-      <ion-item>
-          <ion-label (click)="order()">Job-Title</ion-label>
-      </ion-item>
-  </ion-list>
-
-
-
-  <!-- <p *ngIf="dataFromModal">Data from Modal : {{ dataFromModal.data.ionic }}</p> -->
-
-
+    <ion-card (click)="order()">
+            <ion-card-header>
+              <ion-card-title>{{jobTitle}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item>
+                    <ion-icon name="location-outline"></ion-icon>
+                    <ion-label>{{location}}</ion-label>
+                    <span>{{schedule}}</span>
+                </ion-item>
+               
+                <div class="footer">
+                    <p>{{rate}}</p>
+                </div>
+                
+            </ion-card-content>
+    </ion-card>
 </ion-content>
 

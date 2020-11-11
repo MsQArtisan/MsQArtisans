@@ -12,6 +12,11 @@ import { ToastController } from '@ionic/angular';
 export class JobOrdersPage implements OnInit {
   data = '';
   userAccount:string = '';
+  
+  jobTitle= "Nanny";
+  schedule= "Nov.10,20 - 12:00 pm";
+  location= "Nasipit Rd, Talamban Cebu";
+  rate= "4000 Pesos"
   constructor(private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
