@@ -1,82 +1,88 @@
+
+<ion-header>
+	<div class="login-header ion-padding">
+		<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
+	</div>
+</ion-header>
 <ion-content>
-		<div class="container">
-			<div class="d-flex justify-content-center">
-			<div class="user_card">
-				<div class="d-flex justify-content">
-					<div class="brand_logo_container">
-						<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
-					</div>
+	<div class="center">
+		<div heading-column-lr>
+			<h1 big-heading>Login</h1>
+		</div>
+		<form class="form_fields" #sampleForm="ngForm"><br>
+			<div class="input-group mb-3">
+				<div class="input-group-append">
+					<span class="input-group-text"><i size="large"class="fa fa-envelope"></i></span>
 				</div>
-				<strong><h1 class="signInText">Sign In</h1></strong> 
-		
-				<form class="form_fields" #sampleForm="ngForm"><br>
-				<div class="input-group mb-3">
-					<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-envelope"></i></span>
-					</div>
-					<input 
-					class="form-control input_user"
-					type="email" 
-					required  
-					name="email" 
-					[(ngModel)]="credentialsForm.email" 
-					#email="ngModel"
-					placeholder="Email" 
-					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-					/>
-					<div class="input-group mb-1">
-					<div class="text-danger"  *ngIf="email.invalid && (email.dirty || email.touched)">
+				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
+				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+				<div class="input-group mb-1">
+					<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
 						<div *ngIf="email.errors.required">
-						Email is required
+							Email is required
 						</div>
 						<div *ngIf="email.errors.pattern">
-						Please enter a valid email address
+							Please enter a valid email address
 						</div>
 					</div>
-					</div>                       
 				</div>
-				<div class="input-group mb-2">
-					<div class="input-group-append">
+			</div>
+			<div class="input-group mb-2">
+				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-key"></i></span>
-					</div>
-					<input 
-					class="form-control"
-					type="password" 
-					required
-					name="password"
-					[(ngModel)]="credentialsForm.password" 
-					#password="ngModel"
-					placeholder="Password" 
-					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-					/>
-					<div class="input-group mb-1">
-					<div class="text-danger"  *ngIf="password.invalid && (password.dirty || password.touched)" >
+				</div>
+				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
+				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+				<div class="input-group mb-1">
+					<div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
 						<div *ngIf="password.errors.required"> Password is required </div>
-						<div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</div>
-					</div>
-					</div>                        
-				</div>
-				<div class="form-group">
-					<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="customControlInline">
-					<label class="custom-control-label" for="customControlInline">Save Password</label>
+						<div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter,
+							and at least 8 or more characters</div>
 					</div>
 				</div>
-				<div class="d-flex justify-content-center mt-3 ">
-					<button  class="logbtn btn-outline-primary" (click)="onSubmit()" [disabled]="!sampleForm.form.valid">Sign In</button>
-				</div>
-				</form>
-		
-				<div class="mt-4">
-				<div class="d-flex justify-content-center links">
-					Don't have an account? <a [routerLink]="['/register']" class="ml-2">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center links">
-					<a [routerLink]="['/forget-pass']">Forgot your password?</a>
-				</div><br>
-				</div>
-			
 			</div>
+			<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+			<ion-label>Save Password</ion-label>
+
+			<div linespace></div>
+			<ion-button color="secondary" class="ion-button-class" shape="round" fill="solid" size="large" expand="block">LOGIN</ion-button>
+		</form>
+		<!-- <form class="form_fields" #sampleForm="ngForm">
+			<div class="input-group mb-3">
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<ion-icon name="mail"></ion-icon>
+						<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
+						 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+						<div class="input-group mb-1">
+							<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+								<div *ngIf="email.errors.required">
+									Email is required
+								</div>
+								<div *ngIf="email.errors.pattern">
+									Please enter a valid email address
+								</div>
+							</div>
+						</div>
+				</div>
+				<ion-item transparent>
+					<ion-icon name="key"></ion-icon>
+					<ion-input type="password" placeholder="Password"></ion-input>
+				</ion-item><br>
+				<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>Save Password</ion-label>
+				
+				<div linespace></div>
+				<ion-button color="secondary" class="ion-button-class" shape="round" fill="solid" size="large" expand="block">LOGIN</ion-button>
+		</form> -->
+
+		<div class="mt-4">
+			<div class="d-flex justify-content-center links">
+				Don't have an account? <a [routerLink]="['/register']" class="ml-2">Sign Up</a>
 			</div>
+			<div class="d-flex justify-content-center links">
+				<a [routerLink]="['/forget-pass']">Forgot your password?</a>
+			</div><br>
 		</div>
-		</ion-content>
+	</div>
+</ion-content>

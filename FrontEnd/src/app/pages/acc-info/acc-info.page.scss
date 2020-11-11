@@ -11,11 +11,15 @@ ion-title {
 ion-card{
     margin-top: 10%;
     padding:20px;
+    // background-color: rgb(21, 160, 224);
+    border-radius: 20px;
+    box-shadow: 2px 4px 8px 2px rgba(20, 211, 245, 0.541);
+    transition: 0.3s;
   
 }
 ion-card-content{
     color:black;
     h2{
-        color:red;
+        color:$secondary;
     }
 }

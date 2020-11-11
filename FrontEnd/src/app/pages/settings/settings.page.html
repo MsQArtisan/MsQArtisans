@@ -1,19 +1,19 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        
+            <ion-title>Settings</ion-title>
         <ion-buttons slot="start">
-            <ion-menu-button menu="main-menu"></ion-menu-button>
+                <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-buttons>
-        <ion-title>Settings</ion-title>
+        
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <ion-list lines="none" class="menu-items">
 
-        <ion-item>
+        <ion-item [routerLink]="['/acc-info']">
             <div>
                 <ion-icon name="information-circle-outline"></ion-icon>
-                <ion-label [routerLink]="['/acc-info']">Account Information</ion-label>
+                <ion-label >Account Information</ion-label>
             </div>
         </ion-item>
 
