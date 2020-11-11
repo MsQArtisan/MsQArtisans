@@ -34,9 +34,14 @@ const routes: Routes = [
   {
     path: 'livechat',
     loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
-  },  {
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'notif-setting',
+    loadChildren: () => import('./pages/notif-setting/notif-setting.module').then( m => m.NotifSettingPageModule)
   },
 
 

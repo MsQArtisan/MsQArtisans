@@ -4,7 +4,7 @@ var passport	= require('passport');
 var mongoose    = require('mongoose');
 var config      = require('./config/config');
 var port        = process.env.PORT || 5000; 
-var port2       = process.env.PORT || 3002; 
+var port2       = process.env.PORT || 3001; 
 
 var cors        = require('cors');
  
@@ -41,11 +41,6 @@ connection.on('error', (err) => {
     process.exit();
 });
 
-
-
-
-
-
 app.use((err, req, res, next) => {
     if (err.name === 'ValidationError') {
         var valErrors = [];
@@ -53,9 +48,6 @@ app.use((err, req, res, next) => {
         res.status(422).send(valErrors)
     }
 });
-
-
-
 // start with Live chat
 io.on('connection', (socket) => {
 
