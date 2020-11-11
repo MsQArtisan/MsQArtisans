@@ -3,10 +3,6 @@ var express         = require('express'),
 var userController  = require('./controller/user-controller');
 var passport	    = require('passport');
  
-routes.get('/', (req, res) => {
-    return res.send('Hello, this is the API!');
-});
- 
 routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.get('/account',userController.getUser);

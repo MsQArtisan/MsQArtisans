@@ -23,12 +23,8 @@ ion-select {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px 50px 0px ;
-    opacity: 0.5;
-}
-
-.user_card:hover {
-    opacity: 5.0;
+    border-radius: 15px 50px 50px ;
+    
 }
 
 .signInText {
@@ -45,7 +41,7 @@ ion-select {
     width: 130px;
     top: -50px;
     border-radius: 50%;
-    background: #0000ff;
+    background: linear-gradient(to right, #00ffff -8%, #0000ff 100%);
     padding: 10px;
 }
 
@@ -80,14 +76,6 @@ ion-select {
     outline: 0px !important;
 }
 
-.custom-control-label {
-    margin-top: 5px;
-}
-
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background: rgb(59, 133, 230)
-}
-
 .logbtn {
     background: linear-gradient(to right, #0000ff -8%, #00ffff 100%);
     font-size: 15px;
@@ -102,13 +90,6 @@ ion-select {
 
 .apply {
     width: auto;
-}
-
-.success{
-    padding: 20px;
-    background-color:#249424; /* Green */
-    color: white;
-    margin-bottom: 15px;
 }
 
 /* Portrait */

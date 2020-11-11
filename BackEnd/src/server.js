@@ -24,7 +24,6 @@ app.use(passport.initialize());
 var passportMiddleware = require('./middleware/passport');
 passport.use(passportMiddleware);
  
-
 var routes = require('./routes');
 app.use('/api', routes);
  

@@ -12,7 +12,17 @@ export class RegisterPage implements OnInit {
 
   credentialsForm={
     email: "",
-    password: ""
+    password: "",
+    name:"",
+    address:"",
+    bday:"",
+    phone:"",
+    confirmPassword:"",
+    selfie:"",
+    primaryIdPic:"",
+    primaryIdNum:"",
+    nbi:"",
+    applyJob:""
   }
   constructor(
     private authService: AuthService,

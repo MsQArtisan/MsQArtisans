@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class JobOrdersPage implements OnInit {
   data = '';
-  userAccount:string = '';
+  
   
   jobTitle= "Nanny";
   schedule= "Nov.10,20 - 12:00 pm";
@@ -20,7 +20,7 @@ export class JobOrdersPage implements OnInit {
   constructor(private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
-    this.account()
+    
   }
 
 
@@ -43,10 +43,5 @@ export class JobOrdersPage implements OnInit {
   //   toast.then(toast => toast.present());
   // }
 
-  account(){
-    this.authService.getUser().subscribe((data:any)=>{
-      this.userAccount=data.data[0];
-      console.log("account: ", this.userAccount)
-    })
-  }
+  
 }

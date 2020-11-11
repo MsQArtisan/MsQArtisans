@@ -2,7 +2,7 @@
   <ion-toolbar color="secondary">
       <ion-title>Account Information</ion-title>
       <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
+          <ion-back-button [routerLink]="['/settings']"></ion-back-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,9 +11,9 @@
   <ion-card>
     <ion-card-content>
       Name :
-        <h2> {{name}}</h2>
+        <h2>{{userAccount.name}}</h2>
       Phone Number :
-        <h2> {{phone}}</h2>
+        <h2> {{userAccount.phone}}</h2>
     </ion-card-content>
   </ion-card>
 </ion-content>

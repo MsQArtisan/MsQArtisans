@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   }
  
   onSubmit() {
-    console.log(this.credentialsForm)
+    // console.log(this.credentialsForm)
     this.authService.login(this.credentialsForm).subscribe();
 
   }
