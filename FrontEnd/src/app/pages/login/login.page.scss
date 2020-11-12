@@ -6,55 +6,40 @@
     color: $light !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
-    // border-radius:20px !important;
-    // padding-right:25px;
-    // margin-right:-10px;
+    border-top-left-radius:20px !important;
+    border-bottom-left-radius:20px !important;
 }
 
 input{
     color:#000;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     padding-top:15px;
     --padding-start:5px;
     font-size:15px;
     text-indent:1px;
     padding-left:10px !important;
-    border-radius:20px !important;
-    // margin-left:-10px;
-    // overflow:hidden !important;
-
-}
-.input-group{
+    border-top-right-radius:20px !important;
+    border-bottom-right-radius:20px !important;
+    border: 5px solid rgb(20, 211, 245);
+    background-color:transparent;
 }
 
+.form-control:focus{
+    box-shadow:none;
+    border-color:transparent;
+    border: 5px solid rgb(20, 211, 245);
+}
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 3px solid $danger; /* red */
+    border-top: 3px solid $danger; /* red */
+    border-bottom: 3px solid $danger; /* red */
+    background-color:rgba(255, 0, 0, 0.199);
+  }
 
-// /* Portrait */
-// @media screen 
-//   and (min-device-width: 360px) 
-//   and (max-device-width: 640px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-//     .user_card {
-//         width: auto;
-//         margin-left: 5% !important;
-//         margin-right: 5% !important;
-//         margin-top: 25% !important;
-//         margin-bottom: 20% !important;
-//     }
-// }
 
-// /* Landscape */
-// @media screen 
-// and (min-device-width: 360px) 
-// and (max-device-width: 640px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: landscape) {
-//     .user_card {
-//         margin: auto;
-//         margin-top: 10% !important;
-//         margin-bottom: 5%;
-//     }
-// }
 .login-header{
     background-color: rgb(20, 211, 245);
 }
@@ -93,6 +78,11 @@ img{
     align-items: center;
     margin-bottom:35px;
     margin-top:5px;
+    font-weight:bolder;
+    text-shadow: 2px 2px rgb(20, 211, 245);
+    font-family: Comic Sans MS, Comic Sans, cursive, fantacy !important;
+    font-style: oblique -3deg !important;
+    letter-spacing: 3px;
 }
 [big-heading]{
     font-family: "Haebo-Bold" !important;
@@ -104,32 +94,21 @@ ion-content{
     --background:#fafafa;
 }
 
-// ion-input{
-//     --color:#000;
-//     --padding-bottom: 15px;
-//     --padding-top:15px;
-//     --padding-start:5px;
-//     font-size:15px;
-//     text-indent:1px;
-//     padding-left:10px !important;
-// }
 ion-icon{
     width: 30px;
 }
-// ion-item{
-//     --highlight-color-focused:transparent;
-//     --highlight-height:0;
-//     --highlight-color-invalid:#000;
-//     --highlight-color-valid:#ddd;
-//     --min-heght:65px;
-//     --padding-start:0;
 
-// }
 [linespace]{
     height: 30px;
 }
 .center{
     margin-left:10px;
     margin-right:10px;
+}
+.ion-button-class:hover{ 
+    font-weight:bolder !important;
+    letter-spacing: 5px!important; 
+    text-shadow: 2px 2px solid rgb(20, 211, 245) !important;
+    border:2px teal;
 }
 

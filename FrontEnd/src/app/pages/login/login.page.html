@@ -1,4 +1,3 @@
-
 <ion-header>
 	<div class="login-header ion-padding">
 		<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
@@ -12,7 +11,7 @@
 		<form class="form_fields" #sampleForm="ngForm"><br>
 			<div class="input-group mb-3">
 				<div class="input-group-append">
-					<span class="input-group-text"><i size="large"class="fa fa-envelope"></i></span>
+					<span class="input-group-text"><i size="large" class="fa fa-envelope"></i></span>
 				</div>
 				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
 				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
@@ -41,40 +40,16 @@
 					</div>
 				</div>
 			</div>
-			<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;&nbsp;
-			<ion-label>Save Password</ion-label>
-
+			<div>
+				<ion-label class ="label">
+					<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;Save Password
+				</ion-label>
+			</div>
+			<!-- &nbsp;&nbsp;&nbsp; -->
 			<div linespace></div>
-			<ion-button color="secondary" class="ion-button-class" shape="round" fill="solid" size="large" expand="block">LOGIN</ion-button>
+			<ion-button color="secondary" class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
+			 (click)="onSubmit()" [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
 		</form>
-		<!-- <form class="form_fields" #sampleForm="ngForm">
-			<div class="input-group mb-3">
-				<div class="input-group-append">
-					<span class="input-group-text">
-						<ion-icon name="mail"></ion-icon>
-						<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
-						 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-						<div class="input-group mb-1">
-							<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-								<div *ngIf="email.errors.required">
-									Email is required
-								</div>
-								<div *ngIf="email.errors.pattern">
-									Please enter a valid email address
-								</div>
-							</div>
-						</div>
-				</div>
-				<ion-item transparent>
-					<ion-icon name="key"></ion-icon>
-					<ion-input type="password" placeholder="Password"></ion-input>
-				</ion-item><br>
-				<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;&nbsp;
-				<ion-label>Save Password</ion-label>
-				
-				<div linespace></div>
-				<ion-button color="secondary" class="ion-button-class" shape="round" fill="solid" size="large" expand="block">LOGIN</ion-button>
-		</form> -->
 
 		<div class="mt-4">
 			<div class="d-flex justify-content-center links">
