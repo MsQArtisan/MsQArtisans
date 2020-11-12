@@ -33,6 +33,7 @@
         font-weight: 300;
         margin-left: 5px;
         font-size: 24px;
+        color: rgb(69, 71, 73);
     }
     p {
         font-size: 12px;
@@ -45,10 +46,11 @@
 }
 
 .menu-items {
+   
     margin: 0px;
     ion-icon {
         margin-right: 18px;
-        color: black;
+        color: rgb(72, 76, 80);
         position: absolute;
         font-size: 25px;
     }
@@ -57,7 +59,8 @@
         padding-left: 0px;
         margin-bottom: 5px;
         font-size: 18px;
-        font-weight: bold;  
+        font-weight: bold;
+        color:rgb(80, 77, 77);  
         
         // background-color: $info;
     }

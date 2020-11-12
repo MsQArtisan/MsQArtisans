@@ -1,0 +1,35 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+button {
+    width: 100%;
+}
+
+
+.orders {
+    p {
+        font-size: 18px;
+        text-align: center;
+        color: rgb(72, 76, 80);
+
+    }
+}
+
+
+ion-icon{
+    font-size: 22px;
+    color: rgb(38, 121, 216);
+    margin-right: 10px;
+}
+ion-label {
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+}
+
+span{
+    color:$secondary;
+    font-size: 12px;
+    
+}

@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'acc-info',
     loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
+  },  {
+    path: 'orders',
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
   },
+
 
 
   // ,canActivate: [AuthGuardService]

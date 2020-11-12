@@ -8,18 +8,6 @@ ion-title {
     letter-spacing: 1.5px;
 }
 
-ion-label {
-    color: black !important;
-    font-size: 30%;
-    ion-label {
-        color: black !important;
-        font-size: 30%;
-        padding-top: 10px;
-        font-weight: bolder;
-    }
-    font-weight: bolder;
-}
-
 .work {
     float: left;
 }
@@ -28,35 +16,28 @@ ion-label {
     float: right;
 }
 
-h1 {
-    color: black;
-    text-align: center;
-}
-
-hr {
-    color: red;
-}
-
-.list {
-    background-color: rgb(21, 160, 224);
-    padding: 10px;
-    ion-label {
-        font-family: 'Courier New', Courier, monospace;
-        text-align: center;
-    }
-}
-
-ion-card-header{
-    background-color: rgb(9, 185, 255);
-    color: white;
-}
+ ion-icon{
+     font-size: 18px;
+     color: rgb(74, 140, 216);
+     margin-right: 3px;
+ }
 
 ion-card-title{
-    font-size: 18px;
-    padding: 0px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 10px;
+    color: rgb(9, 123, 168);
+}
+ion-card-content{
+    padding: 2%;
 }
 
+ion-item{
+    font-size: 16px;
+    color: rgb(80, 83, 87);
+}
 .footer{
     position: relative;
-    left: 220px;
+    left: 150px;
+    font-size: 13px;
 }
