@@ -1,8 +1,7 @@
 @import "../../../global.scss";
 
-
 .input-group-text {
-    background: rgb(20, 211, 245);
+    background: rgb(6, 170, 235);
     color: $light !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -20,14 +19,14 @@ input{
     padding-left:10px !important;
     border-top-right-radius:20px !important;
     border-bottom-right-radius:20px !important;
-    border: 5px solid rgb(20, 211, 245);
+    border: 5px solid rgb(6, 170, 235);
     background-color:transparent;
 }
 
 .form-control:focus{
     box-shadow:none;
     border-color:transparent;
-    border: 5px solid rgb(20, 211, 245);
+    border: 5px solid rgb(6, 170, 235);
 }
 // .ng-valid[required], .ng-valid.required {
 //     border: 5px solid rgb(20, 211, 245);
@@ -41,10 +40,10 @@ input{
 
 
 .login-header{
-    background-color: rgb(20, 211, 245);
+    background-color: rgb(6, 170, 235);
 }
 .login-header{
-    background-color: rgb(20, 211, 245);
+    background-color: rgb(6, 170, 235);
     position: relative;
     border-radius: 0em;
 }
@@ -56,7 +55,7 @@ input{
     width:0;
     height:0;
     border:20px solid transparent;
-    border-top-color:rgb(20, 211, 245);
+    border-top-color:rgb(6, 170, 235);
     border-bottom: 0;
     margin-left:-15px;
     margin-top:15px;
@@ -68,8 +67,8 @@ img{
     width:   120px;
     margin:0 auto;
     border-radius: 50%;
-    background: linear-gradient(to right, #00ffff -8%, #0000ff 100%);
-    border: 4px $solid $info;
+    border: 4px solid #22bbea8f;
+    box-shadow: 1px 1px 6px 10px $light
     
 }
 [heading-column-lr]{
@@ -79,8 +78,8 @@ img{
     margin-bottom:35px;
     margin-top:5px;
     font-weight:bolder;
-    text-shadow: 2px 2px rgb(20, 211, 245);
-    font-family: Comic Sans MS, Comic Sans, cursive, fantacy !important;
+    text-shadow: 2px 2px rgb(6, 170, 235);
+    font-family: cursive, Impact fantacy !important;
     font-style: oblique -3deg !important;
     letter-spacing: 3px;
 }
@@ -108,7 +107,6 @@ ion-icon{
 .ion-button-class:hover{ 
     font-weight:bolder !important;
     letter-spacing: 5px!important; 
-    text-shadow: 2px 2px solid rgb(20, 211, 245) !important;
+    text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
     border:2px teal;
 }
-
