@@ -113,7 +113,21 @@ ion-icon{
 }
 
 
-input#file-upload-button{
-    border:red!important;
-    margin-top: 10px;
+::-webkit-file-upload-button{
+    color:white;
+    background:rgb(6, 170, 235);
+    border-radius:10px;
+    border: none !important;
+    box-shadow: 1px 0px 1px 1px rgb(6, 170, 235) ;
+    padding: 3px;
+    margin-left:-10px;
+ 
+}
+input.input_user{
+    padding-bottom:3px !important;
+    padding-top:3px !important;
+    width:100% !important;
+}
+::-webkit-file-upload-button:hover{
+    box-shadow: 1px 0px 2px 2px rgba(75, 71, 71, 0.89);
 }

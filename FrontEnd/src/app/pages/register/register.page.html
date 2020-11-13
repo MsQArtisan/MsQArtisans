@@ -1,4 +1,3 @@
-
 <ion-header>
 	<div class="login-header ion-padding">
 		<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
@@ -9,7 +8,7 @@
 		<div heading-column-lr>
 			<h1 big-heading>Sign Up</h1>
 		</div>
-		
+
 		<form class="form_fields" #signUpForm="ngForm"><br>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -131,7 +130,7 @@
 						<i class="fa fa-file-image"></i>
 					</span>
 					<span>
-						<input class="form-control input_user" type="file" required name="selfie" [(ngModel)]="credentialsForm.selfie"
+						<input class="input_user" type="file" required name="selfie" [(ngModel)]="credentialsForm.selfie"
 						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
 					</span>
 				</div>
@@ -150,7 +149,7 @@
 						<i class="fa fa-file-image"></i>
 					</span>
 					<span>
-						<input class="form-control input_user" type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic"
+						<input class="input_user" type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic"
 						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
 					</span>
 				</div>
@@ -177,13 +176,13 @@
 				</div>
 			</div>
 			<h6>NBI Clearance:</h6>
-			<div class="input-group mb-1">
+			<div class="input-group mb-1 " >
 				<div class="input-group-append" id="fileInput">
 					<span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
 					<span>
-						<input class="form-control input_user" type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
+						<input class="input_user"type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
 						 placeholder="NBI" />
 					</span>
 				</div>
@@ -194,6 +193,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="input-group mb-1">
 				<ion-item class="apply">
 					<ion-label>Apply for?</ion-label>
@@ -212,9 +212,9 @@
 					</div>
 				</div>
 			</div>
-			
-			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
-			(click)="register()"[disabled]="!signUpForm.form.valid">Sign Up</ion-button>
+
+			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()"
+			 [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
 		</form>
 		<div class="mt-4">
 			<div class="d-flex justify-content-center links">
@@ -222,4 +222,6 @@
 			</div><br>
 		</div><br>
 	</div>
+	
+	
 </ion-content>
