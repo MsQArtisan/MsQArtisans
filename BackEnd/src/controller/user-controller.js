@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
+var emailholder="";
  
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -9,6 +10,7 @@ function createToken(user) {
 }
  
 exports.registerUser = (req, res) => {
+    
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ 'msg': 'You need to send email and password' });
     }
@@ -33,11 +35,14 @@ exports.registerUser = (req, res) => {
 };
  
 exports.loginUser = (req, res) => {
+    emailholder=req.body.email;
+    console.log("Email: ", emailholder);
     if (!req.body.email || !req.body.password) {
         return res.status(400).send({ 'msg': 'You need to send email and password' });
     }
- 
+    
     User.findOne({ email: req.body.email }, (err, user) => {
+        
         if (err) {
             return res.status(400).send({ 'msg': err });
         }
@@ -57,14 +62,20 @@ exports.loginUser = (req, res) => {
         });
     });
 };
+exports.getUser = (req, res) => {
+    User.find({ email: emailholder }, (err, user) => {
+        console.log("INFo: ",user);
+        
+        if(err){
+            return res.send({error:err, status: false})
+            
+            
+          }else{
+            return res.send({ status: true,data:user})
+            
+      
+      
+          }
+    });
+};
 
-exports.readUser = (req, res) => {
-    User.findOne({email: req.body.email}, (error, user) => {
-        if (error) {
-            return error;
-        } else {
-            console.log("backend data ", user)
-            res.json(user)
-        }
-    })
-}

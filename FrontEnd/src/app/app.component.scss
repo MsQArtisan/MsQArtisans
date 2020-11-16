@@ -5,7 +5,7 @@
 
 .menu-header-bg {
     height: 180px;
-    width: 350px;
+    width: 340px;
     background: skyblue;
     background: linear-gradient(90deg, hsla(199, 100%, 50%, 0.71) 0%, skyblue 100%);
     box-shadow: 0px 1px 10px rgb(21, 160, 224);
@@ -33,7 +33,7 @@
         font-weight: 300;
         margin-left: 5px;
         font-size: 24px;
-        color: rgb(69, 71, 73);
+        color: rgb(49, 50, 51);
     }
     p {
         font-size: 12px;
@@ -49,7 +49,8 @@
    
     margin: 0px;
     ion-icon {
-        margin-right: 18px;
+
+        margin-left: 10px;
         color: rgb(72, 76, 80);
         position: absolute;
         font-size: 25px;
