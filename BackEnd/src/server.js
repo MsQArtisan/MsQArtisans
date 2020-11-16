@@ -38,18 +38,14 @@ app1.use((req, res, next) => {
 app1.post('/messages', (req, res) => {
   const { body } = req;
   const { text, id } = body;
-  const result = sentiment.analyze(text);
-  const comparative = result.comparative;
-  const tone =
-    comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
+  // const result = sentiment.analyze(text);
+  // const comparative = result.comparative;
+  // const tone =
+  //   comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
   const data = {
     text,
     id,
     timeStamp: new Date(),
-    // sentiment: {
-    //   tone,
-    //   score: result.score,
-    // },
   };
   pusher.trigger('chat', 'message', data);
   res.json(data);

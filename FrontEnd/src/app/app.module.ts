@@ -13,8 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { ChatComponent } from './components/chat/chat';
-import { EmojiPanelComponent } from './components/emoji-panel/emoji-panel';
 
 
 export function jwtOptionsFactory(storage) {
@@ -28,8 +26,6 @@ export function jwtOptionsFactory(storage) {
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent,
-    EmojiPanelComponent
   ],
   entryComponents: [],
   imports: [

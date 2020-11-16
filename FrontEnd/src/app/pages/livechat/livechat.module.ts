@@ -18,8 +18,8 @@ import { EmojiPanelComponent } from '../../components/emoji-panel/emoji-panel'
   ],
   declarations: [
     LivechatPage,
-    ChatComponent,
-    EmojiPanelComponent
+    // ChatComponent,
+    // EmojiPanelComponent
   ]
 })
 export class LivechatPageModule {}
