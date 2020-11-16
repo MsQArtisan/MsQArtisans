@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -18,8 +19,6 @@ export class LoginPage implements OnInit {
  
   onSubmit() {
     console.log(this.credentialsForm)
-    this.authService.login(this.credentialsForm).subscribe();
-
+    this.authService.login(this.credentialsForm).subscribe(); 
   }
- 
 }

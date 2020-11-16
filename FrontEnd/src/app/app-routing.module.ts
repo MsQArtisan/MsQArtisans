@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+  },
+  {
     path: 'job-orders',
     loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
@@ -34,9 +38,12 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'livechat',
+    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+  },
 
 
-  // ,canActivate: [AuthGuardService]
 ];
 
 @NgModule({

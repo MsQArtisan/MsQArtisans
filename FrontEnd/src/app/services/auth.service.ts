@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import Swal from 'sweetalert2';
+
 
 const TOKEN_KEY = 'access_token';
 
@@ -57,9 +59,20 @@ export class AuthService {
           this.storage.set(TOKEN_KEY, res['token']);
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully Login',
+            showConfirmButton: false,
+            timer: 1500
+          }); 
         }),
         catchError(e => {
-          this.showAlert(e.error.msg);
+          Swal.fire({
+            icon: 'error',
+            title: 'Invalid Email and Password',
+            showConfirmButton: false,
+            timer: 1500
+          }); 
           throw new Error(e);
         })
       );

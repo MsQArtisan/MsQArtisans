@@ -10,9 +10,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ChatComponent } from './components/chat/chat';
+import { EmojiPanelComponent } from './components/emoji-panel/emoji-panel';
+
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -23,7 +26,11 @@ export function jwtOptionsFactory(storage) {
   }
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    ChatComponent,
+    EmojiPanelComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, 
@@ -42,8 +49,10 @@ export function jwtOptionsFactory(storage) {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    HttpClient,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+ 
 })
 export class AppModule {}

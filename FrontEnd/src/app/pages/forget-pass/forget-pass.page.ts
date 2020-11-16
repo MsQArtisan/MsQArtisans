@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forget-pass.page.scss'],
 })
 export class ForgetPassPage implements OnInit {
-  email: string = null;
+  // email: string = null;
   constructor() { }
 
   ngOnInit() {
