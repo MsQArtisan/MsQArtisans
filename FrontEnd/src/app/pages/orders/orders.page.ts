@@ -1,5 +1,5 @@
 import { Component,Input, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-orders',
@@ -13,7 +13,7 @@ export class OrdersPage implements OnInit {
   @Input() rate: string;
   @Input() notes: string;
 
-  constructor(private navParams: NavParams, private modalController: ModalController) { }
+  constructor(public navCtrl: NavController, private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
   }

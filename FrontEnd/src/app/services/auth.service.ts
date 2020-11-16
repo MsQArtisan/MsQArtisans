@@ -103,4 +103,8 @@ export class AuthService {
     return this.http.get<any>(`${this.url}/api/account`)
   }
   
+
+  sampleApiCall(object) {
+    return this.http.post("http://192.168.0.16:3000/api/imageUpload", object)
+  }
 }
