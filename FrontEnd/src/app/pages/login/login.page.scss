@@ -19,14 +19,14 @@ input{
     padding-left:10px !important;
     border-top-right-radius:20px !important;
     border-bottom-right-radius:20px !important;
-    border: 2px solid rgb(6, 170, 235);
+    border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
 }
 
 .form-control:focus{
     box-shadow:none;
     border-color:transparent;
-    border: 5px solid rgb(6, 170, 235);
+    border: 1px solid rgb(6, 170, 235);
 }
 // .ng-valid[required], .ng-valid.required {
 //     border: 5px solid rgb(20, 211, 245);

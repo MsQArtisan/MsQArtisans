@@ -16,7 +16,7 @@
 				</div>
 				<input class="form-control input_user" type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel"
 				 placeholder="Fullname" minlength="2" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
 						<div *ngIf="name.errors.required">
 							Please provide your full name
@@ -25,7 +25,7 @@
 							Name must be at least 2 characters
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -33,13 +33,13 @@
 				</div>
 				<input class="form-control input_user" type="text" required name="address" [(ngModel)]="credentialsForm.address"
 				 #address="ngModel" placeholder="Address" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="address.invalid && (address.dirty || address.touched)">
 						<div *ngIf="address.errors.required">
 							Address is required
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -47,13 +47,13 @@
 				</div>
 				<input class="form-control input_user" type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel"
 				 placeholder="Birth Date" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="bday.invalid && (bday.dirty || bday.touched)">
 						<div *ngIf="bday.errors.required">
 							Birth Date is required
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -61,7 +61,7 @@
 				</div>
 				<input class="form-control input_user" type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel"
 				 placeholder="Phone Number" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
 						<div *ngIf="phone.errors.required">
 							Phone Number is required
@@ -70,7 +70,7 @@
 							Please enter a valid Phone Number ( +63.... or 09..... )
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -78,7 +78,7 @@
 				</div>
 				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
 				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
 						<div *ngIf="email.errors.required">
 							Email is required
@@ -87,7 +87,7 @@
 							Please enter a valid email address
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -95,7 +95,7 @@
 				</div>
 				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
 				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
 						<div *ngIf="password.errors.required">
 							Password is required
@@ -104,7 +104,7 @@
 							Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -112,7 +112,7 @@
 				</div>
 				<input class="form-control" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
 				 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
 						<div *ngIf="confirmPassword.errors.required">
 							Confirm Password is required
@@ -121,7 +121,7 @@
 							Password & Confirm Password does not match
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<h6>Picture (Selfie):</h6>
 			<div class="input-group mb-1">
@@ -134,13 +134,13 @@
 						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
 					</span>
 				</div>
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" id="err" *ngIf="selfie.invalid && (selfie.dirty || selfie.touched)">
 						<div *ngIf="selfie.errors.required">
 							Please provide a selfie picture
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<h6>Primary ID:</h6>
 			<div class="input-group mb-1">
@@ -153,13 +153,13 @@
 						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
 					</span>
 				</div>
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" id="err" *ngIf="primaryIdPic.invalid && (primaryIdPic.dirty || primaryIdPic.touched)">
 						<div *ngIf="primaryIdPic.errors.required">
 							Please provide your Primary ID Picture
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="input-group mb-1">
 				<div class="input-group-append">
@@ -167,13 +167,13 @@
 				</div>
 				<input class="form-control" type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum"
 				 #primaryIdNum="ngModel" placeholder="Primary ID Number" />
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="primaryIdNum.invalid && (primaryIdNum.dirty || primaryIdNum.touched)">
 						<div *ngIf="primaryIdNum.errors.required">
 							Primary ID Number is required
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<h6>NBI Clearance:</h6>
 			<div class="input-group mb-1 " >
@@ -186,12 +186,12 @@
 						 placeholder="NBI" />
 					</span>
 				</div>
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="nbi.invalid && (nbi.dirty || nbi.touched)">
 						<div *ngIf="nbi.errors.required"></div>
 						Please provide your NBI Clearance
 					</div>
-				</div>
+				</div> -->
 			</div>
 			
 			<div class="input-group mb-1">
@@ -204,13 +204,13 @@
 						<ion-select-option value="haircutMassage">Haircut/ Massage (NC2 or n/a)</ion-select-option>
 					</ion-select>
 				</ion-item>
-				<div class="input-group mb-1">
+				<!-- <div class="input-group mb-1">
 					<div class="text-danger" *ngIf="applyJob.invalid && (applyJob.dirty || applyJob.touched)">
 						<div *ngIf="applyJob.errors.required">
 							Please choose a job you want to apply
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()"
