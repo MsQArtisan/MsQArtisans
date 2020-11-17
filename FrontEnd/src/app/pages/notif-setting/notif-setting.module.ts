@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { NotifSettingPageRoutingModule } from './notif-setting-routing.module';
 
-import { RegisterPage } from './register.page';
+import { NotifSettingPage } from './notif-setting.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterPageRoutingModule
+    NotifSettingPageRoutingModule
   ],
-  declarations: [RegisterPage]
+  declarations: [NotifSettingPage]
 })
-export class RegisterPageModule {}
+export class NotifSettingPageModule {}

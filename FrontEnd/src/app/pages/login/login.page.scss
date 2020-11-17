@@ -22,6 +22,15 @@ input{
     border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
 }
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 3px solid $danger; /* red */
+    border-top: 3px solid $danger; /* red */
+    border-bottom: 3px solid $danger; /* red */
+    background-color:rgba(255, 0, 0, 0.199);
+  }
 
 .form-control:focus{
     box-shadow:none;

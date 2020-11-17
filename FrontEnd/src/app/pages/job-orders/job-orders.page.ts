@@ -29,6 +29,7 @@ export class JobOrdersPage implements OnInit {
       this.data = res['msg'];
     });
   }
+  
   async order() {
     const modal = await this.modalController.create({
       component: OrdersPage,
