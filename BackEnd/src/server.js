@@ -1,4 +1,3 @@
-
 var express     = require('express');
 var bodyParser  = require('body-parser');
 var passport	  = require('passport');
@@ -10,9 +9,6 @@ var port        = process.env.PORT || 5000;
 
 // For Pusher
 const Pusher    = require('pusher');
-
-const Sentiment = require('sentiment');
-const sentiment = new Sentiment();
 
 const pusher = new Pusher({
   appId: "1106641",
@@ -38,10 +34,6 @@ app1.use((req, res, next) => {
 app1.post('/messages', (req, res) => {
   const { body } = req;
   const { text, id } = body;
-  // const result = sentiment.analyze(text);
-  // const comparative = result.comparative;
-  // const tone =
-  //   comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
   const data = {
     text,
     id,
@@ -63,7 +55,6 @@ passport.use(passportMiddleware);
  
 var routes = require('./routes');
 app.use('/api', routes);
-
 
 
 mongoose.connect(config.db, { useNewUrlParser: true , useCreateIndex: true});
