@@ -7,11 +7,13 @@ import { NavParams, ModalController, NavController } from '@ionic/angular';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
+
   @Input() jobTitle: string;
   @Input() schedule: string;
   @Input() location: string;
   @Input() rate: string;
   @Input() notes: string;
+
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private modalController: ModalController) { }
 
@@ -22,5 +24,13 @@ export class OrdersPage implements OnInit {
     // data null and role cancel
      this.modalController.dismiss( 'cancel'); 
    }
+    
+   rejectOrder(){
+    var rejected=[];
+    
 
+     this.closeModal()
+   }
+
+ 
 }

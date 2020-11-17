@@ -24,10 +24,10 @@
       </ion-item>
 
   </ion-list>
-  
+   
     <section>
-      <ion-button expand="block" color="primary">Accept Job</ion-button>
-      <ion-button expand="block" color="danger" (click)="closeModal()">Pass</ion-button>
+      <ion-button expand="block" color="primary" (click)="closeModal()" [routerLink]="['/accepted-order']">Accept Job</ion-button>
+      <ion-button expand="block" color="danger" (click)="rejectOrder()">Pass</ion-button>
     </section>
 
 </ion-content>

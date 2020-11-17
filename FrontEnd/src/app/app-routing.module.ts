@@ -46,12 +46,16 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
-  },  {
+  },
+  {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+  },  {
+    path: 'accepted-order',
+    loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
   },
 
- 
+
 
 
   // ,canActivate: [AuthGuardService]
