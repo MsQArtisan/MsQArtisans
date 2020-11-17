@@ -25,14 +25,14 @@
           </ion-item>
       </div>
   </ion-list>
-    <ion-card (click)="order()">
+    <ion-card >
             <ion-card-header>
               <ion-card-title>{{jobTitle}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
                 <ion-item>
                     <ion-icon name="location-outline"></ion-icon>
-                    <ion-label>{{location}}</ion-label>
+                    <ion-label  [routerLink] = "['/location-select']" >{{location}}</ion-label>
                     <span>{{schedule}}</span>
                 </ion-item>
                

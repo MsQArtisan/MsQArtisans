@@ -1,6 +1,7 @@
 
 @import "../../../global.scss";
 
+
 .input-group-text {
     background: rgb(6, 170, 235);
     color: $light !important;
@@ -59,7 +60,7 @@ input{
     border-top-color:rgb(6, 170, 235);
     border-bottom: 0;
     margin-left:-15px;
-    margin-top:15px;
+    margin-top:16px;
 
 }
 
@@ -88,6 +89,8 @@ img{
     font-family: "Haebo-Bold" !important;
     font-size:30px !important;
     color:$dark;
+    display:flex;
+    margin-left:7%;
 }
 
 ion-content{
@@ -121,13 +124,24 @@ ion-icon{
     box-shadow: 1px 0px 1px 1px rgb(6, 170, 235) ;
     padding: 3px;
     margin-left:-10px;
+    
  
 }
 input.input_user{
     padding-bottom:3px !important;
     padding-top:3px !important;
     width:100% !important;
+  
 }
 ::-webkit-file-upload-button:hover{
     box-shadow: 1px 0px 2px 2px rgba(75, 71, 71, 0.89);
+    
 }
+.apply, {
+    width:100% !important;
+    border-bottom:2px solid rgb(6, 170, 235);
+}
+.apply:hover{
+    background-color: beige !important;
+}
+

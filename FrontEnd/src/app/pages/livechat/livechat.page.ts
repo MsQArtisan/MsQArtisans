@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { v4 } from 'uuid';
+import { PusherService } from '../../services/pusher.service';
+
+
+interface Message {
+  id: string;
+  text: string;
+  timeStamp: Date;
+  type: string;
+  user:String;
+}
 
 @Component({
   selector: 'app-livechat',
@@ -8,53 +18,60 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./livechat.page.scss'],
 })
 export class LivechatPage implements OnInit {
-  message = '';
-  messages = [];
-  currentUser = '';
 
+  constructor(private http: HttpClient, private pusher: PusherService) {}
 
-  constructor(private socket: Socket, private toastCtrl: ToastController) { }
+  messages: Array<Message> = [];
+  message: string = '';
+  lastMessageId;
+  time;
+  sendMessage() {
+    if (this.message !== '') {
+      // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
+      this.lastMessageId = v4();
+      const data = {
+        id: this.lastMessageId,
+        text: this.message,
+        timeStamp: this.time
+
+      };
+
+      this.http
+        .post(`http://localhost:5005/messages`, data)
+        .subscribe((res: Message) => {
+          const message = {
+            ...res,
+            // The message type is added to distinguish between incoming and outgoing messages. It also aids with styling of each message type
+            type: 'outgoing',
+          };
+          this.messages = this.messages.concat(message);
+          this.message = '';
+        });
+
+    }
+  }
+
+  // This method adds classes to the element based on the message type
+  getClasses(messageType) {
+    return {
+      incoming: messageType === 'incoming',
+      outgoing: messageType === 'outgoing',
+    };
+  }
 
   ngOnInit() {
-    this.socket.connect();
- 
-    let name = `user-${new Date().getTime()}`;
-    this.currentUser = name;
-    
-    this.socket.emit('set-name', name);
- 
-    this.socket.fromEvent('users-changed').subscribe(data => {
-      let user = data['user'];
-      if (data['event'] === 'left') {
-        this.showToast('User left: ' + user);
-      } else {
-        this.showToast('User joined: ' + user);
+    const channel = this.pusher.init();
+    channel.bind ('message', (data) => {
+      if (data.id !== this.lastMessageId) {
+        const message: Message = {
+          ...data,
+          type: 'incoming',
+        };
+        this.messages = this.messages.concat(message);
       }
-    });
- 
-    this.socket.fromEvent('message').subscribe(message => {
-      this.messages.push(message);
-    });
+    })
   }
- 
-  sendMessage() {
-    this.socket.emit('send-message', { text: this.message });
-    this.message = '';
-  }
-  // callFunction(){
-  //   this.content.scrollToBottom(0)
-  // }
- 
-  ionViewWillLeave() {
-    this.socket.disconnect();
-  }
- 
-  async showToast(msg) {
-    let toast = await this.toastCtrl.create({
-      message: msg,
-      position: 'top',
-      duration: 2000
-    });
-    toast.present();
-  }
+
+
+  
 }

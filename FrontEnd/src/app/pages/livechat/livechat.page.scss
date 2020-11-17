@@ -1,42 +1,120 @@
-.message {
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 4px;
-    white-space: pre-wrap;
-    color: red;
-    // transition: margin-right 2s, color 1s;
-}
 
-.my-message {
-    background-color: var(--ion-color-primary);
-    color: #fff;
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .chat-box {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #f9fbfc;
+        .message-area {
+            max-height: 90%;
+            height: 90%;
+            overflow: auto;
+            padding: 15px 10px;
+            .message {
+                p {
+                   
+                    font-size: 13px;
+                    font-weight: bold;
+                    margin: 0px;
+                    max-width: 95%;
+                    min-width: 55%;
+                    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+                    padding: 10px 15px 10px 7px;
+                    margin: 5px 0;
+                    background-color: var(--ion-color-secondary);
+                    color: #fff;
+                    margin-left: 4%;
+                }
+            }
+            .message.incoming {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                p {
+                    border-radius: 0 11px 11px 11px;
+                    background-color: var(--ion-color-primary);
+                    color: #fff;
+                }
+            }
+            .message.outgoing {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-end;
+                p {
+                    border-radius: 11px 11px 0 11px;
+                }
+            }
+      }
+      .emo-area {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        padding: 3px 10px;
+      }
+    }
 }
-
-.other-message {
-    background-color: var(--ion-color-secondary);
-    color: #fff;
-    margin-left: 4%;
-}
-
+// .name{
+//     font-size:12px;
+//     color:black;
+//     font-style: italic;
+// }
 .time {
-    color: #dfdfdf;
-    float: right;
-    font-size: small;
-}
+        color: #dfdfdf;
+        float: right;
+        font-size: small;
+    }
 
-.message-input {
+.input-area {
+    // position: absolute;
+    // bottom: 1px;
+    // left: 0;
+    // width: 100%;
+    // height: 50px;
+    // background: white;
     margin-top: 0px;
     border: 1px solid rgb(11, 238, 219);
     border-radius: 20px;
     background: #fff;
     resize: none;
     width: 100%;
-}
+    form {
+      display: flex;
+      height: 100%;
 
-.iconButton {
-    margin-top: 15% !important;
-}
-
-.icon {
-    width: 400% !important;
-}
+        ion-input {
+            width: 82%;
+            border: none;
+            padding: 5px 10px;
+            color: #8a898b;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Titillium Web', sans-serif;
+            background: inherit;
+            &:focus {
+                outline: none;
+            }
+        }
+        button {
+            width: 10%;
+            height:10%;
+            border: none;
+            color: var(--ion-color-secondary);
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: transparent;
+            ion-icon {
+                font-size: 3rem;
+            }
+        }
+    }
+  }

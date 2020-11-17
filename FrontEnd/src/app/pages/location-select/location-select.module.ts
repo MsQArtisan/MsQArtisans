@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LivechatPageRoutingModule } from './livechat-routing.module';
+import { LocationSelectPageRoutingModule } from './location-select-routing.module';
 
-import { LivechatPage } from './livechat.page';
+import { LocationSelectPage } from './location-select.page';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LivechatPageRoutingModule
+    LocationSelectPageRoutingModule
   ],
-  declarations: [
-    LivechatPage
-  ]
+  declarations: [LocationSelectPage]
 })
-export class LivechatPageModule {}
+export class LocationSelectPageModule {}

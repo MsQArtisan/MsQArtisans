@@ -12,20 +12,23 @@ ion-title {
     margin: 0px;
     ion-icon {
         margin-right: 20px;
-        color: black;
+        color:rgb(56, 55, 55); 
         position: absolute;
         font-size: 25px;
     }
     ion-item {
         padding-left: 0px;
-        margin-bottom: 8px;
-        font-size: 16px;
+        margin-bottom: 1px;
+        font-size: 17px;
         font-weight: bold;
         // background-color: $info;
     }
     ion-label {
-        margin-left: 53px;
+        margin-left: 35px;
+        color:rgb(80, 77, 77); 
+
     }
+  
 }
 
 ion-item.item:hover div {

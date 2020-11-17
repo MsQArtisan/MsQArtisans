@@ -15,16 +15,7 @@
 				</div>
 				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
 				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-				<div class="input-group mb-1">
-					<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-						<div *ngIf="email.errors.required">
-							Email is required
-						</div>
-						<div *ngIf="email.errors.pattern">
-							Please enter a valid email address
-						</div>
-					</div>
-				</div>
+				
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
@@ -32,13 +23,7 @@
 				</div>
 				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
 				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-				<div class="input-group mb-1">
-					<div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-						<div *ngIf="password.errors.required"> Password is required </div>
-						<div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter,
-							and at least 8 or more characters</div>
-					</div>
-				</div>
+				
 			</div>
 			<div>
 				<ion-label class ="label">
