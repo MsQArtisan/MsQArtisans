@@ -70,18 +70,18 @@ UserSchema.pre('save',  function(next) {
              next();
          });
      });
-     if (!user.isModified('confirmPassword')) return next();
+    //  if (!user.isModified('confirmPassword')) return next();
  
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
+    //  bcrypt.genSalt(10, function(err, salt) {
+    //      if (err) return next(err);
  
-         bcrypt.hash(user.confirmPassword, salt, function(err, hash) {
-             if (err) return next(err);
+    //      bcrypt.hash(user.confirmPassword, salt, function(err, hash) {
+    //          if (err) return next(err);
  
-             user.confirmPassword = hash;
-             next();
-         });
-     });
+    //          user.confirmPassword = hash;
+    //          next();
+    //      });
+    //  });
 });
 
 UserSchema.methods.comparePassword = function (candidatePassword, cb) {

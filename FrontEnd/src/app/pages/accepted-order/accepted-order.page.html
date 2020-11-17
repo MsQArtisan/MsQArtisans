@@ -1,0 +1,32 @@
+
+  <ion-toolbar color="secondary">
+    <ion-list-header>
+        <ion-label>Accepted Job </ion-label>
+    </ion-list-header>
+</ion-toolbar>
+
+
+<ion-content>
+  <ion-list class="orders">
+    <ion-item>
+        <ion-icon name="time"></ion-icon>
+        <p>{{schedule}}</p>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="location"></ion-icon>
+        <p [routerLink]="['/location-select']">{{location}}</p>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="wallet"></ion-icon>
+        <p>{{rate}}</p>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="mail"></ion-icon>
+        <p>{{notes}}</p>
+    </ion-item>
+
+</ion-list>
+
+
+
+</ion-content>

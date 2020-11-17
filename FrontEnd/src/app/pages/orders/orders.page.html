@@ -1,0 +1,34 @@
+<ion-content>
+    <ion-toolbar color="secondary">
+        <ion-list-header>
+            <ion-label>Job Order for {{ jobTitle}} </ion-label>
+        </ion-list-header>
+    </ion-toolbar>
+    
+  
+    <ion-list class="orders">
+        <ion-item>
+            <ion-icon name="time"></ion-icon>
+            <p>{{schedule}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="location"></ion-icon>
+            <p >{{location}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="wallet"></ion-icon>
+            <p>{{rate}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="mail"></ion-icon>
+            <p>{{notes}}</p>
+        </ion-item>
+  
+    </ion-list>
+     
+      <section>
+        <ion-button expand="block" color="primary" (click)="closeModal()" >Accept Job</ion-button>
+        <ion-button expand="block" color="danger">Pass</ion-button>
+      </section>
+  
+  </ion-content>

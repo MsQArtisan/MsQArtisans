@@ -23,7 +23,6 @@ export class LivechatPage implements OnInit {
   message: string = '';
   lastMessageId;
   time;
-
   sendMessage() {
     if (this.message !== '') {
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages

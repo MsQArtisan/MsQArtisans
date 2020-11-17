@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { LivechatPageRoutingModule } from './livechat-routing.module';
 
 import { LivechatPage } from './livechat.page';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +15,7 @@ import { LivechatPage } from './livechat.page';
     LivechatPageRoutingModule
   ],
   declarations: [
-    LivechatPage,
+    LivechatPage
   ]
 })
 export class LivechatPageModule {}

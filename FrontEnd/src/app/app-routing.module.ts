@@ -35,16 +35,34 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
   },
   {
+    path: 'livechat',
+    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'livechat',
-    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+    path: 'notif-setting',
+    loadChildren: () => import('./pages/notif-setting/notif-setting.module').then( m => m.NotifSettingPageModule)
+  },
+  {
+    path: 'acc-info',
+    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
+  },
+  {
+    path: 'location-select',
+    loadChildren: () => import('./pages/location-select/location-select.module').then( m => m.LocationSelectPageModule)
+  },
+  {
+    path: 'accepted-order',
+    loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
   },
 
 
 ];
+
+
 
 @NgModule({
   imports: [

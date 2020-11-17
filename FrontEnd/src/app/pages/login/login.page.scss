@@ -1,120 +1,123 @@
 @import "../../../global.scss";
-ion-content {
-    --background: linear-gradient(to right, #0000ff -8%, #00ffff 100%);
-}
-
-.user_card {
-    background: $light;
-    height: auto;
-    max-height: 750px;
-    width: 350px;
-    margin-right: 15%;
-    margin-left: 15%;
-    margin: auto;
-    margin-top: 7%;
-    position: $relative;
-    display: $flex;
-    flex-direction: $column;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px 50px 50px ;
-}
-
-.signInText {
-    margin-left: 55%;
-    font-family: Impact, fantasy;
-    font-style: oblique;
-    font-size: 35px;
-}
-
-.brand_logo_container {
-    margin-left: 7%;
-    position: $absolute;
-    height: 130px;
-    width: 130px;
-    top: -50px;
-    border-radius: 50%;
-    background: linear-gradient(to right, #00ffff -8%, #0000ff 100%);
-    padding: 10px;
-}
-
-.brand_logo {
-    height: 110px;
-    width: 110px;
-    border-radius: 50%;
-    border: 2px $solid $light;
-}
-
-.form_fields{
-    border-radius: 15px;
-    border: 1px solid #00ffff;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 24px 15px;
-    margin-top: 3%;
-}
 
 .input-group-text {
-    background: rgb(59, 133, 230);
+    background: rgb(6, 170, 235);
     color: $light !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
+    border-top-left-radius:20px !important;
+    border-bottom-left-radius:20px !important;
 }
 
-.input_user,
-.input_pass,
-.input_pass:focus {
-    box-shadow: $none !important;
-    outline: 0px !important;
+input{
+    color:#000;
+    padding-bottom: 20px;
+    padding-top:15px;
+    --padding-start:5px;
+    font-size:15px;
+    text-indent:1px;
+    padding-left:10px !important;
+    border-top-right-radius:20px !important;
+    border-bottom-right-radius:20px !important;
+    border: 1px solid rgb(6, 170, 235);
+    background-color:transparent;
+}
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 3px solid $danger; /* red */
+    border-top: 3px solid $danger; /* red */
+    border-bottom: 3px solid $danger; /* red */
+    background-color:rgba(255, 0, 0, 0.199);
+  }
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:transparent;
+    border: 1px solid rgb(6, 170, 235);
+}
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 1px solid $danger; /* red */
+    border-top: 1px solid $danger; /* red */
+    border-bottom: 1px solid $danger; /* red */
+    background-color:rgba(236, 95, 95, 0.199);
+  }
+
+
+.login-header{
+    background-color: rgb(6, 170, 235);
+}
+.login-header{
+    background-color: rgb(6, 170, 235);
+    position: relative;
+    border-radius: 0em;
 }
 
-.custom-control-label {
-    margin-top: 5px;
+.login-header:after{
+    content: '';
+    position: absolute;
+    left:15%;
+    width:0;
+    height:0;
+    border:20px solid transparent;
+    border-top-color:rgb(6, 170, 235);
+    border-bottom: 0;
+    margin-left:-15px;
+    margin-top:15px;
+
 }
 
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background: rgb(59, 133, 230)
+img{
+    display :block;
+    width:   120px;
+    margin:0 auto;
+    border-radius: 50%;
+    border: 4px solid #22bbea8f;
+    box-shadow: 1px 1px 6px 10px $light
+    
+}
+[heading-column-lr]{
+    display:flex;
+    -ms-flex-align:center;
+    align-items: center;
+    margin-bottom:35px;
+    margin-top:5px;
+    font-weight:bolder;
+    text-shadow: 2px 2px rgb(6, 170, 235);
+    font-family: cursive, Impact fantacy !important;
+    font-style: oblique -3deg !important;
+    letter-spacing: 3px;
+}
+[big-heading]{
+    font-family: "Haebo-Bold" !important;
+    font-size:30px !important;
+    color:$dark;
+    display:flex;
+    margin-left:7%;
 }
 
-.logbtn {
-    background: linear-gradient(to right, #0000ff -8%, #00ffff 100%);
-    font-size: 15px;
-    padding: 10px;
-    width: 76%;
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px black;
+ion-content{
+    --background:#fafafa;
 }
 
-/* Portrait */
-@media screen 
-  and (min-device-width: 360px) 
-  and (max-device-width: 640px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-    .user_card {
-        width: auto;
-        margin-left: 5% !important;
-        margin-right: 5% !important;
-        margin-top: 25% !important;
-        margin-bottom: 20% !important;
-    }
+ion-icon{
+    width: 30px;
 }
 
-/* Landscape */
-@media screen 
-and (min-device-width: 360px) 
-and (max-device-width: 640px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-    .user_card {
-        margin: auto;
-        margin-top: 10% !important;
-        margin-bottom: 5%;
-    }
+[linespace]{
+    height: 30px;
+}
+.center{
+    margin-left:10px;
+    margin-right:10px;
+}
+.ion-button-class:hover{ 
+    font-weight:bolder !important;
+    letter-spacing: 5px!important; 
+    text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
+    border:1px teal;
 }
