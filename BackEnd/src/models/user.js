@@ -50,9 +50,23 @@ var UserSchema = new mongoose.Schema({
         required: 'nbi is required'
     },
     applyJob: {
-        type: String,
-        required: 'applyJob is required'
-    }
+        type: String
+    },
+    tutorFile: {
+        type: String
+    },
+    nannyFile: {
+        type: String
+        
+    },
+    housekeepingFile: {
+        type: String
+        
+    },
+    haircutMassageFile: {
+        type: String
+        
+    },
 });
 
 UserSchema.pre('save',  function(next) {

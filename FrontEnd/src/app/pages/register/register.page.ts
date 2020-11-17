@@ -22,7 +22,11 @@ export class RegisterPage implements OnInit {
     primaryIdPic:"",
     primaryIdNum:"",
     nbi:"",
-    applyJob:""
+    applyJob:"",
+    tutorFile:"",
+    nannyFile:"",
+    housekeepingFile:"",
+    haircutMassageFile:""
   }
   constructor(
     private authService: AuthService,
