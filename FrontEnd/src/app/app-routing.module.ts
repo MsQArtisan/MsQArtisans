@@ -50,6 +50,18 @@ const routes: Routes = [
     path: 'location-select',
     loadChildren: () => import('./pages/location-select/location-select.module').then( m => m.LocationSelectPageModule)
   },
+  {
+    path: 'orders',
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+  },
+  {
+    path: 'accepted-order',
+    loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
+  },
+
+  
+
+
 
 
   // ,canActivate: [AuthGuardService]

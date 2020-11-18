@@ -1,46 +1,52 @@
-
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-      <ion-title>Job Orders</ion-title>
-      <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="secondary">
+        <ion-title>Job Orders</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
- 
-<ion-content padding>
- 
 <ion-content>
-  <ion-list lines="none">
-      <div class="work">
-          <ion-item>
-              <ion-label>At Work</ion-label>
-              <ion-toggle slot="start" name="blueberry"></ion-toggle>
-          </ion-item>
-      </div>
-      <div class="rest">
-          <ion-item>
-              <ion-label>Rest</ion-label>
-              <ion-toggle slot="start" name="apple" color="secondary"></ion-toggle>
-          </ion-item>
-      </div>
-  </ion-list>
-    <ion-card >
-            <ion-card-header>
-              <ion-card-title>{{jobTitle}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item>
-                    <ion-icon name="location-outline"></ion-icon>
-                    <ion-label  [routerLink] = "['/location-select']" >{{location}}</ion-label>
-                    <span>{{schedule}}</span>
-                </ion-item>
-               
-                <div class="footer">
-                    <p>{{rate}}</p>
-                </div>
-                
-            </ion-card-content>
-    </ion-card>
-</ion-content>
+    <ion-list lines="none">
+        <div class="work">
+            <ion-item>
+                <ion-label>At Work</ion-label>
+                <ion-toggle slot="start" name="blueberry"></ion-toggle>
+            </ion-item>
+        </div>
+        <div class="rest">
+            <ion-item>
+                <ion-label>Rest</ion-label>
+                <ion-toggle slot="start" name="apple" color="secondary"></ion-toggle>
+            </ion-item>
+        </div>
+    </ion-list>
+    <ion-grid>
+        <ion-row>
+            <ion-card (click)="order()">
 
+                <ion-card-content>
+                    <ion-card-title>{{jobTitle}}</ion-card-title>
+                    <ion-item>
+                        <ion-icon name="time"></ion-icon>
+                        <ion-label [routerLink]="['location-select']">{{schedule}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon class="floating" name="location"></ion-icon>
+                        <ion-label>{{location}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="mail"></ion-icon>
+                        <ion-label>{{notes}}</ion-label>
+                    </ion-item>
+
+                    <div class="footer">
+                        <p>Price Rate: <span>{{rate}}</span> </p>
+
+                    </div>
+                </ion-card-content>
+            </ion-card>
+          
+        </ion-row>
+    </ion-grid>
+</ion-content>

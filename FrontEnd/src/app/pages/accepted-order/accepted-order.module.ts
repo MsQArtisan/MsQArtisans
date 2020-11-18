@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { LocationSelectPageRoutingModule } from './location-select-routing.module';
+import { AcceptedOrderPageRoutingModule } from './accepted-order-routing.module';
 
-import { LocationSelectPage } from './location-select.page';
+import { AcceptedOrderPage } from './accepted-order.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationSelectPageRoutingModule
+    AcceptedOrderPageRoutingModule
   ],
-  declarations: [LocationSelectPage
-  ]
+  declarations: [AcceptedOrderPage]
 })
-export class LocationSelectPageModule {}
+export class AcceptedOrderPageModule {}

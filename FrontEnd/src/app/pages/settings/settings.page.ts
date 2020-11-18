@@ -15,7 +15,7 @@ export class SettingsPage implements OnInit {
   constructor( private popover: PopoverController, public navCtrl: NavController,
     public menuCtrl: MenuController, private modalController: ModalController,
     public alertController: AlertController)
-     {this.menuCtrl.enable(false, 'main-menu'); }
+     {this.menuCtrl.enable(true, 'main-menu'); }
   ngOnInit() {
   }
 
