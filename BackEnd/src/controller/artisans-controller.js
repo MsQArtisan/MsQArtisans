@@ -1,4 +1,4 @@
-var User = require('../models/user');
+var User = require('../models/artisan-model');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var emailholder="";
@@ -8,7 +8,7 @@ function createToken(user) {
         expiresIn: 200 // 86400 expires in 24 hours
       });
 }
- 
+
 exports.registerUser = (req, res) => {
     
     if (!req.body.email || !req.body.password) {
@@ -72,10 +72,8 @@ exports.getUser = (req, res) => {
             
           }else{
             return res.send({ status: true,data:user})
-            
-      
-      
           }
     });
 };
+
 
