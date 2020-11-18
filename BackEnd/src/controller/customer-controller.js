@@ -1,7 +1,7 @@
-var Customer = require('../models/customer-model');
+var Customers = require('../models/customer-model');
 
 exports.getAllCustomers = (req, res) => {
-    Customer.find((err, customer) => {
+    Customers.find((err, customer) => {
         console.log("customer details: ", customer);
         
         if(err){

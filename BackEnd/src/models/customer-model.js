@@ -13,4 +13,4 @@ var CustomerSchema = new mongoose.Schema({
     id_number: Number
 });
 
-module.exports = mongoose.model('customers', CustomerSchema);
+module.exports = mongoose.model('Customers', CustomerSchema);

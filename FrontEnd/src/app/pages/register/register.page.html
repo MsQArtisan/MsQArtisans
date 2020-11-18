@@ -72,8 +72,8 @@
 						<i class="fa fa-file-image"></i>
 					</span>
 					<span>
-						<input class="input_user" type="file" required name="selfie" [(ngModel)]="credentialsForm.selfie"
-						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
+						<input class="input_user" type="file" required name="selfie" [(ngModel)]="credentialsForm.selfie" #selfie="ngModel"
+						 placeholder="Selfie" accept="image/*" />
 					</span>
 				</div>
 				
@@ -100,19 +100,19 @@
 			
 			</div>
 			<h6>NBI Clearance:</h6>
-			<div class="input-group mb-1 " >
+			<div class="input-group mb-1 ">
 				<div class="input-group-append" id="fileInput">
 					<span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
 					<span>
-						<input class="input_user"type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
+						<input class="input_user" type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
 						 placeholder="NBI" />
 					</span>
 				</div>
 				
 			</div>
-			
+
 			<div class="input-group mb-1">
 				<ion-item class="apply">
 					<ion-label>Apply for?</ion-label>
@@ -125,6 +125,63 @@
 				</ion-item>
 				
 			</div>
+			<ion-card *ngIf="credentialsForm.applyJob=='tutor'">
+			<ion-label>Upload your Tutor NC2 File here!</ion-label>
+			<div class="input-group mb-1 ">
+				<div class="input-group-append" id="fileInput">
+					<span class="input-group-text">
+						<i class="fa fa-file-image"></i>
+					</span>
+					<span>
+						<input class="input_user" type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
+						 placeholder="TutorFile" />
+					</span>
+				</div>
+			</div>
+		</ion-card>
+		<ion-card *ngIf="credentialsForm.applyJob=='nanny'">
+				<ion-label>Upload your Nanny NC2 File here!</ion-label>
+				<div class="input-group mb-1 ">
+					<div class="input-group-append" id="fileInput">
+						<span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+						<span>
+							<input class="input_user" type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
+							 placeholder="NannyFile" />
+						</span>
+					</div>
+				</div>
+			</ion-card>
+			<ion-card *ngIf="credentialsForm.applyJob=='housekeeping'">
+					<ion-label>Upload your Housekeeping NC2 File here!</ion-label>
+					<div class="input-group mb-1 ">
+						<div class="input-group-append" id="fileInput">
+							<span class="input-group-text">
+								<i class="fa fa-file-image"></i>
+							</span>
+							<span>
+								<input class="input_user" type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile" #tutor="ngModel"
+								 placeholder="HouseKeepingFile" />
+							</span>
+						</div>
+					</div>
+				</ion-card>
+				<ion-card *ngIf="credentialsForm.applyJob=='haircutMassage'">
+						<ion-label>Upload your Haircut/ Massage NC2 File here!</ion-label>
+						<div class="input-group mb-1 ">
+							<div class="input-group-append" id="fileInput">
+								<span class="input-group-text">
+									<i class="fa fa-file-image"></i>
+								</span>
+								<span>
+									<input class="input_user" type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel"
+									 placeholder="HaricutMassageFile" />
+								</span>
+							</div>
+						</div>
+					</ion-card>
+
 
 			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()"
 			 [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
@@ -135,6 +192,6 @@
 			</div><br>
 		</div><br>
 	</div>
-	
-	
+
+
 </ion-content>

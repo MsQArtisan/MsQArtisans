@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -22,7 +21,11 @@ export class RegisterPage implements OnInit {
     primaryIdPic:"",
     primaryIdNum:"",
     nbi:"",
-    applyJob:""
+    applyJob:"",
+    tutorFile:"",
+    nannyFile:"",
+    housekeepingFile:"",
+    haircutMassageFile:""
   }
   constructor(
     private authService: AuthService,
