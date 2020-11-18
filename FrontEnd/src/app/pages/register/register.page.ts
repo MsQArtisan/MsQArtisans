@@ -33,9 +33,27 @@ export class RegisterPage implements OnInit {
  
   register() {
     console.log(this.credentialsForm);
-    
     this.authService.register(this.credentialsForm).subscribe(res => {
       this.router.navigate(['login']);
+      this.resetForm()
     });
   }
+
+  resetForm(){
+    this.credentialsForm={
+      email: "",
+      password: "",
+      name:"",
+      address:"",
+      bday:"",
+      phone:"",
+      confirmPassword:"",
+      selfie:"",
+      primaryIdPic:"",
+      primaryIdNum:"",
+      nbi:"",
+      applyJob:""
+    }
+  }
+
 }

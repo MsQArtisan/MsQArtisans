@@ -21,7 +21,7 @@ exports.registerUser = (req, res) => {
         }
  
         if (user) {
-            return res.status(400).json({ 'msg': 'The user already exists' });
+            return res.status(400).json({ 'msg': 'The email already exists' });
         }
  
         let newUser = User(req.body);
@@ -62,18 +62,15 @@ exports.loginUser = (req, res) => {
         });
     });
 };
+
 exports.getUser = (req, res) => {
     User.find({ email: emailholder }, (err, user) => {
         console.log("INFo: ",user);
         
         if(err){
             return res.send({error:err, status: false})
-            
-            
           }else{
             return res.send({ status: true,data:user})
-            
-      
       
           }
     });

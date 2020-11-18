@@ -48,9 +48,15 @@ export class AppComponent {
     this.storage.remove('access_token');
  
     let toast = this.toastController.create({
-      message: 'JWT removed',
       duration: 3000
     });
     toast.then(toast => toast.present());
+    this.auth.authenticationState.subscribe(state => {
+      if (state) {
+        this.router.navigate(['job-orders']);
+      } else {
+        this.router.navigate(['login']);
+      }
+    });
   }
 }

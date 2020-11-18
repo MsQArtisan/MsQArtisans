@@ -22,9 +22,16 @@ export class LoginPage implements OnInit {
   onSubmit() {
     // console.log(this.credentialsForm)
     this.authService.login(this.credentialsForm).subscribe();
+    this.resetForm();
 
   }
  
+  resetForm(){
+    this.credentialsForm={
+      email: "",
+      password: ""
+    }
+  }
 
 
 }
