@@ -24,6 +24,8 @@ export class OrdersPage implements OnInit {
      this.modalController.dismiss( 'cancel'); 
     this.router.navigate(['accepted-order'])
    }
-
+  pass(){
+    this.modalController.dismiss('cancel');
+  }
  
 }

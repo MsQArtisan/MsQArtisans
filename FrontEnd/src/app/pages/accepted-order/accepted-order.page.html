@@ -1,32 +1,55 @@
-
-  <ion-toolbar color="secondary">
-    <ion-list-header>
-        <ion-label>Accepted Job </ion-label>
-    </ion-list-header>
-</ion-toolbar>
-
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title>Accepted Order</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/orders']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
-  <ion-list class="orders">
-    <ion-item>
-        <ion-icon name="time"></ion-icon>
-        <p>{{schedule}}</p>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="location"></ion-icon>
-        <p [routerLink]="['/location-select']">{{location}}</p>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="wallet"></ion-icon>
-        <p>{{rate}}</p>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="mail"></ion-icon>
-        <p>{{notes}}</p>
-    </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> {{customer}} </ion-card-title>
+      <ion-card-subtitle>Customer Name</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <section>
+          <ion-icon name="call"></ion-icon>
+          <span>{{phone}}</span>
+      </section>
+      <section>
+          <ion-icon name="mail"></ion-icon>
+          <span>{{email}}</span>
+      </section>
+      <section>
+          <ion-icon name="time"></ion-icon>
+          <span>{{schedule}}</span>
+      </section>
+      <section>
+          <ion-icon  class="floating"  [routerLink]="['/location-select']" name="location"></ion-icon>
+          <span >{{location}}</span>
+     
+      </section>
+      <section>
+          <ion-icon name="wallet"></ion-icon>
+          <span>{{rate}}</span>  
+      </section>
+      <section>
+          <ion-icon name="mail-open"></ion-icon>
+          <span>{{notes}}</span>
+      </section>
 
-</ion-list>
+    </ion-card-content>
+  </ion-card>
 
-
+  <ion-footer class="ion-no-border">
+      <ion-toolbar>
+          <section class="full-width">
+              <ion-button expand="full" color="secondary">Start Service</ion-button>
+              <ion-button expand="full" color="success">Finish Service</ion-button>
+          </section>
+      </ion-toolbar>
+    </ion-footer>
 
 </ion-content>
