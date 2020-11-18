@@ -15,37 +15,22 @@
 				</div>
 				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
 				 #email="ngModel" placeholder="ex. cj@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-				<!-- <div class="input-group mb-1">
-					<div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-						<div *ngIf="email.errors.required">
-							Email is required
-						</div>
-						<div *ngIf="email.errors.pattern">
-							Please enter a valid email address
-						</div>
-					</div>
-				</div> -->
+			
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
-					<span class="input-group-text"><i class="fas fa-key"></i></span>
+						<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
 				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
 				 #password="ngModel" placeholder="ex. Abcde134" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-				<!-- <div class="input-group mb-1">
-					<div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-						<div *ngIf="password.errors.required"> Password is required </div>
-						<div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter,
-							and at least 8 or more characters</div>
-					</div>
-				</div> -->
+				
 			</div>
 			<div>
 				<ion-label class ="label">
 					<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;Save Password
 				</ion-label>
 			</div>
-			<!-- &nbsp;&nbsp;&nbsp; -->
+			
 			<div linespace></div>
 			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
 			 (click)="onSubmit()" [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
@@ -60,4 +45,5 @@
 			</div><br>
 		</div>
 	</div>
+	
 </ion-content>

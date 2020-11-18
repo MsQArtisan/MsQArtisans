@@ -1,33 +1,36 @@
-<ion-content>
-  <ion-toolbar color="secondary">
-      <ion-list-header>
-          <ion-label>Job Order for {{ jobTitle}} </ion-label>
-      </ion-list-header>
-  </ion-toolbar>
-
-  <ion-list class="orders">
-      <ion-item>
-          <ion-icon name="time"></ion-icon>
-          <p>{{schedule}}</p>
-      </ion-item>
-      <ion-item>
-          <ion-icon name="location"></ion-icon>
-          <p>{{location}}</p>
-      </ion-item>
-      <ion-item>
-          <ion-icon name="wallet"></ion-icon>
-          <p>{{rate}}</p>
-      </ion-item>
-      <ion-item>
-          <ion-icon name="mail"></ion-icon>
-          <p>{{notes}}</p>
-      </ion-item>
-
-  </ion-list>
+<ion-header [translucent]="true">
+        <ion-toolbar color="secondary">
+            <ion-title>Orders</ion-title>
+            <ion-buttons slot="start">
+                <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+</ion-header>
+      
+<ion-content>  
+    <ion-list class="orders">
+        <ion-item>
+            <ion-icon name="time"></ion-icon>
+            <p>{{schedule}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="location"></ion-icon>
+            <p >{{location}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="wallet"></ion-icon>
+            <p>{{rate}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="mail"></ion-icon>
+            <p>{{notes}}</p>
+        </ion-item>
   
-    <section>
-      <ion-button expand="block" color="primary">Accept Job</ion-button>
-      <ion-button expand="block" color="danger" (click)="closeModal()">Pass</ion-button>
-    </section>
-
-</ion-content>
+    </ion-list>
+     
+      <section>
+        <ion-button expand="full" color="secondary" (click)="closeModal()" >Accept Job</ion-button>
+        <ion-button expand="full" color="danger" (click)="pass()" [routerLink]="['/job-orders']">Pass</ion-button>
+      </section>
+  
+  </ion-content>
