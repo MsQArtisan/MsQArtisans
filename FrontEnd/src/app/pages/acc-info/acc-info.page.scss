@@ -13,13 +13,12 @@ ion-card{
     padding:20px;
     // background-color: rgb(21, 160, 224);
     border-radius: 20px;
-    box-shadow: 2px 4px 8px 2px rgba(20, 211, 245, 0.541);
+    box-shadow: 2px 4px 8px 2px rgba(48, 78, 83, 0.603);
     transition: 0.3s;
   
 }
-ion-card-content{
-    color:black;
-    h2{
-        color:$secondary;
-    }
+
+h2{
+    color: rgb(2, 96, 133);
+    margin-left: 20px;
 }

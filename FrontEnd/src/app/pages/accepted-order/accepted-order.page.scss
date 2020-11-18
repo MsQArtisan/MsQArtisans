@@ -1,0 +1,28 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+ion-title {
+    color: white;
+    letter-spacing: 1.5px;
+}
+
+ion-icon{
+    margin-right: 2%;
+}
+.floating {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    color:rgb(255, 81, 0);
+    }
+    
+    
+    
+    @keyframes floating {
+    from { transform: translate(0, 0px); }
+    65% { transform: translate(0, 5px); }
+    to { transform: translate(0, -0px); }
+    }

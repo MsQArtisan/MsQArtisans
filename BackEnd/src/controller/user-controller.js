@@ -79,34 +79,3 @@ exports.getUser = (req, res) => {
     });
 };
 
-// exports.getUser = (req, res) => {
-//     User.findOne({ email: emailholder }, (err, user) => {
-//         console.log("INFo: ",user);
-        
-//         if(err){
-//             return res.send({error:err, status: false})
-            
-            
-//           }else{
-//             return res.send({ status: true,data:user})
-            
-      
-      
-//           }
-//     });
-// };
-
-// exports.getUser = (req, res) => {
-   
-//     User.findOne({email: req.body.email}, (error, user) => {
-        
-        
-        
-//         if (error) {
-//             return error;
-//         } else {
-//             console.log("backend data ", user)
-//             res.json(user)
-//         }
-//     })
-// }

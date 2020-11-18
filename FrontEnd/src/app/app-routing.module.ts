@@ -64,8 +64,9 @@ const routes: Routes = [
 
 
 
-  // ,canActivate: [AuthGuardService]
 ];
+
+
 
 @NgModule({
   imports: [

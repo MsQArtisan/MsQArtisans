@@ -14,19 +14,13 @@ input{
     padding-bottom: 20px;
     padding-top:15px;
     --padding-start:5px;
-    font-size:15px;
+    font-size:16px;
     text-indent:1px;
     padding-left:10px !important;
     border-top-right-radius:20px !important;
     border-bottom-right-radius:20px !important;
-    border: 5px solid rgb(6, 170, 235);
+    border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
-}
-
-.form-control:focus{
-    box-shadow:none;
-    border-color:transparent;
-    border: 5px solid rgb(6, 170, 235);
 }
 // .ng-valid[required], .ng-valid.required {
 //     border: 5px solid rgb(20, 211, 245);
@@ -36,6 +30,21 @@ input{
     border-top: 3px solid $danger; /* red */
     border-bottom: 3px solid $danger; /* red */
     background-color:rgba(255, 0, 0, 0.199);
+  }
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:transparent;
+    border: 1px solid rgb(6, 170, 235);
+}
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 1px solid $danger; /* red */
+    border-top: 1px solid $danger; /* red */
+    border-bottom: 1px solid $danger; /* red */
+    background-color:rgba(236, 95, 95, 0.199);
   }
 
 
@@ -58,7 +67,7 @@ input{
     border-top-color:rgb(6, 170, 235);
     border-bottom: 0;
     margin-left:-15px;
-    margin-top:16px;
+    margin-top:15px;
 
 }
 
@@ -110,5 +119,5 @@ ion-icon{
     font-weight:bolder !important;
     letter-spacing: 5px!important; 
     text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
-    border:2px teal;
+    border:1px teal;
 }

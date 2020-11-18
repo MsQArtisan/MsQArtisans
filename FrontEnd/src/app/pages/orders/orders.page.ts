@@ -1,6 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
-
+import { NavParams, ModalController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.page.html',
@@ -15,21 +15,17 @@ export class OrdersPage implements OnInit {
   @Input() notes: string;
 
 
-  constructor(public navCtrl: NavController, private modalController: ModalController,) { }
+  constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController) { }
 
   ngOnInit() {
   }
 
   closeModal() { 
-    // data null and role cancel
      this.modalController.dismiss( 'cancel'); 
+    this.router.navigate(['accepted-order'])
    }
-    
-   rejectOrder(){
-    var rejected=[];
-     this.closeModal()
-   }
- 
-
+  pass(){
+    this.modalController.dismiss('cancel');
+  }
  
 }

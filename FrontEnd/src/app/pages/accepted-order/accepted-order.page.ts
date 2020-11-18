@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accepted-order.page.scss'],
 })
 export class AcceptedOrderPage implements OnInit {
-
+  customer= "Yubert Mariscal";
+  phone= "09326514567";
+  email= "yu@gmail.com";
   jobTitle= "Massage";
   schedule= "Nov.10,2020 - 12:00pm - 5:00pm";
   location= "Nasipit Rd, Talamban Cebu";

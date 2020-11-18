@@ -1,7 +1,6 @@
 
 @import "../../../global.scss";
 
-
 .input-group-text {
     background: rgb(6, 170, 235);
     color: $light !important;
@@ -16,28 +15,28 @@ input{
     padding-bottom: 20px;
     padding-top:15px;
     --padding-start:5px;
-    font-size:15px;
+    font-size:17px;
     text-indent:1px;
     padding-left:10px !important;
     border-top-right-radius:20px !important;
     border-bottom-right-radius:20px !important;
-    border: 5px solid rgb(6, 170, 235);
+    border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
 }
 
 .form-control:focus{
     box-shadow:none;
     border-color:transparent;
-    border: 5px solid rgb(6, 170, 235);
+    border: 1px solid rgb(6, 170, 235);
 }
 // .ng-valid[required], .ng-valid.required {
 //     border: 5px solid rgb(20, 211, 245);
 //   }
   .ng-invalid:not(form):hover {
-    border-right: 3px solid $danger; /* red */
-    border-top: 3px solid $danger; /* red */
-    border-bottom: 3px solid $danger; /* red */
-    background-color:rgba(255, 0, 0, 0.199);
+    border-right: 1px solid $danger; /* red */
+    border-top: 1px solid $danger; /* red */
+    border-bottom: 1px solid $danger; /* red */
+    background-color:rgba(236, 95, 95, 0.199);
   }
 
 
@@ -60,7 +59,7 @@ input{
     border-top-color:rgb(6, 170, 235);
     border-bottom: 0;
     margin-left:-15px;
-    margin-top:16px;
+    margin-top:15px;
 
 }
 
@@ -69,7 +68,7 @@ img{
     width:   120px;
     margin:0 auto;
     border-radius: 50%;
-    border: 4px solid #22bbea8f;
+    border: 4px solid #67c0db8f;
     box-shadow: 1px 1px 6px 10px $light
     
 }
@@ -89,8 +88,6 @@ img{
     font-family: "Haebo-Bold" !important;
     font-size:30px !important;
     color:$dark;
-    display:flex;
-    margin-left:7%;
 }
 
 ion-content{
@@ -124,24 +121,13 @@ ion-icon{
     box-shadow: 1px 0px 1px 1px rgb(6, 170, 235) ;
     padding: 3px;
     margin-left:-10px;
-    
  
 }
 input.input_user{
     padding-bottom:3px !important;
     padding-top:3px !important;
     width:100% !important;
-  
 }
 ::-webkit-file-upload-button:hover{
     box-shadow: 1px 0px 2px 2px rgba(75, 71, 71, 0.89);
-    
 }
-.apply, {
-    width:100% !important;
-    border-bottom:2px solid rgb(6, 170, 235);
-}
-.apply:hover{
-    background-color: beige !important;
-}
-

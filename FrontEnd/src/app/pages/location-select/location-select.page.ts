@@ -10,6 +10,7 @@ declare var google: any;
   styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
+  location="Nasipit Rd. Talamban Cebu";
 
   @ViewChild('maps', { static: true })
   mapRef: ElementRef;
@@ -45,6 +46,7 @@ export class LocationSelectPage implements OnInit {
     });
 
     var input = document.getElementById('pac-input');
+    console.log(input)
     var searchBox = new google.maps.places.SearchBox(input);
 
     map.addListener('bounds_changed', function() {

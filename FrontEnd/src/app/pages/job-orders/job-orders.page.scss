@@ -7,92 +7,70 @@ ion-title {
     color: white;
     letter-spacing: 1.5px;
 }
-
 ion-label {
-    color: black !important;
-    font-size: 30%;
-    ion-label {
-        color: black !important;
-        font-size: 30%;
-        padding-top: 10px;
-        font-weight: bolder;
-    }
-    font-weight: bolder;
-}
-
-.work {
     float: left;
+    font-size:20px;
+    color:$dark;
+    // width:20px;
+    // height: 20px;
 }
 
-.rest {
-    float: right;
-}
+ ion-icon{
+     font-size: 18px;
+     color: rgb(74, 140, 216);
+     margin-right: 10px;
+ }
 
-h1 {
-    color: black;
-    text-align: center;
-}
-
-hr {
-    color: red;
-}
-
-.list {
-    background-color: rgb(21, 160, 224);
+ion-card-title{
+    font-size: 20px;
+    letter-spacing: 2px;
     padding: 10px;
-    ion-label {
-        font-family: 'Courier New', Courier, monospace;
-        text-align: center;
-    }
+    color: rgb(9, 73, 168);
+}
+ion-card-content{
+    padding: 2%;
 }
 
-$left: 400px;
-$top: 150px;
-$min-circle-width: 0px;
-$min-circle-height: 0px;
-$max-circle-width: 70px;
-$max-circle-height: 70px;
-$icon-font-size: 20px;
-h1{
-  font-size: 18px;
-  text-align: center;
-  margin: 50px 0;
-  font-weight: 100;
-  font-family:"Open Sans", sans-serif;
-  color: #444;
+ion-item{
+    font-size: 16px;
+    color: rgb(80, 83, 87);
 }
-.circle{
-  position: absolute;
-  left: $left;
-  top: $top;
-  -webkit-animation: pulse 2s infinite ease-out;
-  font-size: $icon-font-size;
-  border-radius:50%;
-  border: 1px solid rgba(255,0,0,0);
-  span {
-    position: absolute;
-    left: 50%;
-    margin-left: -($icon-font-size/2);
-    color: #999;
-    top: 50%;
-    margin-top: -($icon-font-size/2);
-  }
+.footer{
+    position: relative;
+    left: 150px;
+    font-size: 13px;
 }
+.status{
+    color:$danger;
+    text-align: center;
+    font-size:20px;
 
-
-.floating {  
+}
+.warning{
     animation-name: floating;
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
-    color:rgb(255, 81, 0);
+    color:$warning;
+    width: 93%;
 }
-
-
-
 @keyframes floating {
-    from { transform: translate(0,  0px); }
-    65%  { transform: translate(0, 5px); }
-    to   { transform: translate(0, -0px); }  
-      
+    from { transform: translate(0, 0px); }
+    50% { transform: translate(0, 5px); }
+    to { transform: translate(0, -0px); }
+    }
+
+.restText{
+    margin-left: 64px;
+    margin-bottom: 50px;
+    color:$secondary;
+    font-size:15px;
+}
+.toggleRest{
+    text-align: center !important;
+    margin-top:50px;
+}
+.tgCard{
+    box-shadow: 2px 4px 8px 2px rgba(124, 68, 4, 0.541);
+    border:20px;
 }
