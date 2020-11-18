@@ -15,28 +15,28 @@
     </ion-card-header>
     <ion-card-content>
       <section>
-          <ion-icon name="call-outline"></ion-icon>
+          <ion-icon name="call"></ion-icon>
           <span>{{phone}}</span>
       </section>
       <section>
-          <ion-icon name="mail-outline"></ion-icon>
+          <ion-icon name="mail"></ion-icon>
           <span>{{email}}</span>
       </section>
       <section>
-          <ion-icon name="time-outline"></ion-icon>
+          <ion-icon name="time"></ion-icon>
           <span>{{schedule}}</span>
       </section>
       <section>
-          <ion-icon name="location-outline"></ion-icon>
-          <span [routerLink]="['/location-select']">{{location}}</span>
+          <ion-icon  class="floating"  [routerLink]="['/location-select']" name="location"></ion-icon>
+          <span >{{location}}</span>
      
       </section>
       <section>
-          <ion-icon name="wallet-outline"></ion-icon>
+          <ion-icon name="wallet"></ion-icon>
           <span>{{rate}}</span>  
       </section>
       <section>
-          <ion-icon name="mail-open-outline"></ion-icon>
+          <ion-icon name="mail-open"></ion-icon>
           <span>{{notes}}</span>
       </section>
 
