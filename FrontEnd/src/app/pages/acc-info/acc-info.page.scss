@@ -19,6 +19,39 @@ ion-card{
 }
 
 h2{
-    color: rgb(2, 96, 133);
-    margin-left: 20px;
+    color: rgb(73, 73, 73);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+}
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+img {
+    border-radius: 50%;
+    width: 80%;
+    height: 75%;
+}
+.imageColor {
+    margin-left: 15px;
+    border-radius: 50%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 85%;
+    height: 90%;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/257/429/non_2x/abstract-shiny-blue-technology-background-vector.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+.imageBackground {
+    padding: 10px;
+    text-align: center;
+}
+.borderColor {
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    width: 85%;
+    height: 90%;
+    margin-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

@@ -1,4 +1,3 @@
-
 @import "../../../global.scss";
 
 .input-group-text {
@@ -33,9 +32,9 @@ input{
 //     border: 5px solid rgb(20, 211, 245);
 //   }
   .ng-invalid:not(form):hover {
-    border-right: 1px solid $danger; /* red */
-    border-top: 1px solid $danger; /* red */
-    border-bottom: 1px solid $danger; /* red */
+    border-right: 1px solid $danger !important; /* red */
+    border-top: 1px solid $danger !important; /* red */
+    border-bottom: 1px solid $danger !important; /* red */
     background-color:rgba(236, 95, 95, 0.199);
   }
 
@@ -130,4 +129,7 @@ input.input_user{
 }
 ::-webkit-file-upload-button:hover{
     box-shadow: 1px 0px 2px 2px rgba(75, 71, 71, 0.89);
+}
+.apply{
+    border-bottom:2px solid rgb(6, 170, 235);
 }

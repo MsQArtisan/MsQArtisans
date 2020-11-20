@@ -1,29 +1,32 @@
-var User = require('../models/user');
+var User = require('../models/artisan-model');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
-var emailholder="";
- 
+var emailholder = "";
+var jobArray = []
+var completedJob = []
+var rejectedJob = []
+
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
-        expiresIn: 200 // 86400 expires in 24 hours
-      });
+        expiresIn: 86400 //expires in 24 hours
+    });
 }
- 
+
 exports.registerUser = (req, res) => {
-    
+
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ 'msg': 'You need to send email and password' });
     }
- 
+
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) {
             return res.status(400).json({ 'msg': err });
         }
- 
+
         if (user) {
             return res.status(400).json({ 'msg': 'The user already exists' });
         }
- 
+
         let newUser = User(req.body);
         newUser.save((err, user) => {
             if (err) {
@@ -33,24 +36,24 @@ exports.registerUser = (req, res) => {
         });
     });
 };
- 
+
 exports.loginUser = (req, res) => {
-    emailholder=req.body.email;
+    emailholder = req.body.email;
     console.log("Email: ", emailholder);
     if (!req.body.email || !req.body.password) {
         return res.status(400).send({ 'msg': 'You need to send email and password' });
     }
-    
+
     User.findOne({ email: req.body.email }, (err, user) => {
-        
+
         if (err) {
             return res.status(400).send({ 'msg': err });
         }
- 
+
         if (!user) {
             return res.status(400).json({ 'msg': 'The user does not exist' });
         }
- 
+
         user.comparePassword(req.body.password, (err, isMatch) => {
             if (isMatch && !err) {
                 return res.status(200).json({
@@ -64,18 +67,38 @@ exports.loginUser = (req, res) => {
 };
 exports.getUser = (req, res) => {
     User.find({ email: emailholder }, (err, user) => {
-        console.log("INFo: ",user);
-        
-        if(err){
-            return res.send({error:err, status: false})
-            
-            
-          }else{
-            return res.send({ status: true,data:user})
-            
-      
-      
-          }
-    });
-};
+        console.log("INFo: ", user);
 
+        if (err) {
+            return res.send({ error: err, status: false })
+
+
+        } else {
+            return res.send({ status: true, data: user })
+        }
+    });
+}
+exports.addJobOrders = (req, res) => {
+    if (req.body.state == "accept") {
+        jobArray.push({ email: emailholder, data: req.body.jobOffer })
+    } else if (req.body.state == "completed") {
+        console.log(req.body.jobOffer)
+        completedJob.push({ email: emailholder, data: req.body.jobOffer })
+    } else {
+        rejectedJob.push({ email: emailholder, data: req.body.jobOffer })
+    }
+    res.send(true)
+}
+exports.allJobAccepted = (req, res) => {
+    if (req.body.state == "accept") {
+        res.send(jobArray)
+    } else if (req.body.state == "completed") {
+        res.send(completedJob)
+    } else {
+        res.send(rejectedJob)
+    }
+}
+
+exports.deleteItem = (req, res) => {
+    jobArray.splice(req.body.index, 1)
+}

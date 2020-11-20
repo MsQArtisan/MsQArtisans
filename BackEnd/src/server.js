@@ -1,5 +1,3 @@
-
-
 var express     = require('express');
 var bodyParser  = require('body-parser');
 var passport	  = require('passport');
@@ -8,6 +6,7 @@ var config      = require('./config/config');
 var cors        = require('cors');
 var app         = express();
 var port        = process.env.PORT || 5000; 
+var User = require('../src/models/artisan-model');
 
 // For Pusher
 const Pusher    = require('pusher');
@@ -76,6 +75,8 @@ connection.on('error', (err) => {
     console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
     process.exit(); 
 });
+
+
 
 // Start the pusher server
 app1.listen(port1, () => {

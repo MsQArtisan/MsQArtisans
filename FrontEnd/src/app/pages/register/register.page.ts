@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  public image;
-
+public image;
   credentialsForm = {
     email: "",
     password: "",
@@ -23,7 +22,11 @@ export class RegisterPage implements OnInit {
     primaryIdPic: "",
     primaryIdNum: "",
     nbi: "",
-    applyJob: ""
+    applyJob: "",
+    tutorFile: "",
+    nannyFile: "",
+    housekeepingFile: "",
+    haircutMassageFile: ""
   }
   constructor(
     private authService: AuthService,
@@ -33,22 +36,26 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    console.log(this.credentialsForm);
 
     this.authService.register(this.credentialsForm).subscribe(res => {
-      this.router.navigate(['login']);
-  });
-}
+      this.authService.addImageToDatabase({name: this.credentialsForm.name, image: this.image}).subscribe((data) => {
+        if(data) {
+          this.router.navigate(['login']);
+        }
+      })
+    });
+  }
 
-userProfile(event) {
-  if (event.target.files && event.target.files[0]) {
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0])
+  userProfile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
 
-    reader.onload = (e) => {
-      this.image = e.target
-      this.image = this.image.result
+      reader.onload = (e) => {
+        this.image = e.target
+        this.image = this.image.result
+        console.log(this.image)
+      }
     }
   }
-}
 }

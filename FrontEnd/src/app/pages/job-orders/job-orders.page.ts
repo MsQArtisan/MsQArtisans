@@ -26,6 +26,7 @@ export class JobOrdersPage implements OnInit {
   constructor(private modalController: ModalController,private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
+    
   }
 
 
@@ -45,6 +46,14 @@ export class JobOrdersPage implements OnInit {
 
     modal.present();
     this.dataFromModal = await modal.onWillDismiss();
+  }
+
+  hideAndShow() {
+    if(this.apple) {
+      this.apple = false
+    }else {
+      this.apple = true
+    }
   }
  
  

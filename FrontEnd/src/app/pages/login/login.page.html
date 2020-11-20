@@ -5,8 +5,8 @@
 </ion-header>
 <ion-content>
 	<div class="center">
-		<div heading-column-lr>
-			<h1 big-heading>Login</h1>
+		<div heading-column-lr class="logIn">
+			<h1>Login</h1>
 		</div>
 		<form class="form_fields" #sampleForm="ngForm"><br>
 			<div class="input-group mb-3">
@@ -14,26 +14,25 @@
 					<span class="input-group-text"><i size="large" class="fa fa-envelope"></i></span>
 				</div>
 				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
-				 #email="ngModel" placeholder="ex. cj@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-			
+				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
-						<span class="input-group-text"><i class="fas fa-key"></i></span>
+					<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
 				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
-				 #password="ngModel" placeholder="ex. Abcde134" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-				
+				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
 			</div>
 			<div>
-				<ion-label class ="label">
+				<ion-label class="label">
 					<ion-checkbox color="secondary" slot="start"></ion-checkbox>&nbsp;&nbsp;Save Password
 				</ion-label>
 			</div>
-			
+
 			<div linespace></div>
-			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
-			 (click)="onSubmit()" [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
+			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="onSubmit()"
+			 [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
 		</form>
 
 		<div class="mt-4">
@@ -45,5 +44,5 @@
 			</div><br>
 		</div>
 	</div>
-	
+
 </ion-content>
