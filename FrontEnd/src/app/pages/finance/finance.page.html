@@ -1,10 +1,10 @@
-<ion-header>
-  <ion-toolbar color="secondary">
-      <ion-title>Finance</ion-title>
-      <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Job Orders</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -19,9 +19,9 @@
 
 
  <!-- Icon top -->
- <ion-segment color="tertiary" value="favorite">
+ <ion-segment  color="tertiary" value="favorite">
       <ion-segment-button value="favorite">
-        <ion-label>Cash Out</ion-label>
+        <ion-label >Cash Out</ion-label>
         <ion-icon name="card-outline"></ion-icon>
       </ion-segment-button> 
       <ion-segment-button value="map">

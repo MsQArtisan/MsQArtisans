@@ -3,33 +3,40 @@
     font-family: lato;
 }
 
-ion-title {
-    color: white;
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
     letter-spacing: 1.5px;
 }
 
 .menu-items {
+   
     margin: 0px;
     ion-icon {
-        margin-right: 20px;
-        color:rgb(56, 55, 55); 
+
+        margin-left: 10px;
+        color: rgb(72, 76, 80);
         position: absolute;
         font-size: 25px;
     }
     ion-item {
+        font-family: lato !important;
         padding-left: 0px;
-        margin-bottom: 1px;
-        font-size: 17px;
+        margin-bottom: 5px;
+        font-size: 18px;
         font-weight: bold;
+        color:rgb(80, 77, 77);  
+        
         // background-color: $info;
     }
     ion-label {
-        margin-left: 35px;
-        color:rgb(80, 77, 77); 
-
+        margin-left: 50px;
+        font-weight: normal;
     }
-  
 }
+
 
 ion-item.item:hover div {
     background-color: rgb(42, 163, 219) !important;

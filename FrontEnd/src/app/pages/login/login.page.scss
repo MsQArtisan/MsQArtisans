@@ -10,7 +10,8 @@
 }
 
 input{
-    color:#000;
+    outline: none;
+    color:#000; 
     padding-bottom: 20px;
     padding-top:15px;
     --padding-start:5px;
@@ -22,35 +23,31 @@ input{
     border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
 }
-// .ng-valid[required], .ng-valid.required {
-//     border: 5px solid rgb(20, 211, 245);
-//   }
   .ng-invalid:not(form):hover {
-    border-right: 3px solid $danger; /* red */
-    border-top: 3px solid $danger; /* red */
-    border-bottom: 3px solid $danger; /* red */
-    background-color:rgba(255, 0, 0, 0.199);
+    // border-right: 1px solid rgb(255, 154, 154); /* red */
+    // border-top: 1px solid rgb(255, 154, 154); /* red */
+    // border-bottom: 1px solid rgb(255, 154, 154); /* red */
+    background-color:rgb(255, 154, 154);
+    color: black;
   }
 
 .form-control:focus{
-    box-shadow:none;
-    border-color:transparent;
-    border: 1px solid rgb(6, 170, 235);
+    outline: none;
+    background-color:white;
 }
-// .ng-valid[required], .ng-valid.required {
-//     border: 5px solid rgb(20, 211, 245);
-//   }
+.ng-valid[required], .ng-valid.required {
+    border-bottom: 1px solid rgb(255, 154, 154) !important; /* red */ 
+    background-color: white;  
+    border-radius: 0em;
+  }
   .ng-invalid:not(form):hover {
-    border-right: 1px solid $danger; /* red */
-    border-top: 1px solid $danger; /* red */
-    border-bottom: 1px solid $danger; /* red */
-    background-color:rgba(236, 95, 95, 0.199);
+    // border-right: 1px solid rgb(255, 154, 154) !important; /* red */
+    // border-top: 2px solid rgb(255, 154, 154) !important; /* red */
+    // border-bottom: 1px solid rgb(255, 154, 154) !important; /* red */
+    background-color:rgb(255, 154, 154);
+    color: black;
   }
 
-
-.login-header{
-    background-color: rgb(6, 170, 235);
-}
 .login-header{
     background-color: rgb(6, 170, 235);
     position: relative;
@@ -120,4 +117,8 @@ ion-icon{
     letter-spacing: 5px!important; 
     text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
     border:1px teal;
+}
+.logIn {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 0;
 }

@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-        <ion-toolbar color="secondary">
-            <ion-title>Orders</ion-title>
+        <ion-toolbar color="secondary" >
+            <ion-title  class="header"> Orders</ion-title>
             <ion-buttons slot="start">
                 <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
             </ion-buttons>
@@ -9,6 +9,10 @@
       
 <ion-content>  
     <ion-list class="orders">
+        <ion-item>
+            <ion-icon name="people"></ion-icon>
+            <p>{{name}}</p>
+        </ion-item>
         <ion-item>
             <ion-icon name="time"></ion-icon>
             <p>{{schedule}}</p>
