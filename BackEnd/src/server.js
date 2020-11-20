@@ -6,7 +6,7 @@ var config      = require('./config/config');
 var cors        = require('cors');
 var app         = express();
 var port        = process.env.PORT || 5000; 
-var User = require('../src/models/artisan-model');
+
 
 // For Pusher
 const Pusher    = require('pusher');

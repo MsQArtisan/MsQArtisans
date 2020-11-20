@@ -11,6 +11,9 @@ var CustomerSchema = new mongoose.Schema({
     picture: String,
     id_image: String,
     id_number: Number
+
+
+    
 });
 
 module.exports = mongoose.model('Customers', CustomerSchema);

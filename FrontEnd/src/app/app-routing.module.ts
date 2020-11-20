@@ -56,7 +56,31 @@ const routes: Routes = [
   }, {
     path: 'orders',
     loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+  },  {
+    path: 'user-ratings',
+    loadChildren: () => import('./pages/user-ratings/user-ratings.module').then( m => m.UserRatingsPageModule)
   },
+  {
+    path: 'suki',
+    loadChildren: () => import('./pages/suki/suki.module').then( m => m.SukiPageModule)
+  },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'terms-conditions',
+    loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then( m => m.TermsConditionsPageModule)
+  },
+  {
+    path: 'price-rates',
+    loadChildren: () => import('./pages/price-rates/price-rates.module').then( m => m.PriceRatesPageModule)
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
+  },
+
 
 
 ];
