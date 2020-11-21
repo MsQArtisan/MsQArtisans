@@ -8,9 +8,12 @@
 </ion-header>
 <ion-content>
     <label class="switch">
+        <p *ngIf="apple" class="tags">Disable Receive Work</p>
+        <p *ngIf="!apple" class="tags">Enable Receive Work</p>
         <input type="checkbox" checked (click)="hideAndShow()">
         <span class="slider round"></span>
     </label>
+    <br><br><br>
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
             <ion-card-content>

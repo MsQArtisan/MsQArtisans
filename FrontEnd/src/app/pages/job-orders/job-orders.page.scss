@@ -96,9 +96,8 @@ ion-item{
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-left: 250px;
-    margin-top: 450px;
     z-index: 1;
+    margin: 20px;
   }
   
   .switch input { 
@@ -152,4 +151,9 @@ ion-item{
   
   .slider.round:before {
     border-radius: 50%;
+  }
+  .tags {
+      font-size: 15px;
+      width: 150px;
+      margin: 0;
   }
