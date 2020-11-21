@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -13,6 +15,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
+    private authService: AuthService, 
+    private storage: Storage,
+    private toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -31,9 +36,21 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['job-orders']);
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(['home']);
         }
       });
     });
+  }
+
+  
+  logout() {
+    this.authService.logout();
+    this.storage.remove('access_token');
+ 
+    let toast = this.toastController.create({
+      message: 'JWT removed',
+      duration: 3000
+    });
+    toast.then(toast => toast.present());
   }
 }

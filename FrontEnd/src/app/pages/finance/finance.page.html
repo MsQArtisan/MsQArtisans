@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-title>Finance</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-content>
+        
+          <h2>0.00 Pesos</h2>
+          <p>Current Balance</p>
+      </ion-card-content>
+
+  </ion-card>
+
+
+ <!-- Icon top -->
+ <ion-segment  color="tertiary" value="favorite">
+      <ion-segment-button value="favorite">
+        <ion-label >Cash Out</ion-label>
+        <ion-icon name="card-outline"></ion-icon>
+      </ion-segment-button> 
+      <ion-segment-button value="map">
+        <ion-label>Cash In</ion-label>
+        <ion-icon name="wallet-outline"></ion-icon>      
+      </ion-segment-button>
+  </ion-segment>
+  <ion-segment>
+      <ion-segment-button value="favorite">
+              <ion-label>History</ion-label>
+              <ion-icon name="time-outline"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="map">
+              <ion-label>Statistics</ion-label>
+              <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-segment-button>
+  </ion-segment>
+
+
+</ion-content>

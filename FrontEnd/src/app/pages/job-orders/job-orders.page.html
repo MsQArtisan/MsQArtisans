@@ -1,38 +1,95 @@
-<ion-header>
-    <ion-toolbar color="primary">
-        <ion-title>Dashboard</ion-title>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Job Orders</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-content>
+    <label class="switch">
+        <input type="checkbox" checked (click)="hideAndShow()">
+        <span class="slider round"></span>
+    </label>
+    <div class="toggleRest" *ngIf=!apple>
+        <ion-card class="statusCard">
+            <ion-card-content>
+                <ion-icon size=large class="warning" name="warning"></ion-icon>
+                <ion-card-title class="status">Status is Offline</ion-card-title>
+                <ion-label class="restText">You can't recieve any job order!!!</ion-label>
+            </ion-card-content>
+        </ion-card>
+    </div>
 
-<ion-content padding>
-    <center>
-        <h2>Get User</h2>
-    </center>
-    <ion-grid>
+    <ion-grid *ngIf=apple>
         <ion-row>
-            <ion-col>
-                <ion-item>
-                    <ion-input>Email: <span>{{account.email}}</span></ion-input>
-                </ion-item>
-            </ion-col>
-            <!-- <ion-col>
-                <ion-item>
-                    <ion-input>Email:{{each.email}}</ion-input>
-                </ion-item>
-            </ion-col> -->
+            <ion-card (click)="order()">
+                <ion-card-content>
+                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+                    <ion-item>
+                        <ion-icon name="time"></ion-icon>
+                        <ion-label>{{schedule}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="location"></ion-icon>
+                        <ion-label>{{location}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="mail"></ion-icon>
+                        <ion-label>{{notes}}</ion-label>
+                    </ion-item>
+
+                    <div class="footer">
+                        <p>Price Rate: <span>{{rate}}</span> </p>
+
+                    </div>
+
+                </ion-card-content>
+            </ion-card>
+            <ion-card (click)="order()">
+                <ion-card-content>
+                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+                    <ion-item>
+                        <ion-icon name="time"></ion-icon>
+                        <ion-label>{{schedule}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="location"></ion-icon>
+                        <ion-label>{{location}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="mail"></ion-icon>
+                        <ion-label>{{notes}}</ion-label>
+                    </ion-item>
+
+                    <div class="footer">
+                        <p>Price Rate: <span>{{rate}}</span> </p>
+
+                    </div>
+
+                </ion-card-content>
+            </ion-card>
+            <ion-card (click)="order()">
+                <ion-card-content>
+                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+                    <ion-item>
+                        <ion-icon name="time"></ion-icon>
+                        <ion-label>{{schedule}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="location"></ion-icon>
+                        <ion-label>{{location}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="mail"></ion-icon>
+                        <ion-label>{{notes}}</ion-label>
+                    </ion-item>
+
+                    <div class="footer">
+                        <p>Price Rate: <span>{{rate}}</span> </p>
+                    </div>
+                </ion-card-content>
+            </ion-card>
         </ion-row>
-
     </ion-grid>
-    <!-- <ion-list>
-
-
-        <ion-item *ngfor="let each of passdata">
-            <ion-label>Email: <span>{{each.email}}</span></ion-label>
-        </ion-item>
-    </ion-list> -->
-    <!-- <p>{{ data }}</p> -->
-    <!-- <ion-button expand="full" (click)="loadSpecialInfo()">Load Special Info</ion-button> -->
-    <ion-button expand="full" (click)="logout()">Logout</ion-button>
-    <!-- <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button> -->
-
 </ion-content>

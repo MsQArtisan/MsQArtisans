@@ -1,30 +1,135 @@
-$white-color: #fff;
-$height100: 100%;
+@import "../../../global.scss";
 
-ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
+.input-group-text {
+    background: rgb(6, 170, 235);
+    color: $light !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    border-top-left-radius:20px !important;
+    border-bottom-left-radius:20px !important;
 }
 
-ion-row {
-    height: $height100;
+input{
+    color:#000;
+    padding-bottom: 20px;
+    padding-top:15px;
+    --padding-start:5px;
+    font-size:17px;
+    text-indent:1px;
+    padding-left:10px !important;
+    border-top-right-radius:20px !important;
+    border-bottom-right-radius:20px !important;
+    border: 1px solid rgb(6, 170, 235);
+    background-color:transparent;
 }
 
-ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
+.form-control:focus{
+    box-shadow:none;
+    border-color:transparent;
+    border: 1px solid rgb(6, 170, 235);
+}
+// .ng-valid[required], .ng-valid.required {
+//     border: 5px solid rgb(20, 211, 245);
+//   }
+  .ng-invalid:not(form):hover {
+    border-right: 1px solid $danger !important; /* red */
+    border-top: 1px solid $danger !important; /* red */
+    border-bottom: 1px solid $danger !important; /* red */
+    background-color:rgba(236, 95, 95, 0.199);
+  }
+
+
+.login-header{
+    background-color: rgb(6, 170, 235);
+}
+.login-header{
+    background-color: rgb(6, 170, 235);
+    position: relative;
+    border-radius: 0em;
 }
 
-ion-button {
-    font-weight: 300;
+.login-header:after{
+    content: '';
+    position: absolute;
+    left:15%;
+    width:0;
+    height:0;
+    border:20px solid transparent;
+    border-top-color:rgb(6, 170, 235);
+    border-bottom: 0;
+    margin-left:-15px;
+    margin-top:15px;
+
 }
 
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
+img{
+    display :block;
+    width:   120px;
+    margin:0 auto;
+    border-radius: 50%;
+    border: 4px solid #67c0db8f;
+    box-shadow: 1px 1px 6px 10px $light
+    
+}
+[heading-column-lr]{
+    display:flex;
+    -ms-flex-align:center;
+    align-items: center;
+    margin-bottom:35px;
+    margin-top:5px;
+    font-weight:bolder;
+    text-shadow: 2px 1px rgb(6, 170, 235);
+    font-family: Impact fantacy !important;
+    font-style: oblique -3deg !important;
+    letter-spacing: 3px;
+}
+[big-heading]{
+    font-family: "Haebo-Bold" !important;
+    font-size:30px !important;
+    color:$dark;
+}
+
+ion-content{
+    --background:#fafafa;
+}
+
+ion-icon{
+    width: 30px;
+}
+
+[linespace]{
+    height: 30px;
+}
+.center{
+    margin-left:10px;
+    margin-right:10px;
+}
+.ion-button-class:hover{ 
+    font-weight:bolder !important;
+    letter-spacing: 5px!important; 
+    text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
+    border:2px teal;
+}
+
+
+::-webkit-file-upload-button{
+    color:white;
+    background:rgb(6, 170, 235);
+    border-radius:10px;
+    border: none !important;
+    box-shadow: 1px 0px 1px 1px rgb(6, 170, 235) ;
+    padding: 3px;
+    margin-left:-10px;
+ 
+}
+input.input_user{
+    padding-bottom:3px !important;
+    padding-top:3px !important;
+    width:100% !important;
+}
+::-webkit-file-upload-button:hover{
+    box-shadow: 1px 0px 2px 2px rgba(75, 71, 71, 0.89);
+}
+.apply{
+    border-bottom:2px solid rgb(6, 170, 235);
 }

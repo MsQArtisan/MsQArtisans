@@ -9,29 +9,53 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+public image;
+  credentialsForm = {
+    email: "",
+    password: "",
+    name: "",
+    address: "",
+    bday: "",
+    phone: "",
+    confirmPassword: "",
+    selfie: "",
+    primaryIdPic: "",
+    primaryIdNum: "",
+    nbi: "",
+    applyJob: "",
+    tutorFile: "",
+    nannyFile: "",
+    housekeepingFile: "",
+    haircutMassageFile: ""
+  }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
-  credentialsForm: FormGroup;
- 
-  constructor(private formBuilder: FormBuilder, 
-    private authService: AuthService, private router: Router) { }
- 
   ngOnInit() {
-    this.credentialsForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
   }
- 
-  onSubmit() {
-    this.authService.login(this.credentialsForm.value).subscribe();
 
-  }
- 
   register() {
-    this.authService.register(this.credentialsForm.value).subscribe(res => {
-      // Call Login to automatically login the new user
-      // this.authService.login(this.credentialsForm.value).subscribe();
-      this.router.navigate(['login']);
+
+    this.authService.register(this.credentialsForm).subscribe(res => {
+      this.authService.addImageToDatabase({name: this.credentialsForm.name, image: this.image}).subscribe((data) => {
+        if(data) {
+          this.router.navigate(['login']);
+        }
+      })
     });
+  }
+
+  userProfile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+
+      reader.onload = (e) => {
+        this.image = e.target
+        this.image = this.image.result
+        console.log(this.image)
+      }
+    }
   }
 }

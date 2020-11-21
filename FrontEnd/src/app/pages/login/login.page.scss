@@ -1,34 +1,124 @@
-// app-login {
+@import "../../../global.scss";
+
+.input-group-text {
+    background: rgb(6, 170, 235);
+    color: $light !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    border-top-left-radius:20px !important;
+    border-bottom-left-radius:20px !important;
+}
+
+input{
+    outline: none;
+    color:#000; 
+    padding-bottom: 20px;
+    padding-top:15px;
+    --padding-start:5px;
+    font-size:16px;
+    text-indent:1px;
+    padding-left:10px !important;
+    border-top-right-radius:20px !important;
+    border-bottom-right-radius:20px !important;
+    border: 1px solid rgb(6, 170, 235);
+    background-color:transparent;
+}
+  .ng-invalid:not(form):hover {
+    // border-right: 1px solid rgb(255, 154, 154); /* red */
+    // border-top: 1px solid rgb(255, 154, 154); /* red */
+    // border-bottom: 1px solid rgb(255, 154, 154); /* red */
+    background-color:rgb(255, 154, 154);
+    color: black;
+  }
+
+.form-control:focus{
+    outline: none;
+    background-color:white;
+}
+.ng-valid[required], .ng-valid.required {
+    border-bottom: 1px solid rgb(255, 154, 154) !important; /* red */ 
+    background-color: white;  
+    border-radius: 0em;
+  }
+  .ng-invalid:not(form):hover {
+    // border-right: 1px solid rgb(255, 154, 154) !important; /* red */
+    // border-top: 2px solid rgb(255, 154, 154) !important; /* red */
+    // border-bottom: 1px solid rgb(255, 154, 154) !important; /* red */
+    background-color:rgb(255, 154, 154);
+    color: black;
+  }
+
+.login-header{
+    background-color: rgb(6, 170, 235);
+    position: relative;
+    border-radius: 0em;
+}
+
+.login-header:after{
+    content: '';
+    position: absolute;
+    left:15%;
+    width:0;
+    height:0;
+    border:20px solid transparent;
+    border-top-color:rgb(6, 170, 235);
+    border-bottom: 0;
+    margin-left:-15px;
+    margin-top:15px;
+
+}
+
+img{
+    display :block;
+    width:   120px;
+    margin:0 auto;
+    border-radius: 50%;
+    border: 4px solid #22bbea8f;
+    box-shadow: 1px 1px 6px 10px $light
     
-// }
-
-$white-color: #fff;
-$height100: 100%;
-
-ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
+}
+[heading-column-lr]{
+    display:flex;
+    -ms-flex-align:center;
+    align-items: center;
+    margin-bottom:35px;
+    margin-top:5px;
+    font-weight:bolder;
+    text-shadow: 2px 2px rgb(6, 170, 235);
+    font-family: cursive, Impact fantacy !important;
+    font-style: oblique -3deg !important;
+    letter-spacing: 3px;
+}
+[big-heading]{
+    font-family: "Haebo-Bold" !important;
+    font-size:30px !important;
+    color:$dark;
+    display:flex;
+    margin-left:7%;
 }
 
-ion-row {
-    height: $height100;
+ion-content{
+    --background:#fafafa;
 }
 
-ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
+ion-icon{
+    width: 30px;
 }
 
-ion-button {
-    font-weight: 300;
+[linespace]{
+    height: 30px;
 }
-
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
+.center{
+    margin-left:10px;
+    margin-right:10px;
+}
+.ion-button-class:hover{ 
+    font-weight:bolder !important;
+    letter-spacing: 5px!important; 
+    text-shadow: 2px 2px solid rgb(6, 170, 235) !important;
+    border:1px teal;
+}
+.logIn {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 0;
 }

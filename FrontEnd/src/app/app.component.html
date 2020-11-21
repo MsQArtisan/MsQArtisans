@@ -1,3 +1,58 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu menuId="main-menu" content-id="main">
+      <ion-content>
+          <div class="menu-header-bg"></div>
+          <div class="header-content">
+              <img src="assets/images/logo.png" alt="">
+              <ion-label>
+                  <h2>Ms.Q Artisans</h2>
+                  <p class="serve">We serve at your pleasure</p>
+              </ion-label>
+          </div>
+
+          <ion-list lines="none" class="menu-items">
+              <ion-menu-toggle auto-hide="false">
+                  <ion-item [routerLink]="['/job-orders']">
+                      <div>
+                          <ion-icon name="cart-outline"></ion-icon>
+                          <ion-label>Job Order</ion-label>
+                      </div>
+                  </ion-item>
+                  <ion-item [routerLink]="['/tracker']">
+                      <div>
+                          <ion-icon name="analytics-outline"></ion-icon>
+                          <ion-label>Tracker</ion-label>
+                      </div>
+                  </ion-item>
+                  <ion-item [routerLink]="['/finance']">
+                      <div>
+                          <ion-icon name="wallet-outline"></ion-icon>
+                          <ion-label>Finance</ion-label>
+                      </div>
+                  </ion-item>
+                  <ion-item [routerLink]="['/livechat']">
+                      <div>
+                          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                          <ion-label>Live Chat</ion-label>
+                      </div>
+                  </ion-item>
+                  <ion-item [routerLink]="['/settings']">
+                      <div>
+                          <ion-icon name="settings-outline"></ion-icon>
+                          <ion-label>Settings</ion-label>
+                      </div>
+                  </ion-item>
+                  <ion-item  (click)="logout()" [routerLink]="['/home']">
+                      <div>
+                          <ion-icon name="log-out-outline"></ion-icon>
+                          <ion-label>Logout</ion-label>
+                      </div>
+                  </ion-item>
+              </ion-menu-toggle>
+          </ion-list>
+      </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+
+
 </ion-app>

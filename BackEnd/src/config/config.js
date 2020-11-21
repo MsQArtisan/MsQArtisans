@@ -1,4 +1,4 @@
 module.exports = {
-    jwtSecret: 'long-live-msqartisan',
-    db: 'mongodb://127.0.0.1:27017/msqartisan'
-}
+    jwtSecret: 'long-live-ms-q-associates',
+    db: "mongodb+srv://msqassociates:sunz8lyoztRAkVIw@cluster0.uc6o6.mongodb.net/MsQAssociates?retryWrites=true&w=majority"
+};

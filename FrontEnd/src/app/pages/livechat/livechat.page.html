@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title>Chat_Room</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="main">
+        <div class="chat-box">
+            <div class="message-area">
+                <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
+                    <!-- <span class="name" ><br></span> -->
+                    <p>{{message.text}}<br><label class="time">{{message.timeStamp |
+                            date:'short'}}</label></p>
+                </div>
+            </div>
+            <div class="emo-area">
+            </div>
+            <div class="input-area">
+                <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
+                    <ion-input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></ion-input>
+                    <button [disabled]="message===''">
+                        <ion-icon name="send"></ion-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</ion-content>
