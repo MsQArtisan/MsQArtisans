@@ -13,6 +13,8 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthService {
+  public situation = false
+  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -58,7 +60,8 @@ export class AuthService {
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
         }),
-        catchError(e => {
+        catchError((e) => {
+          this.showAlert(e.error.msg);
           throw new Error(e);
         })
         // catchError(
@@ -75,6 +78,7 @@ export class AuthService {
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
+      window.location.reload()
     });
   }
  
@@ -109,5 +113,23 @@ export class AuthService {
     
     return this.http.get<any>(`${this.url}/api/account`)
   }
+
+  addDataToJobOrders(data) {
+    return this.http.post(`${this.url}/api/jobOrdersData`, data)
+  }
+
+  allJobsBeingAccepted(data) {
+    return this.http.post(`${this.url}/api/allJobsAccepted`, data)
+  }
+  deleteItem(data) {
+    return this.http.post(`${this.url}/api/jobsToDelete`, data)
+  }
+
+  addImageToDatabase(imageUrl){
+    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  }
   
+  getTheProfileImage(usersName) {
+    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  }
 }

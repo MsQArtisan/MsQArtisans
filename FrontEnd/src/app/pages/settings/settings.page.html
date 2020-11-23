@@ -1,12 +1,13 @@
-<ion-header>
-    <ion-toolbar color="secondary">
-        <ion-title>Settings</ion-title>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary" class="toolbarHeader">
+        <h2>Settings</h2>
         <ion-buttons slot="start">
             <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-buttons>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 <ion-content>
+
     <ion-list lines="none" class="menu-items">
 
         <ion-item [routerLink]="['/acc-info']">
@@ -54,7 +55,7 @@
                 <ion-label>Frequently Ask Question</ion-label>
             </div>
         </ion-item>
-       
+
         <ion-item lines="none" (click)="isSetting === 1 ? isSetting = 0 : isSetting = 1">
             <div>
                 <ion-icon name="cog-outline"></ion-icon>

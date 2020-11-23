@@ -1,8 +1,9 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>
-            <h1>MsQArtisan_Chat_Room</h1>
-        </ion-title>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title>Chat_Room</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -11,7 +12,7 @@
         <div class="chat-box">
             <div class="message-area">
                 <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
-                        <!-- <span class="name" ><br></span> -->
+                    <!-- <span class="name" ><br></span> -->
                     <p>{{message.text}}<br><label class="time">{{message.timeStamp |
                             date:'short'}}</label></p>
                 </div>

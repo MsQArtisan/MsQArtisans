@@ -7,13 +7,12 @@ ion-title {
     color: white;
     letter-spacing: 1.5px;
 }
-
-.work {
+ion-label {
     float: left;
-}
-
-.rest {
-    float: right;
+    font-size:20px;
+    color:$dark;
+    // width:20px;
+    // height: 20px;
 }
 
  ion-icon{
@@ -21,7 +20,6 @@ ion-title {
      color: rgb(74, 140, 216);
      margin-right: 10px;
  }
-
 ion-card-title{
     font-size: 20px;
     letter-spacing: 2px;
@@ -36,8 +34,127 @@ ion-item{
     font-size: 16px;
     color: rgb(80, 83, 87);
 }
-.footer{
+.footer, p{
     position: relative;
-    left: 150px;
+    left: 30%;
     font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.status{
+    color:$danger;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:20px;
+
+}
+.warning{
+    animation-name: floating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    color:$warning;
+    width: 93%;
+}
+@keyframes floating {
+    from { transform: translate(0, 0px); }
+    50% { transform: translate(0, 5px); }
+    to { transform: translate(0, -0px); }
+    }
+
+.restText{
+    width: 100%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    padding: 20px;
+}
+.toggleRest{
+    text-align: center !important;
+    margin-top: 28px;
+}
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+}
+
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+.statusCard {
+    width: 91%;
+    height: 210px;
+    margin-left: 20px;
+}
+
+.switch {
+    position: fixed;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    z-index: 1;
+    margin: 20px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .tags {
+      font-size: 15px;
+      width: 150px;
+      margin-left: 70%;
+      margin-bottom: 0;
+  }

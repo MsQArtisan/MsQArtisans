@@ -1,5 +1,6 @@
 var Customer = require('../models/customer-model');
 
+
 exports.getAllCustomers = (req, res) => {
     Customer.find((err, customer) => {
         console.log("customer details: ", customer);
@@ -8,5 +9,6 @@ exports.getAllCustomers = (req, res) => {
           }else{
             return res.send({ status: true,data:customer})
           }
-    });
-};
+    })
+}
+

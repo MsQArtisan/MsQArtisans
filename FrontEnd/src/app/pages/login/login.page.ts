@@ -8,37 +8,33 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  public emailMessage = false
+  public passwordMessage = false
+  public message = ""
 
-  passwordType: string = 'password';
-  passwordIcon: string = 'eye-off';
+  public booleanIdentify = true
+  public passwordOrText = "password"
 
-
-  credentialsForm={
+  public credentialsForm = {
     email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private authService: AuthService) { }
- 
+
   ngOnInit() {
   }
- 
+
   onSubmit() {
-    // console.log(this.credentialsForm)
     this.authService.login(this.credentialsForm).subscribe();
-    this.resetForm();
-
   }
- 
-  resetForm(){
-    this.credentialsForm={
-      email: "",
-      password: ""
+
+  showAndHidePass(type) {
+    this.passwordOrText = type
+    if (this.booleanIdentify) {
+      this.booleanIdentify = false
+    } else {
+      this.booleanIdentify = true
     }
-  }
-
-  hideShowPassword(input: any): any {
-    input.type = input.type === 'password' ? 'text' : 'password';
-    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 }

@@ -10,6 +10,8 @@ import {OrdersPage } from '../orders/orders.page';
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
+  public apple:boolean=true;
+ 
   dataFromModal;
 
   data;
@@ -18,9 +20,13 @@ export class JobOrdersPage implements OnInit {
   location= "Nasipit Rd, Talamban Cebu";
   rate= "4000 Pesos";
   notes="Looking for a nanny for my 3 years old baby boy.";
+
+  
+  show = false;
   constructor(private modalController: ModalController,private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
+    
   }
 
 
@@ -42,4 +48,13 @@ export class JobOrdersPage implements OnInit {
     this.dataFromModal = await modal.onWillDismiss();
   }
 
+  hideAndShow() {
+    if(this.apple) {
+      this.apple = false
+    }else {
+      this.apple = true
+    }
+  }
+ 
+ 
 }

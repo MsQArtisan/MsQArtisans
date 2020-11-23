@@ -8,58 +8,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
-  passwordType: string = 'password';
-  passwordIcon: string = 'eye-off';
-
-  credentialsForm={
+public image;
+  credentialsForm = {
     email: "",
     password: "",
-    name:"",
-    address:"",
-    bday:"",
-    phone:"",
-    confirmPassword:"",
-    selfie:"",
-    primaryIdPic:"",
-    primaryIdNum:"",
-    nbi:"",
-    applyJob:""
+    name: "",
+    address: "",
+    bday: "",
+    phone: "",
+    confirmPassword: "",
+    selfie: "",
+    primaryIdPic: "",
+    primaryIdNum: "",
+    nbi: "",
+    applyJob: "",
+    tutorFile: "",
+    nannyFile: "",
+    housekeepingFile: "",
+    haircutMassageFile: ""
   }
   constructor(
     private authService: AuthService,
     private router: Router) { }
- 
+
   ngOnInit() {
   }
- 
+
   register() {
-    console.log(this.credentialsForm);
+
     this.authService.register(this.credentialsForm).subscribe(res => {
-      this.router.navigate(['login']);
-      this.resetForm()
+      this.authService.addImageToDatabase({name: this.credentialsForm.name, image: this.image}).subscribe((data) => {
+        if(data) {
+          this.router.navigate(['login']);
+        }
+      })
     });
   }
 
-  resetForm(){
-    this.credentialsForm={
-      email: "",
-      password: "",
-      name:"",
-      address:"",
-      bday:"",
-      phone:"",
-      confirmPassword:"",
-      selfie:"",
-      primaryIdPic:"",
-      primaryIdNum:"",
-      nbi:"",
-      applyJob:""
-    }
-  }
+  userProfile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
 
-  hideShowPassword(input: any): any {
-    input.type = input.type === 'password' ? 'text' : 'password';
-    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+      reader.onload = (e) => {
+        this.image = e.target
+        this.image = this.image.result
+      }
+    }
   }
 }
