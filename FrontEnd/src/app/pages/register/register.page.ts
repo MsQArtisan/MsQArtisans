@@ -53,7 +53,6 @@ public image;
       reader.onload = (e) => {
         this.image = e.target
         this.image = this.image.result
-        console.log(this.image)
       }
     }
   }

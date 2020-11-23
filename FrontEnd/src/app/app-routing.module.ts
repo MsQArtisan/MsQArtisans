@@ -81,6 +81,21 @@ const routes: Routes = [
     path: 'faq',
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
   },
+  {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
+  },  {
+    path: 'notif-settings',
+    loadChildren: () => import('./pages/notif-settings/notif-settings.module').then( m => m.NotifSettingsPageModule)
+  },
+  {
+    path: 'all-settings',
+    loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
+  }
+
+
+  
+
 
 
 

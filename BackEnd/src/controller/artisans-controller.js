@@ -39,7 +39,6 @@ exports.registerUser = (req, res) => {
 
 exports.loginUser = (req, res) => {
     emailholder = req.body.email;
-    console.log("Email: ", emailholder);
     if (!req.body.email || !req.body.password) {
         return res.status(400).send({ 'msg': 'You need to send email and password' });
     }
@@ -47,7 +46,7 @@ exports.loginUser = (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
 
         if (err) {
-            return res.status(400).send({ 'msg': err });
+            return res.status(400).send({ 'msg': false });
         }
 
         if (!user) {
@@ -60,14 +59,13 @@ exports.loginUser = (req, res) => {
                     token: createToken(user)
                 });
             } else {
-                return res.status(400).json({ msg: 'The email and password don\'t match.' });
+                return res.status(400).json({ msg: 'The password is incorrect!' });
             }
         });
-    });
+    })
 };
 exports.getUser = (req, res) => {
     User.find({ email: emailholder }, (err, user) => {
-        console.log("INFo: ", user);
 
         if (err) {
             return res.send({ error: err, status: false })
@@ -82,7 +80,6 @@ exports.addJobOrders = (req, res) => {
     if (req.body.state == "accept") {
         jobArray.push({ email: emailholder, data: req.body.jobOffer })
     } else if (req.body.state == "completed") {
-        console.log(req.body.jobOffer)
         completedJob.push({ email: emailholder, data: req.body.jobOffer })
     } else {
         rejectedJob.push({ email: emailholder, data: req.body.jobOffer })

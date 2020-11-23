@@ -1,92 +1,66 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="secondary">
-        <ion-title class="header">Settings</ion-title>
-        <ion-buttons slot="start">
-            <ion-menu-button menu="main-menu"></ion-menu-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+        <ion-toolbar color="secondary">
+            <ion-title class="header">Settings</ion-title>
+            <ion-buttons slot="start">
+                <ion-menu-button menu="main-menu"></ion-menu-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
 <ion-content>
 
     <ion-list lines="none" class="menu-items">
-
+        <div class="settings-header">
+            <span>Account</span>
+        </div>
         <ion-item [routerLink]="['/acc-info']">
-            <div>
-                <ion-icon name="information-circle-outline"></ion-icon>
-                <ion-label>Account Information</ion-label>
-            </div>
+                <ion-icon name="person-outline"></ion-icon>
+                <ion-label>Account Information</ion-label>         
+                <!-- <ion-icon slot="end" name="arrow-forward"></ion-icon> -->
         </ion-item>
 
         <ion-item>
-            <div>
-                <ion-icon name="star-half-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
                 <ion-label  [routerLink]="['/user-ratings']">User Ratings</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <ion-item>
-            <div>
                 <ion-icon name="people-outline"></ion-icon>
                 <ion-label [routerLink]="['/suki']">Suki</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-
+        <div class="settings-header">
+            <span>Information</span>
+        </div>
 
         <ion-item>
-            <div>
-                <ion-icon name="alert-circle-outline"></ion-icon>
+                <ion-icon name="key-outline"></ion-icon>
                 <ion-label [routerLink]="['/privacy-policy']">Privacy Policy</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <ion-item>
-            <div>
-                <ion-icon name="newspaper-outline"></ion-icon>
+                <ion-icon name="paper"></ion-icon>
                 <ion-label [routerLink]="['/terms-conditions']">Terms and Condition</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <ion-item>
-            <div>
                 <ion-icon name="pricetags-outline"></ion-icon>
                 <ion-label [routerLink]="['/price-rates']">Price Rates</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <ion-item>
-            <div>
-                <ion-icon name="help-circle-outline"></ion-icon>
+                <ion-icon name="help-outline"></ion-icon>
                 <ion-label [routerLink]="['/faq']">Frequently Ask Question</ion-label>
-            </div>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-
-        <ion-item lines="none" (click)="isSetting === 1 ? isSetting = 0 : isSetting = 1">
-            <div>
+        <div class="settings-header">
+            <span>Ms Q Artisan</span>
+        </div>
+        <ion-item >   
                 <ion-icon name="cog-outline"></ion-icon>
-                <ion-label>All Settings</ion-label>
-            </div>
+                <ion-label [routerLink]="['/all-settings']">All Settings</ion-label>
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
 
-        <ion-card class="card" menuclose [hidden]="!isSetting">
-            <ion-list lines="none" class="subMenu">
-                <ion-item>
-                    <ion-icon name="notifications-outline" slot="start"></ion-icon>
-                    <ion-label (click)="CreatePopover()">Notification Settings</ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                    <ion-label> New order notifications</ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="language-outline"></ion-icon>
-                    <ion-label>Language</ion-label>
-                    <span>English</span>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="planet-outline"></ion-icon>
-                    <ion-label (click)="handleButtonClick()">Region / State</ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="share-social-outline"></ion-icon>
-                    <ion-label>Share</ion-label>
-                </ion-item>
-            </ion-list>
-        </ion-card>
+        
     </ion-list>
 </ion-content>

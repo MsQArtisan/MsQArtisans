@@ -13,6 +13,8 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthService {
+  public situation = false
+  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -58,7 +60,7 @@ export class AuthService {
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
         }),
-        catchError(e => {
+        catchError((e) => {
           this.showAlert(e.error.msg);
           throw new Error(e);
         })

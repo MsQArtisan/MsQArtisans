@@ -1,17 +1,19 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-        <ion-title class="header">Accepted Order</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button [routerLink]="['/orders']"></ion-back-button>
+            <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
         </ion-buttons>
+        <h2 style="margin-left: 20px;">Accepted Order</h2>
     </ion-toolbar>
   </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title> {{jobOffer.name}} </ion-card-title>
-      <ion-card-subtitle>Customer Name</ion-card-subtitle>
+        <div class="jobPoster">
+            <u><h2>{{jobOffer.customer}}</h2></u>
+            <h3>Customer Name</h3>        
+        </div>
     </ion-card-header>
     <ion-card-content>
       <section>
@@ -26,8 +28,8 @@
           <ion-icon name="time"></ion-icon>
           <span>{{jobOffer.schedule}}</span>
       </section>
-      <section>
-          <ion-icon  class="floating"  [routerLink]="['/location-select']" name="location"></ion-icon>
+      <section [routerLink]="['/location-select']">
+          <ion-icon  class="floating" name="location"></ion-icon>
           <span >{{jobOffer.location}}</span>
      
       </section>
@@ -46,8 +48,8 @@
   <ion-footer class="ion-no-border">
       <ion-toolbar>
           <section class="full-width">
-              <ion-button expand="full" color="secondary" (click)="addDataToDatabase()">Start Service</ion-button>
-              <ion-button expand="full" color="success">Finish Service</ion-button>
+              <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
+              <button class="buttonPass">Finish Service</button>
           </section>
       </ion-toolbar>
     </ion-footer>
