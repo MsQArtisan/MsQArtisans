@@ -57,9 +57,4 @@ export class TrackerPage implements OnInit {
     })
   }
 
-  // capitalizeFirstLetter(str) {
-  //   str.slice(1)
-  //   return str[0].toUpperCase() + str[1].toLowerCase() 
-  // }
-
 }
