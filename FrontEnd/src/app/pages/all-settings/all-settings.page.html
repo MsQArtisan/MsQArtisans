@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">All Settings</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+    <ion-list lines="none" class="menu-items">
+        <ion-item>
+            <ion-icon name="notifications-outline"></ion-icon>
+            <ion-label >Notification Settings</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <ion-label> New order notifications</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="language-outline"></ion-icon>
+            <ion-label>Language</ion-label>
+            <span>English</span>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="planet-outline"></ion-icon>
+            <ion-label (click)="handleButtonClick()">Region / State</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="share-social-outline"></ion-icon>
+            <ion-label>Share</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

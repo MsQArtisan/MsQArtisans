@@ -28,21 +28,25 @@
 
     <ion-grid *ngIf=apple>
         <ion-row>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <ion-item>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <span>{{name}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="time"></ion-icon>
-                        <ion-label>{{schedule}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{schedule}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="location"></ion-icon>
-                        <ion-label>{{location}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{location}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="mail"></ion-icon>
-                        <ion-label>{{notes}}</ion-label>
-                    </ion-item>
+                        <span>{{notes}}</span>
+                    </section>
 
                     <div class="footer">
                         <p>Price Rate: <span>{{rate}}</span> </p>
@@ -51,21 +55,25 @@
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <ion-item>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <span>{{name}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="time"></ion-icon>
-                        <ion-label>{{schedule}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{schedule}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="location"></ion-icon>
-                        <ion-label>{{location}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{location}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="mail"></ion-icon>
-                        <ion-label>{{notes}}</ion-label>
-                    </ion-item>
+                        <span>{{notes}}</span>
+                    </section>
 
                     <div class="footer">
                         <p>Price Rate: <span>{{rate}}</span> </p>
@@ -74,25 +82,31 @@
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <ion-item>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <span>{{name}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="time"></ion-icon>
-                        <ion-label>{{schedule}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{schedule}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="location"></ion-icon>
-                        <ion-label>{{location}}</ion-label>
-                    </ion-item>
-                    <ion-item>
+                        <span>{{location}}</span>
+                    </section>
+                    <section>
                         <ion-icon name="mail"></ion-icon>
-                        <ion-label>{{notes}}</ion-label>
-                    </ion-item>
+                        <span>{{notes}}</span>
+                    </section>
 
                     <div class="footer">
                         <p>Price Rate: <span>{{rate}}</span> </p>
+
                     </div>
+
                 </ion-card-content>
             </ion-card>
         </ion-row>

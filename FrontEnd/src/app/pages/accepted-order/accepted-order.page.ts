@@ -9,9 +9,9 @@ import { Router } from "@angular/router";
 })
 export class AcceptedOrderPage implements OnInit {
   public jobOffer = {
-    customer: "Yubert Mariscal",
+    name: "Jessa Mae Yosores",
     phone: "09326514567",
-    email: "yu@gmail.com",
+    email: "jess@gmail.com",
     jobTitle: "Massage",
     schedule: "Nov.10,2020 - 12:00pm - 5:00pm",
     location: "Nasipit Rd, Talamban Cebu",
