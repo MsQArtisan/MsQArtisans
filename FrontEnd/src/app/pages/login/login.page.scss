@@ -22,13 +22,11 @@ input{
     border: 1px solid rgb(6, 170, 235);
     background-color:transparent;
 }
-// .ng-valid[required], .ng-valid.required {
-//     border: 5px solid rgb(20, 211, 245);
-//   }
+.ng-valid[required], .ng-valid.required {
+    border: 1px solid $success; /* red */
+  }
   .ng-invalid:not(form):hover {
-    border-right: 3px solid $danger; /* red */
-    border-top: 3px solid $danger; /* red */
-    border-bottom: 3px solid $danger; /* red */
+    border: 1px solid $danger; /* red */
     background-color:rgba(255, 0, 0, 0.199);
   }
 
@@ -36,20 +34,6 @@ input{
     box-shadow:none;
     border-color:transparent;
     border: 1px solid rgb(6, 170, 235);
-}
-// .ng-valid[required], .ng-valid.required {
-//     border: 5px solid rgb(20, 211, 245);
-//   }
-  .ng-invalid:not(form):hover {
-    border-right: 1px solid $danger; /* red */
-    border-top: 1px solid $danger; /* red */
-    border-bottom: 1px solid $danger; /* red */
-    background-color:rgba(236, 95, 95, 0.199);
-  }
-
-
-.login-header{
-    background-color: rgb(6, 170, 235);
 }
 .login-header{
     background-color: rgb(6, 170, 235);

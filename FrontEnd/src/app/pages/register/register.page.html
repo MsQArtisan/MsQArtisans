@@ -53,17 +53,18 @@
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
-				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
-				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-			
+				<input class="form-control" #input type="password" required name="password" [(ngModel)]="credentialsForm.password"
+				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+				<button>
+					<ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword(input)'></ion-icon>
+				</button>
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
-				<input class="form-control" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
-				 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}" />
-				
+				<input class="form-control" #input1 type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
+				 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}"  />
 			</div>
 			<h6>Picture (Selfie):</h6>
 			<div class="input-group mb-1">

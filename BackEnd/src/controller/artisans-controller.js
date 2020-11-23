@@ -71,10 +71,6 @@ exports.getUser = (req, res) => {
             return res.send({error:err, status: false})
           }else{
             return res.send({ status: true,data:user})
-<<<<<<< HEAD:BackEnd/src/controller/user-controller.js
-      
-=======
->>>>>>> 183cd50d0283449ba31ea7ab246c5e0459ac7293:BackEnd/src/controller/artisans-controller.js
           }
     });
 };

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
 
   credentialsForm={
     email: "",
@@ -56,4 +58,8 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  hideShowPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 }

@@ -1,11 +1,11 @@
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject,Observable } from 'rxjs';
+import { BehaviorSubject,Observable, throwError , of} from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
 
@@ -57,23 +57,19 @@ export class AuthService {
           this.storage.set(TOKEN_KEY, res['token']);
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
-          // Swal.fire({
-          //   icon: 'success',
-          //   title: 'Successfully Login',
-          //   showConfirmButton: false,
-          //   timer: 1500
-          // }); 
         }),
         catchError(e => {
-          // Swal.fire({
-          //   icon: 'error',
-          //   title: 'Invalid Email and Password',
-          //   showConfirmButton: false,
-          //   timer: 1500
-          // }); 
           throw new Error(e);
         })
-      );
+        // catchError(
+        //   (error: HttpErrorResponse): Observable<any> => {
+        //     if (error.status === 404) {
+        //       return of (null);
+        //     }
+        //     return throwError(error)
+        //   }
+        // )
+      )
   }
  
   logout() {

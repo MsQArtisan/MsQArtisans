@@ -9,6 +9,10 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage implements OnInit {
 
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+
+
   credentialsForm={
     email: "",
     password: ""
@@ -33,5 +37,8 @@ export class LoginPage implements OnInit {
     }
   }
 
-
+  hideShowPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 }
