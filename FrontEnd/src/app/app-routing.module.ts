@@ -58,6 +58,10 @@ const routes: Routes = [
     path: 'accepted-order',
     loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
   },
+  {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
+  }
 
   
 

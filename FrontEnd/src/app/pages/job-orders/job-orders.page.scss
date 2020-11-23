@@ -36,7 +36,7 @@ ion-item{
 }
 .footer, p{
     position: relative;
-    left: 150px;
+    left: 30%;
     font-size: 13px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -86,7 +86,7 @@ ion-item{
     text-align: center;
 }
 .statusCard {
-    width: 280px;
+    width: 91%;
     height: 210px;
     margin-left: 20px;
 }
@@ -155,5 +155,6 @@ ion-item{
   .tags {
       font-size: 15px;
       width: 150px;
-      margin: 0;
+      margin-left: 70%;
+      margin-bottom: 0;
   }

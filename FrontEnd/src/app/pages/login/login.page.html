@@ -1,6 +1,6 @@
-<div style="background-image: url('assets/images/confetti.png')" class="login-header ion-padding">
+<div style="background-image: url('assets/images/confetti.png');" class="login-header ion-padding">
 	<div class="headerWrapper">
-		<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
+		<img src="assets/images/logo.png" class="brand_logo">
 		<h2>Ms. Q Associates</h2>
 	</div>
 </div>
@@ -11,16 +11,23 @@
 				<div class="input-group-append">
 					<span class="input-group-text"><i size="large" class="fa fa-envelope"></i></span>
 				</div>
-				<input autocomplete="off" type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel" placeholder="Email"
-				 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-
-			</div>
+				<input autocomplete="off" type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel"
+				 placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+				<br>
+				<li *ngIf="emailMessage">Your email is not registered!</li>
+			</div><br>
 			<div class="input-group">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fa fa-key"></i></span>
 				</div>
-				<input type="password" required name="password" [(ngModel)]="credentialsForm.password" #password="ngModel"
-				 placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+				<input style="width: 70%;" [type]="passwordOrText" required name="password" [(ngModel)]="credentialsForm.password"
+				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+				<div class="input-group-append">
+					<span *ngIf="booleanIdentify" class="input-group-text" (click)="showAndHidePass('text')"><i class="fa fa-eye"></i></span>
+					<span *ngIf="!booleanIdentify" class="input-group-text" (click)="showAndHidePass('password')"><i class="fa fa-eye-slash"></i></span>
+				</div>
+				<br>
+				<li *ngIf="passwordMessage">Your password is incorrect!</li>
 			</div><br>
 
 			<div linespace></div>

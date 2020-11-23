@@ -21,26 +21,28 @@
   }
 
 .login-header{
+    text-align: center;
     background-attachment: fixed;
     background-size: cover;
     position: relative;
     border-radius: 0em;
     text-align: center;
+    padding: 5px;
 }
 
 .login-header:after{
     position: absolute;
-    left:15%;
     border:20px solid transparent;
     border-top-color:rgb(6, 170, 235);
     border-bottom: 0;
-    margin-left:-15px;
     margin-top:15px;
 }
 .headerWrapper {
     background-color: rgba(6, 170, 235, 0.7);
     padding: 10px;
     border-radius: 50%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 img{
@@ -125,4 +127,12 @@ input:focus {
 .input-group {
     margin: 0;
     margin-left: 10px;
+}
+form {
+    margin-top: 10%;
+}
+li {
+    margin-top: 10px;
+    color: red;
+    font-size: 15px;
 }

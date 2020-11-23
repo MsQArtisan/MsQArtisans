@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -54,7 +53,6 @@ public image;
       reader.onload = (e) => {
         this.image = e.target
         this.image = this.image.result
-        console.log(this.image)
       }
     }
   }
