@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suki.page.scss'],
 })
 export class SukiPage implements OnInit {
-
+suki = 10;
   constructor() { }
 
   ngOnInit() {

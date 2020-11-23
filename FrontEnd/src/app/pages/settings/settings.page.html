@@ -18,46 +18,46 @@
                 <!-- <ion-icon slot="end" name="arrow-forward"></ion-icon> -->
         </ion-item>
 
-        <ion-item>
+        <ion-item [routerLink]="['/user-ratings']">
                 <ion-icon name="star-outline"></ion-icon>
-                <ion-label  [routerLink]="['/user-ratings']">User Ratings</ion-label>
+                <ion-label  >User Ratings</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item [routerLink]="['/suki']">
                 <ion-icon name="people-outline"></ion-icon>
-                <ion-label [routerLink]="['/suki']">Suki</ion-label>
+                <ion-label >Suki</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <div class="settings-header">
             <span>Information</span>
         </div>
 
-        <ion-item>
+        <ion-item [routerLink]="['/privacy-policy']">
                 <ion-icon name="key-outline"></ion-icon>
-                <ion-label [routerLink]="['/privacy-policy']">Privacy Policy</ion-label>
+                <ion-label >Privacy Policy</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-        <ion-item>
-                <ion-icon name="paper"></ion-icon>
-                <ion-label [routerLink]="['/terms-conditions']">Terms and Condition</ion-label>
+        <ion-item [routerLink]="['/terms-conditions']">
+                <ion-icon name="newspaper-outline"></ion-icon>
+                <ion-label >Terms and Condition</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item [routerLink]="['/price-rates']">
                 <ion-icon name="pricetags-outline"></ion-icon>
-                <ion-label [routerLink]="['/price-rates']">Price Rates</ion-label>
+                <ion-label >Price Rates</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item [routerLink]="['/faq']">
                 <ion-icon name="help-outline"></ion-icon>
-                <ion-label [routerLink]="['/faq']">Frequently Ask Question</ion-label>
+                <ion-label >Frequently Ask Question</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
         <div class="settings-header">
             <span>Ms Q Artisan</span>
         </div>
-        <ion-item >   
+        <ion-item [routerLink]="['/all-settings']">   
                 <ion-icon name="cog-outline"></ion-icon>
-                <ion-label [routerLink]="['/all-settings']">All Settings</ion-label>
+                <ion-label >All Settings</ion-label>
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
 
