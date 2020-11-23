@@ -37,6 +37,7 @@
       <li> {{value.data.phone}} </li>
       <li> {{value.data.rate}} </li>
       <li> {{value.data.schedule}} </li><br>
+      <button *ngIf="completedTask">Delete Completed Task</button>
       <button (click)="alreadyDoneTask(i)">Done!</button>
       <br><br>
     </ul>
