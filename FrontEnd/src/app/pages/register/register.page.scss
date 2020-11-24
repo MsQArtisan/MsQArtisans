@@ -1,5 +1,4 @@
 @import "../../../global.scss";
-
 .input-group-text {
     outline: none;
     border-bottom: 1px solid #000;
@@ -16,7 +15,7 @@ input{
   }
 
 
-.login-header{
+.login-header {
     background-color: rgb(6, 170, 235);
 }
 .login-header{
@@ -25,7 +24,7 @@ input{
     border-radius: 0em;
 }
 
-.login-header:after{
+.login-header:after {
     content: '';
     position: absolute;
     left:15%;
@@ -33,21 +32,21 @@ input{
     height:0;
     border:20px solid transparent;
     border-bottom: 0;
-    margin-left:-15px;
-    margin-top:15px;
-
+    margin-left: -15px;
+    margin-top: 15px;
 }
 
-img{
-    display :block;
-    width:   120px;
-    margin:0 auto;
+img {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
     border-radius: 50%;
     
 }
-[heading-column-lr]{
-    display:flex;
-    -ms-flex-align:center;
+
+[heading-column-lr] {
+    display: flex;
+    -ms-flex-align: center;
     align-items: center;
     margin-bottom:35px;
     margin-top:5px;
@@ -62,20 +61,21 @@ img{
     color:$dark;
 }
 
-ion-content{
-    --background:#fafafa;
+ion-content {
+    --background: #fafafa;
 }
 
-ion-icon{
+ion-icon {
     width: 30px;
 }
 
-[linespace]{
+[linespace] {
     height: 30px;
 }
-.center{
-    margin-left:10px;
-    margin-right:10px;
+
+.center {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .ion-button-class:hover{ 
     font-weight: lighter;

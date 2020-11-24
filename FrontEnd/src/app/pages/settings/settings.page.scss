@@ -10,15 +10,15 @@
     color: rgb(0, 0, 0);
     letter-spacing: 1.5px;
 }
+
 .menu-items {
-   
     margin: 0px;
     ion-icon {
         margin-left: 8px;
         color: rgb(72, 76, 80);
         font-size: 18px;
     }
-    .settings-header{
+    .settings-header {
         background-color: rgb(233, 242, 243);
         font-size: 20px;
         color: rgb(151, 163, 163);
@@ -38,26 +38,17 @@
         color:rgb(100, 91, 91);
        
     }
-
     ion-label {
         margin-left: 15px;
         font-weight: normal;
     }
-
-}
-
-
-ion-item.item:hover div {
-    background-color: rgb(42, 163, 219) !important;
-    color: white;
-    width: 100%;
-    padding: 8px;
 }
 
 .name {
     color: rgb(124, 115, 115);
     text-align: justify;
 }
+
 h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {places} from '../places.model';
 
 @Component({
   selector: 'app-all-settings',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllSettingsPage implements OnInit {
 
+  public placesInCebu = new places();
+  public places = this.placesInCebu.placeInCebu()
   constructor() { }
 
   ngOnInit() {
   }
-
+  capitalizeFirstLetter(str) {
+   return str[0].toUpperCase() + str.slice(1).toLowerCase()
+    }
 }

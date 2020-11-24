@@ -91,6 +91,22 @@ const routes: Routes = [
   {
     path: 'all-settings',
     loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'cash-out',
+    loadChildren: () => import('./pages/cash-out/cash-out.module').then( m => m.CashOutPageModule)
+  },
+  {
+    path: 'cash-in',
+    loadChildren: () => import('./pages/cash-in/cash-in.module').then( m => m.CashInPageModule)
+  },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule)
   }
 
 

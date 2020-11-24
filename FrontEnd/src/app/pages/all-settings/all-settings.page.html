@@ -5,13 +5,13 @@
             <ion-back-button [routerLink]="['/settings']"></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
-</ion-header> 
+</ion-header>
 
 <ion-content>
     <ion-list lines="none" class="menu-items">
         <ion-item>
             <ion-icon name="notifications-outline"></ion-icon>
-            <ion-label >Notification Settings</ion-label>
+            <ion-label>Notification Settings</ion-label>
         </ion-item>
         <ion-item>
             <ion-icon name="alert-circle-outline"></ion-icon>
@@ -20,11 +20,14 @@
         <ion-item>
             <ion-icon name="language-outline"></ion-icon>
             <ion-label>Language</ion-label>
-            <span>English</span>
+            <span class="language">English</span>
         </ion-item>
         <ion-item>
             <ion-icon name="planet-outline"></ion-icon>
-            <ion-label (click)="handleButtonClick()">Region / State</ion-label>
+            <ion-label>Region/state</ion-label>
+            <ion-select class="region" interface="popover">
+                <ion-select-option *ngFor='let val of places'>{{capitalizeFirstLetter(val.muni)}}</ion-select-option>
+            </ion-select>
         </ion-item>
         <ion-item>
             <ion-icon name="share-social-outline"></ion-icon>

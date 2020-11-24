@@ -39,18 +39,29 @@ exports.registerUser = (req, res) => {
 
 exports.loginUser = (req, res) => {
     emailholder = req.body.email;
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).send({ 'msg': 'You need to send email and password' });
+    }
 
     User.findOne({ email: req.body.email }, (err, user) => {
-
-        if (user == null) {
-            res.send({type: false, msg: 'email'})
-        }else {
-            if(user.confirmPassword == req.body.password) {
-                res.send({type: true, token: createToken(user)})
-            }else {
-                res.send({ type: false, msg: 'password' })
-            }
+        if (err) {
+            return res.status(400).send({ 'msg': false });
         }
+
+        if (!user) {
+            return res.status(400).json({ 'msg': 'The user does not exist' });
+        }
+
+        user.comparePassword(req.body.password, (err, isMatch) => {
+            if (isMatch && !err) {
+                return res.status(200).json({
+                    token: createToken(user),
+                    user: user
+                });
+            } else {
+                return res.status(400).json({ msg: 'The password is incorrect!' });
+            }
+        });
     })
 };
 exports.getUser = (req, res) => {
@@ -77,11 +88,11 @@ exports.addJobOrders = (req, res) => {
 }
 exports.allJobAccepted = (req, res) => {
     if (req.body.state == "accept") {
-        res.send({state: 'accept', jobs: jobArray})
+        res.send(jobArray)
     } else if (req.body.state == "completed") {
-        res.send({state: 'completed',jobs: completedJob})
+        res.send(completedJob)
     } else {
-        res.send({state: 'reject', jobs: rejectedJob})
+        res.send(rejectedJob)
     }
 }
 
