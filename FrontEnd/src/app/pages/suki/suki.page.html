@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>suki</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">User Ratings</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> 
+
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-content>
+        <ion-icon slot="end" name="happy-outline"></ion-icon>
+        <span>{{suki}}</span><br>
+        <p>Customers Tagged You As Suki</p>
+        
+    </ion-card-content>
+  </ion-card>
 </ion-content>
