@@ -7,12 +7,14 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <label class="switch">
-        <p *ngIf="apple" class="tags">Disable Receive Work</p>
-        <p *ngIf="!apple" class="tags">Enable Receive Work</p>
-        <input type="checkbox" checked (click)="hideAndShow()">
-        <span class="slider round"></span>
-    </label>
+    <div class="buttonTop">
+        <label class="switch">
+            <p *ngIf="apple" class="tags">Disable Receive Work</p>
+            <p *ngIf="!apple" class="tags">Enable Receive Work</p>
+            <input type="checkbox" checked (click)="hideAndShow()">
+            <span class="slider round"></span>
+        </label>
+    </div>
     <br><br><br>
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
@@ -26,10 +28,10 @@
 
     <ion-grid *ngIf=apple>
         <ion-row>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <section >
+                    <section>
                         <ion-icon name="people"></ion-icon>
                         <span>{{name}}</span>
                     </section>
@@ -53,9 +55,13 @@
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <span>{{name}}</span>
+                    </section>
                     <section>
                         <ion-icon name="time"></ion-icon>
                         <span>{{schedule}}</span>
@@ -76,9 +82,13 @@
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()">
+            <ion-card (click)="order()" class="cardContent">
                 <ion-card-content>
                     <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <span>{{name}}</span>
+                    </section>
                     <section>
                         <ion-icon name="time"></ion-icon>
                         <span>{{schedule}}</span>
@@ -94,7 +104,9 @@
 
                     <div class="footer">
                         <p>Price Rate: <span>{{rate}}</span> </p>
+
                     </div>
+
                 </ion-card-content>
             </ion-card>
         </ion-row>

@@ -5,58 +5,58 @@
 </ion-header>
 <ion-content>
 	<div class="center">
-		<div heading-column-lr>
-			<h1 big-heading>Sign Up</h1>
-		</div>
+		<div heading-column-lr class="sign-up-tag">
+			<h1>Sign Up</h1>
+		</div><br><br><br>
 
 		<form class="form_fields" #signUpForm="ngForm"><br>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-user"></i></span>
 				</div>
-				<input class="form-control input_user" type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel"
+				<input class="input_user" type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel"
 				 placeholder="Fullname" minlength="2" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
 				</div>
-				<input class="form-control input_user" type="text" required name="address" [(ngModel)]="credentialsForm.address"
+				<input class="input_user" type="text" required name="address" [(ngModel)]="credentialsForm.address"
 				 #address="ngModel" placeholder="Address" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 				</div>
-				<input class="form-control input_user" type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel"
+				<input class="input_user" type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel"
 				 placeholder="Birth Date" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fa fa-phone"></i></span>
 				</div>
-				<input class="form-control input_user" type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel"
+				<input class="input_user" type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel"
 				 placeholder="Phone Number" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 				</div>
-				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
+				<input class="input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
 				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
-				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
+				<input class="input_user" type="password" required name="password" [(ngModel)]="credentialsForm.password"
 				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
 			</div>
 			<div class="input-group mb-2">
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-key"></i></span>
 				</div>
-				<input class="form-control" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
+				<input class="input_user" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
 				 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}" />
 			</div>
 			<h6>Picture (Selfie):</h6>
@@ -87,7 +87,7 @@
 				<div class="input-group-append">
 					<span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 				</div>
-				<input class="form-control" type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum"
+				<input class="input_user" type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum"
 				 #primaryIdNum="ngModel" placeholder="Primary ID Number" />
 			</div>
 			<h6>NBI Clearance:</h6>

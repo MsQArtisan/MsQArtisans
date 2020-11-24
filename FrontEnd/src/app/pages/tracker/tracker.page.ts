@@ -8,6 +8,9 @@ import { Router } from '@angular/router'
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+
+  public completedTask = false
+  public jobsOffered;
   public onGoingJob;
 
   constructor(
@@ -17,29 +20,34 @@ export class TrackerPage implements OnInit {
 
   ngOnInit() {
     this.authService.allJobsBeingAccepted({state: "completed"}).subscribe((data) => {
-      this.onGoingJob = data
+      this.jobsOffered = data
+      this.onGoingJob = this.jobsOffered.jobs
     })
   }
   myOnGoingTask() {
     this.authService.allJobsBeingAccepted({state: "accept"}).subscribe((data) => {
-      this.onGoingJob = data
+      this.jobsOffered = data
+      this.onGoingJob = this.jobsOffered.jobs
     })
   }
   alreadyDoneTask(index) {
-    this.authService.addDataToJobOrders({ state: "completed", jobOffer: this.onGoingJob[index].data}).subscribe((data) => {
-      this.onGoingJob = data
+    this.authService.addDataToJobOrders({ state: "completed", jobOffer: this.jobsOffered[index].data}).subscribe((data) => {
+      this.jobsOffered = data
+      this.onGoingJob = this.jobsOffered.jobs
       this.deleteItemThroughIndex(index)
       this.http.navigate(['job-orders'])
     })
   }
   completedTasks() {
     this.authService.allJobsBeingAccepted({state: "completed"}).subscribe((data) => {
-      this.onGoingJob = data
+      this.jobsOffered = data
+      this.onGoingJob = this.jobsOffered.jobs
     })
   }
   rejectedTasks() {
     this.authService.allJobsBeingAccepted({state: "rejected"}).subscribe((data) => {
-      this.onGoingJob = data
+      this.jobsOffered = data
+      this.onGoingJob = this.jobsOffered.jobs
     })
   }
 

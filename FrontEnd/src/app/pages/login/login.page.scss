@@ -8,16 +8,12 @@
     border-bottom-left-radius:20px !important;
     background-color: #fafafa;
 }
-  .ng-invalid:not(form):hover {
-    color: black;
+  .ng-invalid:not(form):focus {
+    border-bottom: 1px solid $danger !important; 
   }
 .ng-valid[required], .ng-valid.required {
-    border-bottom: 1px solid rgb(255, 154, 154) !important; /* red */ 
-    background-color: white;  
+    border-bottom: 1px solid $success !important; /* red */ 
     border-radius: 0em;
-  }
-  .ng-invalid:not(form):hover {
-    color: black;
   }
 
 .login-header{

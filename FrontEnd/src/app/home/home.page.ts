@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  show=true;
+  show = true;
   constructor(private router: Router) {
     setTimeout (()=>{
       this.show=false;
