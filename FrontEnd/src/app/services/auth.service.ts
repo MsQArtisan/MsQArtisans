@@ -101,8 +101,6 @@ export class AuthService {
   }
 
   getUser():Observable<any>{
-    console.log("klsdjfklj");
-    
     return this.http.get<any>(`${this.url}/api/account`)
   }
 

@@ -1,3 +1,10 @@
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1.5px;
+}
 ul {
     list-style-type: none;
     padding: 15px;
@@ -33,3 +40,4 @@ button {
 button:focus {
     background-color: rgb(56, 163, 65);
 }
+

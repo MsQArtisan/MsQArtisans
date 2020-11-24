@@ -15,6 +15,8 @@ export class JobOrdersPage implements OnInit {
   dataFromModal;
 
   data;
+
+  name="Jessa Mae Yosores";
   jobTitle= "Massage";
   schedule= "Nov.10,2020 - 12:00pm - 5:00pm";
   location= "Nasipit Rd, Talamban Cebu";
@@ -39,7 +41,7 @@ export class JobOrdersPage implements OnInit {
   async order() {
     const modal = await this.modalController.create({
       component: OrdersPage,
-      componentProps: { jobTitle: this.jobTitle,schedule: this.schedule, location:this.location, rate: this.rate , notes: this.notes},
+      componentProps: { name: this.name,jobTitle: this.jobTitle,schedule: this.schedule, location:this.location, rate: this.rate , notes: this.notes},
       cssClass: 'setting-modal',
       backdropDismiss: false,
     });

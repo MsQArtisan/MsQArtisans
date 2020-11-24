@@ -1,6 +1,11 @@
 @import "../../../global.scss";
-* {
-    font-family: lato;
+
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1.5px;
 }
 button {
     width: 100%;

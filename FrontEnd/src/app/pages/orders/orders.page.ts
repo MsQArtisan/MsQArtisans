@@ -9,6 +9,7 @@ import { AuthService } from "../../services/auth.service"
 })
 export class OrdersPage implements OnInit {
   public ToPush = {
+    name: "",
     jobTitle: "",
     schedule: "",
     location: "",
@@ -16,6 +17,7 @@ export class OrdersPage implements OnInit {
     notes: ""
   };
 
+  @Input() name: string;
   @Input() jobTitle: string;
   @Input() schedule: string;
   @Input() location: string;
