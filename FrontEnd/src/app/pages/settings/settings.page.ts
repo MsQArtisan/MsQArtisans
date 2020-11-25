@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PopoverController, AlertController} from '@ionic/angular';
-import {NotifSettingPage} from '../../pages/notif-setting/notif-setting.page';
 import {NavController,ModalController,MenuController} from '@ionic/angular';
 
 @Component({
@@ -17,14 +16,6 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
     
     
-  }
-
-  CreatePopover(){
-    this.popover.create({component:NotifSettingPage,
-    showBackdrop:false}).then((popoverElement)=>{
-      
-      popoverElement.present();
-    })
   }
 
  

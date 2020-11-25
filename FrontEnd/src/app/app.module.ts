@@ -19,6 +19,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = { url: 'http://localhost:5001', options: {} };
 
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 export function jwtOptionsFactory(storage) {
   return {
     tokenGetter: () => {
@@ -48,6 +50,7 @@ export function jwtOptionsFactory(storage) {
   providers: [  
     Geolocation,
     StatusBar,
+    SocialSharing,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

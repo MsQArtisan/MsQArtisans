@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NotifSettingPageRoutingModule } from './notif-setting-routing.module';
+import { SharePageRoutingModule } from './share-routing.module';
 
-import { NotifSettingPage } from './notif-setting.page';
+import { SharePage } from './share.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotifSettingPageRoutingModule
+    SharePageRoutingModule
   ],
-  declarations: [NotifSettingPage]
+  declarations: [SharePage]
 })
-export class NotifSettingPageModule {}
+export class SharePageModule {}

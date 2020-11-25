@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { NotifSettingPage } from './notif-setting.page';
+import { SharePage } from './share.page';
 
-describe('NotifSettingPage', () => {
-  let component: NotifSettingPage;
-  let fixture: ComponentFixture<NotifSettingPage>;
+describe('SharePage', () => {
+  let component: SharePage;
+  let fixture: ComponentFixture<SharePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotifSettingPage ],
+      declarations: [ SharePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NotifSettingPage);
+    fixture = TestBed.createComponent(SharePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

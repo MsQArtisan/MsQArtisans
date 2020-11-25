@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>share</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Social Share</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="8" style="height: 200px;">
+        <ion-img style="height: 200px;" [src]="imgurl"></ion-img>
+      </ion-col>
+      <ion-col size="4">
+          <ion-text>{{text}}</ion-text>
+      </ion-col>  
+      <ion-col size="12">
+        <ion-text>{{link}}</ion-text>
+      </ion-col>        
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2">
+        <ion-button color="light" (click)="ShareLink('text')"><ion-icon name="share-social-outline"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+          <ion-button color="warning" (click)="SendEmail()"><ion-icon name="mail-outline"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary" (click)="ShareFacebook()"><ion-icon name="logo-facebook"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+          <ion-button color="success" (click)="ShareWhatsapp()"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button  color="secondary" (click)="SendTwitter()"><ion-icon name="logo-twitter"></ion-icon></ion-button>
+      </ion-col>   
+      <ion-col size="2">
+        <ion-button color="tertiary" (click)="SendInstagram()"><ion-icon name="logo-instagram"></ion-icon></ion-button>
+      </ion-col>    
+    </ion-row>
+  </ion-grid>  
+ </ion-content>

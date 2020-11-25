@@ -39,10 +39,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'notif-setting',
-    loadChildren: () => import('./pages/notif-setting/notif-setting.module').then( m => m.NotifSettingPageModule)
-  },
-  {
     path: 'acc-info',
     loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
   },
@@ -84,7 +80,8 @@ const routes: Routes = [
   {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
-  },  {
+  },
+  {
     path: 'notif-settings',
     loadChildren: () => import('./pages/notif-settings/notif-settings.module').then( m => m.NotifSettingsPageModule)
   },
@@ -107,13 +104,14 @@ const routes: Routes = [
   {
     path: 'statistics',
     loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule)
+  },
+  {
+    path: 'share',
+    loadChildren: () => import('./pages/share/share.module').then( m => m.SharePageModule)
   }
 
 
   
-
-
-
 
 ];
 

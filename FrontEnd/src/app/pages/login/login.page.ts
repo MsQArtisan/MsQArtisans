@@ -7,7 +7,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public situationHandler;
   public emailMessage = false
   public passwordMessage = false
   public message = ""
@@ -26,16 +25,8 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.credentialsForm).subscribe((data) => {
-      this.situationHandler = data
-      if(this.situationHandler.msg == 'email') {
-        this.emailMessage = true
-        this.passwordMessage = this.situationHandler.type
-      }else {
-        this.passwordMessage = true
-        this.emailMessage = this.situationHandler.type
-      }
-    })
+    this.authService.login(this.credentialsForm).subscribe();
+    console.log("fdhg",this.credentialsForm)
   }
 
   showAndHidePass(type) {

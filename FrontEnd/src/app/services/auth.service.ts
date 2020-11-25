@@ -13,9 +13,6 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthService {
-  public situationHandler;
-  public situation = true
-  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -57,26 +54,20 @@ export class AuthService {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          this.situationHandler = res
-          if(this.situationHandler.type) {
-            this.storage.set(TOKEN_KEY, res['token']);
-            this.user = this.helper.decodeToken(res['token']);
-            this.authenticationState.next(true);
-          }else {
-            this.returnTheStatus()
-          }
+          this.storage.set(TOKEN_KEY, res['token']);
+          this.user = this.helper.decodeToken(res['token']);
+          this.authenticationState.next(true);
+        }),
+        catchError(e => {
+          this.showAlert(e.error.msg);
+          throw new Error(e);
         })
       );
-  }
-
-  returnTheStatus() {
-    return this.authenticationState
   }
  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
-      window.location.reload()
     });
   }
  
@@ -107,9 +98,10 @@ export class AuthService {
   }
 
   getUser():Observable<any>{
+    console.log("klsdjfklj");
+    
     return this.http.get<any>(`${this.url}/api/account`)
   }
-
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }

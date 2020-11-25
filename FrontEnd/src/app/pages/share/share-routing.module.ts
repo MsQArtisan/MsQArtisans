@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotifSettingPage } from './notif-setting.page';
+import { SharePage } from './share.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: NotifSettingPage
+    component: SharePage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class NotifSettingPageRoutingModule {}
+export class SharePageRoutingModule {}
