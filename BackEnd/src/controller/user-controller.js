@@ -1,7 +1,9 @@
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
+var FinishUser = require('../models/finishUser');
 var emailholder="";
+var handler;
  
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -77,5 +79,27 @@ exports.getUser = (req, res) => {
       
           }
     });
+};
+
+exports.addFinishUser = (req, res) => {
+    const finishedUser = new FinishUser(req.body[0])
+
+    try{
+        finishedUser.save()
+        console.log(finishedUser)
+        handler = finishedUser
+        res.send(finishedUser)
+    }catch(err) {
+        res.send(false)
+    }
+};
+
+exports.getCompletedUser = (req, res) => {
+
+    try{
+        res.send(handler)
+    }catch(err) {
+        res.send(false)
+    }
 };
 

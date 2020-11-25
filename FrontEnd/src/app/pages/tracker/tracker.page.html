@@ -1,35 +1,65 @@
 <ion-header>
   <ion-toolbar color="secondary">
-      <ion-title>Tracker</ion-title>
-      <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
+    <ion-title>Tracker</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-     <!-- Icon top -->
-     <ion-segment color="secondary" value="favorite">
-            <ion-segment-button value="call">
-              <ion-label> On Going</ion-label>
-              <ion-icon name="refresh-circle-outline"></ion-icon>  
-              
-                        
-            </ion-segment-button>
-    
-            <ion-segment-button value="favorite">
-              <ion-label>Completed</ion-label>
-              <ion-icon name="checkmark-circle-outline"></ion-icon>            
-            </ion-segment-button>
-              
-            
-            <ion-segment-button value="map">
-              <ion-label>Rejected</ion-label>
-              <ion-icon name="close-circle-outline"></ion-icon>
-             
-            </ion-segment-button>
-          </ion-segment>
+  <!-- Icon top -->
+  <ion-segment color="secondary" value="favorite">
+    <ion-segment-button value="call">
+      <ion-label> On Going</ion-label>
+      <ion-icon name="refresh-circle-outline"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value="favorite">
+      <ion-label>Completed</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="map">
+      <ion-label>Rejected</ion-label>
+      <ion-icon name="close-circle-outline"></ion-icon>
+
+    </ion-segment-button>
+  </ion-segment>
 
 </ion-content>
 
+<ion-card>
+  <ion-card-header>
+    <ion-card-title value="customer"> {{user.customer}} </ion-card-title>
+    <ion-card-subtitle value="custoName">Customer Name</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <section>
+      <ion-icon name="call"></ion-icon>
+      <span value="phone">{{user.phone}}</span>
+    </section>
+    <section>
+      <ion-icon name="mail"></ion-icon>
+      <span value="email">{{user.email}}</span>
+    </section>
+    <section>
+      <ion-icon name="time"></ion-icon>
+      <span value="schedule">{{user.schedule}}</span>
+    </section>
+    <section>
+      <ion-icon class="floating" [routerLink]="['/location-select']" name="location"></ion-icon>
+      <span value="location">{{user.location}}</span>
 
+    </section>
+    <section>
+      <ion-icon name="wallet"></ion-icon>
+      <span value="rates">{{user.rate}}</span>
+    </section>
+    <section>
+      <ion-icon name="mail-open"></ion-icon>
+      <span value="notes">{{user.notes}}</span>
+    </section>
+
+
+  </ion-card-content>
+</ion-card>

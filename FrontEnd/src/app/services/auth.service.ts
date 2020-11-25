@@ -102,5 +102,13 @@ export class AuthService {
     
     return this.http.get<any>(`${this.url}/api/account`)
   }
+
+  dataToDB(data){
+    return this.http.post(`${this.url}/api/addUser`,data)
+  }
+
+  getCompleteData(){
+    return this.http.get(`${this.url}/api/completedUser`)
+  }
   
 }

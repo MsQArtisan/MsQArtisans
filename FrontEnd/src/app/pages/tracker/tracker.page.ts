@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-tracker',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+  public user;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private http : AuthService
+  ) { 
+    
   }
 
+  ngOnInit() {
+    this.http.getCompleteData().subscribe((data) =>{
+      console.log(data)
+      this.user = data
+    })
+  }
 }

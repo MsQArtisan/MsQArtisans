@@ -50,7 +50,7 @@ var UserSchema = new mongoose.Schema({
         required: 'nbi is required'
     },
     applyJob: {
-        type: String
+        type: String  
     },
     tutorFile: {
         type: String
