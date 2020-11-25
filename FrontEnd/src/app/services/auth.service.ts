@@ -8,6 +8,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject,Observable, throwError , of} from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
+const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
@@ -64,37 +65,16 @@ export class AuthService {
           this.showAlert(e.error.msg);
           throw new Error(e);
         })
-        // catchError(
-        //   (error: HttpErrorResponse): Observable<any> => {
-        //     if (error.status === 404) {
-        //       return of (null);
-        //     }
-        //     return throwError(error)
-        //   }
-        // )
       )
   }
  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
-      window.location.reload()
+      // window.location.reload()
     });
   }
- 
-  getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('You are not authorized for this!');
-          this.logout();
-        }
-        throw new Error(e);
-      })
-    )
-  }
- 
+
   isAuthenticated() {
     return this.authenticationState.value;
   }
@@ -109,8 +89,7 @@ export class AuthService {
   }
 
   getUser():Observable<any>{
-    console.log("klsdjfklj");
-    
+    console.log("account");
     return this.http.get<any>(`${this.url}/api/account`)
   }
 
@@ -132,4 +111,17 @@ export class AuthService {
   getTheProfileImage(usersName) {
     return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
   }
+  
+  requestReset(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/new-password`, body);
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+  }
+
 }

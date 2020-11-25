@@ -27,6 +27,7 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     this.authService.login(this.credentialsForm).subscribe();
+    this.resetForm()
   }
 
   showAndHidePass(type) {
@@ -35,6 +36,13 @@ export class LoginPage implements OnInit {
       this.booleanIdentify = false
     } else {
       this.booleanIdentify = true
+    }
+  }
+
+  resetForm(){
+    this.credentialsForm = {
+      email: "",
+      password: ""
     }
   }
 }

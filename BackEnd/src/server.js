@@ -6,7 +6,19 @@ var config      = require('./config/config');
 var cors        = require('cors');
 var app         = express();
 var port        = process.env.PORT || 5000; 
-var User = require('../src/models/artisan-model');
+const cookieParser = require('cookie-parser');
+// const auth = require('./routes');
+// var User = require('../src/models/artisan-model');
+
+// For Password Resit
+const app2      = express();
+app2.use(cors());
+const server = require('http').createServer(app2);
+
+app2.use(express.json({ limit: '50mb' }));
+app2.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app2.use(cookieParser());
+
 
 // For Pusher
 const Pusher    = require('pusher');
@@ -56,9 +68,10 @@ passport.use(passportMiddleware);
  
 var routes = require('./routes');
 app.use('/api', routes);
+app2.use('/api', routes)
 
 
-mongoose.connect(config.db, { useNewUrlParser: true , useCreateIndex: true});
+mongoose.connect(config.db, { useNewUrlParser: true , useCreateIndex: true,  useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully!');
@@ -68,7 +81,10 @@ connection.on('error', (err) => {
     process.exit(); 
 });
 
-
+// Start the server for password reset
+server.listen(5010, () => {
+  console.log('Listening on port 5010');
+});
 
 // Start the pusher server
 app1.listen(port1, () => {

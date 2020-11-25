@@ -65,7 +65,12 @@ const routes: Routes = [
   {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
+  },
+  {
+    path: 'response-reset-password/',
+    loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
   }
+
 
   
 

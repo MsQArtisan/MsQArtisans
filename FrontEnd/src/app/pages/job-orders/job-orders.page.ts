@@ -30,11 +30,11 @@ export class JobOrdersPage implements OnInit {
   }
 
 
-  loadSpecialInfo() {
-    this.authService.getSpecialData().subscribe(res => {
-      this.data = res['msg'];
-    });
-  }
+  // loadSpecialInfo() {
+  //   this.authService.getSpecialData().subscribe(res => {
+  //     this.data = res['msg'];
+  //   });
+  // }
   
   async order() {
     const modal = await this.modalController.create({

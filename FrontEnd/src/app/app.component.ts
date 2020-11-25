@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(
     private authService: AuthService, 
     private storage: Storage,
-    private toastController: ToastController,
+    // private toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -47,10 +47,10 @@ export class AppComponent {
     this.authService.logout();
     this.storage.remove('access_token');
  
-    let toast = this.toastController.create({
-      duration: 3000
-    });
-    toast.then(toast => toast.present());
+    // let toast = this.toastController.create({
+    //   duration: 3000
+    // });
+    // toast.then(toast => toast.present());
     this.auth.authenticationState.subscribe(state => {
       if (state) {
         this.router.navigate(['job-orders']);
