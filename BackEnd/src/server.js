@@ -8,6 +8,8 @@ var app = express();
 var port = process.env.PORT || 5000;
 var User = require('../src/models/artisan-model');
 
+var messages = [];
+
 // For Pusher
 const Pusher = require('pusher');
 
@@ -36,20 +38,14 @@ app1.use((req, res, next) => {
     next();
 });
 app1.post('/messages', (req, res) => {
-    const { body } = req;
-    const { text, id } = body;
-    // const result = sentiment.analyze(text);
-    // const comparative = result.comparative;
-    // const tone =
-    //   comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
-    const data = {
-        text,
-        id,
-        timeStamp: new Date(),
-    };
-    pusher.trigger('chat', 'message', data);
-    res.json(data);
+    messages.push(req.body);
+    pusher.trigger('chat', 'message', messages);
+    res.send(messages);
 });
+
+app1.get('/api/allMessages', (req, res) => {
+    res.send(messages)
+})
 
 
 // for other server

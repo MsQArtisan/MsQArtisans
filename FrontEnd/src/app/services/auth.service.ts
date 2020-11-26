@@ -100,6 +100,10 @@ export class AuthService {
     alert.then(alert => alert.present());
   }
 
+  getAllMessages() {
+    return this.http.get("http://localhost:5005/api/allMessages")
+  }
+
   getUser():Observable<any>{
     return this.http.get<any>(`${this.url}/api/account`)
   }
