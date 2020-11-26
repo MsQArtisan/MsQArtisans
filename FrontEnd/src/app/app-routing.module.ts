@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+  },
+  {
     path: 'job-orders',
     loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
@@ -37,6 +41,10 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'all-settings',
+    loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
   },
   {
     path: 'acc-info',
@@ -78,37 +86,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
   },
   {
+    path: 'share',
+    loadChildren: () => import('./pages/share/share.module').then( m => m.SharePageModule)
+  },
+  {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
   },
   {
-    path: 'notif-settings',
-    loadChildren: () => import('./pages/notif-settings/notif-settings.module').then( m => m.NotifSettingsPageModule)
-  },
-  {
-    path: 'all-settings',
-    loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
-  },
-  {
-    path: 'history',
-    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
-  },
-  {
-    path: 'cash-out',
-    loadChildren: () => import('./pages/cash-out/cash-out.module').then( m => m.CashOutPageModule)
-  },
-  {
-    path: 'cash-in',
-    loadChildren: () => import('./pages/cash-in/cash-in.module').then( m => m.CashInPageModule)
-  },
-  {
-    path: 'statistics',
-    loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule)
-  },
-  {
-    path: 'share',
-    loadChildren: () => import('./pages/share/share.module').then( m => m.SharePageModule)
+    path: 'response-reset-password/',
+    loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
   }
+
+
+  
+
 
 
   

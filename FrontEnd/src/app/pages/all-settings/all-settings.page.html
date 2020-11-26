@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
     <ion-list lines="none" class="menu-items">
         <ion-item>
             <ion-icon name="notifications-outline"></ion-icon>
@@ -29,9 +29,14 @@
                 <ion-select-option *ngFor='let val of places'>{{capitalizeFirstLetter(val.muni)}}</ion-select-option>
             </ion-select>
         </ion-item>
-        <ion-item [routerLink]="['/share']">
+        <!--[routerLink]="['/share']"  -->
+        <ion-item  (click) = "CreatePopover()">
             <ion-icon name="share-social-outline"></ion-icon>
             <ion-label>Share</ion-label>
         </ion-item>
     </ion-list>
 </ion-content>
+
+<!-- <ion-footer >
+    <p>trial</p>  
+</ion-footer> -->

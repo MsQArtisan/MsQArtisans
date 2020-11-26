@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+// import { Socket } from 'ngx-socket-io';
+// import { ToastController } from '@ionic/angular';
+
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';
 import { PusherService } from '../../services/pusher.service';
-
+import { AuthService } from '../../services/auth.service';
 
 interface Message {
   id: string;
   text: string;
   timeStamp: Date;
   type: string;
-  user:String;
+  user: string;
 }
 
 @Component({
@@ -19,7 +22,9 @@ interface Message {
 })
 export class LivechatPage implements OnInit {
 
-  constructor(private http: HttpClient, private pusher: PusherService) {}
+  userAccount: String = '';
+
+  constructor(private http: HttpClient, private pusher: PusherService, private authService: AuthService) {}
 
   messages: Array<Message> = [];
   message: string = '';
@@ -30,10 +35,10 @@ export class LivechatPage implements OnInit {
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
       this.lastMessageId = v4();
       const data = {
+        user: this.userAccount,
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.time
-
       };
 
       this.http
@@ -44,6 +49,7 @@ export class LivechatPage implements OnInit {
             // The message type is added to distinguish between incoming and outgoing messages. It also aids with styling of each message type
             type: 'outgoing',
           };
+          console.log(message)
           this.messages = this.messages.concat(message);
           this.message = '';
         });
@@ -67,11 +73,65 @@ export class LivechatPage implements OnInit {
           ...data,
           type: 'incoming',
         };
+        console.log(message.user)
         this.messages = this.messages.concat(message);
       }
     })
+    this.account();
   }
 
+  account(){
+    this.authService.getUser().subscribe((data:any)=>{
+      this.userAccount=data.data[0];
+      console.log("account: ", this.userAccount)
+    })
+  }
 
-  
 }
+
+//   message = '';
+//   messages = [];
+//   currentUser = '';
+ 
+//   constructor(private socket: Socket, private toastCtrl: ToastController) { }
+ 
+//   ngOnInit() {
+//     this.socket.connect();
+ 
+//     let name = `user-${new Date().getTime()}`;
+//     this.currentUser = name;
+    
+//     this.socket.emit('set-name', name);
+ 
+//     this.socket.fromEvent('users-changed').subscribe(data => {
+//       let user = data['user'];
+//       if (data['event'] === 'left') {
+//         this.showToast('User left: ' + user);
+//       } else {
+//         this.showToast('User joined: ' + user);
+//       }
+//     });
+ 
+//     this.socket.fromEvent('message').subscribe(message => {
+//       this.messages.push(message);
+//     });
+//   }
+ 
+//   sendMessage() {
+//     this.socket.emit('send-message', { text: this.message });
+//     this.message = '';
+//   }
+ 
+//   ionViewWillLeave() {
+//     this.socket.disconnect();
+//   }
+ 
+//   async showToast(msg) {
+//     let toast = await this.toastCtrl.create({
+//       message: msg,
+//       position: 'top',
+//       duration: 2000
+//     });
+//     toast.present();
+//   }
+// }

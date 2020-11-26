@@ -10,14 +10,15 @@
     <div class="main">
         <div class="chat-box">
             <div class="message-area">
+                    <p>Maayong Buntag Mga Ka-Artisan!. How can we help you</p>
                 <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
-                    <!-- <span class="name" ><br></span> -->
                     <p>{{message.text}}<br><label class="time">{{message.timeStamp |
                             date:'short'}}</label></p>
                 </div>
             </div>
             <div class="emo-area">
             </div>
+
             <div class="input-area">
                 <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
                     <ion-input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></ion-input>
@@ -26,6 +27,7 @@
                     </button>
                 </form>
             </div>
+
         </div>
     </div>
 </ion-content>

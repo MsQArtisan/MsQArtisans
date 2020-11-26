@@ -1,0 +1,29 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+// .header {
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//     font-size: 20px;
+//     font-weight: lighter;
+//     color: rgb(0, 0, 0);
+//     letter-spacing: 1.5px;
+// }
+//     .popover-content {
+//         top: 50% !important;
+//         left: 50% !important;
+//         width:100% !important;
+//         transform: translate(-50%, -50%) !important;
+//   }
+//   top: 315px;
+//     width: 100%;
+//     right: 0px;
+//     transform-origin: left top;
+.popover-content{
+    // top: 54%;
+    right: 0px;
+    transform-origin: left top;
+    $popover-md-width: 100%;
+   //yati d mugana 
+}

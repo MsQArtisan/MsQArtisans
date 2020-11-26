@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -26,7 +27,7 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     this.authService.login(this.credentialsForm).subscribe();
-    console.log("fdhg",this.credentialsForm)
+    this.resetForm()
   }
 
   showAndHidePass(type) {
@@ -38,6 +39,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-
-
+  resetForm(){
+    this.credentialsForm = {
+      email: "",
+      password: ""
+    }
+  }
 }

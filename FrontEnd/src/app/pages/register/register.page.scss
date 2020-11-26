@@ -10,6 +10,15 @@ input{
     padding: 15px;  
     font-size:17px;
 }
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:transparent;
+    border: 1px solid rgb(6, 170, 235);
+}
+.ng-valid[required], .ng-valid.required {
+    border: 1px solid $success; /* red */
+  }
   .ng-invalid:not(form):hover {
     border-bottom: 1px solid $danger; 
   }
