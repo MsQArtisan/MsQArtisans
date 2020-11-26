@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-
 var ArtisansSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -84,18 +83,6 @@ ArtisansSchema.pre('save',  function(next) {
              next();
          });
      });
-    //  if (!artisan.isModified('confirmPassword')) return next();
- 
-    //  bcrypt.genSalt(10, function(err, salt) {
-    //      if (err) return next(err);
- 
-    //      bcrypt.hash(artisan.confirmPassword, salt, function(err, hash) {
-    //          if (err) return next(err);
- 
-    //          artisan.confirmPassword = hash;
-    //          next();
-    //      });
-    //  });
 });
 
 ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {

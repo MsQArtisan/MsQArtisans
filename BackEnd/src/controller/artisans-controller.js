@@ -1,4 +1,5 @@
 var User = require('../models/artisan-model');
+var resetPassword = require('../controller/resetPassword-controller');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var emailholder = "";
@@ -53,7 +54,7 @@ exports.loginUser = (req, res) => {
             return res.status(400).json({ 'msg': 'The user does not exist' });
         }
 
-        user.comparePassword(req.body.password, (err, isMatch) => {
+        user.comparePassword(req.body.password,(err, isMatch) => {
             if (isMatch && !err) {
                 return res.status(200).json({
                     token: createToken(user)
@@ -61,6 +62,7 @@ exports.loginUser = (req, res) => {
             } else {
                 return res.status(400).json({ msg: 'The password is incorrect!' });
             }
+            
         });
     })
 };
