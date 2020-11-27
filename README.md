@@ -2,6 +2,8 @@
 
 Install all the Dependencies Needed
 
+npm install in every folder inside the MsQArtisans directory or to be sure follow the steps below.
+
 BackEnd For ResetPassword
 	npm install express body-parser nodemailer mongoose bcrypt bcryptjs cors cookie-parser nodemon
 
