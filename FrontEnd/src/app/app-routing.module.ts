@@ -86,10 +86,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
   },
   {
-    path: 'share',
-    loadChildren: () => import('./pages/share/share.module').then( m => m.SharePageModule)
-  },
-  {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
   },
@@ -98,12 +94,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
   }
 
-
-  
-
-
-
-  
 
 ];
 
