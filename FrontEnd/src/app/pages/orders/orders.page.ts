@@ -16,7 +16,7 @@ export class OrdersPage implements OnInit {
     rate: "",
     notes: ""
   };
-
+  @Input() id : string;
   @Input() name: string;
   @Input() jobTitle: string;
   @Input() schedule: string;
@@ -28,11 +28,13 @@ export class OrdersPage implements OnInit {
   constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
+    console.log(this.id, this.jobTitle,)
   }
 
   closeModal() {
      this.modalController.dismiss( 'cancel'); 
-    this.router.navigate(['accepted-order'])
+    this.router.navigate(['accepted-order']);
+
    }
   pass(){
     this.modalController.dismiss('cancel');

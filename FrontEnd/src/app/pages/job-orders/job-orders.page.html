@@ -7,14 +7,12 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="buttonTop">
-        <label class="switch">
-            <p *ngIf="apple" class="tags">Disable Receive Work</p>
-            <p *ngIf="!apple" class="tags">Enable Receive Work</p>
-            <input type="checkbox" checked (click)="hideAndShow()">
-            <span class="slider round"></span>
-        </label>
-    </div>
+    <label class="switch">
+        <p *ngIf="apple" class="tags">Disable Receive Work</p>
+        <p *ngIf="!apple" class="tags">Enable Receive Work</p>
+        <input type="checkbox" checked (click)="hideAndShow()">
+        <span class="slider round"></span>
+    </label>
     <br><br><br>
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
@@ -26,89 +24,47 @@
         </ion-card>
     </div>
 
+
     <ion-grid *ngIf=apple>
-        <ion-row>
-            <ion-card (click)="order()" class="cardContent">
+        <div class="cardContent" *ngFor="let item of orders; let i=index">
+            <ion-card (click)="passToOrders(i)">
+                <ion-card-header>
+                    <ion-card-title class="title">{{item.name}}</ion-card-title>
+                    <ion-card-subtitle>Customer Name</ion-card-subtitle>
+                </ion-card-header>
                 <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+
                     <section>
                         <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
+                        <span>{{item.jobTitle}}</span>
                     </section>
                     <section>
                         <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
+                        <span>{{item.schedule}}</span>
                     </section>
                     <section>
                         <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
+                        <span>{{item.location}}</span>
                     </section>
                     <section>
                         <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
+                        <span>{{item.notes}}</span>
                     </section>
 
                     <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
+                        <p>Price rate: <span>{{item.rate}} pesos</span> </p>
 
                     </div>
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()" class="cardContent">
-                <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <section>
-                        <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
-                    </section>
+        </div>
+    </ion-grid>
 
-                    <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
 
-                    </div>
+    <ion-grid *ngIf=apple>
+        <div>
 
-                </ion-card-content>
-            </ion-card>
-            <ion-card (click)="order()" class="cardContent">
-                <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <section>
-                        <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
-                    </section>
-
-                    <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
-
-                    </div>
-
-                </ion-card-content>
-            </ion-card>
-        </ion-row>
+        </div>
     </ion-grid>
 </ion-content>

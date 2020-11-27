@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const jobOrdersSchema = new mongoose.Schema({
+
     name: {
         type: String,
         required: true
@@ -25,7 +26,8 @@ const jobOrdersSchema = new mongoose.Schema({
         type: String,
     }
 })
-module.exports = ('jobs', jobOrdersSchema)
+
+module.exports = mongoose.model('jobs', jobOrdersSchema)
 
 // jobTitle= "Massage";
 // schedule= "Nov.10,2020 - 12:00pm - 5:00pm";

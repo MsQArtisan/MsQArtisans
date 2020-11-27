@@ -55,13 +55,12 @@ export class AuthService {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          
-          
           this.storage.set(TOKEN_KEY, res['token']);
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
         }),
         catchError(e => {
+          console.log(e)
           this.showAlert(e.error.msg);
           throw new Error(e);
         })
@@ -86,6 +85,10 @@ export class AuthService {
       buttons: ['OK']
     });
     alert.then(alert => alert.present());
+  }
+
+  getAllMessages() {
+    return this.http.get("http://localhost:5005/api/allMessages")
   }
 
   getUser():Observable<any>{
@@ -123,4 +126,7 @@ export class AuthService {
     return this.http.post(`${forgotPassURL}/valid-password-token`, body);
   }
 
+  getOrders():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getNewOrder`)
+  }
 }

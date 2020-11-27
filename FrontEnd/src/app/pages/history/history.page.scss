@@ -1,9 +1,11 @@
     #sel1 {
         float: left;
+        margin-left: 5px;
     }
     
     #sel2 {
         float: right;
+        margin-right: 5px;
     }
     
     .cash {
@@ -39,10 +41,6 @@
         background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
         background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
         background-position: right 20px center, right bottom, right bottom, right bottom;
-    }
-    
-    select:hover {
-        background-image: linear-gradient(var(--accentFg), var(--accentFg)), linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%), linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%), linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
     }
     
     select:active {

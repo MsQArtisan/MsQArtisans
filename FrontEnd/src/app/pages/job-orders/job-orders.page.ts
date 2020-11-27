@@ -3,61 +3,53 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import {OrdersPage } from '../orders/orders.page';
+import { OrdersPage } from '../orders/orders.page';
 @Component({
   selector: 'app-job-orders',
   templateUrl: './job-orders.page.html',
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
-  public apple:boolean=true;
- 
+  public apple: boolean = true;
+
   dataFromModal;
 
   data;
-
-  name="Jessa Mae Yosores";
-  jobTitle= "Massage";
-  schedule= "Nov.10,2020 - 12:00pm - 5:00pm";
-  location= "Nasipit Rd, Talamban Cebu";
-  rate= "4000 Pesos";
-  notes="Looking for a nanny for my 3 years old baby boy.";
-
+  orders: String = '';
+  public dataToPass ;
   
-  show = false;
-  constructor(private modalController: ModalController,private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
+  constructor(private modalController: ModalController, private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
 
   ngOnInit() {
-    
+    this.orderData();
+
   }
-
-
-  // loadSpecialInfo() {
-  //   this.authService.getSpecialData().subscribe(res => {
-  //     this.data = res['msg'];
-  //   });
-  // }
-  
-  async order() {
-    const modal = await this.modalController.create({
-      component: OrdersPage,
-      componentProps: { name: this.name,jobTitle: this.jobTitle,schedule: this.schedule, location:this.location, rate: this.rate , notes: this.notes},
-      cssClass: 'setting-modal',
-      backdropDismiss: false,
-    });
-
-    modal.present();
-    this.dataFromModal = await modal.onWillDismiss();
+  orderData() {
+    this.authService.getOrders().subscribe((data: any) => {
+       this.orders = data.data;
+      console.log(this.orders[0])
+    })
   }
 
   hideAndShow() {
-    if(this.apple) {
+    if (this.apple) {
       this.apple = false
-    }else {
+    } else {
       this.apple = true
     }
   }
 
- 
- 
+  async passToOrders(i){
+    this.dataToPass = this.orders[i]
+    const modal = await this.modalController.create({
+      component: OrdersPage,
+      componentProps: { id: this.dataToPass._id, name: this.dataToPass.name,jobTitle: this.dataToPass.jobTitle,schedule: this.dataToPass.schedule, location:this.dataToPass.location, rate: this.dataToPass.rate , notes: this.dataToPass.notes},
+      cssClass: 'setting-modal',
+      backdropDismiss: false,
+    });
+    modal.present();
+    this.dataFromModal = await modal.onWillDismiss();
+  }
+
+
 }

@@ -44,27 +44,17 @@ exports.loginUser = (req, res) => {
     }
 
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) {
-            return res.status(400).send({ 'msg': false });
-        }
-
-        if (!user) {
-            return res.status(400).json({ 'msg': 'The user does not exist' });
-        }
-
-        user.comparePassword(req.body.password, (err, isMatch) => {
-            if (isMatch && !err) {
-                return res.status(200).json({
-                    token: createToken(user),
-                    user: user
-                });
+        if (user == null) {
+            res.send({ type: false, msg: 'email' })
+        } else {
+            if (user.confirmPassword == req.body.password) {
+                res.send({ type: true, token: createToken(user) })
             } else {
-                return res.status(400).json({ msg: 'The password is incorrect!' });
+                res.send({ type: false, msg: 'password' })
             }
-        });
+        }
     })
 };
-
 exports.getUser = (req, res) => {
     User.find({ email: emailholder }, (err, user) => {
 
@@ -89,11 +79,11 @@ exports.addJobOrders = (req, res) => {
 }
 exports.allJobAccepted = (req, res) => {
     if (req.body.state == "accept") {
-        res.send(jobArray)
+        res.send({ state: 'accept', jobs: jobArray })
     } else if (req.body.state == "completed") {
-        res.send(completedJob)
+        res.send({ state: 'completed', jobs: completedJob })
     } else {
-        res.send(rejectedJob)
+        res.send({ state: 'reject', jobs: rejectedJob })
     }
 }
 

@@ -20,6 +20,8 @@ app2.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app2.use(cookieParser());
 
 
+var messages = [];
+
 // For Pusher
 const Pusher = require('pusher');
 
@@ -45,16 +47,14 @@ app1.use((req, res, next) => {
     next();
 });
 app1.post('/messages', (req, res) => {
-  const { body } = req;
-  const { text, id } = body;
-  const data = {
-    text,
-    id,
-    timeStamp: new Date(),
-  };
-  pusher.trigger('chat', 'message', data);
-  res.json(data);
+    messages.push(req.body);
+    pusher.trigger('chat', 'message', messages);
+    res.send(messages);
 });
+
+app1.get('/api/allMessages', (req, res) => {
+    res.send(messages)
+})
 
 
 // for other server

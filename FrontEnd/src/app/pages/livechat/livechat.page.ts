@@ -10,9 +10,9 @@ import { AuthService } from '../../services/auth.service';
 interface Message {
   id: string;
   text: string;
-  timeStamp: Date;
+  timeStamp:Date;
   type: string;
-  user: string;
+  user: String;
 }
 
 @Component({
@@ -22,14 +22,15 @@ interface Message {
 })
 export class LivechatPage implements OnInit {
 
-  userAccount: String = '';
+  constructor(private http: HttpClient, private pusher: PusherService, private authservice: AuthService) { }
 
-  constructor(private http: HttpClient, private pusher: PusherService, private authService: AuthService) {}
-
-  messages: Array<Message> = [];
+  public messages;
   message: string = '';
+  public time = new Date();
+  public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
   lastMessageId;
-  time;
+  currentUser;
+  userAccount: string = '';
   sendMessage() {
     if (this.message !== '') {
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
@@ -38,19 +39,15 @@ export class LivechatPage implements OnInit {
         user: this.userAccount,
         id: this.lastMessageId,
         text: this.message,
-        timeStamp: this.time
+        timeStamp: this.fullTime,
+        // user: this.currentUser.name
       };
 
       this.http
         .post(`http://localhost:5005/messages`, data)
         .subscribe((res: Message) => {
-          const message = {
-            ...res,
-            // The message type is added to distinguish between incoming and outgoing messages. It also aids with styling of each message type
-            type: 'outgoing',
-          };
-          console.log(message)
-          this.messages = this.messages.concat(message);
+          this.messages = res
+
           this.message = '';
         });
 
@@ -62,76 +59,32 @@ export class LivechatPage implements OnInit {
     return {
       incoming: messageType === 'incoming',
       outgoing: messageType === 'outgoing',
+
     };
   }
 
   ngOnInit() {
     const channel = this.pusher.init();
     channel.bind ('message', (data) => {
-      if (data.id !== this.lastMessageId) {
-        const message: Message = {
-          ...data,
-          type: 'incoming',
-        };
-        console.log(message.user)
-        this.messages = this.messages.concat(message);
-      }
+      this.messages = data
     })
     this.account();
+
   }
 
-  account(){
-    this.authService.getUser().subscribe((data:any)=>{
-      this.userAccount=data.data[0];
-      console.log("account: ", this.userAccount)
+  account() {
+    this.authservice.getUser().subscribe((data: any) => {
+      this.userAccount = data.data[0];
+      let name = this.userAccount;
+      this.currentUser = name;
+      this.allRecentMessages();
+    })
+  }
+
+  allRecentMessages() {
+    this.authservice.getAllMessages().subscribe((messages) => {
+      this.messages = messages
     })
   }
 
 }
-
-//   message = '';
-//   messages = [];
-//   currentUser = '';
- 
-//   constructor(private socket: Socket, private toastCtrl: ToastController) { }
- 
-//   ngOnInit() {
-//     this.socket.connect();
- 
-//     let name = `user-${new Date().getTime()}`;
-//     this.currentUser = name;
-    
-//     this.socket.emit('set-name', name);
- 
-//     this.socket.fromEvent('users-changed').subscribe(data => {
-//       let user = data['user'];
-//       if (data['event'] === 'left') {
-//         this.showToast('User left: ' + user);
-//       } else {
-//         this.showToast('User joined: ' + user);
-//       }
-//     });
- 
-//     this.socket.fromEvent('message').subscribe(message => {
-//       this.messages.push(message);
-//     });
-//   }
- 
-//   sendMessage() {
-//     this.socket.emit('send-message', { text: this.message });
-//     this.message = '';
-//   }
- 
-//   ionViewWillLeave() {
-//     this.socket.disconnect();
-//   }
- 
-//   async showToast(msg) {
-//     let toast = await this.toastCtrl.create({
-//       message: msg,
-//       position: 'top',
-//       duration: 2000
-//     });
-//     toast.present();
-//   }
-// }
