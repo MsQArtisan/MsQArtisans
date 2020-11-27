@@ -6,8 +6,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./acc-info.page.scss'],
 })
 export class AccInfoPage implements OnInit {
-  // name = "Chilla Jean Cabungcag"
-  // phone = "09326516887"
   public imageUrl;
   userAccount:string = '';
   public userName;

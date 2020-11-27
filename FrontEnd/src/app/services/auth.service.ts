@@ -13,7 +13,8 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthService {
-  public situation = false
+  public situationHandler;
+  public situation = true
   public messageFromEnd = ""
 
   url = environment.url;
@@ -56,15 +57,20 @@ export class AuthService {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          this.authenticationState.next(true);
-        }),
-        catchError((e) => {
-          this.showAlert(e.error.msg);
-          throw new Error(e);
+          this.situationHandler = res
+          if(this.situationHandler.type) {
+            this.storage.set(TOKEN_KEY, res['token']);
+            this.user = this.helper.decodeToken(res['token']);
+            this.authenticationState.next(true);
+          }else {
+            this.returnTheStatus()
+          }
         })
       );
+  }
+
+  returnTheStatus() {
+    return this.authenticationState
   }
  
   logout() {

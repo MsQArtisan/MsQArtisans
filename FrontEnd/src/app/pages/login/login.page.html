@@ -1,48 +1,48 @@
-<div style="background-image: url('assets/images/confetti.png');" class="login-header ion-padding">
-	<div class="headerWrapper">
-		<img src="assets/images/logo.png" class="brand_logo">
-		<h2>Ms. Q Associates</h2>
-	</div>
+<div style="background-color: rgba(255, 255, 255, 0.1); z-index: 10;">
+    <div class="login-header">
+        <img src="assets/images/logo.png" alt="Logo">
+        <h2>Ms. Q Artisan</h2>
+    </div>
 </div>
 <ion-content>
-	<div class="center">
-		<form class="form_fields" #sampleForm="ngForm"><br>
-			<div class="input-group">
-				<div class="input-group-append">
-					<span class="input-group-text"><i size="large" class="fa fa-envelope"></i></span>
-				</div>
-				<input autocomplete="off" type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel"
-				 placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-				<br>
-				<li *ngIf="emailMessage">Your email is not registered!</li>
-			</div><br>
-			<div class="input-group">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-key"></i></span>
-				</div>
-				<input style="width: 70%;" [type]="passwordOrText" required name="password" [(ngModel)]="credentialsForm.password"
-				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-				<div class="input-group-append">
-					<span *ngIf="booleanIdentify" class="input-group-text" (click)="showAndHidePass('text')"><i class="fa fa-eye"></i></span>
-					<span *ngIf="!booleanIdentify" class="input-group-text" (click)="showAndHidePass('password')"><i class="fa fa-eye-slash"></i></span>
-				</div>
-				<br>
-				<li *ngIf="passwordMessage">Your password is incorrect!</li>
-			</div><br>
+    <div class="center">
+        <div heading-column-lr>
+            <h1>Log-in</h1>
+        </div>
+        <form class="form_fields" #sampleForm="ngForm"><br>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i size="large" class="fa fa-envelope"></i></span>
+                </div>
+                <input autocomplete="off" type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                <br>
+                <li *ngIf="emailMessage">Your email is not registered!</li>
+            </div><br>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                </div>
+                <input style="width: 70%;" [type]="passwordOrText" required name="password" [(ngModel)]="credentialsForm.password" #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                <div class="input-group-append">
+                    <span *ngIf="booleanIdentify" class="input-group-text" (click)="showAndHidePass('text')"><i class="fa fa-eye"></i></span>
+                    <span *ngIf="!booleanIdentify" class="input-group-text" (click)="showAndHidePass('password')"><i class="fa fa-eye-slash"></i></span>
+                </div>
+                <br>
+                <li *ngIf="passwordMessage">Your password is incorrect!</li>
+            </div><br>
 
-			<div linespace></div>
-			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="onSubmit()"
-			 [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
-			<div class="passwordForgot">
-				<a [routerLink]="['/forget-pass']">Forgot your password?</a>
-			</div>
-		</form>
+            <div linespace></div>
+            <ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="onSubmit()" [disabled]="!sampleForm.form.valid">LOGIN</ion-button>
+            <div class="passwordForgot">
+                <a [routerLink]="['/forget-pass']">Forgot your password?</a>
+            </div>
+        </form>
 
-		<div class="mt-4">
-			<div class="d-flex justify-content-center links">
-				Don't have an account? <a [routerLink]="['/register']" class="ml-2">Sign Up</a>
-			</div>
-		</div>
-	</div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Don't have an account? <a [routerLink]="['/register']" class="ml-2">Sign Up</a>
+            </div>
+        </div>
+    </div>
 
 </ion-content>

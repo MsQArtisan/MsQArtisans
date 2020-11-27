@@ -23,12 +23,10 @@
 
 .login-header {
     text-align: center;
-    background-attachment: fixed;
-    background-size: cover;
     position: relative;
-    border-radius: 0em;
-    text-align: center;
-    padding: 5px;
+    background-color: rgba(6, 170, 235, 0.5);
+    border-radius: 0 0 100% 100%;
+    padding: 10px;
 }
 
 .login-header:after {
@@ -39,17 +37,8 @@
     margin-top: 15px;
 }
 
-.headerWrapper {
-    background-color: rgba(6, 170, 235, 0.7);
-    padding: 10px;
-    border-radius: 50%;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
 img {
     display: block;
-    width: 170px;
     margin: 0 auto;
     border-radius: 50%;
     border: 4px solid #22bbea8f;
@@ -151,4 +140,15 @@ li {
     margin-top: 10px;
     color: red;
     font-size: 15px;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    position: fixed;
+    padding-top: 17%;
+    padding-bottom: 5%;
+    z-index: 1;
+    background-color: #fafafa;
+    width: 100%;
 }
