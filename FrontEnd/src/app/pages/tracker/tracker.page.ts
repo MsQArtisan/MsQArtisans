@@ -31,7 +31,7 @@ export class TrackerPage implements OnInit {
     })
   }
   alreadyDoneTask(index) {
-    this.authService.addDataToJobOrders({ state: "completed", jobOffer: this.jobsOffered[index].data}).subscribe((data) => {
+    this.authService.addDataToJobOrders({currentUser: this.authService.userIDToken, state: "completed", jobOffer: this.jobsOffered.jobs[index].data}).subscribe((data) => {
       this.jobsOffered = data
       this.onGoingJob = this.jobsOffered.jobs
       this.deleteItemThroughIndex(index)

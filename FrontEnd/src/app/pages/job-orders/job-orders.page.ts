@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
@@ -57,6 +57,7 @@ export class JobOrdersPage implements OnInit {
       this.apple = true
     }
   }
+
  
  
 }

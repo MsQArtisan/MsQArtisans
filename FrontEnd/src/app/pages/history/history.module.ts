@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NotifSettingsPageRoutingModule } from './notif-settings-routing.module';
+import { HistoryPageRoutingModule } from './history-routing.module';
 
-import { NotifSettingsPage } from './notif-settings.page';
+import { HistoryPage } from './history.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotifSettingsPageRoutingModule
+    HistoryPageRoutingModule
   ],
-  declarations: [NotifSettingsPage]
+  declarations: [HistoryPage]
 })
-export class NotifSettingsPageModule {}
+export class HistoryPageModule {}

@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-ratings.page.scss'],
 })
 export class UserRatingsPage implements OnInit {
+very_sat = 1;
+sat = 2;
+ok= 0;
+dis= 0;
+very_dis= 0;
+
 
   constructor() { }
 

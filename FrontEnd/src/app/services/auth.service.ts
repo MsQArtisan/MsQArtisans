@@ -5,14 +5,16 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject,Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
+const userToken = 'user_token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public userIDToken = ""
   public situationHandler;
   public situation = true
   public messageFromEnd = ""
@@ -33,8 +35,11 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
- 
+
         if (!isExpired) {
+          this.storage.get(userToken).then((token) => {
+            this.userIDToken = token
+          })
           this.user = decoded;
           this.authenticationState.next(true);
         } else {
@@ -52,17 +57,19 @@ export class AuthService {
       })
     );
   }
- 
+
   login(credentials) {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
           this.situationHandler = res
-          if(this.situationHandler.type) {
+          if (this.situationHandler.type) {
+            this.storage.set(userToken, this.situationHandler.userId)
+            this.userIDToken = this.situationHandler.userId
             this.storage.set(TOKEN_KEY, res['token']);
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
-          }else {
+          } else {
             this.returnTheStatus()
           }
         })
@@ -72,14 +79,16 @@ export class AuthService {
   returnTheStatus() {
     return this.authenticationState
   }
- 
+
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.authenticationState.next(false);
+      this.storage.remove(userToken).then(() => {
+        this.authenticationState.next(false);
+      })
       window.location.reload()
     });
   }
- 
+
   getSpecialData() {
     return this.http.get(`${this.url}/api/special`).pipe(
       catchError(e => {
@@ -92,11 +101,11 @@ export class AuthService {
       })
     )
   }
- 
+
   isAuthenticated() {
     return this.authenticationState.value;
   }
- 
+
   showAlert(msg) {
     let alert = this.alertController.create({
       message: msg,
@@ -106,10 +115,12 @@ export class AuthService {
     alert.then(alert => alert.present());
   }
 
-  getUser():Observable<any>{
-    console.log("klsdjfklj");
-    
-    return this.http.get<any>(`${this.url}/api/account`)
+  getAllMessages() {
+    return this.http.get("http://localhost:5005/api/allMessages")
+  }
+
+  getUser() {
+    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
   }
 
   addDataToJobOrders(data) {
@@ -123,10 +134,10 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobsToDelete`, data)
   }
 
-  addImageToDatabase(imageUrl){
+  addImageToDatabase(imageUrl) {
     return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
   }
-  
+
   getTheProfileImage(usersName) {
     return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
   }

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NotifSettingPageRoutingModule } from './notif-setting-routing.module';
+import { CashOutPageRoutingModule } from './cash-out-routing.module';
 
-import { NotifSettingPage } from './notif-setting.page';
+import { CashOutPage } from './cash-out.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotifSettingPageRoutingModule
+    CashOutPageRoutingModule
   ],
-  declarations: [NotifSettingPage]
+  declarations: [CashOutPage]
 })
-export class NotifSettingPageModule {}
+export class CashOutPageModule {}

@@ -1,7 +1,7 @@
 var User = require('../models/artisan-model');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
-var emailholder = "";
+var loggedusers = []
 var jobArray = []
 var completedJob = []
 var rejectedJob = []
@@ -38,23 +38,22 @@ exports.registerUser = (req, res) => {
 };
 
 exports.loginUser = (req, res) => {
-    emailholder = req.body.email;
 
     User.findOne({ email: req.body.email }, (err, user) => {
-
         if (user == null) {
-            res.send({type: false, msg: 'email'})
-        }else {
-            if(user.confirmPassword == req.body.password) {
-                res.send({type: true, token: createToken(user)})
-            }else {
+            res.send({ type: false, msg: 'email' })
+        } else {
+            if (user.confirmPassword == req.body.password) {
+                loggedusers.push(user)
+                res.send({ type: true, token: createToken(user) , userId: user._id})
+            } else {
                 res.send({ type: false, msg: 'password' })
             }
         }
     })
 };
 exports.getUser = (req, res) => {
-    User.find({ email: emailholder }, (err, user) => {
+    User.find({ _id: req.body.id }, (err, user) => {
 
         if (err) {
             return res.send({ error: err, status: false })
@@ -67,21 +66,33 @@ exports.getUser = (req, res) => {
 }
 exports.addJobOrders = (req, res) => {
     if (req.body.state == "accept") {
-        jobArray.push({ email: emailholder, data: req.body.jobOffer })
+        loggedusers.forEach(element => {
+            if(element._id == req.body.currentUser) {
+                jobArray.push({ email: element.email, data: req.body.jobOffer })
+            }
+        });
     } else if (req.body.state == "completed") {
-        completedJob.push({ email: emailholder, data: req.body.jobOffer })
+        loggedusers.forEach(element => {
+            if(element._id == req.body.currentUser) {
+                completedJob.push({ email: element.email, data: req.body.jobOffer })
+            }
+        });
     } else {
-        rejectedJob.push({ email: emailholder, data: req.body.jobOffer })
+        loggedusers.forEach(element => {
+            if(element._id == req.body.currentUser) {
+                rejectedJob.push({ email: element.email, data: req.body.jobOffer })
+            }
+        });
     }
     res.send(true)
 }
 exports.allJobAccepted = (req, res) => {
     if (req.body.state == "accept") {
-        res.send({state: 'accept', jobs: jobArray})
+        res.send({ state: 'accept', jobs: jobArray })
     } else if (req.body.state == "completed") {
-        res.send({state: 'completed',jobs: completedJob})
+        res.send({ state: 'completed', jobs: completedJob })
     } else {
-        res.send({state: 'reject', jobs: rejectedJob})
+        res.send({ state: 'reject', jobs: rejectedJob })
     }
 }
 

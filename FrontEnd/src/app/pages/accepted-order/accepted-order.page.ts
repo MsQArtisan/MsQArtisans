@@ -27,7 +27,7 @@ export class AcceptedOrderPage implements OnInit {
   }
 
   addDataToDatabase(){
-    this.authService.addDataToJobOrders({state: "accept", jobOffer: this.jobOffer}).subscribe((data) => {
+    this.authService.addDataToJobOrders({currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.jobOffer}).subscribe((data) => {
       if(data) {
         this.http.navigate(['job-orders'])
       }

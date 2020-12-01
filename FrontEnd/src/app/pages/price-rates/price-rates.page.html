@@ -1,8 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>price-rates</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Price Rates</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> 
 
 <ion-content>
 
