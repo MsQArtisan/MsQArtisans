@@ -32,14 +32,12 @@
 
                 </div>
             </div>
-            <div class="emo-area">
-            </div>
             <div class="input-area">
                 <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
-                    <ion-input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></ion-input>
+                    <textarea name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></textarea>
                     <button [disabled]="message===''">
-                        <ion-icon name="send"></ion-icon>
-                    </button>
+                                <ion-icon name="send"></ion-icon>
+                            </button>
                 </form>
             </div>
         </div>

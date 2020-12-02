@@ -21,8 +21,8 @@
         position: relative;
         background: #f9fbfc;
         .message-area {
-            max-height: 90%;
-            height: 90%;
+            max-height: 86%;
+            height: 86%;
             overflow: auto;
             padding: 15px 10px;
             .message {
@@ -40,13 +40,6 @@
                 }
             }
         }
-        .emo-area {
-            position: absolute;
-            bottom: 50px;
-            left: 0;
-            width: 100%;
-            padding: 3px 10px;
-        }
     }
 }
 
@@ -57,43 +50,30 @@
 }
 
 .input-area {
-    margin-top: 0px;
-    border: 1px solid rgb(11, 238, 219);
-    border-radius: 20px;
+    position: fixed;
+    padding: 15px;
     background: #fff;
     resize: none;
     width: 100%;
     form {
         display: flex;
         height: 100%;
-        ion-input {
-            width: 82%;
-            border: none;
-            padding: 5px 10px;
-            color: #8a898b;
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Titillium Web', sans-serif;
-            background: inherit;
-            &:focus {
-                outline: none;
-            }
-        }
-        button {
-            width: 10%;
-            height: 10%;
-            border: none;
-            color: var(--ion-color-secondary);
-            opacity: 0.9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            background: transparent;
-            ion-icon {
-                font-size: 3rem;
-            }
-        }
+    }
+}
+
+button {
+    width: 10%;
+    height: 10%;
+    border: none;
+    color: var(--ion-color-secondary);
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    ion-icon {
+        font-size: 3rem;
     }
 }
 
@@ -123,4 +103,9 @@
 .name {
     color: #e2e2e2;
     font-weight: lighter;
+}
+
+textarea {
+    width: 90%;
+    outline: none;
 }
