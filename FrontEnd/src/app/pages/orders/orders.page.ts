@@ -8,14 +8,14 @@ import { AuthService } from "../../services/auth.service"
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  public ToPush = {
-    name: "",
-    jobTitle: "",
-    schedule: "",
-    location: "",
-    rate: "",
-    notes: ""
-  };
+  // public ToPush = {
+  //   name: "",
+  //   jobTitle: "",
+  //   schedule: "",
+  //   location: "",
+  //   rate: "",
+  //   notes: ""
+  // };
   @Input() id : string;
   @Input() name: string;
   @Input() jobTitle: string;
