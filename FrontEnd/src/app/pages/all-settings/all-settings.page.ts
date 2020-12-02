@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {places} from '../places.model';
 
 @Component({
@@ -10,7 +10,8 @@ export class AllSettingsPage implements OnInit {
 
   public placesInCebu = new places();
   public places = this.placesInCebu.placeInCebu()
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
   }

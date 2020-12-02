@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public darkMode = false
+
   constructor(
     private authService: AuthService, 
     private storage: Storage,
@@ -53,4 +55,5 @@ export class AppComponent {
     });
     toast.then(toast => toast.present());
   }
+
 }
