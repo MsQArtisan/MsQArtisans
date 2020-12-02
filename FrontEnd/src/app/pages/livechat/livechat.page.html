@@ -10,6 +10,7 @@
     <div class="main">
         <div class="chat-box">
             <div class="message-area">
+                <p>Maayong Buntag Mga Ka-Artisan!. How can we help you</p>
                 <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
                     <div *ngIf="currentUser.name !== message.user" class="other-user">
                         <p>
@@ -40,6 +41,7 @@
                             </button>
                 </form>
             </div>
+
         </div>
     </div>
 </ion-content>

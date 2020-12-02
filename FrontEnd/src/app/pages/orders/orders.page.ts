@@ -8,31 +8,27 @@ import { AuthService } from "../../services/auth.service"
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  public ToPush = {
-    name: "",
-    jobTitle: "",
-    schedule: "",
-    location: "",
-    rate: "",
-    notes: ""
-  };
-
+  @Input() id : string;
   @Input() name: string;
-  @Input() jobTitle: string;
-  @Input() schedule: string;
-  @Input() location: string;
-  @Input() rate: string;
+  @Input() service_booking: string;
+  @Input() updatedAt: string;
+  @Input() service_location: string;
+  @Input() cost: string;
   @Input() notes: string;
 
 
   constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
+    // console.log(this.service_booking,)
+    console.log(this.service_booking);
+    
   }
 
   closeModal() {
      this.modalController.dismiss( 'cancel'); 
-    this.router.navigate(['accepted-order'])
+    this.router.navigate(['accepted-order']);
+
    }
   pass(){
     this.modalController.dismiss('cancel');

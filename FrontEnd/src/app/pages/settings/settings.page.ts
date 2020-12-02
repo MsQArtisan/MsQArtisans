@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertController} from '@ionic/angular';
-import {NavController,MenuController} from '@ionic/angular';
+import {PopoverController, AlertController} from '@ionic/angular';
+import {NavController,ModalController,MenuController} from '@ionic/angular';
 
 @Component({
   selector: 'app-settings',

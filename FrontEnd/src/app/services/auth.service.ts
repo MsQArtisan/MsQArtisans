@@ -1,21 +1,19 @@
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject,Observable } from 'rxjs';
+import { BehaviorSubject,Observable, throwError , of} from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
+const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public situationHandler;
-  public situation = true
-  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -57,42 +55,25 @@ export class AuthService {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          this.situationHandler = res
-          if(this.situationHandler.type) {
-            this.storage.set(TOKEN_KEY, res['token']);
-            this.user = this.helper.decodeToken(res['token']);
-            this.authenticationState.next(true);
-          }else {
-            this.returnTheStatus()
-          }
+          this.storage.set(TOKEN_KEY, res['token']);
+          this.user = this.helper.decodeToken(res['token']);
+          this.authenticationState.next(true);
+        }),
+        catchError(e => {
+          console.log(e)
+          this.showAlert(e.error.msg);
+          throw new Error(e);
         })
-      );
-  }
-
-  returnTheStatus() {
-    return this.authenticationState
+      )
   }
  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
-      window.location.reload()
+      // window.location.reload()
     });
   }
- 
-  getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('You are not authorized for this!');
-          this.logout();
-        }
-        throw new Error(e);
-      })
-    )
-  }
- 
+
   isAuthenticated() {
     return this.authenticationState.value;
   }
@@ -111,9 +92,9 @@ export class AuthService {
   }
 
   getUser():Observable<any>{
+    console.log("account");
     return this.http.get<any>(`${this.url}/api/account`)
   }
-
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
@@ -131,5 +112,24 @@ export class AuthService {
   
   getTheProfileImage(usersName) {
     return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  }
+  
+  requestReset(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/new-password`, body);
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+  }
+
+  getOrders():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getNewOrder`)
+  }
+  getCustomersName():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
 }

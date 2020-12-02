@@ -24,7 +24,7 @@ exports.registerUser = (req, res) => {
         }
 
         if (user) {
-            return res.status(400).json({ 'msg': 'The user already exists' });
+            return res.status(400).json({ 'msg': 'The email already exists' });
         }
 
         let newUser = User(req.body);
@@ -39,6 +39,9 @@ exports.registerUser = (req, res) => {
 
 exports.loginUser = (req, res) => {
     emailholder = req.body.email;
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).send({ 'msg': 'You need to send email and password' });
+    }
 
     User.findOne({ email: req.body.email }, (err, user) => {
         if (user == null) {

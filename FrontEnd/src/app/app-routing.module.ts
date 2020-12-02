@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+  },
+  {
     path: 'job-orders',
     loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
   },
@@ -31,12 +35,20 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
   },
   {
+    path: 'livechat',
+    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'livechat',
-    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+    path: 'all-settings',
+    loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
+  },
+  {
+    path: 'acc-info',
+    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
   },
   {
     path: 'location-select',
@@ -45,12 +57,7 @@ const routes: Routes = [
   {
     path: 'accepted-order',
     loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
-  }, 
-  {
-    path: 'acc-info',
-    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
-  },
-  {
+  }, {
     path: 'orders',
     loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
   },
@@ -83,12 +90,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
   },
   {
-    path: 'all-settings',
-    loadChildren: () => import('./pages/all-settings/all-settings.module').then( m => m.AllSettingsPageModule)
-  },
-  {
-    path: 'history',
-    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+    path: 'response-reset-password/',
+    loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
   },
   {
     path: 'cash-out',
@@ -97,17 +100,11 @@ const routes: Routes = [
   {
     path: 'cash-in',
     loadChildren: () => import('./pages/cash-in/cash-in.module').then( m => m.CashInPageModule)
-  },
+  },  
   {
-    path: 'statistics',
-    loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule)
-  }
-
-
-  
-
-
-
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+  },
 
 ];
 
