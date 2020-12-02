@@ -42,7 +42,7 @@ export class LivechatPage implements OnInit {
       };
 
       this.http
-        .post(`http://localhost:5005/messages`, data)
+        .post(`http://localhost:5000/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,

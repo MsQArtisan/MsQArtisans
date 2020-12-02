@@ -1,3 +1,4 @@
+var port = process.env.PORT || 5000;
 var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -5,60 +6,47 @@ var mongoose = require('mongoose');
 var config = require('./config/config');
 var cors = require('cors');
 var app = express();
-var port = process.env.PORT || 5000;
-// const cookieParser = require('cookie-parser');
+app.use(cors());
+const Pusher = require('pusher');
+const cookieParser = require('cookie-parser');
+const server = require('http').createServer(app);
 
-// For Password Resit
-// const app2 = express();
-// app2.use(cors());
-// const server = require('http').createServer(app2);
-
-// app2.use(express.json({ limit: '50mb' }));
-// app2.use(express.urlencoded({ extended: true, limit: '50mb' }));
-// app2.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(cookieParser());
 
 
 // For Pusher
-// const Pusher = require('pusher');
+const pusher = new Pusher({
+  appId: "1106641",
+  key: "9d4e34bbed57dbddf921",
+  secret: "cc0d97cef7e12f74943c",
+  cluster: "ap1",
+  useTLS: true
+});
 
-// const pusher = new Pusher({
-//   appId: "1106641",
-//   key: "9d4e34bbed57dbddf921",
-//   secret: "cc0d97cef7e12f74943c",
-//   cluster: "ap1",
-//   useTLS: true
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
-// const app1 = express();
-// const port1 = process.env.PORT || 5005;
-
-// app1.use(bodyParser.json());
-// app1.use(bodyParser.urlencoded({ extended: false }));
-// app1.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-// });
-// app1.post('/messages', (req, res) => {
-//   const { body } = req;
-//   const { text, id } = body;
-//   const data = {
-//     text,
-//     id,
-//     timeStamp: new Date(),
-//   };
-//   pusher.trigger('chat', 'message', data);
-//   res.json(data);
-// });
-
-
-// for other server
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
+app.post('/messages', (req, res) => {
+  const { body } = req;
+  const { text, id } = body;
+  const data = {
+    text,
+    id,
+    timeStamp: new Date(),
+  };
+  pusher.trigger('chat', 'message', data);
+  res.json(data);
+});
 
 app.use(passport.initialize());
 var passportMiddleware = require('./middleware/passport');
@@ -66,7 +54,6 @@ passport.use(passportMiddleware);
 
 var routes = require('./routes');
 app.use('/api', routes);
-// app2.use('/api', routes)
 
 
 mongoose.connect(config.db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
@@ -79,15 +66,6 @@ connection.on('error', (err) => {
   process.exit();
 });
 
-// Start the server for password reset
-// server.listen(5010, () => {
-//   console.log('Listening on port 5010');
-// });
-
-// Start the pusher server
-// app1.listen(port1, () => {
-//   console.log(`Pusher Server started on port ${port1}`);
-// });
 // Start the server
-app.listen(port);
+server.listen(port);
 console.log('MsQArtisan is listening on http://localhost:' + port);

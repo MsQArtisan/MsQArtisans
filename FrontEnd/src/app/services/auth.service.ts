@@ -8,7 +8,6 @@ import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject,Observable, throwError , of} from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
-const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
@@ -112,15 +111,7 @@ export class AuthService {
   }
   
   requestReset(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
-  }
-
-  newPassword(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/new-password`, body);
-  }
-
-  ValidPasswordToken(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+    return this.http.post(`${this.url}/api/reqResetPassword`, body);
   }
 
 }

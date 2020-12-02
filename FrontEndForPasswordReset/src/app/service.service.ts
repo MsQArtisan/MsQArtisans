@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from '../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable} from 'rxjs';
-const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
+  url = environment.url;
 
   constructor(
     private http: HttpClient,
@@ -15,11 +15,11 @@ export class ServiceService {
   ) { }
 
   newPassword(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/new-password`, body);
+    return this.http.post(`${this.url}/api/new-password`, body);
   }
   
   ValidPasswordToken(body) {
-    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+    return this.http.post(`${this.url}/api/valid-password-token`, body);
   }
   
 }
