@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
-var UserSchema = new mongoose.Schema({
+var ArtisansSchema = new mongoose.Schema({
     name: {
         type: String,
         required: 'full Name is required'
@@ -50,7 +50,7 @@ var UserSchema = new mongoose.Schema({
         required: 'nbi is required'
     },
     applyJob: {
-        type: String  
+        type: String
     },
     tutorFile: {
         type: String
@@ -69,40 +69,28 @@ var UserSchema = new mongoose.Schema({
     },
 });
 
-UserSchema.pre('save',  function(next) {
-    var user = this;
+ArtisansSchema.pre('save',  function(next) {
+    var artisan = this;
  
-     if (!user.isModified('password')) return next();
+     if (!artisan.isModified('password')) return next();
  
      bcrypt.genSalt(10, function(err, salt) {
          if (err) return next(err);
  
-         bcrypt.hash(user.password, salt, function(err, hash) {
+         bcrypt.hash(artisan.password, salt, function(err, hash) {
              if (err) return next(err);
  
-             user.password = hash;
+             artisan.password = hash;
              next();
          });
      });
-    //  if (!user.isModified('confirmPassword')) return next();
- 
-    //  bcrypt.genSalt(10, function(err, salt) {
-    //      if (err) return next(err);
- 
-    //      bcrypt.hash(user.confirmPassword, salt, function(err, hash) {
-    //          if (err) return next(err);
- 
-    //          user.confirmPassword = hash;
-    //          next();
-    //      });
-    //  });
 });
 
-UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
  
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Artisans', ArtisansSchema);

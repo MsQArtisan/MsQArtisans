@@ -1,13 +1,23 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { NavParams, ModalController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from "../../services/auth.service"
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.page.html',
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
+  public ToPush = {
+    name: "",
+    jobTitle: "",
+    schedule: "",
+    location: "",
+    rate: "",
+    notes: ""
+  };
 
+  @Input() name: string;
   @Input() jobTitle: string;
   @Input() schedule: string;
   @Input() location: string;
@@ -15,12 +25,12 @@ export class OrdersPage implements OnInit {
   @Input() notes: string;
 
 
-  constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController) { }
+  constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  closeModal() { 
+  closeModal() {
      this.modalController.dismiss( 'cancel'); 
     this.router.navigate(['accepted-order'])
    }

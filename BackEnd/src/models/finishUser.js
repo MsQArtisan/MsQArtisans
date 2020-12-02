@@ -27,4 +27,4 @@ var FinishUserSchema = new mongoose.Schema({
         type: String
     }
 });
-module.exports = mongoose.model('completedUser', FinishUserSchema);
+module.exports = mongoose.model('finishUser', FinishUserSchema);

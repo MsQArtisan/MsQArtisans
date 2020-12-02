@@ -3,8 +3,11 @@
     font-family: lato;
 }
 
-ion-title {
-    color: white;
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
     letter-spacing: 1.5px;
 }
 ion-content ion-segment {

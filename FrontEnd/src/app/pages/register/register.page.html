@@ -1,197 +1,184 @@
 <ion-header>
-	<div class="login-header ion-padding">
-		<img src="assets/images/logo.png" class="brand_logo" alt="Logo">
-	</div>
+    <div class="login-header ion-padding">
+        <img src="assets/images/logo.png" class="brand_logo" alt="Logo">
+    </div>
 </ion-header>
 <ion-content>
-	<div class="center">
-		<div heading-column-lr>
-			<h1 big-heading>Sign Up</h1>
-		</div>
-		<form class="form_fields" #signUpForm="ngForm"><br>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fas fa-user"></i></span>
-				</div>
-				<input class="form-control input_user" type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel"
-				 placeholder="Fullname" minlength="2" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-				</div>
-				<input class="form-control input_user" type="text" required name="address" [(ngModel)]="credentialsForm.address"
-				 #address="ngModel" placeholder="Address" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-calendar"></i></span>
-				</div>
-				<input class="form-control input_user" type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel"
-				 placeholder="Birth Date" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-phone"></i></span>
-				</div>
-				<input class="form-control input_user" type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel"
-				 placeholder="Phone Number" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fa fa-envelope"></i></span>
-				</div>
-				<input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email"
-				 #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fas fa-key"></i></span>
-				</div>
-				<input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password"
-				 #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-			
-			</div>
-			<div class="input-group mb-2">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fas fa-key"></i></span>
-				</div>
-				<input class="form-control" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
-				 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}" />
-				
-			</div>
-			<h6>Picture (Selfie):</h6>
-			<div class="input-group mb-1">
-				<div class="input-group-append" id="fileInput">
-					<span class="input-group-text">
+    <div class="center">
+        <div heading-column-lr>
+            <h1 big-heading>Sign Up</h1>
+        </div>
+
+        <form class="form_fields" #signUpForm="ngForm"><br>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input class="form-control input_user" type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel" placeholder="Fullname" minlength="2" />
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                </div>
+                <input class="form-control input_user" type="text" required name="address" [(ngModel)]="credentialsForm.address" #address="ngModel" placeholder="Address" />
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input class="form-control input_user" type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel" placeholder="Birth Date" />
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                </div>
+                <input class="form-control input_user" type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel" placeholder="Phone Number" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" />
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input class="form-control input_user" type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input class="form-control" type="password" required name="password" [(ngModel)]="credentialsForm.password" #password="ngModel" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                <div class="input-group-append">
+					<span *ngIf="booleanIdentify" class="input-group-text" (click)="showHidePass('text')"><i class="fa fa-eye"></i></span>
+					<span *ngIf="!booleanIdentify" class="input-group-text" (click)="showHidePass('password')"><i class="fa fa-eye-slash"></i></span>
+				</div>            
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input class="form-control" type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword" #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}"/>
+                <div class="input-group-append">
+					<span *ngIf="booleanIdentify" class="input-group-text" (click)="showHidePass('text')"><i class="fa fa-eye"></i></span>
+					<span *ngIf="!booleanIdentify" class="input-group-text" (click)="showHidePass('password')"><i class="fa fa-eye-slash"></i></span>
+                </div>
+            
+            </div>
+            <h6>Picture (Selfie):</h6>
+            <div class="input-group mb-1">
+                <div class="input-group-append" id="fileInput">
+                    <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-					<span>
-						<input class="input_user" type="file" required name="selfie" [(ngModel)]="credentialsForm.selfie" #selfie="ngModel"
+                    <span>
+						<input class="input_user" type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie" #selfie="ngModel"
 						 placeholder="Selfie" accept="image/*" />
 					</span>
-				</div>
-				
-			</div>
-			<h6>Primary ID:</h6>
-			<div class="input-group mb-1">
-				<div class="input-group-append" id="fileInput">
-					<span class="input-group-text">
+                </div>
+            </div>
+            <h6>Primary ID:</h6>
+            <div class="input-group mb-1">
+                <div class="input-group-append" id="fileInput">
+                    <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-					<span>
+                    <span>
 						<input class="input_user" type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic"
 						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
 					</span>
-				</div>
-				
-			</div>
-			<div class="input-group mb-1">
-				<div class="input-group-append">
-					<span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
-				</div>
-				<input class="form-control" type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum"
-				 #primaryIdNum="ngModel" placeholder="Primary ID Number" />
-			
-			</div>
-			<h6>NBI Clearance:</h6>
-			<div class="input-group mb-1 ">
-				<div class="input-group-append" id="fileInput">
-					<span class="input-group-text">
+                </div>
+            </div>
+            <div class="input-group mb-1">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+                </div>
+                <input class="form-control" type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum" #primaryIdNum="ngModel" placeholder="Primary ID Number" />
+            </div>
+            <h6>NBI Clearance:</h6>
+            <div class="input-group mb-1 ">
+                <div class="input-group-append" id="fileInput">
+                    <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-					<span>
+                    <span>
 						<input class="input_user" type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
 						 placeholder="NBI" />
 					</span>
-				</div>
-				
-			</div>
+                </div>
+            </div>
 
-			<div class="input-group mb-1">
-				<ion-item class="apply">
-					<ion-label>Apply for?</ion-label>
-					<ion-select required name="applyJob" [(ngModel)]="credentialsForm.applyJob" #applyJob="ngModel" value="03">
-						<ion-select-option value="tutor">Tutor (College Undergraduate/at least 2 years in College)</ion-select-option>
-						<ion-select-option value="nanny">Nanny (NC2 or n/a)</ion-select-option>
-						<ion-select-option value="housekeeping">Housekeeping (NC2 or n/a)</ion-select-option>
-						<ion-select-option value="haircutMassage">Haircut/ Massage (NC2 or n/a)</ion-select-option>
-					</ion-select>
-				</ion-item>
-				
-			</div>
-			<ion-card *ngIf="credentialsForm.applyJob=='tutor'">
-			<ion-label>Upload your Tutor NC2 File here!</ion-label>
-			<div class="input-group mb-1 ">
-				<div class="input-group-append" id="fileInput">
-					<span class="input-group-text">
-						<i class="fa fa-file-image"></i>
-					</span>
-					<span>
-						<input class="input_user" type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
-						 placeholder="TutorFile" />
-					</span>
-				</div>
-			</div>
-		</ion-card>
-		<ion-card *ngIf="credentialsForm.applyJob=='nanny'">
-				<ion-label>Upload your Nanny NC2 File here!</ion-label>
-				<div class="input-group mb-1 ">
-					<div class="input-group-append" id="fileInput">
-						<span class="input-group-text">
+            <div class="input-group mb-1">
+                <ion-item class="apply">
+                    <ion-label>Apply for?</ion-label>
+                    <ion-select name="applyJob" [(ngModel)]="credentialsForm.applyJob" #applyJob="ngModel" value="03">
+                        <ion-select-option value="tutor">Tutor (College Undergraduate/at least 2 years in College)</ion-select-option>
+                        <ion-select-option value="nanny">Nanny (NC2 or n/a)</ion-select-option>
+                        <ion-select-option value="housekeeping">Housekeeping (NC2 or n/a)</ion-select-option>
+                        <ion-select-option value="haircutMassage">Haircut/ Massage (NC2 or n/a)</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div *ngIf="credentialsForm.applyJob=='tutor'">
+                <ion-label>Upload your Tutor NC2 File here!</ion-label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-append" id="fileInput">
+                        <span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<span>
+                        <span>
+							<input class="input_user" type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
+							 placeholder="TutorFile" />
+						</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="credentialsForm.applyJob=='nanny'">
+                <ion-label>Upload your Nanny NC2 File here!</ion-label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-append" id="fileInput">
+                        <span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+                        <span>
 							<input class="input_user" type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
 							 placeholder="NannyFile" />
 						</span>
-					</div>
-				</div>
-			</ion-card>
-			<ion-card *ngIf="credentialsForm.applyJob=='housekeeping'">
-					<ion-label>Upload your Housekeeping NC2 File here!</ion-label>
-					<div class="input-group mb-1 ">
-						<div class="input-group-append" id="fileInput">
-							<span class="input-group-text">
-								<i class="fa fa-file-image"></i>
-							</span>
-							<span>
-								<input class="input_user" type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile" #tutor="ngModel"
-								 placeholder="HouseKeepingFile" />
-							</span>
-						</div>
-					</div>
-				</ion-card>
-				<ion-card *ngIf="credentialsForm.applyJob=='haircutMassage'">
-						<ion-label>Upload your Haircut/ Massage NC2 File here!</ion-label>
-						<div class="input-group mb-1 ">
-							<div class="input-group-append" id="fileInput">
-								<span class="input-group-text">
-									<i class="fa fa-file-image"></i>
-								</span>
-								<span>
-									<input class="input_user" type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel"
-									 placeholder="HaricutMassageFile" />
-								</span>
-							</div>
-						</div>
-					</ion-card>
-
-
-			<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()"
-			 [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
-		</form>
-		<div class="mt-4">
-			<div class="d-flex justify-content-center links">
-				Already have an account? <a [routerLink]="['/login']" class="ml-2">Sign In</a>
-			</div><br>
-		</div><br>
-	</div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="credentialsForm.applyJob=='housekeeping'">
+                <ion-label>Upload your Housekeeping NC2 File here!</ion-label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-append" id="fileInput">
+                        <span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+                        <span>
+							<input class="input_user" type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile"
+							 #tutor="ngModel" placeholder="HouseKeepingFile" />
+						</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="credentialsForm.applyJob=='haircutMassage'">
+                <ion-label>Upload your Haircut/ Massage NC2 File here!</ion-label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-append" id="fileInput">
+                        <span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+                        <span>
+							<input class="input_user" type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile"
+							 #tutor="ngModel" placeholder="HaricutMassageFile" />
+						</span>
+                    </div>
+                </div>
+            </div>
+            <ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()" [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
+        </form>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Already have an account? <a [routerLink]="['/login']" class="ml-2">Sign In</a>
+            </div><br>
+        </div><br>
+    </div>
 
 
 </ion-content>

@@ -1,14 +1,18 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="headerColor">
         <ion-toolbar color="secondary">
-            <ion-title>Orders</ion-title>
+            <ion-title class="headerTitle">Orders</ion-title>
             <ion-buttons slot="start">
                 <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
             </ion-buttons>
         </ion-toolbar>
-</ion-header>
+</ion-header><br>
       
 <ion-content>  
     <ion-list class="orders">
+        <ion-item>
+            <ion-icon name="people"></ion-icon>
+            <p>{{name}}</p>
+        </ion-item>
         <ion-item>
             <ion-icon name="time"></ion-icon>
             <p>{{schedule}}</p>
@@ -27,10 +31,10 @@
         </ion-item>
   
     </ion-list>
-     
+     <br><br>
       <section>
-        <ion-button expand="full" color="secondary" (click)="closeModal()" >Accept Job</ion-button>
-        <ion-button expand="full" color="danger" (click)="pass()" [routerLink]="['/job-orders']">Pass</ion-button>
+          <button class="buttonAccept" (click)="closeModal()">Accept Job</button>
+          <button class="buttonPass" (click)="pass()" [routerLink]="['/job-orders']">Pass</button>
       </section>
   
   </ion-content>

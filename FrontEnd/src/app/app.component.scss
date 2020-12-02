@@ -30,18 +30,20 @@
         margin-top: 10px !important;
     }
     h2 {
-        font-weight: 300;
+        font-weight: normal;
         margin-left: 5px;
         font-size: 24px;
         color: rgb(49, 50, 51);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     p {
         font-size: 12px;
-        color: white;
-        font-weight: 100;
+        color: rgb(97, 97, 97);
+        font-weight: 400;
         letter-spacing: 0.4px;
         margin-left: 2px;
         font-size: 17px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 }
 
@@ -67,6 +69,7 @@
     }
     ion-label {
         margin-left: 50px;
+        font-weight: normal;
     }
 }
 
@@ -76,4 +79,7 @@ ion-item.item:hover div {
     width: 100%;
     padding: 10px;
     font-size: 20px;
+}
+.serve {
+    text-align: center;
 }

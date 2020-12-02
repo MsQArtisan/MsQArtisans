@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service'
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-accepted-order',
@@ -8,9 +9,10 @@ import { AuthService } from '../../services/auth.service'
 })
 export class AcceptedOrderPage implements OnInit {
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private http : Router
   ) { }
-  info = [
+  jobOffer = [
     {
       customer : "Yubert Mariscal",
       phone :"09326514567",
@@ -25,8 +27,11 @@ export class AcceptedOrderPage implements OnInit {
   ];
 
   pushDataToDatabase() {
-    this.authService.dataToDB(this.info).subscribe((data) => {
+    this.authService.dataToDB(this.jobOffer).subscribe((data) => {
       console.log(data)
+      if (data) {
+        this.http.navigate(['job-orders'])
+      }
     })
   }
   
@@ -34,5 +39,14 @@ export class AcceptedOrderPage implements OnInit {
 
   ngOnInit() {
   }
+
+  addDataToDatabase(){
+    this.authService.addDataToJobOrders({state: "accept", jobOffer: this.jobOffer}).subscribe((data) => {
+      if(data) {
+        this.http.navigate(['job-orders'])
+      }
+    })
+  }
+
 
 }

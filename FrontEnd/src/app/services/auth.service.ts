@@ -13,6 +13,8 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthService {
+  public situation = false
+  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -54,20 +56,23 @@ export class AuthService {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
+    
           this.storage.set(TOKEN_KEY, res['token']);
           this.user = this.helper.decodeToken(res['token']);
           this.authenticationState.next(true);
         }),
         catchError(e => {
+          console.log("error to login")
           this.showAlert(e.error.msg);
           throw new Error(e);
         })
-      );
+      )
   }
  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
+      window.location.reload()
     });
   }
  
@@ -98,8 +103,6 @@ export class AuthService {
   }
 
   getUser():Observable<any>{
-    console.log("klsdjfklj");
-    
     return this.http.get<any>(`${this.url}/api/account`)
   }
 
@@ -108,7 +111,18 @@ export class AuthService {
   }
 
   getCompleteData(){
-    return this.http.get(`${this.url}/api/completedUser`)
+    return this.http.get(`${this.url}/api/finishUser`)
   }
   
+  getTheProfileImage(usersName) {
+    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  }
+
+  addImageToDatabase(imageUrl){
+    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  }
+
+  addDataToJobOrders(data) {
+    return this.http.post(`${this.url}/api/jobOrdersData`, data)
+  }
 }
