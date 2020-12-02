@@ -3,6 +3,7 @@ var express = require('express'),
 var userController = require('./controller/artisans-controller');
 var customerController = require('./controller/customer-controller');
 const AuthCtrl = require('./controller/resetPassword-controller');
+const imageCtrl = require('./controller/addImage-controller');
 // var passport = require('passport');
 
 routes.post('/register', userController.registerUser);
@@ -16,6 +17,11 @@ routes.post('/jobsToDelete', userController.deleteItem)
 routes.post('/reqResetPassword', AuthCtrl.ResetPassword);
 routes.post('/new-password', AuthCtrl.NewPassword);
 routes.post('/valid-password-token', AuthCtrl.ValidPasswordToken);
+
+routes.post('/imageUpload', imageCtrl.UploadImage);
+routes.post('/getUserProfile', imageCtrl.GetUserProfile);
+routes.get('/getAllData', imageCtrl.GetImageData);
+routes.get('/',(req, res) => {res.send("True")});
 
 // routes.get('/special', passport.authenticate('jwt', { session: false }), (req, res) => {
 //     return res.json({ msg: `Hey ${req.user.email}! I open at the close.` });

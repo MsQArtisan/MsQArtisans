@@ -103,11 +103,11 @@ export class AuthService {
   }
 
   addImageToDatabase(imageUrl){
-    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+    return this.http.post(`${this.url}/api/imageUpload`, imageUrl);
   }
   
   getTheProfileImage(usersName) {
-    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+    return this.http.post(`${this.url}/api/getUserProfile`, usersName);
   }
   
   requestReset(body): Observable<any> {

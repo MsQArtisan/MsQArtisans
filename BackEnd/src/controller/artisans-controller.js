@@ -1,5 +1,4 @@
 var User = require('../models/artisan-model');
-var resetPassword = require('../controller/resetPassword-controller');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var emailholder = "";

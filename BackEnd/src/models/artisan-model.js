@@ -28,10 +28,10 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    confirmPassword: {
-        type: String,
-        required: 'confirm password is required'
-    },
+    // confirmPassword: {
+    //     type: String,
+    //     required: 'confirm password is required'
+    // },
     selfie: {
         type: String,
         required: 'selfie is required'
