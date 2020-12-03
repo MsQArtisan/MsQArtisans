@@ -1,8 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { Storage } from '@ionic/storage';
-import { ToastController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { OrdersPage } from '../orders/orders.page';
 @Component({
   selector: 'app-job-orders',
@@ -19,11 +17,10 @@ export class JobOrdersPage implements OnInit {
   customerDetails: String = '';
   public dataToPass;
 
-  constructor(private modalController: ModalController, private authService: AuthService, private storage: Storage, private toastController: ToastController) { }
+  constructor(private modalController: ModalController, private authService: AuthService, ) { }
 
   ngOnInit() {
     this.orderData();
-    this.customerName();
 
 
 
@@ -33,13 +30,13 @@ export class JobOrdersPage implements OnInit {
       this.orders = data.data;
 
     })
-  }
-  customerName() {
     this.authService.getCustomersName().subscribe((data: any) => {
       this.customerDetails = data.data;
+      console.log(this.customerDetails)
 
     })
   }
+
 
   hideAndShow() {
     if (this.apple) {
@@ -49,16 +46,14 @@ export class JobOrdersPage implements OnInit {
     }
   }
 
-  async passToOrders(i) {
-    this.dataToPass = this.customerDetails[0]
-    console.log("dta To Pass: ", this.dataToPass.service_booking);
-
+  async passToOrders(item) {
+    console.log(item);
     const modal = await this.modalController.create({
       component: OrdersPage,
       componentProps: {
-        name:this.dataToPass.author.name,service_booking: this.dataToPass.service_booking, updatedAt: this.dataToPass.updatedAt,
-        service_location: this.dataToPass.service_location, cost: this.dataToPass.cost,
-        notes: this.dataToPass.notes
+        name:item.author.name,service_booking: item.service_booking, 
+        updatedAt: item.updatedAt,service_location: item.service_location, 
+        cost:item.cost,notes: item.notes
       },
       cssClass: 'setting-modal',
       backdropDismiss: false,

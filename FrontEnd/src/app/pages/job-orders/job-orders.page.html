@@ -7,29 +7,33 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+
     <label class="switch">
-        <p *ngIf="apple" class="tags">Disable Receive Work</p>
-        <p *ngIf="!apple" class="tags">Enable Receive Work</p>
-        <input type="checkbox" checked (click)="hideAndShow()">
-        <span class="slider round"></span>
-    </label>
-    <br><br><br>
+            <p *ngIf="apple" class="tags">Disable Receive Work</p>
+            <p *ngIf="!apple" class="tags">Enable Receive Work</p>
+            <input type="checkbox" checked (click)="hideAndShow()">
+            <span class="slider round"></span>
+        </label>
+    <div class="toggle"></div>
+
+    <br><br><br><br>
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
             <ion-card-content>
                 <ion-icon size=large class="warning" name="warning"></ion-icon>
-                <ion-card-title class="status">Status is Offline</ion-card-title>
+                <ion-card-title class="status">Status is Offline</ion-card-title><br>
                 <ion-label class="restText">You can't recieve any job order!!!</ion-label>
             </ion-card-content>
         </ion-card>
     </div>
 
 
+
     <ion-grid *ngIf=apple>
-        <div class="cardContent" *ngFor="let item of orders">
-            <ion-card (click)="passToOrders(i)">
-                <ion-card-header *ngFor="let customer of customerDetails">
-                    <ion-card-title class="title">{{customer.author.name}}</ion-card-title>
+        <div class="cardContent" *ngFor="let item of customerDetails">
+            <ion-card (click)="passToOrders(item)">
+                <ion-card-header>
+                    <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                     <ion-card-subtitle>Customer Name</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content>
@@ -52,7 +56,7 @@
                     </section>
 
                     <div class="footer">
-                        <p>Price rate: <span>{{item.cost}} pesos</span> </p>
+                        <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
 
                     </div>
 
