@@ -24,7 +24,7 @@ exports.registerUser = (req, res) => {
         }
 
         if (user) {
-            return res.status(400).json({ 'msg': 'The user already exists' });
+            return res.status(400).json({ 'msg': 'The email already exists' });
         }
 
         let newUser = User(req.body);

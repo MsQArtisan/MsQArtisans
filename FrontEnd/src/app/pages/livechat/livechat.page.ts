@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+// import { Socket } from 'ngx-socket-io';
+// import { ToastController } from '@ionic/angular';
+
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';
 import { PusherService } from '../../services/pusher.service';
 import { AuthService } from '../../services/auth.service';
-
 
 interface Message {
   id: string;
@@ -34,10 +36,11 @@ export class LivechatPage implements OnInit {
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
       this.lastMessageId = v4();
       const data = {
+        user: this.userAccount,
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.fullTime,
-        user: this.currentUser.name
+        // user: this.currentUser.name
       };
 
       this.http

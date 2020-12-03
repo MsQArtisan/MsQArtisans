@@ -10,19 +10,20 @@
     <div class="main">
         <div class="chat-box">
             <div class="message-area">
+                <p>Maayong Buntag Mga Ka-Artisan!. How can we help you</p>
                 <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
-                    <div *ngIf="currentUser.name !== message.user" class="other-user">
+                    <div *ngIf="currentUser.name !== message.user.name" class="other-user">
                         <p>
-                            <label style="color: rgb(85, 85, 85)">{{message.user}}</label><br>
+                            <label style="color: rgb(85, 85, 85)">{{message.user.name}}</label><br>
                             <span style="color: black;">
                                 {{message.text}}
                             </span>
                         </p>
                         <label style="margin-left: 5%;font-size: 10px;"> {{message.timeStamp}} </label>
                     </div>
-                    <div *ngIf="currentUser.name === message.user" class="my-message">
+                    <div *ngIf="currentUser.name === message.user.name" class="my-message">
                         <p>
-                            {{message.user}}<br>
+                            {{message.user.name}}<br>
                             <span class="name">
                                 {{message.text}}
                             </span>
@@ -32,13 +33,15 @@
 
                 </div>
             </div>
-            <form (submit)="sendMessage()" #messageForm="ngForm">
-                <textarea type="text" name="message" id="message" [(ngModel)]="message" placeholder="Say something nice...">
-                </textarea>
-                <button [disabled]="message===''">
-                        <ion-icon name="send"></ion-icon>
-                    </button>
-            </form>
+            <div class="input-area">
+                <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
+                    <textarea name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></textarea>
+                    <button [disabled]="message===''">
+                                <ion-icon name="send"></ion-icon>
+                            </button>
+                </form>
+            </div>
+
         </div>
     </div>
 </ion-content>

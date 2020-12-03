@@ -1,6 +1,6 @@
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
+const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
@@ -70,14 +71,10 @@ export class AuthService {
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
           } else {
-            this.returnTheStatus()
+            // this.returnTheStatus()
           }
         })
-      );
-  }
-
-  returnTheStatus() {
-    return this.authenticationState
+      )
   }
 
   logout() {
@@ -122,7 +119,6 @@ export class AuthService {
   getUser() {
     return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
   }
-
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
@@ -140,5 +136,27 @@ export class AuthService {
 
   getTheProfileImage(usersName) {
     return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  }
+  
+  requestReset(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/new-password`, body);
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+  }
+
+  getOrders(){
+    return this.http.get(`${this.url}/api/getNewOrder`)
+  }
+  getCustomersName():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getCustomersName`)
+  }
+  getCustomersData(userId) {
+    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
   }
 }

@@ -7,108 +7,61 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="buttonTop">
-        <label class="switch">
+
+    <label class="switch">
             <p *ngIf="apple" class="tags">Disable Receive Work</p>
             <p *ngIf="!apple" class="tags">Enable Receive Work</p>
             <input type="checkbox" checked (click)="hideAndShow()">
             <span class="slider round"></span>
         </label>
-    </div>
-    <br><br><br>
+    <div class="toggle"></div>
+
+    <br><br><br><br>
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
             <ion-card-content>
                 <ion-icon size=large class="warning" name="warning"></ion-icon>
-                <ion-card-title class="status">Status is Offline</ion-card-title>
+                <ion-card-title class="status">Status is Offline</ion-card-title><br>
                 <ion-label class="restText">You can't recieve any job order!!!</ion-label>
             </ion-card-content>
         </ion-card>
     </div>
 
+
+
     <ion-grid *ngIf=apple>
-        <ion-row>
-            <ion-card (click)="order()" class="cardContent">
+        <div class="cardContent" *ngFor="let item of customerDetails">
+            <ion-card (click)="passToOrders(item)">
+                <ion-card-header>
+                    <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                    <ion-card-subtitle>Customer Name</ion-card-subtitle>
+                </ion-card-header>
                 <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
+
                     <section>
                         <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
+                        <span>{{item.service_booking}}</span>
                     </section>
                     <section>
                         <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
+                        <span>{{item.updatedAt | date:'short'}}</span>
                     </section>
                     <section>
                         <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
+                        <span>{{item.service_location}}</span>
                     </section>
                     <section>
                         <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
+                        <span>{{item.notes}}</span>
                     </section>
 
                     <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
+                        <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
 
                     </div>
 
                 </ion-card-content>
             </ion-card>
-            <ion-card (click)="order()" class="cardContent">
-                <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <section>
-                        <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
-                    </section>
-
-                    <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
-
-                    </div>
-
-                </ion-card-content>
-            </ion-card>
-            <ion-card (click)="order()" class="cardContent">
-                <ion-card-content>
-                    <ion-card-title class="title">{{jobTitle}}</ion-card-title>
-                    <section>
-                        <ion-icon name="people"></ion-icon>
-                        <span>{{name}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="time"></ion-icon>
-                        <span>{{schedule}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="location"></ion-icon>
-                        <span>{{location}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="mail"></ion-icon>
-                        <span>{{notes}}</span>
-                    </section>
-
-                    <div class="footer">
-                        <p>Price Rate: <span>{{rate}}</span> </p>
-
-                    </div>
-
-                </ion-card-content>
-            </ion-card>
-        </ion-row>
+        </div>
     </ion-grid>
 </ion-content>

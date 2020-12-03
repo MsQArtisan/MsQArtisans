@@ -22,7 +22,7 @@ export class FinancePage implements OnInit {
         datasets: [
           {
             label: "# of Votes",
-            data: [1200, 1500, 3000, 5000, 2000, 3000],
+            data: [1200, 1500, 3000, 5000, 2000, 3000, 3000, 5000, 2000, 3000 ],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
