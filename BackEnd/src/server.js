@@ -6,21 +6,18 @@ var mongoose = require('mongoose');
 var config = require('./config/config');
 var cors = require('cors');
 var app = express();
-app.use(cors());
 const Pusher = require('pusher');
 const cookieParser = require('cookie-parser');
 const server = require('http').createServer(app);
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+var messages = [];
 
+app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
-
 
 // For Pusher
 const pusher = new Pusher({
@@ -41,16 +38,14 @@ app.use((req, res, next) => {
 });
 
 app.post('/messages', (req, res) => {
-  const { body } = req;
-  const { text, id } = body;
-  const data = {
-    text,
-    id,
-    timeStamp: new Date(),
-  };
-  pusher.trigger('chat', 'message', data);
-  res.json(data);
+  messages.push(req.body);
+  pusher.trigger('chat', 'message', messages);
+  res.send(messages);
 });
+
+app.get('/api/allMessages', (req, res) => {
+  res.send(messages)
+})
 
 app.use(passport.initialize());
 var passportMiddleware = require('./middleware/passport');

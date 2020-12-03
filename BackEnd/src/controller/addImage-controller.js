@@ -2,10 +2,10 @@ var Schema = require("../models/image-model");
 
 exports.UploadImage = (req, res) => {
     const userData = new Schema(req.body);
-    try{
+    try {
         userData.save();
         res.send(true);
-    }catch{
+    } catch{
         res.send(false);
     }
 }
@@ -19,11 +19,11 @@ exports.UploadImage = (req, res) => {
 //     }
 // });
 
-exports.GetImageData = (req, res) => {
-    const userData = new Schema.find({});
-    try{
+exports.GetImageData = async (req, res) => {
+    const userData = await Schema.find({});
+    try {
         res.send(userData);
-    }catch(err){
+    } catch (err) {
         res.send(false);
     }
 }
@@ -37,15 +37,31 @@ exports.GetImageData = (req, res) => {
 //     }
 // });
 
-exports.GetUserProfile = (req, res) => {
-    const userData = new Schema.find({ name: req.body.name });
-    try{
-        res.send(userData);
-    }catch(err){
-        res.send(false);
-    }
-}
+// exports.GetUserProfile =  (req, res) => {
+//     const userData =  Schema.find({ name: req.body.name });
+//     try {
+//         res.send(userData);
+//     } catch (err) {
+//         res.send(false);
+//     }
+// }
 
+
+exports.GetUserProfile = async (req, res) => {
+    const usersImage = await Schema.findOne({name: req.body.name})
+    try {
+        res.send(usersImage)
+    }catch(err) {
+        res.send(err)
+    }
+    // Schema.find({ name: req.body.name }, (err, user) => {
+    //     if (err) {
+    //         return res.send({ error: err, status: false })
+    //     } else {
+    //         return res.send({ status: true, data: user })
+    //     }
+    // });
+}
 // app.post("/api/getUserProfile", async(req, res) => {
 //     const usersData = await Schema.find({ name: req.body.name })
 //     try {

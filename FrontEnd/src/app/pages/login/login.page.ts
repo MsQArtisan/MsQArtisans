@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  public situationHandler;
   public emailMessage = false
   public passwordMessage = false
   public message = ""
@@ -25,9 +26,23 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  // onSubmit() {
+  //   this.authService.login(this.credentialsForm).subscribe();
+  //   this.resetForm()
+  // }
+
   onSubmit() {
-    this.authService.login(this.credentialsForm).subscribe();
-    this.resetForm()
+    this.authService.login(this.credentialsForm).subscribe((data) => {
+      this.situationHandler = data
+      if (this.situationHandler.msg == 'email') {
+        this.emailMessage = true
+        this.passwordMessage = this.situationHandler.type
+      } else {
+        this.passwordMessage = true
+        this.emailMessage = this.situationHandler.type
+      }
+      this.resetForm()
+    })
   }
 
   showAndHidePass(type) {
@@ -39,7 +54,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  resetForm(){
+  resetForm() {
     this.credentialsForm = {
       email: "",
       password: ""

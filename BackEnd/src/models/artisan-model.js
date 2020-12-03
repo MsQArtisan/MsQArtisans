@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+
 var ArtisansSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -56,33 +57,33 @@ var ArtisansSchema = new mongoose.Schema({
     },
     nannyFile: {
         type: String
-        
+
     },
     housekeepingFile: {
         type: String
-        
+
     },
     haircutMassageFile: {
         type: String
-        
+
     },
 });
 
-ArtisansSchema.pre('save',  function(next) {
+ArtisansSchema.pre('save', function (next) {
     var artisan = this;
- 
-     if (!artisan.isModified('password')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(artisan.password, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             artisan.password = hash;
-             next();
-         });
-     });
+
+    if (!artisan.isModified('password')) return next();
+
+    bcrypt.genSalt(10, function (err, salt) {
+        if (err) return next(err);
+
+        bcrypt.hash(artisan.password, salt, function (err, hash) {
+            if (err) return next(err);
+
+            artisan.password = hash;
+            next();
+        });
+    });
 });
 
 ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {
@@ -91,5 +92,5 @@ ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
- 
+
 module.exports = mongoose.model('Artisans', ArtisansSchema);

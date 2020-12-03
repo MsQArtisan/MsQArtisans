@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-public image;
+  public image;
   credentialsForm = {
     email: "",
     password: "",
@@ -37,8 +37,8 @@ public image;
   register() {
 
     this.authService.register(this.credentialsForm).subscribe(res => {
-      this.authService.addImageToDatabase({name: this.credentialsForm.name, image: this.image}).subscribe((data) => {
-        if(data) {
+      this.authService.addImageToDatabase({ name: this.credentialsForm.name, image: this.image }).subscribe((data) => {
+        if (data) {
           this.router.navigate(['login']);
         }
       })
