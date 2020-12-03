@@ -28,6 +28,8 @@ export class JobOrdersPage implements OnInit {
   orderData() {
     this.authService.getOrders().subscribe((data: any) => {
       this.orders = data.data;
+      console.log("orders",this.orders);
+      
 
     })
     this.authService.getCustomersName().subscribe((data: any) => {

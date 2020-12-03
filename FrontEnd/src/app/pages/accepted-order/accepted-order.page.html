@@ -5,53 +5,53 @@
         </ion-buttons>
         <h2 style="margin-left: 20px;">Accepted Order</h2>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-        <div class="jobPoster">
-            <u><h2>{{jobOffer.name}}</h2></u>
-            <h3>Customer Name</h3>        
-        </div>
-    </ion-card-header>
-    <ion-card-content>
-      <section>
-          <ion-icon name="call"></ion-icon>
-          <span>{{jobOffer.phone}}</span>
-      </section>
-      <section>
-          <ion-icon name="mail"></ion-icon>
-          <span>{{jobOffer.email}}</span>
-      </section>
-      <section>
-          <ion-icon name="time"></ion-icon>
-          <span>{{jobOffer.schedule}}</span>
-      </section>
-      <section [routerLink]="['/location-select']">
-          <ion-icon  class="floating" name="location"></ion-icon>
-          <span >{{jobOffer.location}}</span>
-     
-      </section>
-      <section>
-          <ion-icon name="wallet"></ion-icon>
-          <span>{{jobOffer.rate}}</span>  
-      </section>
-      <section>
-          <ion-icon name="mail-open"></ion-icon>
-          <span>{{jobOffer.notes}}</span>
-      </section>
+    <ion-card>
+        <ion-card-header>
+            <div class="jobPoster">
+                <u><h2>{{jobOffer.name}}</h2></u>
+                <h3>Customer Name</h3>
+            </div>
+        </ion-card-header>
+        <ion-card-content>
+            <section>
+                <ion-icon name="call"></ion-icon>
+                <span>{{jobOffer.phone}}</span>
+            </section>
+            <section>
+                <ion-icon name="mail"></ion-icon>
+                <span>{{jobOffer.email}}</span>
+            </section>
+            <section>
+                <ion-icon name="time"></ion-icon>
+                <span>{{jobOffer.schedule}}</span>
+            </section>
+            <section [routerLink]="['/location-select']">
+                <ion-icon class="floating" name="location"></ion-icon>
+                <span>{{jobOffer.location}}</span>
 
-    </ion-card-content>
-  </ion-card>
+            </section>
+            <section>
+                <ion-icon name="wallet"></ion-icon>
+                <span>{{jobOffer.rate}}</span>
+            </section>
+            <section>
+                <ion-icon name="mail-open"></ion-icon>
+                <span>{{jobOffer.notes}}</span>
+            </section>
 
-  <ion-footer class="ion-no-border">
-      <ion-toolbar>
-          <section class="full-width">
-              <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
-              <button class="buttonPass">Finish Service</button>
-          </section>
-      </ion-toolbar>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-footer class="ion-no-border">
+        <ion-toolbar>
+            <section class="full-width">
+                <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
+                <button class="buttonPass" (click)="cancel()">Cancel</button>
+            </section>
+        </ion-toolbar>
     </ion-footer>
 
 </ion-content>

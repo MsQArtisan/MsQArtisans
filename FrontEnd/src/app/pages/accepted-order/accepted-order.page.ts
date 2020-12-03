@@ -20,7 +20,7 @@ export class AcceptedOrderPage implements OnInit {
   }
   constructor(
     private authService: AuthService,
-    private http: Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,9 +29,12 @@ export class AcceptedOrderPage implements OnInit {
   addDataToDatabase(){
     this.authService.addDataToJobOrders({state: "accept", jobOffer: this.jobOffer}).subscribe((data) => {
       if(data) {
-        this.http.navigate(['job-orders'])
+        this.router.navigate(['tracker']);
       }
     })
+  }
+  cancel(){
+    this.router.navigate(['job-orders'])
   }
 
 

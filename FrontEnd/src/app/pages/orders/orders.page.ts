@@ -27,11 +27,17 @@ export class OrdersPage implements OnInit {
 
   closeModal() {
      this.modalController.dismiss( 'cancel'); 
-    this.router.navigate(['accepted-order']);
+    this.router.navigate(['job-orders']);
 
    }
+   acceptOrder() {
+    this.modalController.dismiss( 'cancel'); 
+   this.router.navigate(['accepted-order']);
+
+  }
   pass(){
-    this.modalController.dismiss('cancel');
+    this.modalController.dismiss( 'cancel'); 
+    this.router.navigate(['tracker']);
   }
  
 }
