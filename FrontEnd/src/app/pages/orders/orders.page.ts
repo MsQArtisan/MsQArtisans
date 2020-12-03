@@ -20,8 +20,6 @@ export class OrdersPage implements OnInit {
   constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
-    // console.log(this.service_booking,)
-    console.log(this.service_booking);
     
   }
 

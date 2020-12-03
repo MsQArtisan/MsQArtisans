@@ -9,6 +9,7 @@ import { OrdersPage } from '../orders/orders.page';
 })
 export class JobOrdersPage implements OnInit {
   public apple: boolean = true;
+  public item: boolean = true;
 
   dataFromModal;
 
@@ -21,23 +22,17 @@ export class JobOrdersPage implements OnInit {
 
   ngOnInit() {
     this.orderData();
-
-
-
   }
   orderData() {
     this.authService.getOrders().subscribe((data: any) => {
       this.orders = data.data;
-      console.log("orders",this.orders);
-      
-
     })
     this.authService.getCustomersName().subscribe((data: any) => {
       this.customerDetails = data.data;
-      console.log(this.customerDetails)
 
     })
   }
+
 
 
   hideAndShow() {
@@ -49,25 +44,23 @@ export class JobOrdersPage implements OnInit {
   }
 
   async passToOrders(item) {
-    console.log(item);
     const modal = await this.modalController.create({
       component: OrdersPage,
       componentProps: {
-        name:item.author.name,service_booking: item.service_booking, 
-        updatedAt: item.updatedAt,service_location: item.service_location, 
+        service_booking: item.service_booking, 
+        // name:item.author.name,
+        name:item.author.name,updatedAt: item.updatedAt,service_location: item.service_location, 
         cost:item.cost,notes: item.notes
       },
       cssClass: 'setting-modal',
       backdropDismiss: false,
     });
-    
+  
 
+   
     modal.present();
     this.dataFromModal = await modal.onWillDismiss();
   }
-
-
-
 
 
 }

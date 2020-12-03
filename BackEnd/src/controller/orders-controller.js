@@ -2,6 +2,8 @@ var Orders = require('../models/Bookings');
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
+
+
         if (err) {
             return res.send({ error: err, status: false })
         } else {
@@ -13,6 +15,7 @@ exports.getOrders = (req, res) => {
 exports.getCustomersName = (req, res) => {
     Orders.find({}).populate('author')
         .exec((err, data) => {
+
             if (err) {
                 return res.send({ error: err, status: false })
             } else {

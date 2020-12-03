@@ -18,6 +18,7 @@ export class AcceptedOrderPage implements OnInit {
     rate: "4000 Pesos",
     notes: "Looking for a nanny for my 3 years old baby boy."
   }
+  customerDetails: String = '';
   constructor(
     private authService: AuthService,
     private router: Router

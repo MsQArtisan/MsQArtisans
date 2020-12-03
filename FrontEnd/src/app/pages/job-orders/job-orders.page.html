@@ -31,8 +31,9 @@
 
     <ion-grid *ngIf=apple>
         <div class="cardContent" *ngFor="let item of customerDetails">
-            <ion-card (click)="passToOrders(item)">
+            <ion-card (click)="passToOrders(item)" *ngIf=item>
                 <ion-card-header>
+                    <!-- {{item.author.name}} -->
                     <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                     <ion-card-subtitle>Customer Name</ion-card-subtitle>
                 </ion-card-header>
@@ -63,10 +64,10 @@
                 </ion-card-content>
             </ion-card>
         </div>
-    </ion-grid>
+        <!-- </ion-grid>
 
 
-    <ion-grid *ngIf=apple>
+    <ion-grid *ngIf=apple> -->
         <div>
 
         </div>
