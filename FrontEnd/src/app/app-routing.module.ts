@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -12,35 +13,35 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'forget-pass',
-    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
   },
   {
     path: 'job-orders',
-    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
+    loadChildren: () => import('./pages/job-orders/job-orders.module').then(m => m.JobOrdersPageModule)
   },
   {
     path: 'finance',
-    loadChildren: () => import('./pages/finance/finance.module').then( m => m.FinancePageModule)
+    loadChildren: () => import('./pages/finance/finance.module').then(m => m.FinancePageModule)
   },
   {
     path: 'tracker',
-    loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
+    loadChildren: () => import('./pages/tracker/tracker.module').then(m => m.TrackerPageModule)
   },
   {
     path: 'livechat',
-    loadChildren: () => import('./pages/livechat/livechat.module').then( m => m.LivechatPageModule)
+    loadChildren: () => import('./pages/livechat/livechat.module').then(m => m.LivechatPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
     path: 'all-settings',
@@ -48,18 +49,18 @@ const routes: Routes = [
   },
   {
     path: 'acc-info',
-    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
+    loadChildren: () => import('./pages/acc-info/acc-info.module').then(m => m.AccInfoPageModule)
   },
   {
     path: 'location-select',
-    loadChildren: () => import('./pages/location-select/location-select.module').then( m => m.LocationSelectPageModule)
+    loadChildren: () => import('./pages/location-select/location-select.module').then(m => m.LocationSelectPageModule)
   },
   {
-    path: 'accepted-order',
+    path: 'accepted-order/:id',
     loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
   }, {
     path: 'orders',
-    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+    loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersPageModule)
   },
   {
     path: 'user-ratings',
@@ -88,10 +89,6 @@ const routes: Routes = [
   {
     path: 'forget-pass',
     loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
-  },
-  {
-    path: 'response-reset-password/',
-    loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
   },
   {
     path: 'cash-out',

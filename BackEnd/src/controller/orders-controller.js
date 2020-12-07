@@ -1,4 +1,5 @@
 var Orders = require('../models/Bookings');
+var idHolder = '';
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
@@ -21,4 +22,19 @@ exports.getCustomersName = (req, res) => {
                 return res.send({ status: true, data: data })
             }
         })
+}
+exports.getCustomersData = (req, res) => {
+    Orders.findOne({ _id: req.body.userId }).populate('author')
+        .exec((err, data) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.send(data)
+            }
+        })
+}
+exports.getIdHolder = (req, res) => {
+    idHolder = req.body.id
+    console.log("id: " + idHolder);
+    res.send(true)
 }

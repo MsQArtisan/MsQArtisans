@@ -26,16 +26,16 @@
             </section>
             <section>
                 <ion-icon name="time"></ion-icon>
-                <span>{{jobOffer.schedule}}</span>
+                <span>{{jobOffer.schedule | date:'short'}}</span>
             </section>
-            <section [routerLink]="['/location-select']">
+            <section (click)="location()">
                 <ion-icon class="floating" name="location"></ion-icon>
                 <span>{{jobOffer.location}}</span>
 
             </section>
             <section>
                 <ion-icon name="wallet"></ion-icon>
-                <span>{{jobOffer.rate}}</span>
+                <span>&#8369;{{jobOffer.rate}}.00</span>
             </section>
             <section>
                 <ion-icon name="mail-open"></ion-icon>

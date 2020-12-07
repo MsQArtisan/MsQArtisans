@@ -44,12 +44,14 @@ export class JobOrdersPage implements OnInit {
   }
 
   async passToOrders(item) {
+    console.log(item);
+    
     const modal = await this.modalController.create({
       component: OrdersPage,
       componentProps: {
         service_booking: item.service_booking, 
         // name:item.author.name,
-        name:item.author.name,updatedAt: item.updatedAt,service_location: item.service_location, 
+        id:item._id,name:item.author.name,updatedAt: item.updatedAt,service_location: item.service_location, 
         cost:item.cost,notes: item.notes
       },
       cssClass: 'setting-modal',

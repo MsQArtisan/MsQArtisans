@@ -1,6 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { NavParams, ModalController, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { AuthService } from "../../services/auth.service"
 @Component({
   selector: 'app-orders',
@@ -20,7 +20,6 @@ export class OrdersPage implements OnInit {
   constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
-    
   }
 
   closeModal() {
@@ -30,7 +29,7 @@ export class OrdersPage implements OnInit {
    }
    acceptOrder() {
     this.modalController.dismiss( 'cancel'); 
-   this.router.navigate(['accepted-order']);
+   this.router.navigate(['accepted-order/'+this.id]);
 
   }
   pass(){

@@ -5,22 +5,31 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject,Observable, throwError , of} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
-const forgotPassURL = 'http://localhost:5010/api';
+const userToken = 'user_token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public userIDToken = ""
+  public situationHandler;
+  public situation = true
+  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
   authenticationState = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
-    private plt: Platform, private alertController: AlertController) {
+  constructor(
+    private http: HttpClient,
+    private helper: JwtHelperService,
+    private storage: Storage,
+    private plt: Platform,
+    private alertController: AlertController
+  ) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -31,8 +40,10 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
- 
         if (!isExpired) {
+          this.storage.get(userToken).then((token) => {
+            this.userIDToken = token
+          })
           this.user = decoded;
           this.authenticationState.next(true);
         } else {
@@ -50,34 +61,54 @@ export class AuthService {
       })
     );
   }
- 
   login(credentials) {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          this.authenticationState.next(true);
-        }),
-        catchError(e => {
-          console.log(e)
-          this.showAlert(e.error.msg);
-          throw new Error(e);
+          this.situationHandler = res
+          if (this.situationHandler.type) {
+            this.storage.set(userToken, this.situationHandler.userId)
+            this.userIDToken = this.situationHandler.userId
+            this.storage.set(TOKEN_KEY, res['token']);
+            this.user = this.helper.decodeToken(res['token']);
+            this.authenticationState.next(true);
+          } else {
+            this.returnTheStatus();
+          }
         })
       )
   }
- 
+
+  returnTheStatus() {
+    return this.authenticationState
+  }
+
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.authenticationState.next(false);
+      this.storage.remove(userToken).then(() => {
+        this.authenticationState.next(false);
+      })
       // window.location.reload()
     });
+  }
+
+  getSpecialData() {
+    return this.http.get(`${this.url}/api/special`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if (status === 401) {
+          this.showAlert('You are not authorized for this!');
+          this.logout();
+        }
+        throw new Error(e);
+      })
+    )
   }
 
   isAuthenticated() {
     return this.authenticationState.value;
   }
- 
+
   showAlert(msg) {
     let alert = this.alertController.create({
       message: msg,
@@ -88,12 +119,11 @@ export class AuthService {
   }
 
   getAllMessages() {
-    return this.http.get("http://localhost:5005/api/allMessages")
+    return this.http.get(`${this.url}/api/allMessages`)
   }
 
-  getUser():Observable<any>{
-    console.log("account");
-    return this.http.get<any>(`${this.url}/api/account`)
+  getUser() {
+    return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
   }
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
@@ -106,30 +136,31 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobsToDelete`, data)
   }
 
-  addImageToDatabase(imageUrl){
-    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  addImageToDatabase(imageUrl) {
+    return this.http.post(`${this.url}/api/imageUpload`, imageUrl);
   }
-  
+
   getTheProfileImage(usersName) {
-    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+    return this.http.post(`${this.url}/api/getUserProfile`, usersName);
   }
-  
+
   requestReset(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
-  }
-
-  newPassword(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/new-password`, body);
-  }
-
-  ValidPasswordToken(body): Observable<any> {
-    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+    return this.http.post(`${this.url}/api/reqResetPassword`, body);
   }
 
   getOrders():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getNewOrder`)
+    return this.http.get<any>(`${this.url}/api/getNewOrder`);
   }
   getCustomersName():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getCustomersName`)
+    return this.http.get<any>(`${this.url}/api/getCustomersName`);
+  }
+  getCustomersData(userId) {
+    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+  }
+  idHolder(userId):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/idHolder`,{id:userId})
+  }
+  getCustomersId():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getId`)
   }
 }

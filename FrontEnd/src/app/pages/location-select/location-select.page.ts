@@ -1,6 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild ,Input, Output} from '@angular/core';
 import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {  Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 declare var google: any;
 
@@ -10,7 +12,8 @@ declare var google: any;
   styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
-  location="Nasipit Rd. Talamban Cebu";
+  id:String = "";
+  location="";
 
   @ViewChild('maps', { static: true })
   mapRef: ElementRef;
@@ -22,7 +25,9 @@ export class LocationSelectPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public geo: Geolocation
+    public geo: Geolocation,
+    public router: Router,
+    private authService: AuthService,
   ) {
     this.getGeoLocation();
   }
@@ -101,6 +106,18 @@ export class LocationSelectPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.toAccepted()
+    
+  }
+  toAccepted(){
+    this.authService.idHolder({id:this.authService.getCustomersId}).subscribe((data:any)=>{
+      this.id=data;
+      console.log("jessa",this.id);
+      
+    })
+    this.router.navigate(['/accepted-order/'+this.id])
+    
   }
 
 }

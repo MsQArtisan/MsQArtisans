@@ -1,6 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service' 
-import { Router } from "@angular/router";
+import { AuthService } from '../../services/auth.service'
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-accepted-order',
@@ -8,35 +9,52 @@ import { Router } from "@angular/router";
   styleUrls: ['./accepted-order.page.scss'],
 })
 export class AcceptedOrderPage implements OnInit {
+  
+  public userId;
+  public partialUser;
   public jobOffer = {
-    name: "Jessa Mae Yosores",
-    phone: "09326514567",
-    email: "jess@gmail.com",
-    jobTitle: "Massage",
-    schedule: "Nov.10,2020 - 12:00pm - 5:00pm",
-    location: "Nasipit Rd, Talamban Cebu",
-    rate: "4000 Pesos",
-    notes: "Looking for a nanny for my 3 years old baby boy."
-  }
-  customerDetails: String = '';
+    name: "",
+    phone: "",
+    email: "",
+    schedule: "",
+    location: "",
+    rate: "",
+    notes: ""
+  };
   constructor(
     private authService: AuthService,
-    private router: Router
+    private http: Router,
+    private router: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    let params = this.router.snapshot.paramMap.get('id')
+    this.authService.getCustomersData(params).subscribe((data) => {
+      console.log("data: ",data);
+      
+      this.partialUser = data
+      this.jobOffer.name = this.partialUser.author.name
+      this.jobOffer.phone = this.partialUser.author.phone
+      this.jobOffer.email = this.partialUser.author.email
+      this.jobOffer.schedule = this.partialUser.createdAt
+      this.jobOffer.location = this.partialUser.service_location
+      this.jobOffer.rate = this.partialUser.cost
+      this.jobOffer.notes = this.partialUser.notes
+    })
   }
 
-  addDataToDatabase(){
-    this.authService.addDataToJobOrders({state: "accept", jobOffer: this.jobOffer}).subscribe((data) => {
-      if(data) {
-        this.router.navigate(['tracker']);
+  addDataToDatabase() {
+    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.jobOffer }).subscribe((data) => {
+      if (data) {
+        this.http.navigate(['tracker'])
       }
     })
   }
-  cancel(){
-    this.router.navigate(['job-orders'])
+  cancel() {
+    this.http.navigate(['job-orders'])
   }
-
+  location(){
+    this.http.navigate(['location-select'])
+  }
 
 }

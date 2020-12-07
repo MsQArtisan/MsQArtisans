@@ -1,7 +1,7 @@
 export class Places {
     placesInCebu() {
         return [
-            {val: 'dal', place: 'Dalaguete'}
+            { val: 'dal', place: 'Dalaguete' }
         ]
     }
 }

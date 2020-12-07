@@ -49,28 +49,13 @@
     font-size: small;
 }
 
-.input-area {
-    position: fixed;
-    padding: 15px;
-    background: #fff;
-    resize: none;
-    width: 100%;
-    form {
-        display: flex;
-        height: 100%;
-    }
-}
-
 button {
-    width: 10%;
-    height: 10%;
+    outline: none;
     border: none;
     color: var(--ion-color-secondary);
     opacity: 0.9;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    float: right;
     background: transparent;
     ion-icon {
         font-size: 3rem;
@@ -106,6 +91,12 @@ button {
 }
 
 textarea {
-    width: 90%;
+    margin-left: 3%;
+    width: 83%;
+    position: fixed;
+}
+
+textarea:focus {
     outline: none;
+    border: 1px solid #85acff;
 }

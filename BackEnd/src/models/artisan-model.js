@@ -29,10 +29,10 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    confirmPassword: {
-        type: String,
-        required: 'confirm password is required'
-    },
+    // confirmPassword: {
+    //     type: String,
+    //     required: 'confirm password is required'
+    // },
     selfie: {
         type: String,
         required: 'selfie is required'
@@ -57,52 +57,40 @@ var ArtisansSchema = new mongoose.Schema({
     },
     nannyFile: {
         type: String
-        
+
     },
     housekeepingFile: {
         type: String
-        
+
     },
     haircutMassageFile: {
         type: String
-        
+
     },
 });
 
-ArtisansSchema.pre('save',  function(next) {
+ArtisansSchema.pre('save', function(next) {
     var artisan = this;
- 
-     if (!artisan.isModified('password')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(artisan.password, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             artisan.password = hash;
-             next();
-         });
-     });
-     if (!artisan.isModified('confirmPassword')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(artisan.confirmPassword, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             artisan.confirmPassword = hash;
-             next();
-         });
-     });
+
+    if (!artisan.isModified('password')) return next();
+
+    bcrypt.genSalt(10, function(err, salt) {
+        if (err) return next(err);
+
+        bcrypt.hash(artisan.password, salt, function(err, hash) {
+            if (err) return next(err);
+
+            artisan.password = hash;
+            next();
+        });
+    });
 });
 
-ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {
+ArtisansSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
- 
+
 module.exports = mongoose.model('Artisans', ArtisansSchema);

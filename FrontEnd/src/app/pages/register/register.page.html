@@ -59,10 +59,7 @@
                     <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-                    <span>
-						<input type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie" #selfie="ngModel"
-						 placeholder="Selfie" accept="image/*" />
-					</span>
+                    <input type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie" #selfie="ngModel" placeholder="Selfie" accept="image/*" />
                 </div>
             </div>
             <h6>Primary ID:</h6>
@@ -71,10 +68,7 @@
                     <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-                    <span>
-						<input type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic"
-						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
-					</span>
+                    <input type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic" #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
                 </div>
             </div>
             <div class="input-group mb-1">
@@ -89,10 +83,7 @@
                     <span class="input-group-text">
 						<i class="fa fa-file-image"></i>
 					</span>
-                    <span>
-						<input type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
-						 placeholder="NBI" />
-					</span>
+                    <input type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel" placeholder="NBI" />
                 </div>
             </div>
 
@@ -114,10 +105,7 @@
                         <span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-                        <span>
-							<input type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
-							 placeholder="TutorFile" />
-						</span>
+                        <input type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel" placeholder="TutorFile" />
                     </div>
                 </div>
             </div>
@@ -128,10 +116,7 @@
                         <span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-                        <span>
-							<input type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
-							 placeholder="NannyFile" />
-						</span>
+                        <input type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel" placeholder="NannyFile" />
                     </div>
                 </div>
             </div>
@@ -142,10 +127,7 @@
                         <span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-                        <span>
-							<input type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile"
-							 #tutor="ngModel" placeholder="HouseKeepingFile" />
-						</span>
+                        <input type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile" #tutor="ngModel" placeholder="HouseKeepingFile" />
                     </div>
                 </div>
             </div>
@@ -156,13 +138,10 @@
                         <span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-                        <span>
-							<input type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile"
-							 #tutor="ngModel" placeholder="HaricutMassageFile" />
-						</span>
+                        <input type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel" placeholder="HaricutMassageFile" />
                     </div>
                 </div>
-            </div>
+            </div><br>
             <ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()" [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
         </form>
         <div class="mt-4">
@@ -171,6 +150,4 @@
             </div><br>
         </div><br>
     </div>
-
-
 </ion-content>

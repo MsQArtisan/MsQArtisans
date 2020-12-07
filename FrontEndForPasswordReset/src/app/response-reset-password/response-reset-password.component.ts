@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { ServiceService } from '../service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-response-reset-password',
-  templateUrl: './response-reset-password.page.html',
-  styleUrls: ['./response-reset-password.page.scss'],
+  templateUrl: './response-reset-password.component.html',
+  styleUrls: ['./response-reset-password.component.scss']
 })
-export class ResponseResetPasswordPage implements OnInit {
-
+export class ResponseResetPasswordComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   resetToken: null;
   CurrentState: any;
   IsResetFormValid = true;
 
-  constructor(private authService: AuthService,
+  constructor(private authService: ServiceService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -24,18 +23,19 @@ export class ResponseResetPasswordPage implements OnInit {
       this.route.params.subscribe(params => {
       this.resetToken = params.token;
       console.log(this.resetToken);
-      this.VerifyToken();
       });
      }
 
   ResponseResetForm: FormGroup;
   ngOnInit() {
     this.Init();
+    this.VerifyToken();
   }
   VerifyToken() {
     this.authService.ValidPasswordToken({ resettoken: this.resetToken }).subscribe(
       data => {
         this.CurrentState = 'Verified';
+        console.log(data)
       },
       err => {
         this.CurrentState = 'NotVerified';
@@ -72,7 +72,7 @@ export class ResponseResetPasswordPage implements OnInit {
 
 
   ResetPassword(form) {
-    console.log(form.get('confirmPassword'));
+    console.log(this.ResponseResetForm.value)
     if (form.valid) {
       this.IsResetFormValid = true;
       this.authService.newPassword(this.ResponseResetForm.value).subscribe(
@@ -81,7 +81,7 @@ export class ResponseResetPasswordPage implements OnInit {
           this.successMessage = data.message;
           setTimeout(() => {
             this.successMessage = null;
-            this.router.navigate(['login']);
+            // this.router.navigate(['http://localhost:4200/api/login']);
           }, 3000);
         },
         err => {
@@ -93,3 +93,4 @@ export class ResponseResetPasswordPage implements OnInit {
     } else { this.IsResetFormValid = false; }
   }
 }
+
