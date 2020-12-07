@@ -17,7 +17,7 @@ routes.get('/getNewOrder', orderController.getOrders);
 routes.get('/getCustomersName', orderController.getCustomersName);
 routes.post('/getCustomersData', orderController.getCustomersData);
 routes.post('/idHolder', orderController.getIdHolder)
-routes.get('/getId', orderController.getIdHolder)
+routes.get('/getId', orderController.returnId)
 
 
 routes.post('/reqResetPassword', AuthCtrl.ResetPassword);

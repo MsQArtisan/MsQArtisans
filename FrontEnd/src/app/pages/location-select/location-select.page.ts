@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild ,Input, Output} from '@angular/core';
 import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {  Router } from '@angular/router';
+import {  Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 declare var google: any;
@@ -24,6 +24,7 @@ export class LocationSelectPage implements OnInit {
   public static lon;
 
   constructor(
+    private activeRute: ActivatedRoute,
     public navCtrl: NavController,
     public geo: Geolocation,
     public router: Router,
@@ -106,16 +107,12 @@ export class LocationSelectPage implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.getCustomersId().subscribe((data) => {
+      this.id = data.id
+    })
 
-    this.toAccepted()
-    
   }
   toAccepted(){
-    this.authService.idHolder({id:this.authService.getCustomersId}).subscribe((data:any)=>{
-      this.id=data;
-      console.log("jessa",this.id);
-      
-    })
     this.router.navigate(['/accepted-order/'+this.id])
     
   }

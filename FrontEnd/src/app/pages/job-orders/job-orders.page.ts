@@ -26,6 +26,8 @@ export class JobOrdersPage implements OnInit {
   orderData() {
     this.authService.getOrders().subscribe((data: any) => {
       this.orders = data.data;
+      console.log(this.orders);
+      
     })
     this.authService.getCustomersName().subscribe((data: any) => {
       this.customerDetails = data.data;
@@ -51,7 +53,7 @@ export class JobOrdersPage implements OnInit {
       componentProps: {
         service_booking: item.service_booking, 
         // name:item.author.name,
-        id:item._id,name:item.author.name,updatedAt: item.updatedAt,service_location: item.service_location, 
+        id:item._id,name:item.author.name,schedule: item.schedule,service_location: item.service_location, 
         cost:item.cost,notes: item.notes
       },
       cssClass: 'setting-modal',

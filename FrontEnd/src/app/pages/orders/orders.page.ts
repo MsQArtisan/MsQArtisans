@@ -11,7 +11,7 @@ export class OrdersPage implements OnInit {
   @Input() id : string;
   @Input() name: string;
   @Input() service_booking: string;
-  @Input() updatedAt: string;
+  @Input() schedule: string;
   @Input() service_location: string;
   @Input() cost: string;
   @Input() notes: string;

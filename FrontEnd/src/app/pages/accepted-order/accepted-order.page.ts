@@ -29,14 +29,13 @@ export class AcceptedOrderPage implements OnInit {
 
   ngOnInit() {
     let params = this.router.snapshot.paramMap.get('id')
+    this.authService.idHolder({id: params}).subscribe()
     this.authService.getCustomersData(params).subscribe((data) => {
-      console.log("data: ",data);
-      
       this.partialUser = data
       this.jobOffer.name = this.partialUser.author.name
       this.jobOffer.phone = this.partialUser.author.phone
       this.jobOffer.email = this.partialUser.author.email
-      this.jobOffer.schedule = this.partialUser.createdAt
+      this.jobOffer.schedule = this.partialUser.schedule
       this.jobOffer.location = this.partialUser.service_location
       this.jobOffer.rate = this.partialUser.cost
       this.jobOffer.notes = this.partialUser.notes

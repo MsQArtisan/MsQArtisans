@@ -18,6 +18,10 @@ let Booking = new mongoose.Schema({
     notes: {
         type: String,
     },
+    schedule: {
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         required: true,
