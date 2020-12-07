@@ -9,26 +9,32 @@
 
 <ion-content>
     <!-- Icon top -->
+    <div class="taskCreated"><br><br><br><br><br>
+        <a><button class="onWeb" (click)="myOnGoingTask()">On Going</button></a><br><br>
+        <a><button class="onWeb" (click)="completedTasks()">Completed</button></a><br><br>
+        <a><button class="onWeb" (click)="rejectedTasks()">Rejected</button></a>
+    </div>
     <ion-segment color="secondary" class="topnav">
-        <ion-segment-button value="call" (click)="myOnGoingTask()">
+        <ion-segment-button class="topnavButton" value="call" (click)="myOnGoingTask()">
             <ion-label> On Going</ion-label>
             <ion-icon name="refresh-circle-outline"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button value="favorite" (click)="completedTasks()">
+        <ion-segment-button class="topnavButton" value="favorite" (click)="completedTasks()">
             <ion-label>Completed</ion-label>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </ion-segment-button>
 
 
-        <ion-segment-button value="map" (click)="rejectedTasks()">
+        <ion-segment-button class="topnavButton" value="map" (click)="rejectedTasks()">
             <ion-label>Rejected</ion-label>
             <ion-icon name="close-circle-outline"></ion-icon>
 
         </ion-segment-button>
-    </ion-segment><br><br><br>
-    <div class="listOfAcceptedJobs">
-        <ul *ngFor="let value of onGoingJob; let i = index">
+    </ion-segment>
+    <br><br><br>
+    <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
+        <ul>
             <p class="customerName"> {{value.data.customer}} </p>
             <li> {{value.data.email}} </li>
             <li>{{value.data.jobTitle}}</li>
@@ -37,9 +43,12 @@
             <li> {{value.data.phone}} </li>
             <li> {{value.data.rate}} </li>
             <li> {{value.data.schedule}} </li><br>
-            <button *ngIf="completedTask">Delete Completed Task</button>
-            <button (click)="alreadyDoneTask(i)">Done!</button>
+            <button *ngIf="completedTask" class="onMobile">Delete Completed Task</button>
+            <button (click)="alreadyDoneTask(i)" class="onMobile">Done!</button>
             <br><br>
         </ul>
+    </div>
+    <div class="taskShow" *ngIf="noTaskShow">
+        <h1>No task to show</h1>
     </div>
 </ion-content>

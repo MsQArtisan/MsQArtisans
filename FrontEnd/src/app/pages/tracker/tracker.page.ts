@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+  public noTaskShow = false
 
   public completedTask = false
   public jobsOffered;
@@ -19,6 +20,9 @@ export class TrackerPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.jobsOffered == undefined) {
+      this.noTaskShow = true
+    }
     this.authService.allJobsBeingAccepted({state: "completed"}).subscribe((data) => {
       this.jobsOffered = data
       this.onGoingJob = this.jobsOffered.jobs
@@ -44,6 +48,7 @@ export class TrackerPage implements OnInit {
       this.onGoingJob = this.jobsOffered.jobs
     })
   }
+
   rejectedTasks() {
     this.authService.allJobsBeingAccepted({state: "rejected"}).subscribe((data) => {
       this.jobsOffered = data

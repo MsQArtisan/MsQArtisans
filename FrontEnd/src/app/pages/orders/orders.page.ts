@@ -17,7 +17,7 @@ export class OrdersPage implements OnInit {
   @Input() notes: string;
 
 
-  constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
+  constructor(private router: Router, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
   }
