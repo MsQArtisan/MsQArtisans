@@ -8,9 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  public booleanIdentify = true
-  public passwordOrText = "password"
-  
+
+  passwordType: string = 'password';
+ passwordIcon: string = 'eye-off';
+
+ passwordConfirmType: string = 'password';
+ passwordConfirmIcon: string = 'eye-off';
+ 
+
+
 public image;
   credentialsForm = {
     email: "",
@@ -32,7 +38,7 @@ public image;
   }
   constructor(
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,) { }
 
   ngOnInit() {
   }
@@ -60,13 +66,15 @@ public image;
     }
   }
 
-  showHidePass(type) {
-    this.passwordOrText = type
-    if (this.booleanIdentify) {
-      this.booleanIdentify = false
-    } else {
-      this.booleanIdentify = true
-    }
-  }
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+}
+
+hideShowConfirmPassword() {
+  this.passwordConfirmType = this.passwordConfirmType === 'text' ? 'password' : 'text';
+  this.passwordConfirmIcon = this.passwordConfirmIcon === 'eye-off' ? 'eye' : 'eye-off';
+}
+
 
 }
