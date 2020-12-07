@@ -46,6 +46,9 @@ export class AcceptedOrderPage implements OnInit {
       }
     })
   }
+  navigateToMap() {
+    this.http.navigate(['location-select/' + this.jobOffer.location])
+  }
 
 
 }

@@ -78,10 +78,12 @@ ion-card {
 }
 
 .cardContent {
-    width: 100%;
+    width: 50%;
     text-align: center;
     margin: 0;
-    margin-left: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
 }
 
 .switch {
@@ -149,6 +151,7 @@ input:checked+.slider:before {
 }
 
 .tags {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     width: 150px;
     margin-left: 119%;
@@ -163,12 +166,6 @@ input:checked+.slider:before {
     height: 9%;
     z-index: 10;
 }
-
-.cardContent {
-    width: 95%;
-    font-weight: 100;
-}
-
 section {
     font-size: 18px;
     margin-bottom: 10px;
@@ -197,8 +194,6 @@ section {
 .toggle {
     font-weight: lighter;
     position: fixed;
-    padding-top: 12%;
-    padding-bottom: 5%;
     z-index: 1;
     background-color: white;
     width: 100%;
@@ -208,4 +203,25 @@ section {
     height: 76%;
     margin: 6%;
     margin-left: 7%;
+    text-align: center;
 }
+
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: lighter;
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .cardContent {
+        width: 100%;
+    }
+    .toggle {
+        font-weight: lighter;
+        position: fixed;
+        z-index: 1;
+        background-color: white;
+        width: 98%;
+        height: 10%;
+    }
+  }

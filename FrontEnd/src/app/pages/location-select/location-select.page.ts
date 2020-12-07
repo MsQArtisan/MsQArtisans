@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ActivatedRoute } from "@angular/router";
 
 declare var google: any;
 
@@ -10,7 +11,7 @@ declare var google: any;
   styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
-  location="Nasipit Rd. Talamban Cebu";
+  public location = "";
 
   @ViewChild('maps', { static: true })
   mapRef: ElementRef;
@@ -22,7 +23,8 @@ export class LocationSelectPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public geo: Geolocation
+    public geo: Geolocation,
+    private router: ActivatedRoute
   ) {
     this.getGeoLocation();
   }
@@ -101,6 +103,8 @@ export class LocationSelectPage implements OnInit {
   }
 
   ngOnInit() {
+    let place = this.router.snapshot.paramMap.get("place")
+    this.location = place
   }
 
 }

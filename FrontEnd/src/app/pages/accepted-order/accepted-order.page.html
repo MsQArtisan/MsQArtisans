@@ -28,7 +28,7 @@
           <ion-icon name="time"></ion-icon>
           <span>{{jobOffer.schedule}}</span>
       </section>
-      <section [routerLink]="['/location-select']">
+      <section (click)="navigateToMap()">
           <ion-icon  class="floating" name="location"></ion-icon>
           <span >{{jobOffer.location}}</span>
      

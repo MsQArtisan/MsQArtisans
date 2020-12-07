@@ -35,7 +35,7 @@
             <ion-icon name="time-outline"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button value="map">
+        <ion-segment-button value="map" (click)="showStatistics()">
             <ion-label>Statistics</ion-label>
             <ion-icon name="stats-chart-outline"></ion-icon>
         </ion-segment-button>
@@ -43,9 +43,6 @@
     <ion-content>
         <div class="statistics">
             <ion-card class="charts">
-                <ion-card-header>
-                    Bar Chart
-                </ion-card-header>
                 <ion-card-content>
                     <canvas #barGraph></canvas>
                 </ion-card-content>

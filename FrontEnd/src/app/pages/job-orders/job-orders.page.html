@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
     <ion-toolbar color="secondary">
         <ion-title class="header">Job Orders</ion-title>
         <ion-buttons slot="start">
@@ -8,13 +8,14 @@
 </ion-header>
 <ion-content>
 
-    <label class="switch">
+    <div class="toggle">
+        <label class="switch">
             <p *ngIf="apple" class="tags">Disable Receive Work</p>
             <p *ngIf="!apple" class="tags">Enable Receive Work</p>
             <input type="checkbox" checked (click)="hideAndShow()">
             <span class="slider round"></span>
         </label>
-    <div class="toggle"></div>
+    </div>
 
     <br><br><br><br>
     <div class="toggleRest" *ngIf=!apple>
@@ -34,7 +35,9 @@
             <ion-card (click)="passToOrders(item)">
                 <ion-card-header>
                     <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                    <ion-card-subtitle>Customer Name</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                        Customer Name
+                    </ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content>
 
