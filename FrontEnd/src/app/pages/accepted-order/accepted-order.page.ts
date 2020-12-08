@@ -9,8 +9,8 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./accepted-order.page.scss'],
 })
 export class AcceptedOrderPage implements OnInit {
-  
   public userId;
+  public locationToPass;
   public partialUser;
   public jobOffer = {
     name: "",
@@ -27,9 +27,10 @@ export class AcceptedOrderPage implements OnInit {
     private router: ActivatedRoute
   ) { }
 
+
   ngOnInit() {
     let params = this.router.snapshot.paramMap.get('id')
-    this.authService.idHolder({id: params}).subscribe()
+    this.authService.idHolder({ id: params }).subscribe()
     this.authService.getCustomersData(params).subscribe((data) => {
       this.partialUser = data
       this.jobOffer.name = this.partialUser.author.name
@@ -52,7 +53,8 @@ export class AcceptedOrderPage implements OnInit {
   cancel() {
     this.http.navigate(['job-orders'])
   }
-  location(){
+
+  location() {
     this.http.navigate(['location-select'])
   }
 

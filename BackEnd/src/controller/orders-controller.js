@@ -1,6 +1,7 @@
 var Orders = require('../models/Bookings');
 var idHolder = [];
 
+
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
 
@@ -34,7 +35,6 @@ exports.getCustomersData = (req, res) => {
         })
 }
 exports.getIdHolder = (req, res) => {
-    console.log(req.body)
     idHolder = req.body.id
     res.send(true)
 }

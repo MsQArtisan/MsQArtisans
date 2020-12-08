@@ -26,8 +26,6 @@ export class JobOrdersPage implements OnInit {
   orderData() {
     this.authService.getOrders().subscribe((data: any) => {
       this.orders = data.data;
-      console.log(this.orders);
-      
     })
     this.authService.getCustomersName().subscribe((data: any) => {
       this.customerDetails = data.data;
@@ -46,13 +44,11 @@ export class JobOrdersPage implements OnInit {
   }
 
   async passToOrders(item) {
-    console.log(item);
     
     const modal = await this.modalController.create({
       component: OrdersPage,
       componentProps: {
-        service_booking: item.service_booking, 
-        // name:item.author.name,
+        service_booking: item.service_booking,
         id:item._id,name:item.author.name,schedule: item.schedule,service_location: item.service_location, 
         cost:item.cost,notes: item.notes
       },

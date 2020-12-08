@@ -12,6 +12,7 @@ export class TrackerPage implements OnInit {
   public completedTask = false
   public jobsOffered;
   public onGoingJob;
+  public rejected;
 
   constructor(
     private authService: AuthService,
@@ -47,6 +48,7 @@ export class TrackerPage implements OnInit {
   rejectedTasks() {
     this.authService.allJobsBeingAccepted({state: "rejected"}).subscribe((data) => {
       this.jobsOffered = data
+      console.log(this.jobsOffered)
       this.onGoingJob = this.jobsOffered.jobs
     })
   }

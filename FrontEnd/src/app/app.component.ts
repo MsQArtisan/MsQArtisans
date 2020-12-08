@@ -34,7 +34,7 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['job-orders']);
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(['home']);
         }
       });
     });

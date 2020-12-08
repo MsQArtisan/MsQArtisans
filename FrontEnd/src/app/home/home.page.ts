@@ -11,6 +11,6 @@ export class HomePage {
     setTimeout (()=>{
       this.show=false;
       this.router.navigate(['/login']);
-    },5000);
+    },45000);
   }
 }
