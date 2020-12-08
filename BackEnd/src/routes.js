@@ -13,6 +13,7 @@ routes.get('/allCustomers', customerController.getAllCustomers);
 routes.post('/jobOrdersData', userController.addJobOrders);
 routes.post('/allJobsAccepted', userController.allJobAccepted);
 routes.post('/jobsToDelete', userController.deleteItem);
+routes.get('/allActiveUsers', userController.returnAllActiveUsers)
 
 routes.get('/getNewOrder', orderController.getOrders);
 routes.get('/getCustomersName', orderController.getCustomersName);

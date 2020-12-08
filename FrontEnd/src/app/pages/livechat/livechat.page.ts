@@ -21,6 +21,7 @@ interface Message {
   styleUrls: ['./livechat.page.scss'],
 })
 export class LivechatPage implements OnInit {
+  public activeUsers;
 
   constructor(private http: HttpClient, private pusher: PusherService, private authservice: AuthService) { }
 
@@ -64,6 +65,10 @@ export class LivechatPage implements OnInit {
   }
 
   ngOnInit() {
+    this.authservice.getAllActiveUsers().subscribe((data) => {
+      this.activeUsers = data
+      console.log(data[0])
+    })
     const channel = this.pusher.init();
     channel.bind ('message', (data) => {
       this.messages = data

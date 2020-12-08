@@ -149,6 +149,9 @@ export class AuthService {
   ValidPasswordToken(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/valid-password-token`, body);
   }
+  getAllActiveUsers() {
+    return this.http.get(`${this.url}/api/allActiveUsers`)
+  }
 
   getOrders(){
     return this.http.get(`${this.url}/api/getNewOrder`)

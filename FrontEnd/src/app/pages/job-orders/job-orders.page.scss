@@ -78,6 +78,12 @@ ion-card {
     margin-right: auto;
     max-width: 100%;
 }
+.card {
+    transition: 0.3s;
+}
+.card:hover {
+    box-shadow: 5px 10px #c2c2c2;
+}
 
 .switch {
     position: fixed;

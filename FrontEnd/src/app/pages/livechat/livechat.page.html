@@ -6,6 +6,12 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<div class="activeArtisans">
+    <h2>Active Users</h2><br><br><br><br>
+    <div *ngFor="let value of activeUsers">
+        <a>{{value.name}}</a><br>
+    </div>
+</div>
 <ion-content>
     <div class="main">
         <div class="chat-box">
@@ -37,8 +43,8 @@
                 <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
                     <textarea name="message" id="message" [(ngModel)]="message" placeholder="Say something nice..."></textarea>
                     <button [disabled]="message===''">
-                                <ion-icon name="send"></ion-icon>
-                            </button>
+                        <ion-icon name="send"></ion-icon>
+                    </button>
                 </form>
             </div>
 

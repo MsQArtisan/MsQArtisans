@@ -32,7 +32,7 @@
 
     <ion-grid *ngIf=apple>
         <div class="cardContent" *ngFor="let item of customerDetails">
-            <ion-card (click)="passToOrders(item)">
+            <ion-card (click)="passToOrders(item)" class="card">
                 <ion-card-header>
                     <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                     <ion-card-subtitle style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">

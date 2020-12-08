@@ -7,7 +7,9 @@ import { Chart } from 'chart.js';
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
-  @ViewChild('barGraph', { static: true }) barCanvas: ElementRef
+  @ViewChild('barGraph', { static: true }) barCanvas: ElementRef;
+
+  public hideStats = false
 
   public barChart: Chart
 
@@ -57,5 +59,6 @@ export class FinancePage implements OnInit {
         }
       }
     })
+
   }
 }

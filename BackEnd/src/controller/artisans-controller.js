@@ -99,3 +99,7 @@ exports.allJobAccepted = (req, res) => {
 exports.deleteItem = (req, res) => {
     jobArray.splice(req.body.index, 1)
 }
+
+exports.returnAllActiveUsers = (req, res) => {
+    res.send(loggedusers)
+}
