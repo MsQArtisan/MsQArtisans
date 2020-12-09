@@ -67,6 +67,7 @@ span{
     padding: 10px;
 }
 button {
+    outline: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 17px;
     color: rgb(92, 92, 92);
@@ -78,7 +79,13 @@ button {
 .buttonAccept {
     background-color: rgb(60, 223, 87);
 }
+.buttonAccept:active {
+    background-color: rgb(54, 153, 71);
+}
 .buttonPass {
     background-color: rgb(255, 107, 107);
     color: rgb(235, 235, 235);
+}
+.buttonPass:active {
+    background-color: rgb(167, 63, 63);
 }

@@ -8,13 +8,23 @@
 </ion-header>
 
 <ion-content>
-    <!-- Icon top -->
-    <div class="taskCreated"><br><br><br><br><br>
-        <a><button class="onWeb" (click)="myOnGoingTask()">On Going</button></a><br><br>
-        <a><button class="onWeb" (click)="completedTasks()">Completed</button></a><br><br>
-        <a><button class="onWeb" (click)="rejectedTasks()">Rejected</button></a>
+    <!-- For web -->
+    <div class="taskCreated">
+        <a><button class="onWeb" (click)="myOnGoingTask()">
+            <ion-icon name="refresh-circle-outline"></ion-icon>
+            On Going
+        </button></a><br><br>
+        <a><button class="onWeb" (click)="completedTasks()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Completed
+        </button></a><br><br>
+        <a><button class="onWeb" (click)="rejectedTasks()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+            Rejected
+        </button></a>
     </div>
-    <ion-segment color="secondary" class="topnav">
+    <!-- Icon top -->
+    <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
         <ion-segment-button class="topnavButton" value="call" (click)="myOnGoingTask()">
             <ion-label> On Going</ion-label>
             <ion-icon name="refresh-circle-outline"></ion-icon>
@@ -32,7 +42,6 @@
 
         </ion-segment-button>
     </ion-segment>
-    <br><br><br>
     <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
         <ul>
             <p class="customerName"> {{value.data.customer}} </p>
@@ -44,7 +53,7 @@
             <li> {{value.data.rate}} </li>
             <li> {{value.data.schedule}} </li><br>
             <button *ngIf="completedTask" class="onMobile">Delete Completed Task</button>
-            <button (click)="alreadyDoneTask(i)" class="onMobile">Done!</button>
+            <button (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
             <br><br>
         </ul>
     </div>

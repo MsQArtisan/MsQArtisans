@@ -30,6 +30,7 @@ export class TrackerPage implements OnInit {
   }
   myOnGoingTask() {
     this.authService.allJobsBeingAccepted({state: "accept"}).subscribe((data) => {
+      console.log(data)
       this.jobsOffered = data
       this.onGoingJob = this.jobsOffered.jobs
     })

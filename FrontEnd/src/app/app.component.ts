@@ -37,6 +37,7 @@ export class AppComponent {
       this.auth.authenticationState.subscribe(state => {
         if (state) {
           this.router.navigate(['job-orders']);
+       
         } else {
           this.router.navigate(['login']);
         }

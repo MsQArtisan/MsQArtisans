@@ -12,7 +12,7 @@
         <ion-card>
             <ion-card-content>
 
-                <h2>0.00 Pesos</h2>
+                <h2>{{currentMoney}} Pesos</h2>
                 <p>Current Balance</p>
             </ion-card-content>
 
@@ -23,7 +23,7 @@
                 <ion-label>Cash Out</ion-label>
                 <ion-icon name="card-outline"></ion-icon>
             </ion-segment-button>
-            <ion-segment-button [routerLink]="['/cash-in']" value="map">
+            <ion-segment-button (click)="addNumber()" value="map">
                 <ion-label>Cash In</ion-label>
                 <ion-icon name="wallet-outline"></ion-icon>
             </ion-segment-button>

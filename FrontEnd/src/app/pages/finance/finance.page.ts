@@ -7,6 +7,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
+  public currentMoney = 0
   @ViewChild('barGraph', { static: true }) barCanvas: ElementRef;
 
   public hideStats = false
@@ -60,5 +61,8 @@ export class FinancePage implements OnInit {
       }
     })
 
+  }
+  addNumber(){
+    this.currentMoney += 100
   }
 }
