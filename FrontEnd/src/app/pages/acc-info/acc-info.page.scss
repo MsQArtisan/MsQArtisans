@@ -43,7 +43,6 @@
         
         .imageColor {
             margin-left: 24%;
-            // display: flex;
             border-radius: 50%;
             padding-top: 15px;
             padding-bottom: 15px;
@@ -90,14 +89,13 @@
             }
             .borderColor {
                 margin-left: 12px;
-                display: flex
             }
             h2 {
                 margin-top: 5px;
             }
-            img {
-                margin-left: 10%;
-            }
+            // img {
+            //     margin-left: 10%;
+            // }
         }
         
         @media screen and (min-device-width: 657px) and (max-device-width: 1024px) {
@@ -106,7 +104,7 @@
                 justify-content: center;
             }
             .borderColor {
-                margin-left: 24px;
+                margin-left: 23px;
                 display: flex;
                 padding-bottom: 9%;
                 padding-top: 10%;
@@ -118,5 +116,14 @@
             }
             img {
                 margin-left: 10%;
+            }
+        }
+        
+        @media (min-width:770px) {
+            .borderColor {
+                margin-left: 15px;
+            }
+            .imageColor {
+                margin-left: 30px;
             }
         }

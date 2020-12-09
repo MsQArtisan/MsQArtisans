@@ -1,30 +1,24 @@
 @import "../../../global.scss";
 .input-group-text {
-    color: $light !important;
-    border: 0 !important;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-    border-top-left-radius: 20px !important;
-    border-bottom-left-radius: 20px !important;
-    background-color: #fafafa;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
 }
 
-.ng-invalid:not(form):hover {
+.ng-invalid:not(form):focus {
     border-bottom: 1px solid $danger !important;
-    /* red */
 }
 
 .ng-valid[required],
 .ng-valid.required {
     border-bottom: 1px solid $success !important;
     /* red */
-    background-color: white;
     border-radius: 0em;
 }
 
 .login-header {
     text-align: center;
     position: relative;
-    background-color: rgba(6, 170, 235, 0.5);
+    background-image: linear-gradient(to right, rgba(6, 170, 235, 0.5), rgba(49, 197, 255, 0.5), rgba(183, 235, 255, 0.5));
     border-radius: 0 0 100% 100%;
     padding: 10px;
 }
@@ -37,7 +31,9 @@
     margin-top: 15px;
 }
 
-img {
+.logo {
+    width: auto;
+    height: auto;
     display: block;
     margin: 0 auto;
     border-radius: 50%;
@@ -64,21 +60,13 @@ img {
     margin-left: 7%;
 }
 
-ion-content {
-    --background: #fafafa;
-}
-
-ion-icon {
-    width: 30px;
-}
-
 [linespace] {
     height: 30px;
 }
 
 .center {
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 5%;
+    height: 40%;
 }
 
 .ion-button-class:hover {
@@ -86,7 +74,6 @@ ion-icon {
     letter-spacing: 5px!important;
 }
 
-.logIn,
 h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 0;
@@ -132,10 +119,6 @@ input:focus {
     margin-left: 10px;
 }
 
-form {
-    margin-top: 10%;
-}
-
 li {
     margin-top: 10px;
     color: red;
@@ -146,9 +129,53 @@ h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: lighter;
     position: fixed;
-    padding-top: 17%;
-    padding-bottom: 5%;
     z-index: 1;
-    background-color: #fafafa;
-    width: 100%;
+    padding-bottom: 50px;
+}
+
+.card {
+    border-radius: 10px;
+    min-width: 400px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 30%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: 7%;
+    background-color: rgba(243, 243, 243, 0.9);
+}
+
+.loginName {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.leftText {
+    position: fixed;
+    min-width: 90%;
+}
+
+.leftImage {
+    height: 100%;
+    position: fixed;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .card {
+        width: 100%;
+        min-width: auto;
+        margin: 0;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    h1 {
+        padding: 0;
+    }
+    .loginName {
+        margin-top: 5%;
+        margin-bottom: 10%;
+    }
+    .leftText {
+        display: none;
+    }
 }

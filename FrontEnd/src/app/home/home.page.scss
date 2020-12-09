@@ -39,22 +39,26 @@ div.mobile {
     text-align: center;
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 8%;
+    margin-top: 17%;
 }
 
 p {
-    width: 39%;
-    margin-left: 35%;
+    width: 65%;
+    margin-left: 18%;
     margin-right: 35%;
-    margin-top: 12%;
+}
+
+.spinner {
+    margin-top: -27%;
 }
 
 .container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 25%;
 }
 
 @media (max-width: 767.98px) {
+    // for mobile
     ion-content.background {
         --background: url(../../assets/images/Conference.png) 0 0/100% 43% no-repeat;
     }
@@ -69,7 +73,7 @@ p {
         position: fixed;
         left: 0;
         right: 0;
-        top: 52%;
+        top: 37%;
         transform: translateY(-50%);
     }
     .container strong {
@@ -79,10 +83,9 @@ p {
         margin-top: 2%;
     }
     p {
-        width: 60%;
+        width: 72%;
         margin-right: 20%;
-        margin-left: 20%;
-        margin-top: 12%;
+        margin-left: 13%;
     }
     #header_logo {
         border: 4px solid #22bbea8f;
@@ -93,39 +96,20 @@ p {
         position: fixed;
         left: 0;
         right: 0;
-        top: 92%;
+        top: 81%;
         transform: translateY(-50%);
         margin-left: 20%;
         margin-right: 20%;
     }
-}
-
-.divider {
-    display: flex;
-    &:before,
-    &:after {
-        content: "";
-        flex: 1;
+    .spinner {
+        margin-top: -54%;
     }
 }
 
-.line {
-    align-items: center;
-    margin: 1em -1em;
-    color: #cccccc;
-    margin-top: -42%;
-    &:before,
-    &:after {
-        height: 1px;
-        margin: 0 1em;
-    }
-}
-
-.one-line {
-    &:before,
-    &:after {
-        background: #cccccc;
-        margin-top: 10%;
+@media only screen and (min-width: 768px) {
+    // for Ipad
+    .container {
+        margin-top: 57%;
     }
 }
 
