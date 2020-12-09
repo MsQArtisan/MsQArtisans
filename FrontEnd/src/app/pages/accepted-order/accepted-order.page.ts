@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./accepted-order.page.scss'],
 })
 export class AcceptedOrderPage implements OnInit {
+  public shouldDisable:boolean=true;
   public userId;
   public locationToPass;
   public partialUser;
@@ -42,6 +43,11 @@ export class AcceptedOrderPage implements OnInit {
       this.jobOffer.notes = this.partialUser.notes
     })
   }
+  // ionViewDidLoad() {
+  //   setTimeout(x => {
+  //     this.shouldDisable=false;
+  //   }, 30000)//30 seconds
+// }
 
   addDataToDatabase() {
     this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.jobOffer }).subscribe((data) => {
@@ -51,7 +57,9 @@ export class AcceptedOrderPage implements OnInit {
     })
   }
   cancel() {
-    this.http.navigate(['job-orders'])
+    this.http.navigate(['job-orders']);
+    // if(this.setTime)
+
   }
 
   location() {

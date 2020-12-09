@@ -54,7 +54,7 @@ p {
 
 .container {
     text-align: center;
-    margin-top: 25%;
+    margin-top: 15%;
 }
 
 @media (max-width: 767.98px) {
@@ -73,7 +73,7 @@ p {
         position: fixed;
         left: 0;
         right: 0;
-        top: 37%;
+        top: 39%;
         transform: translateY(-50%);
     }
     .container strong {
@@ -106,13 +106,12 @@ p {
     }
 }
 
-@media only screen and (min-width: 768px) {
-    // for Ipad
-    .container {
-        margin-top: 57%;
-    }
-}
-
+// @media only screen and (min-width: 768px) {
+//     // for Ipad
+//     .container {
+//         margin-top: 57%;
+//     }
+// }
 .loader {
     margin: 50% auto;
     font-size: 25px;

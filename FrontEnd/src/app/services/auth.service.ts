@@ -163,4 +163,8 @@ export class AuthService {
   getCustomersId():Observable<any>{
     return this.http.get<any>(`${this.url}/api/getId`)
   }
+
+  getStatistics():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getStat`)
+  }
 }
