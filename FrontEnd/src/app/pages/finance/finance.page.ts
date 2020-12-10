@@ -11,17 +11,15 @@ export class FinancePage implements OnInit {
   @ViewChild('barGraph', { static: true }) barCanvas: ElementRef;
 
   public data
-  public hideStats = false
+  public hideStats= true
 
   public barChart: Chart
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getStatistics().subscribe((data)=>{
+    this.authService.getStatistics().subscribe((data) => {
       this.data = data.data
-      console.log(data);
-      
     })
 
   }
@@ -67,6 +65,7 @@ export class FinancePage implements OnInit {
         }
       }
     })
-
+    
   }
+ 
 }

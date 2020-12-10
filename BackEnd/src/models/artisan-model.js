@@ -67,6 +67,12 @@ var ArtisansSchema = new mongoose.Schema({
         type: String
 
     },
+    ratings: {
+        type: String
+    },
+    suki: {
+        type: String
+    }
 });
 
 ArtisansSchema.pre('save', function(next) {
