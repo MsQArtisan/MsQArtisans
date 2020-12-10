@@ -167,4 +167,9 @@ export class AuthService {
   getStatistics():Observable<any>{
     return this.http.get<any>(`${this.url}/api/getStat`)
   }
+
+  getReviews():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reviews`)
+  }
+
 }

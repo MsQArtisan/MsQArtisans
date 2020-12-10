@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
 var ArtisansSchema = new mongoose.Schema({
@@ -29,10 +30,7 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    // confirmPassword: {
-    //     type: String,
-    //     required: 'confirm password is required'
-    // },
+
     selfie: {
         type: String,
         required: 'selfie is required'
@@ -67,12 +65,10 @@ var ArtisansSchema = new mongoose.Schema({
         type: String
 
     },
-    ratings: {
-        type: String
-    },
-    suki: {
-        type: String
-    }
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Reviews'
+    }]
 });
 
 ArtisansSchema.pre('save', function(next) {

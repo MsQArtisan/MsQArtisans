@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from "../../services/auth.service"
+
 @Component({
   selector: 'app-user-ratings',
   templateUrl: './user-ratings.page.html',
@@ -13,9 +15,14 @@ dis= 0;
 very_dis= 0;
 
 
-  constructor() { }
+  constructor( 
+    private authService: AuthService,
+   ) { }
 
   ngOnInit() {
+    this.authService.getReviews().subscribe((reviews:any)=>{
+      console.log(reviews);
+    })
   }
 
 }

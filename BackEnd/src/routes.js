@@ -3,6 +3,7 @@ var express = require('express'),
 var userController = require('./controller/artisans-controller');
 var orderController = require('./controller/orders-controller');
 var statisticController = require('./controller/statistic-controller');
+var reviewsController = require('./controller/reviews-controller');
 
 var AuthCtrl = require('./controller/resetPassword-controller');
 var imageCtrl = require('./controller/addImage-controller');
@@ -14,6 +15,8 @@ routes.post('/account', userController.getUser);
 routes.post('/jobOrdersData', userController.addJobOrders);
 routes.post('/allJobsAccepted', userController.allJobAccepted);
 routes.post('/jobsToDelete', userController.deleteItem);
+
+routes.get('/reviews', reviewsController.getReviews);
 
 routes.get('/getNewOrder', orderController.getOrders);
 routes.get('/getCustomersName', orderController.getCustomersName);

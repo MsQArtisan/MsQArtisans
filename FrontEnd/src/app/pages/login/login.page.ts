@@ -33,6 +33,7 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     this.authService.login(this.credentialsForm).subscribe((data) => {
+      
       this.situationHandler = data
       if (this.situationHandler.msg == 'email') {
         this.emailMessage = true

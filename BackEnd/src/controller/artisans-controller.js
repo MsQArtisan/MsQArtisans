@@ -63,16 +63,6 @@ exports.getUser = (req, res) => {
             }
         });
     }
-    // exports.addJobOrders = (req, res) => {
-    //     if (req.body.state == "accept") {
-    //         jobArray.push({ email: emailholder, data: req.body.jobOffer })
-    //     } else if (req.body.state == "completed") {
-    //         completedJob.push({ email: emailholder, data: req.body.jobOffer })
-    //     } else {
-    //         rejectedJob.push({ email: emailholder, data: req.body.jobOffer })
-    //     }
-    //     res.send(true)
-    // }
 
 exports.addJobOrders = (req, res) => {
     if (req.body.state == "accept") {
@@ -97,16 +87,6 @@ exports.addJobOrders = (req, res) => {
     res.send(true)
 }
 
-// exports.allJobAccepted = (req, res) => {
-//     if (req.body.state == "accept") {
-//         res.send({jobArray})
-//     } else if (req.body.state == "completed") {
-//         res.send(completedJob)
-//     } else {
-//         res.send(rejectedJob)
-//     }
-// }
-
 exports.allJobAccepted = (req, res) => {
     if (req.body.state == "accept") {
         res.send({ state: 'accept', jobs: jobArray })
@@ -120,3 +100,4 @@ exports.allJobAccepted = (req, res) => {
 exports.deleteItem = (req, res) => {
     jobArray.splice(req.body.index, 1)
 }
+

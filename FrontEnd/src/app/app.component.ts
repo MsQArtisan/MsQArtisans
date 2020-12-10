@@ -29,7 +29,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
- 
+      
       this.auth.authenticationState.subscribe(state => {
         if (state) {
           this.router.navigate(['job-orders']);
