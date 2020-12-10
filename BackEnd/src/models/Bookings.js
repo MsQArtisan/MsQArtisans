@@ -30,8 +30,10 @@ let Booking = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: Customers,
     }
-}, {
-    timestamps: true
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 module.exports = mongoose.model('Bookings', Booking)

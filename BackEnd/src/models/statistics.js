@@ -35,4 +35,5 @@ var statisticsSchema = new mongoose.Schema({
 
     }]
 })
+
 module.exports = mongoose.model('statistics', statisticsSchema);

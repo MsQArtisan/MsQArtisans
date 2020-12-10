@@ -29,10 +29,6 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    // confirmPassword: {
-    //     type: String,
-    //     required: 'confirm password is required'
-    // },
     selfie: {
         type: String,
         required: 'selfie is required'
@@ -69,15 +65,15 @@ var ArtisansSchema = new mongoose.Schema({
     },
 });
 
-ArtisansSchema.pre('save', function(next) {
+ArtisansSchema.pre('save', function (next) {
     var artisan = this;
 
     if (!artisan.isModified('password')) return next();
 
-    bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.genSalt(10, function (err, salt) {
         if (err) return next(err);
 
-        bcrypt.hash(artisan.password, salt, function(err, hash) {
+        bcrypt.hash(artisan.password, salt, function (err, hash) {
             if (err) return next(err);
 
             artisan.password = hash;
@@ -86,7 +82,7 @@ ArtisansSchema.pre('save', function(next) {
     });
 });
 
-ArtisansSchema.methods.comparePassword = function(candidatePassword, cb) {
+ArtisansSchema.methods.comparePassword = function (candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
         if (err) return cb(err);
         cb(null, isMatch);

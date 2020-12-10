@@ -1,26 +1,59 @@
-.divider {
+@import "../../../global.scss";
+
+#errorMsg {
+    color: $danger;
+    font-size: 15px;
+}
+
+#successMsg {
+    color: $success;
+    font-size: 15px;
+}
+
+.help-block {
+    margin-top: 10px;
+    color: $danger;
+    font-size: 15px;
+}
+
+p, button{
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-style: oblique;
+}
+.reset_text {
+    color: $danger;
+}
+h4 {
+    font-weight: bold
+}
+
+.user_card {
+    border: 2px solid rgb(6, 170, 235);
+    background: $light;
+    position: relative;
     display: flex;
-    &:before,
-    &:after {
-        content: "";
-        flex: 1;
-    }
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.line {
-    align-items: center;
-    margin: 1em -1em;
-    color: #cccccc;
-    &:before,
-    &:after {
-        height: 1px;
-        margin: 0 1em;
-    }
+.user_card1 {
+    height: auto;
+    width: auto;
+    max-height: 800%;
+    max-width: 375%;
+    margin-top: 8%;
 }
 
-.one-line {
-    &:before,
-    &:after {
-        background: #cccccc;
-    }
+.email_card {
+    height: 150px;
+    max-width: 350px;
+    margin-top: 1%;
+}
+
+.title_card {
+    height: 180px;
+    max-width: 350px;
+    margin-top: 1%;
 }

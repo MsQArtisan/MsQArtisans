@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ServiceService } from '../service.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ResetPasswordService } from '../reset-password.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-response-reset-password',
@@ -9,20 +9,19 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./response-reset-password.component.scss']
 })
 export class ResponseResetPasswordComponent implements OnInit {
+
   errorMessage: string;
   successMessage: string;
   resetToken: null;
   CurrentState: any;
   IsResetFormValid = true;
 
-  constructor(private authService: ServiceService,
-    private router: Router,
+  constructor(private authService: ResetPasswordService,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
       this.CurrentState = 'Wait';
       this.route.params.subscribe(params => {
       this.resetToken = params.token;
-      console.log(this.resetToken);
       });
      }
 
@@ -35,7 +34,6 @@ export class ResponseResetPasswordComponent implements OnInit {
     this.authService.ValidPasswordToken({ resettoken: this.resetToken }).subscribe(
       data => {
         this.CurrentState = 'Verified';
-        console.log(data)
       },
       err => {
         this.CurrentState = 'NotVerified';
@@ -47,8 +45,8 @@ export class ResponseResetPasswordComponent implements OnInit {
     this.ResponseResetForm = this.fb.group(
       {
         resettoken: [this.resetToken],
-        newPassword: ['', [Validators.required, Validators.minLength(4)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(4)]]
+        newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
       }
     );
   }
@@ -72,7 +70,6 @@ export class ResponseResetPasswordComponent implements OnInit {
 
 
   ResetPassword(form) {
-    console.log(this.ResponseResetForm.value)
     if (form.valid) {
       this.IsResetFormValid = true;
       this.authService.newPassword(this.ResponseResetForm.value).subscribe(
@@ -81,7 +78,6 @@ export class ResponseResetPasswordComponent implements OnInit {
           this.successMessage = data.message;
           setTimeout(() => {
             this.successMessage = null;
-            // this.router.navigate(['http://localhost:4200/api/login']);
           }, 3000);
         },
         err => {
@@ -93,4 +89,5 @@ export class ResponseResetPasswordComponent implements OnInit {
     } else { this.IsResetFormValid = false; }
   }
 }
+
 

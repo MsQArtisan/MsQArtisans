@@ -19,7 +19,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/responseResetPassword'),
+      dir: require('path').join(__dirname, './coverage/response-reset-password'),
       subdir: '.',
       reporters: [
         { type: 'html' },

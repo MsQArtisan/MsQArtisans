@@ -53,26 +53,17 @@ exports.loginUser = (req, res) => {
         });
     })
 };
+
 exports.getUser = (req, res) => {
 
-        User.find({ _id: req.body.id }, (err, user) => {
-            if (err) {
-                return res.send({ error: err, status: false })
-            } else {
-                return res.send({ status: true, data: user })
-            }
-        });
-    }
-    // exports.addJobOrders = (req, res) => {
-    //     if (req.body.state == "accept") {
-    //         jobArray.push({ email: emailholder, data: req.body.jobOffer })
-    //     } else if (req.body.state == "completed") {
-    //         completedJob.push({ email: emailholder, data: req.body.jobOffer })
-    //     } else {
-    //         rejectedJob.push({ email: emailholder, data: req.body.jobOffer })
-    //     }
-    //     res.send(true)
-    // }
+    User.find({ _id: req.body.id }, (err, user) => {
+        if (err) {
+            return res.send({ error: err, status: false })
+        } else {
+            return res.send({ status: true, data: user })
+        }
+    });
+}
 
 exports.addJobOrders = (req, res) => {
     if (req.body.state == "accept") {
@@ -96,16 +87,6 @@ exports.addJobOrders = (req, res) => {
     }
     res.send(true)
 }
-
-// exports.allJobAccepted = (req, res) => {
-//     if (req.body.state == "accept") {
-//         res.send({jobArray})
-//     } else if (req.body.state == "completed") {
-//         res.send(completedJob)
-//     } else {
-//         res.send(rejectedJob)
-//     }
-// }
 
 exports.allJobAccepted = (req, res) => {
     if (req.body.state == "accept") {

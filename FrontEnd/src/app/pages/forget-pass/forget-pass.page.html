@@ -1,28 +1,37 @@
-<ion-content>
-    <ion-card>
-        <ion-card-header>
-            <center>
-                <h2>Resetting your password</h2>
-                <span>To RESET your password, please input your email address below and hit 'RESET'. We'll then send you an instruction to follow</span>
-            </center>
-        </ion-card-header>
-        <ion-card-content>
-            <div id="errorMsg" *ngIf="errorMessage">
-                <span>{{errorMessage}}</span>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="user_card user_card1">
+            <div class="user_card title_card">
+                <h4>Resetting your password</h4>
+                <p>To reset your password, please input your email address below and hit <span class="reset_text">'RESET'</span>.
+                    We'll then send you an instruction to follow</p>
             </div>
-            <div id="successMsg" *ngIf="successMessage">
-                <span>{{successMessage}}</span>
+            <div class="user_card email_card">
+                <div id="errorMsg" *ngIf="errorMessage">
+                    <span>{{errorMessage}}</span>
+                </div>
+                <div id="successMsg" *ngIf="successMessage">
+                    <span>{{successMessage}}</span>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <form action="" [formGroup]="RequestResetForm" (ngSubmit)="RequestResetUser(RequestResetForm)">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="email" type="email"
+                                id="email" formControlName="email" />
+                        </div>
+                        <span *ngIf="!RequestResetForm.get('email').valid && !IsvalidForm" class="help-block">Please
+                            enter
+                            a valid email!</span>
+                        <div class="form-group">
+                            <button class="btn btn-outline-danger mt-3  float-right" type="submit">RESET</button>
+                            <button [routerLink]="['/login']" class="btn btn-outline-info mt-3  float-left">BACK</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form action="" [formGroup]="RequestResetForm" (ngSubmit)="RequestResetUser(RequestResetForm)">
-                <div class="form-group">
-                    <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="email" type="email" id="email"  formControlName="email" />
-                    <span *ngIf="!RequestResetForm.get('email').valid && !IsvalidForm" class="help-block">Please enter a valid email!</span>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-outline-danger mt-3 mb-5 float-right" type="submit">RESET</button>
-                    <button [routerLink]="['/login']" class="btn btn-outline-info mt-3 mb-5 float-left">Back</button>
-                </div>
-            </form>
-        </ion-card-content>
-    </ion-card>
-</ion-content>
+        </div>
+    </div>
+</div>

@@ -52,13 +52,12 @@ exports.ResetPassword = (req, res) => {
                 if (error) {
                     return console.log(error);
                 }
-                console.log('Message sent: ' + info.response);
+                // console.log('Message sent: ' + info.response);
+                console.log('Message Sent Successfully')
             });
         })
     })
 };
-
-
 
 exports.ValidPasswordToken = (req, res) => {
     if (!req.body.resettoken) {
@@ -81,7 +80,6 @@ exports.ValidPasswordToken = (req, res) => {
             });
     })
 };
-
 
 exports.NewPassword = (req, res) => {
     passwordResetToken.findOne({ resettoken: req.body.resettoken }, function (err, userToken, next) {

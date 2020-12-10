@@ -7,14 +7,5 @@ let data = [{
 }]
 
 exports.getStatistics = (req, res) => {
-        res.send({ status: true, data: data[0] })
-    }
-    // exports.getStatistics = (req, res) => {
-    //     statistics.find({}, (err, data) => {
-    //         if (err) {
-    //             res.send({ error: err, status: false })
-    //         } else {
-    //             res.send({ status: true, stat: data })
-    //         }
-    //     })
-    // }
+    res.send({ status: true, data: data[0] })
+}
