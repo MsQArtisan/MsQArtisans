@@ -10,15 +10,15 @@
 <ion-content>
     <!-- For web -->
     <div class="taskCreated">
-        <a><button class="onWeb" (click)="myOnGoingTask()">
+        <a id="going"><button class="onWeb" (click)="myOnGoingTask()">
             <ion-icon name="refresh-circle-outline"></ion-icon>
             On Going
         </button></a><br><br>
-        <a><button class="onWeb" (click)="completedTasks()">
+        <a id="completed"><button class="onWeb" (click)="completedTasks()">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
             Completed
         </button></a><br><br>
-        <a><button class="onWeb" (click)="rejectedTasks()">
+        <a id="reject"><button class="onWeb" (click)="rejectedTasks()">
             <ion-icon name="close-circle-outline"></ion-icon>
             Rejected
         </button></a>
@@ -52,8 +52,8 @@
             <li> {{value.data.phone}} </li>
             <li> {{value.data.rate}} </li>
             <li> {{value.data.schedule}} </li><br>
-            <button *ngIf="completedTask" class="onMobile">Delete Completed Task</button>
-            <button (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
+            <button *ngIf="completedTask" id="deleteTask" class="onMobile">Delete Completed Task</button>
+            <button *ngIf="!completedTask" (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
             <br><br>
         </ul>
     </div>

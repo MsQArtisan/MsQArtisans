@@ -4,8 +4,8 @@ var userController = require('./controller/artisans-controller');
 var customerController = require('./controller/customer-controller');
 var orderController = require('./controller/orders-controller');
 const AuthCtrl = require('./controller/resetPassword-controller');
-var passport = require('passport');
 
+routes.post('/logout', userController.logoutUser)
 routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.post('/account', userController.getUser);

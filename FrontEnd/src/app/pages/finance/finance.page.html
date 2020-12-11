@@ -23,7 +23,7 @@
                 <ion-label>Cash Out</ion-label>
                 <ion-icon name="card-outline"></ion-icon>
             </ion-segment-button>
-            <ion-segment-button (click)="addNumber()" value="map">
+            <ion-segment-button [routerLink]="['/cash-in']" value="map">
                 <ion-label>Cash In</ion-label>
                 <ion-icon name="wallet-outline"></ion-icon>
             </ion-segment-button>

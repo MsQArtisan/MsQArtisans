@@ -11,6 +11,7 @@ export class LoginPage implements OnInit {
   public emailMessage = false
   public passwordMessage = false
   public message = ""
+  public dataResponse;
 
   public booleanIdentify = true
   public passwordOrText = "password"
@@ -26,7 +27,16 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.credentialsForm).subscribe();
+    this.authService.login(this.credentialsForm).subscribe((data) => {
+      this.dataResponse = data
+      if(this.dataResponse.msg == "password") {
+        this.passwordMessage = true
+        this.emailMessage = false
+      }else{
+        this.emailMessage = true
+        this.passwordMessage = false
+      }
+    });
     this.resetForm()
   }
 

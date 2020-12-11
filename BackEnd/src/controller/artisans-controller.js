@@ -1,10 +1,11 @@
 var User = require('../models/artisan-model');
+var jobsFunction = require('../functions/built-in-functions')
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var loggedusers = []
 var jobArray = []
 var completedJob = []
-var rejectedJob = []
+var rejectedJob = [] 
 
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -38,7 +39,6 @@ exports.registerUser = (req, res) => {
 };
 
 exports.loginUser = (req, res) => {
-
     User.findOne({ email: req.body.email }, (err, user) => {
         if (user == null) {
             res.send({ type: false, msg: 'email' })
@@ -52,6 +52,18 @@ exports.loginUser = (req, res) => {
         }
     })
 };
+
+exports.logoutUser = (req, res) => {
+    let count = 0
+    User.findOne({_id: req.body.user}, (err, user) => {
+        loggedusers.forEach(element => {
+            if(element._id != user._id) {
+                count += 1
+            }
+        })
+        loggedusers.pop(count)
+    })
+}
 exports.getUser = (req, res) => {
     User.find({ _id: req.body.id }, (err, user) => {
 
@@ -65,6 +77,7 @@ exports.getUser = (req, res) => {
     });
 }
 exports.addJobOrders = (req, res) => {
+
     if (req.body.state == "accept") {
         loggedusers.forEach(element => {
             if(element._id == req.body.currentUser) {
@@ -86,13 +99,15 @@ exports.addJobOrders = (req, res) => {
     }
     res.send(true)
 }
+//array, request, toPassarray
 exports.allJobAccepted = (req, res) => {
+    let arrayToFront = []
     if (req.body.state == "accept") {
-        res.send({ state: 'accept', jobs: jobArray })
+        res.send({ state: 'accept', jobs: jobsFunction.module(jobArray, req.body, arrayToFront, loggedusers)})
     } else if (req.body.state == "completed") {
         res.send({ state: 'completed', jobs: completedJob })
     } else {
-        res.send({ state: 'reject', jobs: rejectedJob })
+        res.send({ state: 'reject', jobs: rejectedJob})
     }
 }
 

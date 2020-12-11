@@ -41,7 +41,7 @@ export class LocationSelectPage implements OnInit {
 
   showMap() {
     const location = new google.maps.LatLng(this.latitude, this.longitude);
-    var map = new google.maps.Map(document.getElementById('maps'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
       center: location,
       zoom: 13,
       mapTypeId: 'roadmap'

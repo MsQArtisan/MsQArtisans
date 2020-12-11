@@ -85,18 +85,8 @@ export class AuthService {
       window.location.reload()
     });
   }
-
-  getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('You are not authorized for this!');
-          this.logout();
-        }
-        throw new Error(e);
-      })
-    )
+  popTheUserAfterLogout(){
+    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
   }
 
   isAuthenticated() {

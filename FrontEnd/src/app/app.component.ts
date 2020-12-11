@@ -47,6 +47,7 @@ export class AppComponent {
 
   
   logout() {
+    this.authService.popTheUserAfterLogout().subscribe()
     this.authService.logout();
     this.storage.remove('access_token');
  

@@ -3,6 +3,7 @@ import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AuthService } from '../../services/auth.service'
 import { Router, ActivatedRoute } from "@angular/router";
+import Swal  from 'sweetalert2';
 
 declare var google: any
 
@@ -61,6 +62,12 @@ export class AcceptedOrderPage implements OnInit {
   addDataToDatabase() {
     this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.jobOffer }).subscribe((data) => {
       if (data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Job Successfully Added to your on going job in tracker!',
+          showConfirmButton: false,
+          timer: 1000
+        })
         this.http.navigate(['job-orders'])
       }
     })
@@ -140,6 +147,4 @@ export class AcceptedOrderPage implements OnInit {
       map.fitBounds(bounds);
     });
   }
-
-
 }

@@ -14,6 +14,16 @@
             <input type="checkbox" checked (click)="hideAndShow()">
             <span class="slider round"></span>
         </label>
+        <div class="checkbox">
+            <p>
+                <input type="radio" name="choice" (click)="allData('Pending')">
+                Available
+            </p>
+            <p>
+                <input type="radio" name="choice" (click)="allData('all')" checked>
+                All
+            </p>
+        </div>
     </div>
 
     <br><br><br><br>
@@ -31,39 +41,78 @@
 
     <ion-grid *ngIf=apple>
         <div class="cardContent" *ngFor="let item of customerDetails">
-            <ion-card (click)="passToOrders(item)" class="card">
-                <ion-card-header>
-                    <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                    <ion-card-subtitle style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                        Customer Name
-                    </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
+            <div *ngIf="item.status === 'Pending'">
+                <ion-card (click)="passToOrders(item)" style="background-color: rgb(255, 255, 255);" class="card">
+                    <ion-card-header>
+                        <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                        <ion-card-subtitle
+                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            Customer Name
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
 
-                    <section>
-                        <ion-icon name="people"></ion-icon>
-                        <span>{{item.service_booking}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="time"></ion-icon>
-                        <span>{{item.updatedAt | date:'short'}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="location"></ion-icon>
-                        <span>{{item.service_location}}</span>
-                    </section>
-                    <section>
-                        <ion-icon name="mail"></ion-icon>
-                        <span>{{item.notes}}</span>
-                    </section>
+                        <section>
+                            <ion-icon name="people"></ion-icon>
+                            <span>{{item.service_booking}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="time"></ion-icon>
+                            <span>{{item.updatedAt | date:'short'}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="location"></ion-icon>
+                            <span>{{item.service_location}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="mail"></ion-icon>
+                            <span>{{item.notes}}</span>
+                        </section>
 
-                    <div class="footer">
-                        <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
+                        <div class="footer">
+                            <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
 
-                    </div>
+                        </div>
 
-                </ion-card-content>
-            </ion-card>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngIf="item.status !== 'Pending'">
+                <ion-card (click)="passToOrders(item)" id="onGoingData" class="card">
+                    <ion-card-header>
+                        <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                        <ion-card-subtitle
+                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            Customer Name
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+
+                        <section>
+                            <ion-icon name="people"></ion-icon>
+                            <span>{{item.service_booking}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="time"></ion-icon>
+                            <span>{{item.updatedAt | date:'short'}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="location"></ion-icon>
+                            <span>{{item.service_location}}</span>
+                        </section>
+                        <section>
+                            <ion-icon name="mail"></ion-icon>
+                            <span>{{item.notes}}</span>
+                        </section>
+
+                        <div class="footer">
+                            <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
+
+                        </div>
+
+                    </ion-card-content>
+                </ion-card>
+            </div>
         </div>
     </ion-grid>
 </ion-content>
