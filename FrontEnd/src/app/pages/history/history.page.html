@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-        <ion-title class="header">History</ion-title>
+        <ion-title class="header_toolbar">History</ion-title>
         <ion-buttons slot="start">
             <ion-back-button [routerLink]="['/finance']"></ion-back-button>
         </ion-buttons>
@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="dropdown">
+    <!-- <div class="dropdown">
         <select class="cash" id="sel1">
         <option class="opp">Cash In</option>
         <option class="opp">Cash Out</option>
@@ -19,7 +19,19 @@
             <option>January</option>
             <option>February</option>
         </select>
+    </div> -->
+
+    <div class="wrapper">
+        <div class="header">
+            <h1 class="header__title">Recent Transactions</h1>         
+        </div>  
+        <div class="cards"  *ngFor="let i of transactions">    
+            <h4 class="type">{{i.type}}</h4>
+            <div class="content">
+                <h6>By: {{i.name}}</h6>
+                <h6>Date: {{i.date}}</h6>
+                <span class="amount">{{i.amount}} pesos</span>                    
+            </div>
+        </div>      
     </div>
-
-
 </ion-content>
