@@ -16,6 +16,7 @@ export class TrackerPage implements OnInit {
   public noTaskShow = false
 
   public completedTask = false
+  public rejectedTask = false
   public jobsOffered;
   public onGoingJob = [];
 
@@ -34,6 +35,7 @@ export class TrackerPage implements OnInit {
   }
   
   myOnGoingTask() {
+    this.rejectedTask = false
     this.onGoingJob.length = 0
     this.functions.onGoingTask(this.authService, {state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = false
@@ -56,9 +58,12 @@ export class TrackerPage implements OnInit {
     this.onGoingJob.length = 0
     this.functions.completedTask(this.authService, {state: "completed"}, this.onGoingJob)
     this.completedTask = true
+    this.rejectedTask = false
   }
 
   rejectedTasks() {
+    this.completedTask = true
+    this.rejectedTask = true
     this.onGoingJob.length = 0
     this.functions.rejectedTask(this.authService, {state: "rejected"}, this.onGoingJob)
   }

@@ -39,8 +39,17 @@ li:nth-child(even) {
     margin-top: 5%;
     width: 50%;
     margin-bottom: 5%;
+    min-width: 500px;
 }
-
+.rejectedTasks {
+    background-color: rgba(211, 211, 211, 0.5);
+    padding: 20px;
+    margin-left: 20%;
+    margin-top: 5%;
+    width: 50%;
+    margin-bottom: 5%;
+    min-width: 500px;
+}
 .onMobile {
     outline: none;
     padding: 15px;
@@ -54,6 +63,16 @@ li:nth-child(even) {
 }
 .topnavButton {
     display: none;
+}
+.rejectToRestore {
+    outline: none;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgb(255, 204, 0);
+}
+.rejectToRestore:active {
+    background-color: rgb(192, 157, 15);
 }
 
 
@@ -92,12 +111,6 @@ li:nth-child(even) {
   .onWeb:active {
     background-color: rgba(117, 117, 117, 0.1);      
   }
-  .taskShow {
-      height: 50%;
-      text-align: center;
-      padding-top: 5%;
-      margin-right: 7%;
-  }
   h1 {
     font-weight: 100;
   }
@@ -110,6 +123,12 @@ li:nth-child(even) {
 }
   
   @media only screen and (max-width: 768px) {
+      ul {
+          padding: 0;
+          width: 70%;
+          margin: 0;
+          margin-left: 6%;
+      }
     .taskCreated {
         display: none;
     }
@@ -118,12 +137,11 @@ li:nth-child(even) {
         position: relative;
     }
     .listOfAcceptedJobs {
-        width: 100%;
+        padding: 0;
+        padding-top: 3%;
+        width: auto;
         margin: 0;
         margin-top: 20%;
     }
-    .taskShow {
-        padding-top: 50%;
-        margin: 0;
-    }
+
 }

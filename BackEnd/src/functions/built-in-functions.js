@@ -11,18 +11,3 @@ exports.module = (jobsArray, request, arrayPassToFront, loggedUsers) => {
     })
     return arrayPassToFront
 }
-
-exports.completedJobs = () => {
-
-}
-
-// let arrayToFront = []
-// loggedusers.forEach(val => {
-//     if(val._id == req.body.user) {
-//         jobArray.forEach(element => {
-//             if(element.email == val.email) {
-//                 arrayToFront.push(element)
-//             }
-//         });
-//     }
-// });

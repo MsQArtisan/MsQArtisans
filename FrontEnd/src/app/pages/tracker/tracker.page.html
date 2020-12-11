@@ -11,17 +11,17 @@
     <!-- For web -->
     <div class="taskCreated">
         <a id="going"><button class="onWeb" (click)="myOnGoingTask()">
-            <ion-icon name="refresh-circle-outline"></ion-icon>
-            On Going
-        </button></a><br><br>
+                <ion-icon name="refresh-circle-outline"></ion-icon>
+                On Going
+            </button></a><br><br>
         <a id="completed"><button class="onWeb" (click)="completedTasks()">
-            <ion-icon name="checkmark-circle-outline"></ion-icon>
-            Completed
-        </button></a><br><br>
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Completed
+            </button></a><br><br>
         <a id="reject"><button class="onWeb" (click)="rejectedTasks()">
-            <ion-icon name="close-circle-outline"></ion-icon>
-            Rejected
-        </button></a>
+                <ion-icon name="close-circle-outline"></ion-icon>
+                Rejected
+            </button></a>
     </div>
     <!-- Icon top -->
     <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
@@ -42,22 +42,37 @@
 
         </ion-segment-button>
     </ion-segment>
-    <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
-        <ul>
-            <p class="customerName"> {{value.data.customer}} </p>
-            <li> {{value.data.email}} </li>
-            <li>{{value.data.jobTitle}}</li>
-            <li> {{value.data.location}} </li>
-            <li> {{value.data.notes}} </li>
-            <li> {{value.data.phone}} </li>
-            <li> {{value.data.rate}} </li>
-            <li> {{value.data.schedule}} </li><br>
-            <button *ngIf="completedTask" id="deleteTask" class="onMobile">Delete Completed Task</button>
-            <button *ngIf="!completedTask" (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
-            <br><br>
-        </ul>
+    <div *ngIf="!rejectedTask">
+        <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
+            <ul>
+                <p class="customerName"> {{value.data.author.name}} </p>
+                <li> {{value.data.author.email}} </li>
+                <li>{{value.data.service_booking}}</li>
+                <li> {{value.data.service_location}} </li>
+                <li> {{value.data.notes}} </li>
+                <li> {{value.data.author.phone}} </li>
+                <li> {{value.data.cost}} </li>
+                <li> {{value.data.updatedAt}} </li><br>
+                <button *ngIf="completedTask" id="deleteTask" class="onMobile">Delete Completed Task</button>
+                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
+                <br><br>
+            </ul>
+        </div>
     </div>
-    <div class="taskShow" *ngIf="noTaskShow">
-        <h1>No task to show</h1>
+    <div *ngIf="rejectedTask">
+        <div class="rejectedTasks" *ngFor="let value of onGoingJob">
+            <ul>
+                <p class="customerName"> {{value.data.author.name}} </p>
+                <li> {{value.data.author.email}} </li>
+                <li>{{value.data.jobTitle}}</li>
+                <li> {{value.data.service_location}} </li>
+                <li> {{value.data.notes}} </li>
+                <li> {{value.data.author.phone}} </li>
+                <li> {{value.data.cost}} </li>
+                <li> {{value.data.updatedAt}} </li><br>
+                <button class="rejectToRestore">Restore Task</button>
+                <br><br>
+            </ul>
+        </div>
     </div>
 </ion-content>

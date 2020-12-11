@@ -49,7 +49,6 @@ export class JobOrdersPage implements OnInit {
         backdropDismiss: false,
       });
   
-  
       modal.present();
       this.dataFromModal = await modal.onWillDismiss();
     }else {

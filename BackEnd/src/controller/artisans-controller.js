@@ -1,11 +1,12 @@
 var User = require('../models/artisan-model');
+var Orders = require('../models/Bookings')
 var jobsFunction = require('../functions/built-in-functions')
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var loggedusers = []
 var jobArray = []
 var completedJob = []
-var rejectedJob = [] 
+var rejectedJob = []
 
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -45,7 +46,7 @@ exports.loginUser = (req, res) => {
         } else {
             if (user.confirmPassword == req.body.password) {
                 loggedusers.push(user)
-                res.send({ type: true, token: createToken(user) , userId: user._id})
+                res.send({ type: true, token: createToken(user), userId: user._id })
             } else {
                 res.send({ type: false, msg: 'password' })
             }
@@ -55,9 +56,9 @@ exports.loginUser = (req, res) => {
 
 exports.logoutUser = (req, res) => {
     let count = 0
-    User.findOne({_id: req.body.user}, (err, user) => {
+    User.findOne({ _id: req.body.user }, (err, user) => {
         loggedusers.forEach(element => {
-            if(element._id != user._id) {
+            if (element._id != user._id) {
                 count += 1
             }
         })
@@ -77,25 +78,26 @@ exports.getUser = (req, res) => {
     });
 }
 exports.addJobOrders = (req, res) => {
-
     if (req.body.state == "accept") {
         loggedusers.forEach(element => {
-            if(element._id == req.body.currentUser) {
+            if (element._id == req.body.currentUser) {
                 jobArray.push({ email: element.email, data: req.body.jobOffer })
             }
-        });
+        })
+        Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, newStat) => {
+        })
     } else if (req.body.state == "completed") {
         loggedusers.forEach(element => {
-            if(element._id == req.body.currentUser) {
+            if (element._id == req.body.currentUser) {
                 completedJob.push({ email: element.email, data: req.body.jobOffer })
             }
         });
     } else {
         loggedusers.forEach(element => {
-            if(element._id == req.body.currentUser) {
+            if (element._id == req.body.currentUser) {
                 rejectedJob.push({ email: element.email, data: req.body.jobOffer })
             }
-        });
+        })
     }
     res.send(true)
 }
@@ -103,11 +105,11 @@ exports.addJobOrders = (req, res) => {
 exports.allJobAccepted = (req, res) => {
     let arrayToFront = []
     if (req.body.state == "accept") {
-        res.send({ state: 'accept', jobs: jobsFunction.module(jobArray, req.body, arrayToFront, loggedusers)})
+        res.send({ state: 'accept', jobs: jobsFunction.module(jobArray, req.body, arrayToFront, loggedusers) })
     } else if (req.body.state == "completed") {
         res.send({ state: 'completed', jobs: completedJob })
     } else {
-        res.send({ state: 'reject', jobs: rejectedJob})
+        res.send({ state: 'reject', jobs: rejectedJob })
     }
 }
 

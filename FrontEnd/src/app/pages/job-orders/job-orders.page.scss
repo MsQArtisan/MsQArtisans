@@ -75,7 +75,7 @@ ion-card {
     float: left;
     text-align: center;
     margin: 3%;
-    max-width: 100%;
+    min-width: 300px;
 }
 .card {
     transition: 0.3s;

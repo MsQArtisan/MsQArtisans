@@ -8,6 +8,7 @@ import { AuthService } from "../../services/auth.service"
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
+  public jobOffer;
   @Input() id : string;
   @Input() name: string;
   @Input() service_booking: string;
@@ -20,6 +21,9 @@ export class OrdersPage implements OnInit {
   constructor(private router: Router, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getCustomersData(this.id).subscribe((data) => {
+      this.jobOffer = data
+    })
   }
 
   closeModal() {

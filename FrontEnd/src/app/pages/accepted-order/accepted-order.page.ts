@@ -55,12 +55,13 @@ export class AcceptedOrderPage implements OnInit {
       this.jobOffer.location = this.partialUser.service_location
       this.jobOffer.rate = this.partialUser.cost
       this.jobOffer.notes = this.partialUser.notes
+      this.partialUser.status = "onGoing"
     })
     
   }
 
   addDataToDatabase() {
-    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.jobOffer }).subscribe((data) => {
+    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',
