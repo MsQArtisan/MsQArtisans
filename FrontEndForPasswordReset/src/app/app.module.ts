@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResponseResetPasswordComponent } from './response-reset-password/response-reset-password.component';
 
@@ -12,10 +13,10 @@ import { ResponseResetPasswordComponent } from './response-reset-password/respon
     ResponseResetPasswordComponent
   ],
   imports: [
-    FormsModule,
     BrowserModule,
-    ReactiveFormsModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [HttpClient],

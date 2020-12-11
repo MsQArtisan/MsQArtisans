@@ -16,14 +16,14 @@ exports.ResetPassword = (req, res) => {
             return res.status(400).json({ message: 'The user/email does not exist' });
         }
         var resettoken = new passwordResetToken({ _userId: user._id, resettoken: crypto.randomBytes(16).toString('hex') });
-        resettoken.save(function (err) {
+        resettoken.save(function(err) {
             if (err) {
                 return res.status(500).send({ msg: err.message });
             }
             passwordResetToken.find({
-                _userId: user._id,
-                resettoken: { $ne: resettoken.resettoken }
-            })
+                    _userId: user._id,
+                    resettoken: { $ne: resettoken.resettoken }
+                })
                 .remove()
                 .exec()
 
@@ -48,7 +48,7 @@ exports.ResetPassword = (req, res) => {
                     'http://localhost:4200/response-reset-password/' + resettoken.resettoken + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             }
-            transporter.sendMail(mailOptions, function (error, info) {
+            transporter.sendMail(mailOptions, function(error, info) {
                 if (error) {
                     return console.log(error);
                 }
@@ -73,8 +73,8 @@ exports.ValidPasswordToken = (req, res) => {
                 .json({ message: 'Invalid URL Daw Cya' });
         }
         User.findOne({ _id: data._userId }).then(() => {
-            res.status(200).json({ message: 'Token verified successfully.' });
-        })
+                res.status(200).json({ message: 'Token verified successfully.' });
+            })
             .catch((err) => {
                 console.log(err)
                 return res.status(500).send({ msg: err.message });
@@ -84,13 +84,13 @@ exports.ValidPasswordToken = (req, res) => {
 
 
 exports.NewPassword = (req, res) => {
-    passwordResetToken.findOne({ resettoken: req.body.resettoken }, function (err, userToken, next) {
+    passwordResetToken.findOne({ resettoken: req.body.resettoken }, function(err, userToken, next) {
         if (!userToken) {
             return res
                 .status(409)
                 .json({ message: 'Token has expired' });
         }
-        User.findOne({ _id: userToken._userId }, function (err, userEmail, next) {
+        User.findOne({ _id: userToken._userId }, function(err, userEmail, next) {
             if (!userEmail) {
                 return res
                     .status(409)
@@ -105,7 +105,7 @@ exports.NewPassword = (req, res) => {
                 }
                 userEmail.password = hash;
                 User.findByIdAndUpdate(userToken._userId, { password: userEmail.password },
-                    function (err, data) {
+                    function(err, data) {
                         if (err) {
                             return res
                                 .status(400)
@@ -123,6 +123,3 @@ exports.NewPassword = (req, res) => {
 
     })
 }
-
-
-

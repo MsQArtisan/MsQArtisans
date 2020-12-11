@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forget-pass',
@@ -19,9 +20,20 @@ export class ForgetPassPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    public alertController: AlertController
    ) {
 
   }
+
+  async errorAlert() {
+    const alert = await this.alertController.create({
+      header: "Email does not exist",
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+ 
 
   RequestResetForm: FormGroup;
   ngOnInit() {
@@ -39,7 +51,7 @@ export class ForgetPassPage implements OnInit {
       this.authService.requestReset(this.RequestResetForm.value).subscribe(
         data => {
           this.RequestResetForm.reset();
-          this.successMessage = "Reset password link send to email sucessfully.";
+          this.successMessage = "Reset password link send to your email sucessfully.";
           setTimeout(() => {
             this.successMessage = null;
             this.router.navigate(['login']);
@@ -48,8 +60,8 @@ export class ForgetPassPage implements OnInit {
         err => {
 
           if (err.error.message) {
-            console.log("error mga fre")
-            this.errorMessage = err.error.message;
+            this.errorAlert()
+            // this.errorMessage = err.error.message;
           }
         }
       );

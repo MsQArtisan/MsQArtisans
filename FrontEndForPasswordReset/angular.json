@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "responseResetPassword"
+  "defaultProject": "responseResetPassword",
+  "cli": {
+    "analytics": "79f09686-24a9-4e54-9bb4-51324646754c"
+  }
 }

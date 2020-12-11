@@ -52,8 +52,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/acc-info/acc-info.module').then(m => m.AccInfoPageModule)
   },
   {
-    path: 'location-select',
-    loadChildren: () => import('./pages/location-select/location-select.module').then(m => m.LocationSelectPageModule)
+    path: 'location-select/:place',
+    loadChildren: () => import('./pages/location-select/location-select.module').then( m => m.LocationSelectPageModule)
   },
   {
     path: 'accepted-order/:id',

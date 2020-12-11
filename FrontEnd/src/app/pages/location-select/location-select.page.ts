@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild ,Input, Output} from '@angular/core';
+
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {  Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute } from "@angular/router";
 
 declare var google: any;
 
@@ -12,8 +12,7 @@ declare var google: any;
   styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
-  id:String = "";
-  location="";
+  public location = "";
 
   @ViewChild('maps', { static: true })
   mapRef: ElementRef;
@@ -24,11 +23,9 @@ export class LocationSelectPage implements OnInit {
   public static lon;
 
   constructor(
-    private activeRute: ActivatedRoute,
     public navCtrl: NavController,
     public geo: Geolocation,
-    public router: Router,
-    private authService: AuthService,
+    private router: ActivatedRoute
   ) {
     this.getGeoLocation();
   }
@@ -45,7 +42,7 @@ export class LocationSelectPage implements OnInit {
 
   showMap() {
     const location = new google.maps.LatLng(this.latitude, this.longitude);
-    var map = new google.maps.Map(document.getElementById('maps'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
       center: location,
       zoom: 13,
       mapTypeId: 'roadmap'
@@ -107,14 +104,8 @@ export class LocationSelectPage implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getCustomersId().subscribe((data) => {
-      this.id = data.id
-    })
-
-  }
-  toAccepted(){
-    this.router.navigate(['/accepted-order/'+this.id])
-    
+    let place = this.router.snapshot.paramMap.get("place")
+    this.location = place
   }
 
 }

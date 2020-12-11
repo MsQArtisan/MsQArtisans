@@ -63,6 +63,7 @@ section {
 }
 
 button {
+    outline: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 17px;
     color: rgb(92, 92, 92);
@@ -76,7 +77,68 @@ button {
     background-color: rgb(60, 223, 87);
 }
 
+.buttonAccept:active {
+    background-color: rgb(54, 153, 71);
+}
+
 .buttonPass {
     background-color: rgb(255, 107, 107);
     color: rgb(235, 235, 235);
+}
+
+.buttonPass:active {
+    background-color: rgb(167, 63, 63);
+}
+
+.cardContent {
+    width: 40%;
+    margin-left: 3%;
+}
+
+.full-width {
+    text-align: center;
+    width: 100%;
+}
+
+.barrier {
+    margin-top: 5%;
+}
+
+.map {
+    float: right;
+    position: fixed;
+    margin-left: 45%;
+}
+
+.location {
+    display: none;
+}
+
+.toolbar {
+    width: 41%;
+    margin-left: 2%;
+}
+
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: */
+    .toolbar {
+        width: 100%;
+        margin: 0;
+    }
+    .cardContent {
+        width: 100%;
+        margin: 0;
+    }
+    .barrier {
+        display: none;
+    }
+    .full-width {
+        width: 100%;
+    }
+    .location {
+        display: block;
+    }
+    .map {
+        display: none;
+    }
 }
