@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
+  public valueChosen = ""
+
   public apple: boolean = true;
 
   public dataFromModal;
@@ -36,12 +38,16 @@ export class JobOrdersPage implements OnInit {
     }
   }
 
+  selectedOption(){
+    console.log(this.valueChosen)
+  }
+
   async passToOrders(item) {
     if(item.status == "Pending") {
       const modal = await this.modalController.create({
         component: OrdersPage,
         componentProps: {
-          id: item._id, name: item.author.name, service_booking: item.service_booking,
+          status: item.status, id: item._id, name: item.author.name, service_booking: item.service_booking,
           updatedAt: item.updatedAt, service_location: item.service_location,
           cost: item.cost, notes: item.notes
         },
@@ -51,8 +57,9 @@ export class JobOrdersPage implements OnInit {
   
       modal.present();
       this.dataFromModal = await modal.onWillDismiss();
+      item.status = "onGoing"
     }else {
-      Swal.fire('Oopss', "You can't add this because it is already taken by other job hunter", 'info')
+      Swal.fire('Oopss', "You can't add this because it is already taken by other job hunter", 'warning')
     }
   }
 
@@ -70,5 +77,8 @@ export class JobOrdersPage implements OnInit {
         this.customerDetails = pending
       }
     })
+  }
+  hideCard(data) {
+    document.getElementById(data).style.display = "none"
   }
 }

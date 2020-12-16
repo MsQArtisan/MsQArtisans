@@ -1,12 +1,10 @@
 var User = require('../models/artisan-model');
 var Orders = require('../models/Bookings')
-var jobsFunction = require('../functions/built-in-functions')
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
+var userTask = require('../models/taskOfEveryUsers')
+var logsOfHistory = require('../models/logsHistory')
 var loggedusers = []
-var jobArray = []
-var completedJob = []
-var rejectedJob = []
 
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -77,46 +75,42 @@ exports.getUser = (req, res) => {
         }
     });
 }
+
 exports.addJobOrders = (req, res) => {
-    if (req.body.state == "accept") {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                jobArray.push({ email: element.email, data: req.body.jobOffer })
-            }
-        })
-        Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, newStat) => {
-        })
-    } else if (req.body.state == "completed") {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                completedJob.push({ email: element.email, data: req.body.jobOffer })
-            }
-        });
-    } else {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                rejectedJob.push({ email: element.email, data: req.body.jobOffer })
-            }
-        })
+    var dataTOAdd = {
+        logsOwner: req.body.currentUser,
+        jobsOfferedThroughId: req.body.jobOffer._id
     }
-    res.send(true)
+    let dataAdd = new logsOfHistory(dataTOAdd)
+    dataAdd.save((err, result) => {
+        console.log(result)
+    })
+    Orders.findByIdAndUpdate({_id: req.body.jobOffer._id}, {status: 'Ongoing'}, (err, result) => {
+    })
+    var sampleObject = {
+        currentUser: req.body.currentUser,
+        state: req.body.state,
+        customerId: req.body.jobOffer._id
+    }
+    let usersTask = new userTask(sampleObject)
+    usersTask.save((err, result) => {
+        res.send(result)
+    })
 }
 //array, request, toPassarray
 exports.allJobAccepted = (req, res) => {
-    let arrayToFront = []
-    if (req.body.state == "accept") {
-        res.send({ state: 'accept', jobs: jobsFunction.module(jobArray, req.body, arrayToFront, loggedusers) })
-    } else if (req.body.state == "completed") {
-        res.send({ state: 'completed', jobs: completedJob })
-    } else {
-        res.send({ state: 'reject', jobs: rejectedJob })
-    }
+    userTask.find({currentUser: req.body.user, state: "accept"}).populate('customerId')
+    .exec((err, data) => {
+        res.send(data)
+    })
 }
 
-exports.deleteItem = (req, res) => {
-    jobArray.splice(req.body.index, 1)
+exports.completedJob = (req, res) => {
+    userTask.find({currentUser: req.body.user, state: "completed"}).populate('customerId')
+    .exec((err, data) => {
+        res.send(data)
+    })
 }
-
 exports.returnAllActiveUsers = (req, res) => {
     res.send(loggedusers)
 }

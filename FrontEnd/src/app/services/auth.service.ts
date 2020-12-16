@@ -113,11 +113,16 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
 
+  acceptedJobsBeingCompleted(data) {
+    return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
+  }
+
   allJobsBeingAccepted(data) {
     return this.http.post(`${this.url}/api/allJobsAccepted`, data)
   }
-  deleteItem(data) {
-    return this.http.post(`${this.url}/api/jobsToDelete`, data)
+
+  allCompletedJobs(data) {
+    return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
   addImageToDatabase(imageUrl) {
@@ -151,5 +156,9 @@ export class AuthService {
   }
   getCustomersData(userId) {
     return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+  }
+  // allLogsHistory
+  getAllLogsHistory() {
+    return this.http.get(`${this.url}/api/allLogsHistory`)
   }
 }

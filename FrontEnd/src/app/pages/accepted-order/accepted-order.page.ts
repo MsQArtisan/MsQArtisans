@@ -55,7 +55,6 @@ export class AcceptedOrderPage implements OnInit {
       this.jobOffer.location = this.partialUser.service_location
       this.jobOffer.rate = this.partialUser.cost
       this.jobOffer.notes = this.partialUser.notes
-      this.partialUser.status = "onGoing"
     })
     
   }
@@ -95,7 +94,6 @@ export class AcceptedOrderPage implements OnInit {
     });
 
     var input = document.getElementById('pac-input');
-    console.log(input)
     var searchBox = new google.maps.places.SearchBox(input);
 
     map.addListener('bounds_changed', function() {

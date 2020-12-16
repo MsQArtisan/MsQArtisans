@@ -25,18 +25,18 @@
     </div>
     <!-- Icon top -->
     <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
-        <ion-segment-button class="topnavButton" value="call" (click)="myOnGoingTask()">
+        <ion-segment-button id="going" class="topnavButton" value="call" (click)="myOnGoingTask()">
             <ion-label> On Going</ion-label>
             <ion-icon name="refresh-circle-outline"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button class="topnavButton" value="favorite" (click)="completedTasks()">
+        <ion-segment-button id="completed" class="topnavButton" value="favorite" (click)="completedTasks()">
             <ion-label>Completed</ion-label>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </ion-segment-button>
 
 
-        <ion-segment-button class="topnavButton" value="map" (click)="rejectedTasks()">
+        <ion-segment-button id="reject" class="topnavButton" value="map" (click)="rejectedTasks()">
             <ion-label>Rejected</ion-label>
             <ion-icon name="close-circle-outline"></ion-icon>
 
@@ -45,16 +45,16 @@
     <div *ngIf="!rejectedTask">
         <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
             <ul>
-                <p class="customerName"> {{value.data.author.name}} </p>
-                <li> {{value.data.author.email}} </li>
-                <li>{{value.data.service_booking}}</li>
-                <li> {{value.data.service_location}} </li>
-                <li> {{value.data.notes}} </li>
-                <li> {{value.data.author.phone}} </li>
-                <li> {{value.data.cost}} </li>
-                <li> {{value.data.updatedAt}} </li><br>
+                <p class="customerName"> {{value.user.author.name}} </p>
+                <li> {{value.user.author.email}} </li>
+                <li>{{value.jobs.customerId.service_booking}}</li>
+                <li> {{value.jobs.customerId.service_location}} </li>
+                <li> {{value.jobs.customerId.notes}} </li>
+                <li> {{value.user.author.phone}} </li>
+                <li> {{value.user.cost}} </li>
+                <li> {{value.user.updatedAt}} </li><br>
                 <button *ngIf="completedTask" id="deleteTask" class="onMobile">Delete Completed Task</button>
-                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i)" class="onMobile">Finish Service!</button>
+                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i, value.jobs._id)" class="onMobile">Finish Service!</button>
                 <br><br>
             </ul>
         </div>
@@ -62,14 +62,14 @@
     <div *ngIf="rejectedTask">
         <div class="rejectedTasks" *ngFor="let value of onGoingJob">
             <ul>
-                <p class="customerName"> {{value.data.author.name}} </p>
-                <li> {{value.data.author.email}} </li>
-                <li>{{value.data.jobTitle}}</li>
-                <li> {{value.data.service_location}} </li>
-                <li> {{value.data.notes}} </li>
-                <li> {{value.data.author.phone}} </li>
-                <li> {{value.data.cost}} </li>
-                <li> {{value.data.updatedAt}} </li><br>
+                <p class="customerName"> {{value.user.author.name}} </p>
+                <li> {{value.user.author.email}} </li>
+                <li>{{value.jobs.customerId.service_booking}}</li>
+                <li> {{value.jobs.customerId.service_location}} </li>
+                <li> {{value.jobs.customerId.notes}} </li>
+                <li> {{value.user.author.phone}} </li>
+                <li> {{value.user.cost}} </li>
+                <li> {{value.user.updatedAt}} </li><br>
                 <button class="rejectToRestore">Restore Task</button>
                 <br><br>
             </ul>

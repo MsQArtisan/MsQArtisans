@@ -1,4 +1,6 @@
 var Orders = require('../models/Bookings');
+var userTask = require('../models/taskOfEveryUsers')
+var logsOfHistory = require('../models/logsHistory')
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
@@ -30,3 +32,23 @@ exports.getCustomersData = (req, res) => {
         }
     })
 }
+
+exports.acceptedJobToCompleted = (req, res) => {
+    userTask.findOneAndUpdate({_id: req.body.jobOffer}, {state: req.body.state}, (err, result) => {
+        res.send(result)
+    })
+}
+
+
+exports.allLogsHistory = (req, res) => {
+    logsOfHistory.find({}, (err, result) => {
+        res.send(result)
+    })
+}
+
+
+// {
+//     user: "id"
+//     jobsOffered: "booking_id"
+
+// }

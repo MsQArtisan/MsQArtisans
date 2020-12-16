@@ -39,7 +39,6 @@ li:nth-child(even) {
     margin-top: 5%;
     width: 50%;
     margin-bottom: 5%;
-    min-width: 500px;
 }
 .rejectedTasks {
     background-color: rgba(211, 211, 211, 0.5);
@@ -123,12 +122,6 @@ li:nth-child(even) {
 }
   
   @media only screen and (max-width: 768px) {
-      ul {
-          padding: 0;
-          width: 70%;
-          margin: 0;
-          margin-left: 6%;
-      }
     .taskCreated {
         display: none;
     }
@@ -139,7 +132,7 @@ li:nth-child(even) {
     .listOfAcceptedJobs {
         padding: 0;
         padding-top: 3%;
-        width: auto;
+        width: 100%;
         margin: 0;
         margin-top: 20%;
     }

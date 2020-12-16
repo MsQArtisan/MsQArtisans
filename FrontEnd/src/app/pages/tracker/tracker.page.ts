@@ -27,7 +27,7 @@ export class TrackerPage implements OnInit {
 
   ngOnInit() {
     this.onGoingJob.length = 0
-    this.functions.jobsAccepted(this.authService, {state: "completed"}, this.onGoingJob)
+    this.functions.jobsAccepted(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = true
     document.getElementById('completed').style.borderBottom = '2px solid rgb(132, 208, 255)'
     document.getElementById('going').style.borderBottom = 'none'
@@ -40,8 +40,8 @@ export class TrackerPage implements OnInit {
     this.functions.onGoingTask(this.authService, {state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = false
   }
-  alreadyDoneTask(index) {
-    this.authService.addDataToJobOrders({currentUser: this.authService.userIDToken, state: "completed", jobOffer: this.onGoingJob[index].data}).subscribe((data) => {
+  alreadyDoneTask(index, dataId) {
+    this.authService.acceptedJobsBeingCompleted({currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId}).subscribe((data) => {
       if(data) {
         Swal.fire({
           icon: 'success',
@@ -49,14 +49,13 @@ export class TrackerPage implements OnInit {
           showConfirmButton: false,
           timer: 1000
         })
-        this.deleteItemThroughIndex(index)
         this.http.navigate(['job-orders'])  
       }
     })
   }
   completedTasks() {
     this.onGoingJob.length = 0
-    this.functions.completedTask(this.authService, {state: "completed"}, this.onGoingJob)
+    this.functions.completedTask(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = true
     this.rejectedTask = false
   }
@@ -66,12 +65,6 @@ export class TrackerPage implements OnInit {
     this.rejectedTask = true
     this.onGoingJob.length = 0
     this.functions.rejectedTask(this.authService, {state: "rejected"}, this.onGoingJob)
-  }
-
-
-  deleteItemThroughIndex(index) {
-    this.authService.deleteItem({state: "complete", index: index}).subscribe((data) => {
-    })
   }
 
 }

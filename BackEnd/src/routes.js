@@ -10,9 +10,14 @@ routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.post('/account', userController.getUser);
 routes.get('/allCustomers', customerController.getAllCustomers);
+
+routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
+routes.get('/allLogsHistory', orderController.allLogsHistory)
+
 routes.post('/jobOrdersData', userController.addJobOrders);
 routes.post('/allJobsAccepted', userController.allJobAccepted);
-routes.post('/jobsToDelete', userController.deleteItem);
+routes.post('/allCompletedJobs', userController.completedJob)
+
 routes.get('/allActiveUsers', userController.returnAllActiveUsers)
 
 routes.get('/getNewOrder', orderController.getOrders);
