@@ -83,7 +83,6 @@ exports.addJobOrders = (req, res) => {
     }
     let dataAdd = new logsOfHistory(dataTOAdd)
     dataAdd.save((err, result) => {
-        console.log(result)
     })
     Orders.findByIdAndUpdate({_id: req.body.jobOffer._id}, {status: 'Ongoing'}, (err, result) => {
     })

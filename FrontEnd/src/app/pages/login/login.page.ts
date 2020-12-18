@@ -21,18 +21,22 @@ export class LoginPage implements OnInit {
     password: ""
   }
   constructor(private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
   }
 
+
+
   onSubmit() {
     this.authService.login(this.credentialsForm).subscribe((data) => {
+      console.log(data)
       this.dataResponse = data
-      if(this.dataResponse.msg == "password") {
+      if (this.dataResponse.msg == "password") {
         this.passwordMessage = true
         this.emailMessage = false
-      }else{
+      } else {
         this.emailMessage = true
         this.passwordMessage = false
       }
@@ -49,7 +53,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  resetForm(){
+  resetForm() {
     this.credentialsForm = {
       email: "",
       password: ""
