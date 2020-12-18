@@ -64,7 +64,8 @@ export class AcceptedOrderPage implements OnInit {
       if (data) {
         Swal.fire({
           icon: 'success',
-          title: 'Job Successfully Added to your on going job in tracker!',
+          title: 'Nice!',
+          text: 'Job Successfully Added to your on going job in tracker',
           showConfirmButton: false,
           timer: 1000
         })

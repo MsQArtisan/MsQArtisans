@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-finance',
@@ -7,6 +8,9 @@ import { Chart } from 'chart.js';
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
+  public dataHandler;
+  public month = []
+  public monthlyIncome = []
   public currentMoney = 0
   @ViewChild('barGraph', { static: true }) barCanvas: ElementRef;
 
@@ -14,20 +18,30 @@ export class FinancePage implements OnInit {
 
   public barChart: Chart
 
-  constructor() { }
+  constructor(private authservice: AuthService) { }
 
+  // {state: "Ongoing", user: this.authService.userIDToken}
   ngOnInit() {
+    this.authservice.allCompletedJobs({ state: "Ongoing", user: this.authservice.userIDToken }).subscribe((data) => {
+      this.dataHandler = data
+      this.dataHandler.forEach(element => {
+        var mydate = new Date(element.customerId.createdAt);
+        this.month.push(mydate.toDateString().split(" ")[1])
+        this.monthlyIncome.push(element.customerId.cost)
+        this.currentMoney += parseFloat(element.customerId.cost)
+      });
+    })
   }
 
   showStatistics() {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: "line",
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+        labels: this.month,
         datasets: [
           {
             label: "Statistics of your income",
-            data: [1200, 1500, 3000, 5000, 2000, 3000, 3000, 5000, 2000, 3000],
+            data: this.monthlyIncome,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -61,8 +75,5 @@ export class FinancePage implements OnInit {
       }
     })
 
-  }
-  addNumber(){
-    this.currentMoney += 100
   }
 }

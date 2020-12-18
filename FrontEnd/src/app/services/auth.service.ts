@@ -158,7 +158,7 @@ export class AuthService {
     return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
   }
   // allLogsHistory
-  getAllLogsHistory() {
-    return this.http.get(`${this.url}/api/allLogsHistory`)
+  getAllLogsHistory(id) {
+    return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }
 }

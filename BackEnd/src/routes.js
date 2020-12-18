@@ -12,7 +12,7 @@ routes.post('/account', userController.getUser);
 routes.get('/allCustomers', customerController.getAllCustomers);
 
 routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
-routes.get('/allLogsHistory', orderController.allLogsHistory)
+routes.post('/allLogsHistory', orderController.allLogsHistory)
 
 routes.post('/jobOrdersData', userController.addJobOrders);
 routes.post('/allJobsAccepted', userController.allJobAccepted);

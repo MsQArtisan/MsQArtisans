@@ -18,7 +18,7 @@ export class HistoryPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.getAllLogsHistory().subscribe((data) => {
+    this.http.getAllLogsHistory({currentUser: this.http.userIDToken}).subscribe((data) => {
       this.initial = data
       this.initial.forEach(element => {
         this.http.getCustomersData(element.jobsOfferedThroughId).subscribe((res) => {

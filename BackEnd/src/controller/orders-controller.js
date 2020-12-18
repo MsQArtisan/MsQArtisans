@@ -41,7 +41,7 @@ exports.acceptedJobToCompleted = (req, res) => {
 
 
 exports.allLogsHistory = (req, res) => {
-    logsOfHistory.find({}, (err, result) => {
+    logsOfHistory.find({ logsOwner: req.body.currentUser}, (err, result) => {
         res.send(result)
     })
 }
