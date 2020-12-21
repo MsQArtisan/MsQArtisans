@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service'
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
+  public imageUrl;
   public dataHandler;
   public month = []
   public monthlyIncome = []
@@ -22,6 +23,11 @@ export class FinancePage implements OnInit {
 
   // {state: "Ongoing", user: this.authService.userIDToken}
   ngOnInit() {
+    this.authservice.getUser().subscribe((data) => {
+      this.authservice.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+        this.imageUrl = data[0].image[0]
+      })
+    })
     this.authservice.allCompletedJobs({ state: "Ongoing", user: this.authservice.userIDToken }).subscribe((data) => {
       this.dataHandler = data
       this.dataHandler.forEach(element => {

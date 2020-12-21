@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+  public imageUrl;
   public buttonText = "Finish Service"
   public functions = new FunctionsToUse()
 
@@ -26,6 +27,11 @@ export class TrackerPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.getUser().subscribe((data) => {
+      this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+        this.imageUrl = data[0].image[0]
+      })
+    })
     this.onGoingJob.length = 0
     this.functions.jobsAccepted(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = true

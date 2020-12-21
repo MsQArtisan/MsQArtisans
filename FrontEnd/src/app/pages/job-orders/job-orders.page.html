@@ -1,6 +1,9 @@
 <ion-header [translucent]="false">
     <ion-toolbar color="secondary">
-        <ion-title class="header">Job Orders</ion-title>
+        <div class="topClick" [routerLink]="['/acc-info']">
+            <img [src]="imageUrl">
+            <ion-title class="header">Job Orders</ion-title>
+        </div>
         <ion-buttons slot="start">
             <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-buttons>
@@ -47,61 +50,23 @@
 
 
 
-    <ion-grid *ngIf=apple>
-        <div class="cardContent" *ngFor="let item of customerDetails">
-            <div *ngIf="item.status === 'Pending'">
-                <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
-                    <div>
-                        <button (click)="hideCard(item._id)">X</button>
-                    </div>
-                    <ion-card-header>
-                        <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                        <ion-card-subtitle
-                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                            Customer Name
-                        </ion-card-subtitle>
-                    </ion-card-header>
-                    <ion-card-content (click)="passToOrders(item)">
-
-                        <section>
-                            <ion-icon name="people"></ion-icon>
-                            <span>{{item.service_booking}}</span>
-                        </section>
-                        <section>
-                            <ion-icon name="time"></ion-icon>
-                            <span>{{item.updatedAt | date:'short'}}</span>
-                        </section>
-                        <section>
-                            <ion-icon name="location"></ion-icon>
-                            <span>{{item.service_location}}</span>
-                        </section>
-                        <section>
-                            <ion-icon name="mail"></ion-icon>
-                            <span>{{item.notes}}</span>
-                        </section>
-
-                        <div class="footer">
-                            <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
-
-                        </div>
-
-                    </ion-card-content>
-                </ion-card>
-            </div>
-            <div [id]="item._id">
-                <div *ngIf="item.status !== 'Pending'">
-                    <ion-card id="onGoingData" class="card">
+    <div class="wholeContent">
+        <ion-grid *ngIf=apple>
+            <div class="cardContent" *ngFor="let item of customerDetails">
+                <div *ngIf="item.status === 'Pending'">
+                    <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
                         <div>
                             <button (click)="hideCard(item._id)">X</button>
                         </div>
                         <ion-card-header>
                             <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                            <ion-card-subtitle class="sub-title"
+                            <ion-card-subtitle
                                 style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                                 Customer Name
                             </ion-card-subtitle>
                         </ion-card-header>
                         <ion-card-content (click)="passToOrders(item)">
+
                             <section>
                                 <ion-icon name="people"></ion-icon>
                                 <span>{{item.service_booking}}</span>
@@ -127,7 +92,47 @@
                         </ion-card-content>
                     </ion-card>
                 </div>
+                <div [id]="item._id">
+                    <div *ngIf="item.status !== 'Pending'">
+                        <ion-card id="onGoingData" class="card">
+                            <div>
+                                <button (click)="hideCard(item._id)">X</button>
+                            </div>
+                            <ion-card-header>
+                                <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                                <ion-card-subtitle class="sub-title"
+                                    style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                    Customer Name
+                                </ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content (click)="passToOrders(item)">
+                                <section>
+                                    <ion-icon name="people"></ion-icon>
+                                    <span>{{item.service_booking}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="time"></ion-icon>
+                                    <span>{{item.updatedAt | date:'short'}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="location"></ion-icon>
+                                    <span>{{item.service_location}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="mail"></ion-icon>
+                                    <span>{{item.notes}}</span>
+                                </section>
+
+                                <div class="footer">
+                                    <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
+
+                                </div>
+
+                            </ion-card-content>
+                        </ion-card>
+                    </div>
+                </div>
             </div>
-        </div>
-    </ion-grid>
+        </ion-grid>
+    </div>
 </ion-content>

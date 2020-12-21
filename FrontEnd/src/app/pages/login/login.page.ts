@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -21,17 +22,15 @@ export class LoginPage implements OnInit {
     password: ""
   }
   constructor(private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingController: LoadingController
     ) { }
 
   ngOnInit() {
   }
-
-
-
   onSubmit() {
+    this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
-      console.log(data)
       this.dataResponse = data
       if (this.dataResponse.msg == "password") {
         this.passwordMessage = true
@@ -58,5 +57,15 @@ export class LoginPage implements OnInit {
       email: "",
       password: ""
     }
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
   }
 }

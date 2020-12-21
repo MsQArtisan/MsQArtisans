@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
+  public imageUrl;
   public valueChosen = ""
 
   public apple: boolean = true;
@@ -22,6 +23,11 @@ export class JobOrdersPage implements OnInit {
 
   ngOnInit() {
     this.orderData();
+    this.authService.getUser().subscribe((data) => {
+      this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+        this.imageUrl = data[0].image[0]
+      })
+    })
   }
   orderData() {
     this.authService.getCustomersName().subscribe((data) => {
