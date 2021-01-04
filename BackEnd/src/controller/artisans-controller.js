@@ -76,16 +76,16 @@ exports.getUser = (req, res) => {
     });
 }
 
+
+//currentUserId, cost, currentDate
 exports.addJobOrders = (req, res) => {
     var dataTOAdd = {
         logsOwner: req.body.currentUser,
         jobsOfferedThroughId: req.body.jobOffer._id
     }
     let dataAdd = new logsOfHistory(dataTOAdd)
-    dataAdd.save((err, result) => {
-    })
-    Orders.findByIdAndUpdate({_id: req.body.jobOffer._id}, {status: 'Ongoing'}, (err, result) => {
-    })
+    dataAdd.save((err, result) => {})
+    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => {})
     var sampleObject = {
         currentUser: req.body.currentUser,
         state: req.body.state,
@@ -98,17 +98,17 @@ exports.addJobOrders = (req, res) => {
 }
 //array, request, toPassarray
 exports.allJobAccepted = (req, res) => {
-    userTask.find({currentUser: req.body.user, state: "accept"}).populate('customerId')
-    .exec((err, data) => {
-        res.send(data)
-    })
+    userTask.find({ currentUser: req.body.user, state: "accept" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
 }
 
 exports.completedJob = (req, res) => {
-    userTask.find({currentUser: req.body.user, state: "completed"}).populate('customerId')
-    .exec((err, data) => {
-        res.send(data)
-    })
+    userTask.find({ currentUser: req.body.user, state: "completed" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
 }
 exports.returnAllActiveUsers = (req, res) => {
     res.send(loggedusers)

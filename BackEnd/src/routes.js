@@ -17,6 +17,7 @@ routes.post('/allLogsHistory', orderController.allLogsHistory)
 routes.post('/jobOrdersData', userController.addJobOrders);
 routes.post('/allJobsAccepted', userController.allJobAccepted);
 routes.post('/allCompletedJobs', userController.completedJob)
+routes.post('/stats', orderController.statistics)
 
 routes.get('/allActiveUsers', userController.returnAllActiveUsers)
 

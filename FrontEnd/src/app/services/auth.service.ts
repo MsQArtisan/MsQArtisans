@@ -117,6 +117,10 @@ export class AuthService {
     return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
   }
 
+  monthlyIncomeStatistics(currentUser) {
+    return this.http.post(`${this.url}/api/stats`, currentUser)
+  }
+
   allJobsBeingAccepted(data) {
     return this.http.post(`${this.url}/api/allJobsAccepted`, data)
   }

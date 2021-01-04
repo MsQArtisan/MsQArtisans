@@ -46,8 +46,8 @@ export class TrackerPage implements OnInit {
     this.functions.onGoingTask(this.authService, {state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = false
   }
-  alreadyDoneTask(index, dataId) {
-    this.authService.acceptedJobsBeingCompleted({currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId}).subscribe((data) => {
+  alreadyDoneTask(index, dataId, cost) {
+    this.authService.acceptedJobsBeingCompleted({currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost}).subscribe((data) => {
       if(data) {
         Swal.fire({
           icon: 'success',
@@ -71,6 +71,10 @@ export class TrackerPage implements OnInit {
     this.rejectedTask = true
     this.onGoingJob.length = 0
     this.functions.rejectedTask(this.authService, {state: "rejected"}, this.onGoingJob)
+  }
+
+  deleteCompletedTask() {
+    console.log("Done")
   }
 
 }

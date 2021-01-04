@@ -24,17 +24,22 @@ export class FinancePage implements OnInit {
   // {state: "Ongoing", user: this.authService.userIDToken}
   ngOnInit() {
     this.authservice.getUser().subscribe((data) => {
-      this.authservice.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+      this.authservice.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
         this.imageUrl = data[0].image[0]
       })
     })
-    this.authservice.allCompletedJobs({ state: "Ongoing", user: this.authservice.userIDToken }).subscribe((data) => {
+    this.authservice.monthlyIncomeStatistics({ user: this.authservice.userIDToken }).subscribe((data) => {
       this.dataHandler = data
       this.dataHandler.forEach(element => {
-        var mydate = new Date(element.customerId.createdAt);
-        this.month.push(mydate.toDateString().split(" ")[1])
-        this.monthlyIncome.push(element.customerId.cost)
-        this.currentMoney += parseFloat(element.customerId.cost)
+        var mydate = new Date(element.currentTime);
+        if (this.month.includes(mydate.toDateString().split(" ")[1])) {
+          this.currentMoney += parseFloat(element.cost)
+          this.monthlyIncome[this.month.indexOf(mydate.toDateString().split(" ")[1])] = this.currentMoney
+        } else {
+          this.month.push(mydate.toDateString().split(" ")[1])
+          this.monthlyIncome.push(element.cost)
+          this.currentMoney += parseFloat(element.cost)
+        }
       });
     })
   }

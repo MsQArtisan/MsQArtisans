@@ -1,6 +1,7 @@
 var Orders = require('../models/Bookings');
 var userTask = require('../models/taskOfEveryUsers')
 var logsOfHistory = require('../models/logsHistory')
+var incomeStats = require('../models/monthlyIncome')
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
@@ -34,21 +35,28 @@ exports.getCustomersData = (req, res) => {
 }
 
 exports.acceptedJobToCompleted = (req, res) => {
+    var dataToAdd = {
+        currentTime: new Date(),
+        cost: req.body.cost.customerId.cost,
+        currentUser: req.body.currentUser
+    }
+    let dataAdd = new incomeStats(dataToAdd)
+    dataAdd.save().then((retVal) => {
+    })
     userTask.findOneAndUpdate({_id: req.body.jobOffer}, {state: req.body.state}, (err, result) => {
         res.send(result)
     })
 }
 
+exports.statistics = (req, res) => {
+    incomeStats.find({currentUser: req.body.user}, (err, result) => {
+        console.log(result)
+        res.send(result)
+    })
+}
 
 exports.allLogsHistory = (req, res) => {
     logsOfHistory.find({ logsOwner: req.body.currentUser}, (err, result) => {
         res.send(result)
     })
 }
-
-
-// {
-//     user: "id"
-//     jobsOffered: "booking_id"
-
-// }
