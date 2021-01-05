@@ -33,7 +33,7 @@ export class ForgetPassPage implements OnInit {
 
 
   RequestResetUser(form) {
-    console.log(form)
+    console.log(this.RequestResetForm.value)
     if (form.valid) {
       this.IsvalidForm = true;
       this.authService.requestReset(this.RequestResetForm.value).subscribe(
