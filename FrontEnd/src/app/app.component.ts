@@ -14,10 +14,12 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public darkMode = false
+
   constructor(
     private authService: AuthService, 
     private storage: Storage,
-    private toastController: ToastController,
+    // private toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -35,8 +37,9 @@ export class AppComponent {
       this.auth.authenticationState.subscribe(state => {
         if (state) {
           this.router.navigate(['job-orders']);
+       
         } else {
-          this.router.navigate(['home']);
+          this.router.navigate(['login']);
         }
       });
     });
@@ -44,13 +47,21 @@ export class AppComponent {
 
   
   logout() {
+    this.authService.popTheUserAfterLogout().subscribe()
     this.authService.logout();
     this.storage.remove('access_token');
  
-    let toast = this.toastController.create({
-      message: 'JWT removed',
-      duration: 3000
+    // let toast = this.toastController.create({
+    //   duration: 3000
+    // });
+    // toast.then(toast => toast.present());
+    this.auth.authenticationState.subscribe(state => {
+      if (state) {
+        this.router.navigate(['job-orders']);
+      } else {
+        this.router.navigate(['login']);
+      }
     });
-    toast.then(toast => toast.present());
   }
+
 }

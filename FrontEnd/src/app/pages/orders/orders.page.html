@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Orders</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list class="orders">
+        <ion-item>
+            <ion-icon name="people"></ion-icon>
+            <p>{{name}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="time"></ion-icon>
+            <p>{{updatedAt | date:'short'}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="location"></ion-icon>
+            <p>{{service_location}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="wallet"></ion-icon>
+            <p>{{cost}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="mail"></ion-icon>
+            <p>{{notes}}</p>
+        </ion-item>
+
+    </ion-list>
+    <br><br>
+    <section>
+        <button class="buttonAccept" (click)="closeModal()">Accept Job</button>
+        <button class="buttonPass" (click)="pass()" >Pass</button>
+    </section>
+
+</ion-content>

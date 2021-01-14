@@ -1,0 +1,29 @@
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1.5px;
+}
+
+div{
+    padding: 5%;
+    text-align: justify;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, lato;
+    margin-bottom: -20px;
+}
+h2{
+    color: rgb(40, 150, 194);
+}
+
+.policy{
+    width: 150px;
+    height: 150px;
+    margin-top: 5%;
+
+}

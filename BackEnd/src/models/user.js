@@ -1,94 +1,52 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+const mongo = require('mongoose');
+const Schema = mongo.Schema;
 
-var UserSchema = new mongoose.Schema({
+// collection and schema for Registration
+let User = new Schema({
     name: {
         type: String,
-        required: 'full Name is required'
+        required: true
     },
     address: {
         type: String,
-        required: 'address is required'
+        required: true
     },
-    bday: {
-        type: Date,
-        required: 'Birth Day is required'
+    code: {
+        type: String,
+        required: true,
     },
     phone: {
-        type: String,
-        required: 'phone is required'
+        type: Number,
+        required: true,
     },
     email: {
-        type: String,
         unique: true,
-        required: 'email is required',
-        lowercase: true,
-        trim: true
+        type: String,
+        required: true
+    },
+    birth_date: {
+        type: Date,
+        required: true,
     },
     password: {
         type: String,
-        required: 'password is required'
+        required: true,
+        trim: true
     },
-    confirmPassword: {
+    picture: {
         type: String,
-        required: 'confirm password is required'
+        required: true
     },
-    selfie: {
+    id_image: {
         type: String,
-        required: 'selfie is required'
     },
-    primaryIdPic: {
-        type: String,
-        required: 'primaryIdPic is required'
+    id_number: {
+        type: Number
     },
-    primaryIdNum: {
-        type: String,
-        required: 'primaryIdNum is required'
-    },
-    nbi: {
-        type: String,
-        required: 'nbi is required'
-    },
-    applyJob: {
-        type: String,
-        required: 'applyJob is required'
-    }
+    bookings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Bookings'
+    }]
 });
 
-UserSchema.pre('save',  function(next) {
-    var user = this;
- 
-     if (!user.isModified('password')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(user.password, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             user.password = hash;
-             next();
-         });
-     });
-     if (!user.isModified('confirmPassword')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(user.confirmPassword, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             user.confirmPassword = hash;
-             next();
-         });
-     });
-});
-
-UserSchema.methods.comparePassword = function (candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
- 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongo.model('Customers', User);

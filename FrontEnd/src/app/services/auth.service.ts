@@ -1,18 +1,24 @@
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
+const userToken = 'user_token';
+const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public userIDToken = ""
+  public situationHandler;
+  public situation = true
+  public messageFromEnd = ""
 
   url = environment.url;
   user = null;
@@ -30,8 +36,11 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
- 
+
         if (!isExpired) {
+          this.storage.get(userToken).then((token) => {
+            this.userIDToken = token
+          })
           this.user = decoded;
           this.authenticationState.next(true);
         } else {
@@ -49,45 +58,41 @@ export class AuthService {
       })
     );
   }
- 
+
   login(credentials) {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          this.authenticationState.next(true);
-        }),
-        catchError(e => {
-          this.showAlert(e.error.msg);
-          throw new Error(e);
+          this.situationHandler = res
+          if (this.situationHandler.type) {
+            this.storage.set(userToken, this.situationHandler.userId)
+            this.userIDToken = this.situationHandler.userId
+            this.storage.set(TOKEN_KEY, res['token']);
+            this.user = this.helper.decodeToken(res['token']);
+            this.authenticationState.next(true);
+          } else {
+            // this.returnTheStatus()
+          }
         })
-      );
+      )
   }
- 
+
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.authenticationState.next(false);
+      this.storage.remove(userToken).then(() => {
+        this.authenticationState.next(false);
+      })
+      window.location.reload()
     });
   }
- 
-  getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('You are not authorized for this!');
-          this.logout();
-        }
-        throw new Error(e);
-      })
-    )
+  popTheUserAfterLogout(){
+    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
   }
- 
+
   isAuthenticated() {
     return this.authenticationState.value;
   }
- 
+
   showAlert(msg) {
     let alert = this.alertController.create({
       message: msg,
@@ -96,5 +101,72 @@ export class AuthService {
     });
     alert.then(alert => alert.present());
   }
+
+  getAllMessages() {
+    return this.http.get("http://localhost:5005/api/allMessages")
+  }
+
+  getUser() {
+    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
+  }
+  addDataToJobOrders(data) {
+    return this.http.post(`${this.url}/api/jobOrdersData`, data)
+  }
+
+  acceptedJobsBeingCompleted(data) {
+    return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
+  }
+
+  monthlyIncomeStatistics(currentUser) {
+    return this.http.post(`${this.url}/api/stats`, currentUser)
+  }
+
+  allJobsBeingAccepted(data) {
+    return this.http.post(`${this.url}/api/allJobsAccepted`, data)
+  }
+
+  allCompletedJobs(data) {
+    return this.http.post(`${this.url}/api/allCompletedJobs`, data)
+  }
+
+  addImageToDatabase(imageUrl) {
+    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  }
+
+  getTheProfileImage(usersName) {
+    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  }
   
+  requestReset(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/new-password`, body);
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+  }
+  getAllActiveUsers() {
+    return this.http.get(`${this.url}/api/allActiveUsers`)
+  }
+
+  getOrders(){
+    return this.http.get(`${this.url}/api/getNewOrder`)
+  }
+  getCustomersName():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/getCustomersName`)
+  }
+  getCustomersData(userId) {
+    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+  }
+  // allLogsHistory
+  getAllLogsHistory(id) {
+    return this.http.post(`${this.url}/api/allLogsHistory`, id)
+  }
+
+  getReviews():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reviews`)
+  }
 }

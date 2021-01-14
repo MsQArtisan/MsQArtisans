@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../services/auth.service";
+import { FunctionsToUse } from '../../functions/functions.model'
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tracker',
@@ -6,10 +10,71 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+  public imageUrl;
+  public buttonText = "Finish Service"
+  public functions = new FunctionsToUse()
 
-  constructor() { }
+  public noTaskShow = false
+
+  public completedTask = false
+  public rejectedTask = false
+  public jobsOffered;
+  public onGoingJob = [];
+
+  constructor(
+    private authService: AuthService,
+    private http: Router
+  ) { }
 
   ngOnInit() {
+    this.authService.getUser().subscribe((data) => {
+      this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+        this.imageUrl = data[0].image[0]
+      })
+    })
+    this.onGoingJob.length = 0
+    this.functions.jobsAccepted(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
+    this.completedTask = true
+    document.getElementById('completed').style.borderBottom = '2px solid rgb(132, 208, 255)'
+    document.getElementById('going').style.borderBottom = 'none'
+    document.getElementById('reject').style.borderBottom = 'none'
+  }
+  
+  myOnGoingTask() {
+    this.rejectedTask = false
+    this.onGoingJob.length = 0
+    this.functions.onGoingTask(this.authService, {state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
+    this.completedTask = false
+  }
+  alreadyDoneTask(index, dataId, cost) {
+    this.authService.acceptedJobsBeingCompleted({currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost}).subscribe((data) => {
+      if(data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Thank you for using our app!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.http.navigate(['job-orders'])  
+      }
+    })
+  }
+  completedTasks() {
+    this.onGoingJob.length = 0
+    this.functions.completedTask(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
+    this.completedTask = true
+    this.rejectedTask = false
+  }
+
+  rejectedTasks() {
+    this.completedTask = true
+    this.rejectedTask = true
+    this.onGoingJob.length = 0
+    this.functions.rejectedTask(this.authService, {state: "rejected"}, this.onGoingJob)
+  }
+
+  deleteCompletedTask() {
+    console.log("Done")
   }
 
 }

@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">All Settings</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="none" class="menu-items">
+        <ion-item>
+            <ion-icon name="notifications-outline"></ion-icon>
+            <ion-label>Notification Settings</ion-label>
+            <ion-toggle slot="end" name="apple" color="secondary" checked></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <ion-label> New order notifications</ion-label>
+            <ion-toggle slot="end" name="apple" color="secondary" checked></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="language-outline"></ion-icon>
+            <ion-label>Language</ion-label>
+            <span class="language">English</span>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="planet-outline"></ion-icon>
+            <ion-label>Region/state</ion-label>
+            <ion-select class="region" interface="popover">
+                <ion-select-option *ngFor='let val of places'>{{capitalizeFirstLetter(val.muni)}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="share" (click)="hideAndShow()">
+            <ion-icon name="share-social-outline"></ion-icon>
+            <ion-label>Share</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer *ngIf="!footer">
+    <ion-grid>
+        <ion-row class="ion-align-items-center">
+            <ion-col size="4">
+                <ion-button class = "link"color="light" (click)="ShareLink('text')">
+                    <ion-icon name="share-social-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size=4>
+                <ion-button class = "link" color="warning" (click)="SendEmail()">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="4">
+                <ion-button class = "link" color="primary" (click)="ShareFacebook()">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+            <ion-col size="4">
+                <ion-button class = "link" color="success" (click)="ShareWhatsapp()">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="4">
+                <ion-button class = "link"color="secondary" (click)="SendTwitter()">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size=4>
+                <ion-button class = "link" color="tertiary" (click)="SendInstagram()">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

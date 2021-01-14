@@ -1,38 +1,142 @@
-
-<ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-      <ion-title>Job Orders</ion-title>
-      <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="false">
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Job Orders</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list lines="none">
-      <div class="work">
-          <ion-item>
-              <ion-label>At Work</ion-label>
-              <ion-toggle slot="start" name="blueberry"></ion-toggle>
-          </ion-item>
-      </div>
-      <div class="rest">
-          <ion-item>
-              <ion-label>Rest</ion-label>
-              <ion-toggle slot="start" name="apple" color="secondary"></ion-toggle>
-          </ion-item>
-      </div>
-  </ion-list>
-  <h1>Job orders from customer</h1>
-  <ion-list class="list">
-      <ion-item>
-          <ion-label (click)="order()">Job-Title</ion-label>
-      </ion-item>
-  </ion-list>
+    <!-- <div class="toggle">
+        <label class="switch">
+            <p *ngIf="apple" class="tags">Disable Receive Work</p>
+            <p *ngIf="!apple" class="tags">Enable Receive Work</p>
+            <input type="checkbox" checked (click)="hideAndShow()">
+            <span class="slider round"></span>
+        </label>
+        <div class="checkbox">
+            <p>
+                <input type="radio" name="choice" (click)="allData('Pending')">
+                Available
+            </p>
+            <p>
+                <input type="radio" name="choice" (click)="allData('all')" checked>
+                All
+            </p>
+        </div>
+        <div class="dropdownChoices">
+            <ion-item>
+                <ion-select [(ngModel)]="valueChosen" (ionChange)="allData(valueChosen)" placeholder="Display By">
+                    <ion-select-option value="Pending">Available</ion-select-option>
+                    <ion-select-option value="all">All</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </div>
+    </div> -->
+
+    <!-- <br><br><br><br>
+    <div class="toggleRest" *ngIf=!apple>
+        <ion-card class="statusCard">
+            <ion-card-content>
+                <ion-icon size=large class="warning" name="warning"></ion-icon>
+                <ion-card-title class="status">Status is Offline</ion-card-title><br>
+                <ion-label class="restText">You can't recieve any job order!!!</ion-label>
+            </ion-card-content>
+        </ion-card>
+    </div> -->
 
 
 
-  <!-- <p *ngIf="dataFromModal">Data from Modal : {{ dataFromModal.data.ionic }}</p> -->
+    <div class="wholeContent">
+        <ion-grid *ngIf=apple>
+            <div class="cardContent" *ngFor="let item of customerDetails">
+                <div *ngIf="item.status === 'Pending'">
+                    <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
+                        <ion-card-header (click)="passToOrders(item)" value="header">
+                                <ion-icon name="people"></ion-icon>
+                                <span><b>{{item.service_booking}}</b></span>
+                                <button (click)="hideCard(item._id)">X</button>
+                        </ion-card-header>
+                        <div *ngIf="item.service_booking=='MassageTherapist'">
+                            <ion-img src="assets/images/massage.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking=='TutorCumNanny'">
+                            <ion-img src="assets/images/tutor.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking=='Nanny'">
+                            <ion-img src="assets/images/nanny.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking=='Housekeeping'">
+                            <ion-img src="assets/images/housekeeping.jpg"></ion-img>
+                        </div>
+                        <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                        <ion-card-subtitle
+                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            Customer Name
+                        </ion-card-subtitle>
+                        <ion-card-content (click)="passToOrders(item)">
+                            <section>
+                                <ion-icon name="time"></ion-icon>
+                                <span>{{item.updatedAt | date:'short'}}</span>
+                            </section>
+                            <section>
+                                <ion-icon name="location"></ion-icon>
+                                <span>{{item.service_location}}</span>
+                            </section>
+                            <section>
+                                <ion-icon name="mail"></ion-icon>
+                                <span>{{item.notes}}</span>
+                            </section>
 
+                            <div class="footer">
+                                <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
 
+                            </div>
+
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <!-- <div [id]="item._id">
+                    <div *ngIf="item.status !== 'Pending'">
+                        <ion-card id="onGoingData" class="card">
+                            <div>
+                                <button (click)="hideCard(item._id)">X</button>
+                            </div>
+                            <ion-card-header>
+                            </ion-card-header>
+                            <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                            <ion-card-subtitle class="sub-title"
+                                style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                Customer Name
+                            </ion-card-subtitle>
+                            <ion-card-content (click)="passToOrders(item)">
+                                <section>
+                                    <ion-icon name="people"></ion-icon>
+                                    <span value="work">{{item.service_booking}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="time"></ion-icon>
+                                    <span>{{item.updatedAt | date:'short'}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="location"></ion-icon>
+                                    <span>{{item.service_location}}</span>
+                                </section>
+                                <section>
+                                    <ion-icon name="mail"></ion-icon>
+                                    <span>{{item.notes}}</span>
+                                </section>
+
+                                <div class="footer">
+                                    <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
+
+                                </div>
+
+                            </ion-card-content>
+                        </ion-card>
+                    </div>
+                </div> -->
+            </div>
+        </ion-grid>
+    </div>
 </ion-content>
-

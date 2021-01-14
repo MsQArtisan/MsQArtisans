@@ -1,0 +1,23 @@
+li {
+    padding: 30px;
+}
+.displays {
+    margin: 5%;
+    width: 50%;
+}
+p {
+    float: right;
+}
+@media only screen and (max-width: 768px) {
+    .displays {
+        width: 95%;
+        margin: 3%;
+    }
+    li {
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    span:active {
+        background-color: rgb(187, 187, 187);
+    }
+}

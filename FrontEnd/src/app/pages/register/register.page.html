@@ -1,333 +1,170 @@
-<ion-content>
-  <div class="container">
-    <div class="d-flex justify-content-center">
-      <div class="user_card">
-        <div class="d-flex justify-content">
-            <div class="brand_logo_container">
-                <img src="assets/images/logo.png" class="brand_logo" alt="Logo">
-            </div>
-        </div>
-        <strong><h1 class="signInText">Sign Up</h1></strong> 
+<div class="leftText">
+	<img class="leftImage" src="https://static.wixstatic.com/media/bc9755_a8db4691b3ec4afc9620c8259fa72030~mv2.jpg/v1/fit/w_2500,h_1330,al_c/bc9755_a8db4691b3ec4afc9620c8259fa72030~mv2.jpg">
+</div>
+<div class="wholePart">
+	<div class="card">
+		<div style="background-color: rgba(255, 255, 255, 0.1); z-index: 10;">
+			<div class="login-header">
+				<img class="logo" src="assets/images/logo.png" alt="Logo">
+				<h2>Ms. Q Artisan</h2>
+			</div>
+		</div>
+		<div class="center">
+			<div heading-column-lr class="loginName">
+				<h1>Sign Up</h1><br>
+			</div>
+			<form #signUpForm="ngForm">
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-user"></i></span>
+					</div>
+					<input type="text" required name="name" [(ngModel)]="credentialsForm.name" #name="ngModel" placeholder="Fullname"
+					 minlength="2" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+					</div>
+					<input type="text" required name="address" [(ngModel)]="credentialsForm.address" #address="ngModel" placeholder="Address" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+					</div>
+					<input type="date" required name="bday" [(ngModel)]="credentialsForm.bday" #bday="ngModel" placeholder="Birth Date" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-phone"></i></span>
+					</div>
+					<input type="tel" required name="phone" [(ngModel)]="credentialsForm.phone" #phone="ngModel" placeholder="Phone Number"
+					 pattern="((^(\+)(\d){12}$)|(^\d{11}$))" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+					</div>
+					<input type="email" required name="email" [(ngModel)]="credentialsForm.email" #email="ngModel" placeholder="Email"
+					 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-key"></i></span>
+					</div>
+					<input type="password" required name="password" [(ngModel)]="credentialsForm.password" #password="ngModel"
+					 placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+				</div>
+				<div class="input-group mb-2">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-key"></i></span>
+					</div>
+					<input type="password" required name="confirmPassword" [(ngModel)]="credentialsForm.confirmPassword"
+					 #confirmPassword="ngModel" placeholder="Confirm Password" pattern="{{ password.value }}" />
+				</div>
+				<h6>Picture (Selfie):</h6>
+				<div class="input-group mb-1">
+					<div class="input-group-append" id="fileInput">
+						<span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+						<input type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie"
+						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
+					</div>
+				</div>
+				<h6>Primary ID:</h6>
+				<div class="input-group mb-1">
+					<div class="input-group-append" id="fileInput">
+						<span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+						<input type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic" #primaryIdPic="ngModel"
+						 placeholder="Primary" accept="image/*" />
+					</div>
+				</div>
+				<div class="input-group mb-1">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-id-card-alt"></i></span>
+					</div>
+					<input type="text" required name="primaryIdNum" [(ngModel)]="credentialsForm.primaryIdNum" #primaryIdNum="ngModel"
+					 placeholder="Primary ID Number" />
+				</div>
+				<h6>NBI Clearance:</h6>
+				<div class="input-group mb-1 ">
+					<div class="input-group-append" id="fileInput">
+						<span class="input-group-text">
+							<i class="fa fa-file-image"></i>
+						</span>
+						<input type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel" placeholder="NBI" />
+					</div>
+				</div>
 
-        <form class="form_fields"><br>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input 
-            class="form-control input_user"
-            type="text" 
-            required  
-            name="name" 
-            [(ngModel)]="Name" 
-            #name="ngModel"
-            placeholder="Fullname" 
-            minlength="2"
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="name.invalid && (name.dirty || name.touched)">
-                <div *ngIf="name.errors.required">
-                    Please provide your full name
-                </div>
-                <div *ngIf="name.errors.pattern">
-                  Name must be at least 2 characters
-                </div>
-              </div>
-            </div>                       
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-            </div>
-            <input 
-            class="form-control input_user"
-            type="text" 
-            required  
-            name="address" 
-            [(ngModel)]="Address" 
-            #address="ngModel"
-            placeholder="Address" 
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="address.invalid && (address.dirty || address.touched)">
-                <div *ngIf="address.errors.required">
-                    Address is required
-                </div>
-              </div>
-            </div>                       
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-            </div>
-            <input 
-            class="form-control input_user"
-            type="date" 
-            required  
-            name="bday" 
-            [(ngModel)]="Bday" 
-            #bday="ngModel"
-            placeholder="Birth Date" 
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="bday.invalid && (bday.dirty || bday.touched)">
-                <div *ngIf="bday.errors.required">
-                    Birth Date is required
-                </div>
-              </div>
-            </div>                       
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fa fa-phone"></i></span>
-            </div>
-            <input 
-            class="form-control input_user"
-            type="tel" 
-            required  
-            name="phone" 
-            [(ngModel)]="Phone" 
-            #phone="ngModel"
-            placeholder="Phone Number" 
-            pattern="((^(\+)(\d){12}$)|(^\d{11}$))"
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-                <div *ngIf="phone.errors.required">
-                  Phone Number is required
-                </div>
-                <div *ngIf="phone.errors.pattern">
-                  Please enter a valid Phone Number ( +63.... or 09..... )
-                </div>
-              </div>
-            </div>                       
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-            </div>
-            <input 
-            class="form-control input_user"
-            type="email" 
-            required  
-            name="email" 
-            [(ngModel)]="Email" 
-            #email="ngModel"
-            placeholder="Email" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="email.invalid && (email.dirty || email.touched)">
-                <div *ngIf="email.errors.required">
-                  Email is required
-                </div>
-                <div *ngIf="email.errors.pattern">
-                  Please enter a valid email address
-                </div>
-              </div>
-            </div>                       
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-            </div>
-            <input 
-            class="form-control"
-            type="password" 
-            required
-            name="password"
-            [(ngModel)]="Password" 
-            #password="ngModel"
-            placeholder="Password" 
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="password.invalid && (password.dirty || password.touched)" >
-                  <div *ngIf="password.errors.required"> 
-                    Password is required 
-                  </div>
-                  <div *ngIf="password.errors.pattern"> 
-                    Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
-                  </div>
-              </div>
-            </div>                        
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-            </div>
-            <input 
-            class="form-control"
-            type="password" 
-            required
-            name="confirmPassword"
-            [(ngModel)]="ConfirmPassword" 
-            #confirmPassword="ngModel"
-            placeholder="Confirm Password" 
-            pattern="{{ password.value }}"
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >
-                  <div *ngIf="confirmPassword.errors.required"> 
-                    Confirm Password is required 
-                  </div>
-                  <div *ngIf="confirmPassword.errors.pattern"> 
-                    Password & Confirm Password does not match
-                  </div>
-              </div>
-            </div>                        
-          </div>
-          <h6>Picture (Selfie):</h6>
-          <div class="input-group mb-1">
-            <div  class="input-group-append" id="fileInput">
-              <span class="input-group-text">
-                <i class="fa fa-file-image"></i>
-              </span>
-              <span>
-                <input 
-                class="form-control input_user" 
-                type="file" 
-                required
-                name="selfie"
-                [(ngModel)]="Selfie"
-                #selfie="ngModel"
-                placeholder="Selfie" 
-                accept="image/*" 
-                />
-              </span>
-            </div>  
-            <div class="input-group mb-1">
-              <div class="text-danger" id="err" *ngIf="selfie.invalid && (selfie.dirty || selfie.touched)">
-                <div *ngIf="selfie.errors.required">
-                  Please provide a selfie picture
-                </div>
-              </div>
-            </div>                             
-          </div>
-          <h6>Primary ID:</h6>
-          <div class="input-group mb-1">
-            <div  class="input-group-append" id="fileInput">
-              <span class="input-group-text">
-                <i class="fa fa-file-image"></i>
-              </span>
-              <span>
-                <input 
-                class="form-control input_user"
-                type="file" 
-                required 
-                name="primaryIdPic" 
-                [(ngModel)]="PrimaryIdPic" 
-                #primaryIdPic="ngModel"
-                placeholder="Primary"
-                accept="image/*" 
-                />
-              </span>
-            </div>  
-            <div class="input-group mb-1">
-              <div class="text-danger" id="err" *ngIf="primaryIdPic.invalid && (primaryIdPic.dirty || primaryIdPic.touched)">
-                <div *ngIf="primaryIdPic.errors.required">
-                  Please provide your Primary ID Picture
-                </div>
-              </div>
-            </div>                             
-          </div>
-          <div class="input-group mb-1">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
-            </div>
-            <input 
-            class="form-control"
-            type="text" 
-            required
-            name="primaryIdNum"
-            [(ngModel)]="PrimaryIdNum" 
-            #primaryIdNum="ngModel"
-            placeholder="Primary ID Number" 
-            />
-            <div class="input-group mb-1">
-              <div class="text-danger"  *ngIf="primaryIdNum.invalid && (primaryIdNum.dirty || primaryIdNum.touched)" >
-                  <div *ngIf="primaryIdNum.errors.required"> 
-                    Primary ID Number is required 
-                  </div>
-              </div>
-            </div>                        
-          </div>
-          <h6>NBI Clearance:</h6>
-          <div class="input-group mb-1">
-            <div  class="input-group-append" id="fileInput">
-              <span class="input-group-text">
-                <i class="fa fa-file-image"></i>
-              </span>
-              <span>
-                <input 
-                class="form-control input_user"
-                type="file" 
-                required 
-                name="nbi" 
-                [(ngModel)]="Nbi" 
-                #nbi="ngModel" 
-                placeholder="NBI" 
-                />
-              </span>
-            </div>  
-            <div class="input-group mb-1">
-              <div class="text-danger" *ngIf="nbi.invalid && (nbi.dirty || nbi.touched)">
-                <div *ngIf="nbi.errors.required"></div>
-                  Please provide your NBI Clearance
-                </div>
-              </div>
-          </div> 
-          <div class="input-group mb-1"> 
-            <ion-item class="apply">
-              <ion-label>Apply for?</ion-label>
-              <ion-select  
-              required
-              name="applyJob" 
-              [(ngModel)]="ApplyJob" 
-              #applyJob="ngModel"
-              value="03"
-              >
-              <ion-select-option value="tutor">Tutor (College Undergraduate/at least 2 years in College)</ion-select-option>
-              <ion-select-option value="nanny">Nanny (NC2 or n/a)</ion-select-option>
-              <ion-select-option value="housekeeping">Housekeeping (NC2 or n/a)</ion-select-option>
-              <ion-select-option value="haircutMassage">Haircut/ Massage (NC2 or n/a)</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <div class="input-group mb-1">
-              <div class="text-danger" *ngIf="applyJob.invalid && (applyJob.dirty || applyJob.touched)">
-                <div *ngIf="applyJob.errors.required">
-                  Please choose a job you want to apply
-                </div>
-              </div>
-            </div> 
-          </div> 
-          <div class="d-flex justify-content-center mt-3 ">
-            <button class="logbtn btn-outline-primary">Sign Up</button>
-          </div>
-        </form>
-        <div class="mt-4">
-          <div class="d-flex justify-content-center links">
-            Don't have an account? <a [routerLink]="['/login']" class="ml-2">Sign In</a>
-          </div><br>
-        </div><br>
-      </div>
-    </div>
-  </div>
-</ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				<div class="input-group mb-1">
+					<ion-item class="apply">
+						<ion-label>Apply for?</ion-label>
+						<ion-select name="applyJob" [(ngModel)]="credentialsForm.applyJob" #applyJob="ngModel" value="03">
+							<ion-select-option value="tutor">Tutor (College Undergraduate/at least 2 years in College)</ion-select-option>
+							<ion-select-option value="nanny">Nanny (NC2 or n/a)</ion-select-option>
+							<ion-select-option value="housekeeping">Housekeeping (NC2 or n/a)</ion-select-option>
+							<ion-select-option value="haircutMassage">Haircut/ Massage (NC2 or n/a)</ion-select-option>
+						</ion-select>
+					</ion-item>
+				</div>
+				<div *ngIf="credentialsForm.applyJob=='tutor'">
+					<ion-label>Upload your Tutor NC2 File here!</ion-label>
+					<div class="input-group mb-1 ">
+						<div class="input-group-append" id="fileInput">
+							<span class="input-group-text">
+								<i class="fa fa-file-image"></i>
+							</span>
+							<input type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
+							 placeholder="TutorFile" />
+						</div>
+					</div>
+				</div>
+				<div *ngIf="credentialsForm.applyJob=='nanny'">
+					<ion-label>Upload your Nanny NC2 File here!</ion-label>
+					<div class="input-group mb-1 ">
+						<div class="input-group-append" id="fileInput">
+							<span class="input-group-text">
+								<i class="fa fa-file-image"></i>
+							</span>
+							<input type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
+							 placeholder="NannyFile" />
+						</div>
+					</div>
+				</div>
+				<div *ngIf="credentialsForm.applyJob=='housekeeping'">
+					<ion-label>Upload your Housekeeping NC2 File here!</ion-label>
+					<div class="input-group mb-1 ">
+						<div class="input-group-append" id="fileInput">
+							<span class="input-group-text">
+								<i class="fa fa-file-image"></i>
+							</span>
+							<input type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile" #tutor="ngModel"
+							 placeholder="HouseKeepingFile" />
+						</div>
+					</div>
+				</div>
+				<div *ngIf="credentialsForm.applyJob=='haircutMassage'">
+					<ion-label>Upload your Haircut/ Massage NC2 File here!</ion-label>
+					<div class="input-group mb-1 ">
+						<div class="input-group-append" id="fileInput">
+							<span class="input-group-text">
+								<i class="fa fa-file-image"></i>
+							</span>
+							<input type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel"
+							 placeholder="HaricutMassageFile" />
+						</div>
+					</div>
+				</div><br>
+				<ion-button class="ion-button-class" shape="round" fill="solid" size="large" expand="block" (click)="register()"
+				 [disabled]="!signUpForm.form.valid">Sign Up</ion-button>
+			</form>
+			<div class="mt-4">
+				<div class="d-flex justify-content-center links">
+					Already have an account? <a [routerLink]="['/login']" class="ml-2">Sign In</a>
+				</div><br>
+			</div><br>
+		</div>
+	</div>
+</div>

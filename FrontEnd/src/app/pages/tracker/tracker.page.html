@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar color="secondary">
-      <ion-title>Tracker</ion-title>
+      <ion-title class="header">Tracker</ion-title>
       <ion-buttons slot="start">
           <ion-menu-button menu="main-menu"></ion-menu-button>
       </ion-buttons>
@@ -8,26 +8,71 @@
 </ion-header>
 
 <ion-content>
-     <!-- Icon top -->
-     <ion-segment color="secondary" value="favorite">
-            <ion-segment-button value="call">
-              <ion-label> On Going</ion-label>
-              <ion-icon name="refresh-circle-outline"></ion-icon>            
-            </ion-segment-button>
-    
-            <ion-segment-button value="favorite">
-              <ion-label>Completed</ion-label>
-              <ion-icon name="checkmark-circle-outline"></ion-icon>            
-            </ion-segment-button>
-              
-            
-            <ion-segment-button value="map">
-              <ion-label>Rejected</ion-label>
+  <!-- For web -->
+  <div class="taskCreated">
+      <a id="going"><button class="onWeb" (click)="myOnGoingTask()">
+              <ion-icon name="refresh-circle-outline"></ion-icon>
+              On Going
+          </button></a><br><br>
+      <a id="completed"><button class="onWeb" (click)="completedTasks()">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              Completed
+          </button></a><br><br>
+      <a id="reject"><button class="onWeb" (click)="rejectedTasks()">
               <ion-icon name="close-circle-outline"></ion-icon>
-             
-            </ion-segment-button>
-          </ion-segment>
+              Rejected
+          </button></a>
+  </div>
+  <!-- Icon top -->
+  <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
+      <ion-segment-button id="going" class="topnavButton" value="call" (click)="myOnGoingTask()">
+          <ion-label> On Going</ion-label>
+          <ion-icon name="refresh-circle-outline"></ion-icon>
+      </ion-segment-button>
 
+      <ion-segment-button id="completed" class="topnavButton" value="favorite" (click)="completedTasks()">
+          <ion-label>Completed</ion-label>
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </ion-segment-button>
+
+
+      <ion-segment-button id="reject" class="topnavButton" value="map" (click)="rejectedTasks()">
+          <ion-label>Rejected</ion-label>
+          <ion-icon name="close-circle-outline"></ion-icon>
+
+      </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="!rejectedTask">
+      <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
+          <ul>
+              <p class="customerName"> {{value.user.author.name}} </p>
+              <li> {{value.user.author.email}} </li>
+              <li>{{value.jobs.customerId.service_booking}}</li>
+              <li> {{value.jobs.customerId.service_location}} </li>
+              <li> {{value.jobs.customerId.notes}} </li>
+              <li> {{value.user.author.phone}} </li>
+              <li> {{value.user.cost}} </li>
+              <li> {{value.user.updatedAt}} </li><br>
+              <button *ngIf="completedTask" id="deleteTask" class="onMobile" (click)="deleteCompletedTask()">Delete Completed Task</button>
+              <button *ngIf="!completedTask" (click)="alreadyDoneTask(i, value.jobs._id, value.jobs)" class="onMobile">Finish Service!</button>
+              <br><br>
+          </ul>
+      </div>
+  </div>
+  <div *ngIf="rejectedTask">
+      <div class="rejectedTasks" *ngFor="let value of onGoingJob">
+          <ul>
+              <p class="customerName"> {{value.user.author.name}} </p>
+              <li> {{value.user.author.email}} </li>
+              <li>{{value.jobs.customerId.service_booking}}</li>
+              <li> {{value.jobs.customerId.service_location}} </li>
+              <li> {{value.jobs.customerId.notes}} </li>
+              <li> {{value.user.author.phone}} </li>
+              <li> {{value.user.cost}} </li>
+              <li> {{value.user.updatedAt}} </li><br>
+              <button class="rejectToRestore">Restore Task</button>
+              <br><br>
+          </ul>
+      </div>
+  </div>
 </ion-content>
-
-
