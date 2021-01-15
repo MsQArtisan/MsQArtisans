@@ -1,41 +1,53 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="secondary">
-        <ion-title class="header">Orders</ion-title>
-        <ion-buttons slot="end">
-            <ion-icon class="close" (click)="closeModal()" name="close"></ion-icon>
-        </ion-buttons>
-    </ion-toolbar>
+    <div>
+        <ion-img src="assets/images/service.png" class="service"></ion-img>
+        <center>
+            <div class="booking">
+                <u>
+                    <h2><b>{{service_booking}}</b></h2>
+                </u>
+                <h3><i>Service Booking</i></h3>
+            </div>
+
+        </center>
+    </div>
 </ion-header>
 
 <ion-content>
-    <ion-list class="orders">
-        <ion-item>
-            <ion-icon name="people"></ion-icon>
-            <!-- {{name}} -->
-            <p>{{name}}</p>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="time"></ion-icon>
-            <p>{{schedule | date:'short'}}</p>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="location"></ion-icon>
-            <p>{{service_location}}</p>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="wallet"></ion-icon>
-            <p>&#8369;{{cost}}.00</p>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="mail"></ion-icon>
-            <p>{{notes}}</p>
-        </ion-item>
+    <ion-card class="cardContent">
+        <ion-card-content>
+            <section>
+                <ion-icon name="person"></ion-icon>
+                <span>{{name}}</span>
+            </section>
+            <section>
+                <ion-icon name="time"></ion-icon>
+                <span>{{updatedAt | date:'short'}}</span>
+            </section>
+            <section (click)="navigateToMap()" class="location">
+                <ion-icon name="location"></ion-icon>
+                <span>{{service_location}}</span>
 
-    </ion-list>
-    <br><br>
-    <section>
-        <button class="buttonAccept" (click)="acceptOrder()">Accept Job</button>
-        <button class="buttonPass" (click)="pass()">Pass</button>
-    </section>
+            </section>
+            <section>
+                <ion-icon name="wallet"></ion-icon>
+                <span>{{cost}}</span>
+            </section>
+            <section>
+                <ion-icon name="mail-open"></ion-icon>
+                <span>{{notes}}</span>
+            </section>
+
+        </ion-card-content>
+    </ion-card>
+
+    <ion-footer class="ion-no-border">
+        <ion-toolbar class="toolbar">
+            <section class="full-width">
+                <button class="buttonAccept" (click)="closeModal()">Accept Job</button>
+                <button class="buttonPass" (click)="pass()">Pass</button>
+            </section>
+        </ion-toolbar>
+    </ion-footer>
 
 </ion-content>

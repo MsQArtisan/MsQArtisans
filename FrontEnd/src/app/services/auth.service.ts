@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
+const forgotPassURL = 'http://localhost:5010/api';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,8 @@ export class AuthService {
   user = null;
   authenticationState = new BehaviorSubject(false);
 
-  constructor(
-    private http: HttpClient,
-    private helper: JwtHelperService,
-    private storage: Storage,
-    private plt: Platform,
-    private alertController: AlertController
-  ) {
+  constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
+    private plt: Platform, private alertController: AlertController) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -40,6 +36,7 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
+
         if (!isExpired) {
           this.storage.get(userToken).then((token) => {
             this.userIDToken = token
@@ -61,6 +58,7 @@ export class AuthService {
       })
     );
   }
+
   login(credentials) {
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
@@ -73,14 +71,10 @@ export class AuthService {
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
           } else {
-            this.returnTheStatus();
+            // this.returnTheStatus()
           }
         })
       )
-  }
-
-  returnTheStatus() {
-    return this.authenticationState
   }
 
   logout() {
@@ -88,21 +82,11 @@ export class AuthService {
       this.storage.remove(userToken).then(() => {
         this.authenticationState.next(false);
       })
-      // window.location.reload()
+      window.location.reload()
     });
   }
-
-  getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('You are not authorized for this!');
-          this.logout();
-        }
-        throw new Error(e);
-      })
-    )
+  popTheUserAfterLogout(){
+    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
   }
 
   isAuthenticated() {
@@ -123,48 +107,66 @@ export class AuthService {
   }
 
   getUser() {
-    return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
+    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
   }
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
 
+  acceptedJobsBeingCompleted(data) {
+    return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
+  }
+
+  monthlyIncomeStatistics(currentUser) {
+    return this.http.post(`${this.url}/api/stats`, currentUser)
+  }
+
   allJobsBeingAccepted(data) {
     return this.http.post(`${this.url}/api/allJobsAccepted`, data)
   }
-  deleteItem(data) {
-    return this.http.post(`${this.url}/api/jobsToDelete`, data)
+
+  allCompletedJobs(data) {
+    return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
   addImageToDatabase(imageUrl) {
-    return this.http.post(`${this.url}/api/imageUpload`, imageUrl);
+    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
   }
 
   getTheProfileImage(usersName) {
-    return this.http.post(`${this.url}/api/getUserProfile`, usersName);
+    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
   }
-
+  
   requestReset(body): Observable<any> {
-    return this.http.post(`${this.url}/api/reqResetPassword`, body);
+    return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
   }
 
-  getOrders():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getNewOrder`);
+  newPassword(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/new-password`, body);
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${forgotPassURL}/valid-password-token`, body);
+  }
+  getAllActiveUsers() {
+    return this.http.get(`${this.url}/api/allActiveUsers`)
+  }
+
+  getOrders(){
+    return this.http.get(`${this.url}/api/getNewOrder`)
   }
   getCustomersName():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getCustomersName`);
+    return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
   getCustomersData(userId) {
     return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
   }
-  idHolder(userId):Observable<any>{
-    return this.http.post<any>(`${this.url}/api/idHolder`,{id:userId})
-  }
-  getCustomersId():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getId`)
+  // allLogsHistory
+  getAllLogsHistory(id) {
+    return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }
 
-  getStatistics():Observable<any>{
-    return this.http.get<any>(`${this.url}/api/getStat`)
+  getReviews():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reviews`)
   }
 }

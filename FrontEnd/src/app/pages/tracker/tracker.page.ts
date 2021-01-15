@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
-import { Router } from '@angular/router'
+import { FunctionsToUse } from '../../functions/functions.model'
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tracker',
@@ -8,11 +10,16 @@ import { Router } from '@angular/router'
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
+  public imageUrl;
+  public buttonText = "Finish Service"
+  public functions = new FunctionsToUse()
+
+  public noTaskShow = false
 
   public completedTask = false
+  public rejectedTask = false
   public jobsOffered;
-  public onGoingJob;
-  public rejected;
+  public onGoingJob = [];
 
   constructor(
     private authService: AuthService,
@@ -20,43 +27,54 @@ export class TrackerPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.allJobsBeingAccepted({state: "completed"}).subscribe((data) => {
-      this.jobsOffered = data
-      this.onGoingJob = this.jobsOffered.jobs
+    this.authService.getUser().subscribe((data) => {
+      this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
+        this.imageUrl = data[0].image[0]
+      })
     })
+    this.onGoingJob.length = 0
+    this.functions.jobsAccepted(this.authService, { state: "Ongoing", user: this.authService.userIDToken }, this.onGoingJob)
+    this.completedTask = true
+    document.getElementById('completed').style.borderBottom = '2px solid rgb(132, 208, 255)'
+    document.getElementById('going').style.borderBottom = 'none'
+    document.getElementById('reject').style.borderBottom = 'none'
   }
+
   myOnGoingTask() {
-    this.authService.allJobsBeingAccepted({state: "accept"}).subscribe((data) => {
-      this.jobsOffered = data
-      this.onGoingJob = this.jobsOffered.jobs
-    })
+    this.rejectedTask = false
+    this.onGoingJob.length = 0
+    this.functions.onGoingTask(this.authService, { state: "accept", user: this.authService.userIDToken }, this.onGoingJob)
+    this.completedTask = false
   }
-  alreadyDoneTask(index) {
-    this.authService.addDataToJobOrders({ state: "completed", jobOffer: this.jobsOffered.jobs[index].data}).subscribe((data) => {
-      this.jobsOffered = data
-      this.onGoingJob = this.jobsOffered.jobs
-      this.deleteItemThroughIndex(index)
-      this.http.navigate(['job-orders'])
+  alreadyDoneTask(index, dataId, cost) {
+    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost }).subscribe((data) => {
+      if (data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Thank you for using our app!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.http.navigate(['job-orders'])
+      }
     })
   }
   completedTasks() {
-    this.authService.allJobsBeingAccepted({state: "completed"}).subscribe((data) => {
-      this.jobsOffered = data
-      this.onGoingJob = this.jobsOffered.jobs
-    })
+    this.onGoingJob.length = 0
+    this.functions.completedTask(this.authService, { state: "Ongoing", user: this.authService.userIDToken }, this.onGoingJob)
+    this.completedTask = true
+    this.rejectedTask = false
   }
+
   rejectedTasks() {
-    this.authService.allJobsBeingAccepted({state: "rejected"}).subscribe((data) => {
-      this.jobsOffered = data
-      console.log(this.jobsOffered)
-      this.onGoingJob = this.jobsOffered.jobs
-    })
+    this.completedTask = true
+    this.rejectedTask = true
+    this.onGoingJob.length = 0
+    this.functions.rejectedTask(this.authService, { state: "rejected" }, this.onGoingJob)
   }
 
-
-  deleteItemThroughIndex(index) {
-    this.authService.deleteItem({state: "complete", index: index}).subscribe((data) => {
-    })
+  deleteCompletedTask() {
+    console.log("Done")
   }
 
 }

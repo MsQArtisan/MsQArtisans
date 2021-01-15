@@ -7,7 +7,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AccInfoPage implements OnInit {
   public imageUrl;
-  public image;
   userAccount: string = '';
   public userName;
   constructor(private authService: AuthService) { }
@@ -20,8 +19,7 @@ export class AccInfoPage implements OnInit {
       this.userAccount = data.data[0];
       this.userName = data.data[0]
       this.authService.getTheProfileImage({ name: this.userName.name }).subscribe((data) => {
-        this.image = data
-        this.imageUrl = this.image.image
+        this.imageUrl = data[0].image[0]
       })
     })
   }

@@ -5,83 +5,22 @@
             <ion-back-button [routerLink]="['/settings']"></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
-</ion-header> 
+</ion-header>
 
-    
 <ion-content>
-        <ion-card>
+    <ion-card>
+        <ion-card-header>
+            <center> <img src="assets/images/rating.png" alt="" class="rate"></center>
+        </ion-card-header>
+        <center>
             <ion-card-content>
-                <img   slot="start" float-left src="assets/images/very_satisfied.jpg">
-                <section>
-                    <span>{{very_sat}}</span>
-                    <p>Very Satisfied</p>
-                </section>
-          </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <img  slot="start" float-left src="assets/images/satisfied.jpg">
-                    <section>
-                        <span>{{sat}}</span>
-                        <p>Satisfied</p>
-                    </section>
-              </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <img   slot="start" float-left src="assets/images/ok.jpg">
-                    <section>
-                        <span>{{ok}}</span>
-                        <p>Okay</p>
-                    </section>
-              </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <img  slot="start" float-left src="assets/images/disappointed.jpg">
-                    <section>
-                        <span>{{dis}}</span>
-                        <p>Disappointed</p>
-                    </section>
-              </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <img slot="start" float-left src="assets/images/very_disappointed.jpg">
-                    <section>
-                        <span>{{very_dis}}</span>
-                        <p>Very Disappointed</p>
-                    </section>
-              </ion-card-content>
-        </ion-card>
-<!-- 
+                <span class="ratingLabel">{{rating}} %</span><br>
+                <div class="content">
+                    <h3>Overall Rating Average</h3>
+                </div>
 
+            </ion-card-content>
+        </center>
 
-    <ion-list class="rates">
-        <div>
-            <img alt="logo"   float-left src="assets/images/very_satisfied.jpg"><br>
-            <span>Very Satisfied</span>
-            <h1>{{very_sat}}</h1>
-        </div>
-        <div>
-            <img alt="logo"  float-left src="assets/images/satisfied.jpg"><br>
-            <span>Satisfied</span>
-            <h1>{{sat}}</h1>
-        </div>
-        <div>
-            <img alt="logo"   float-left src="assets/images/ok.jpg"><br>
-            <span>Okay</span>
-            <h1>{{ok}}</h1>
-        </div>
-        <div>
-            <img alt="logo"  float-left src="assets/images/disappointed.jpg"><br>
-            <span>Disappointed</span>
-            <h1>{{dis}}</h1>
-        </div>
-        <div>
-            <img alt="logo"  float-left src="assets/images/very_disappointed.jpg"><br>
-            <span>Very Disappointed</span>
-            <h1>{{very_dis}}</h1>
-        </div>
-    </ion-list> -->
+    </ion-card>
 </ion-content>

@@ -87,10 +87,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
   },
   {
-    path: 'forget-pass',
-    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
-  },
-  {
     path: 'cash-out',
     loadChildren: () => import('./pages/cash-out/cash-out.module').then( m => m.CashOutPageModule)
   },
@@ -102,9 +98,12 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
   },
+  {
+    path: 'sidenav',
+    loadChildren: () => import('./template/sidenav/sidenav.module').then( m => m.SidenavPageModule)
+  },
 
 ];
-
 
 
 @NgModule({

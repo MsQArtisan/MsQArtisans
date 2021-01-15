@@ -8,38 +8,73 @@
 </ion-header>
 
 <ion-content>
+    <!-- For web -->
+    <div class="taskCreated">
+        <a id="going"><button class="onWeb" (click)="myOnGoingTask()">
+                <ion-icon name="refresh-circle-outline"></ion-icon>
+                On Going
+            </button></a><br><br>
+        <a id="completed"><button class="onWeb" (click)="completedTasks()">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Completed
+            </button></a><br><br>
+        <a id="reject"><button class="onWeb" (click)="rejectedTasks()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+                Rejected
+            </button></a>
+    </div>
     <!-- Icon top -->
-    <ion-segment color="secondary" class="topnav">
-        <ion-segment-button value="call" (click)="myOnGoingTask()">
+    <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
+        <ion-segment-button id="going" class="topnavButton" value="call" (click)="myOnGoingTask()">
             <ion-label> On Going</ion-label>
             <ion-icon name="refresh-circle-outline"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button value="favorite" (click)="completedTasks()">
+        <ion-segment-button id="completed" class="topnavButton" value="favorite" (click)="completedTasks()">
             <ion-label>Completed</ion-label>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </ion-segment-button>
 
 
-        <ion-segment-button value="map" (click)="rejectedTasks()">
+        <ion-segment-button id="reject" class="topnavButton" value="map" (click)="rejectedTasks()">
             <ion-label>Rejected</ion-label>
             <ion-icon name="close-circle-outline"></ion-icon>
 
         </ion-segment-button>
-    </ion-segment><br><br><br>
-    <div class="listOfAcceptedJobs">
-        <ul *ngFor="let value of onGoingJob; let i = index">
-            <p class="customerName"> {{value.data.customer}} </p>
-            <li> {{value.data.email}} </li>
-            <li>{{value.data.jobTitle}}</li>
-            <li> {{value.data.location}} </li>
-            <li> {{value.data.notes}} </li>
-            <li> {{value.data.phone}} </li>
-            <li> {{value.data.rate}} </li>
-            <li> {{value.data.schedule}} </li><br>
-            <button *ngIf="completedTask">Delete Completed Task</button>
-            <button (click)="alreadyDoneTask(i)">Done!</button>
-            <br><br>
-        </ul>
+    </ion-segment>
+    <div *ngIf="!rejectedTask">
+        <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
+            <ul>
+                <p class="customerName"> {{value.user.author.name}} </p>
+                <li> {{value.user.author.email}} </li>
+                <li>{{value.jobs.customerId.service_booking}}</li>
+                <li> {{value.jobs.customerId.service_location}} </li>
+                <li> {{value.jobs.customerId.notes}} </li>
+                <li> {{value.user.author.phone}} </li>
+                <li> {{value.user.cost}} </li>
+                <li> {{value.user.updatedAt}} </li><br>
+                <button *ngIf="completedTask" id="deleteTask" class="onMobile" (click)="deleteCompletedTask()">Delete
+                    Completed Task</button>
+                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i, value.jobs._id, value.jobs)" class="onMobile">Finish
+                    Service!</button>
+                <br><br>
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="rejectedTask">
+        <div class="rejectedTasks" *ngFor="let value of onGoingJob">
+            <ul>
+                <p class="customerName"> {{value.user.author.name}} </p>
+                <li> {{value.user.author.email}} </li>
+                <li>{{value.jobs.customerId.service_booking}}</li>
+                <li> {{value.jobs.customerId.service_location}} </li>
+                <li> {{value.jobs.customerId.notes}} </li>
+                <li> {{value.user.author.phone}} </li>
+                <li> {{value.user.cost}} </li>
+                <li> {{value.user.updatedAt}} </li><br>
+                <button class="rejectToRestore">Restore Task</button>
+                <br><br>
+            </ul>
+        </div>
     </div>
 </ion-content>

@@ -1,11 +1,11 @@
 var User = require('../models/artisan-model');
+var Orders = require('../models/Bookings')
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
-
+var userTask = require('../models/taskOfEveryUsers')
+var logsOfHistory = require('../models/logsHistory')
 var loggedusers = []
 var jobArray = []
-var completedJob = []
-var rejectedJob = []
 
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -54,6 +54,18 @@ exports.loginUser = (req, res) => {
     })
 };
 
+exports.logoutUser = (req, res) => {
+    let count = 0
+    User.findOne({ _id: req.body.user }, (err, user) => {
+        loggedusers.forEach(element => {
+            if (element._id != user._id) {
+                count += 1
+            }
+        })
+        loggedusers.pop(count)
+    })
+}
+
 exports.getUser = (req, res) => {
 
     User.find({ _id: req.body.id }, (err, user) => {
@@ -65,37 +77,41 @@ exports.getUser = (req, res) => {
     });
 }
 
+//currentUserId, cost, currentDate
 exports.addJobOrders = (req, res) => {
-    if (req.body.state == "accept") {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                jobArray.push({ email: element.email, data: req.body.jobOffer })
-            }
-        });
-    } else if (req.body.state == "completed") {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                completedJob.push({ email: element.email, data: req.body.jobOffer })
-            }
-        });
-    } else {
-        loggedusers.forEach(element => {
-            if (element._id == req.body.currentUser) {
-                rejectedJob.push({ email: element.email, data: req.body.jobOffer })
-            }
-        });
+    var dataTOAdd = {
+        logsOwner: req.body.currentUser,
+        jobsOfferedThroughId: req.body.jobOffer._id
     }
-    res.send(true)
+    let dataAdd = new logsOfHistory(dataTOAdd)
+    dataAdd.save((err, result) => {})
+    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => {})
+    var sampleObject = {
+        currentUser: req.body.currentUser,
+        state: req.body.state,
+        customerId: req.body.jobOffer._id
+    }
+    let usersTask = new userTask(sampleObject)
+    usersTask.save((err, result) => {
+        res.send(result)
+    })
+}
+//array, request, toPassarray
+exports.allJobAccepted = (req, res) => {
+    userTask.find({ currentUser: req.body.user, state: "accept" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
 }
 
-exports.allJobAccepted = (req, res) => {
-    if (req.body.state == "accept") {
-        res.send({ state: 'accept', jobs: jobArray })
-    } else if (req.body.state == "completed") {
-        res.send({ state: 'completed', jobs: completedJob })
-    } else {
-        res.send({ state: 'reject', jobs: rejectedJob })
-    }
+exports.completedJob = (req, res) => {
+    userTask.find({ currentUser: req.body.user, state: "completed" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
+}
+exports.returnAllActiveUsers = (req, res) => {
+    res.send(loggedusers)
 }
 
 exports.deleteItem = (req, res) => {

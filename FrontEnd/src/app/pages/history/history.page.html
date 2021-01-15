@@ -8,18 +8,12 @@
 </ion-header>
 
 <ion-content>
-    <div class="dropdown">
-        <select class="cash" id="sel1">
-        <option class="opp">Cash In</option>
-        <option class="opp">Cash Out</option>
-      </select>
+    <div class="displays">
+        <ul class="w3-ul w3-card-4">
+            <li *ngFor="let value of arrayToRender" class="w3-display-container">You've accepted a {{
+                value.service_booking }} that cost {{ value.cost }} at {{ value.service_location }}
+                <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span>
+            </li>
+        </ul>
     </div>
-    <div class="dropdown">
-        <select class="cash" id="sel2">
-            <option>January</option>
-            <option>February</option>
-        </select>
-    </div>
-
-
 </ion-content>

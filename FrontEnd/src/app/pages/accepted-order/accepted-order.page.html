@@ -1,18 +1,27 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-        <ion-buttons slot="start">
+        <!-- <ion-buttons slot="start">
             <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
-        </ion-buttons>
+        </ion-buttons> -->
         <h2 style="margin-left: 20px;">Accepted Order</h2>
     </ion-toolbar>
 </ion-header>
 
+<div class="barrier"></div>
+
 <ion-content>
-    <ion-card>
+    <div class="map">
+        <input style="width: 100%; height: 50px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" type="text"
+            id="pac-input" value="{{jobOffer.location}}" class="controls" placeholder="Search Location">
+        <div #maps id="maps" style="height: 700px; width: 1000px;"></div>
+    </div>
+    <ion-card class="cardContent">
         <ion-card-header>
             <div class="jobPoster">
-                <u><h2>{{jobOffer.name}}</h2></u>
-                <h3>Customer Name</h3>
+                <u>
+                    <h2 class="name"><b>{{jobOffer.name}}</b></h2>
+                </u>
+                <h3><i>Customer Name</i></h3>
             </div>
         </ion-card-header>
         <ion-card-content>
@@ -26,16 +35,16 @@
             </section>
             <section>
                 <ion-icon name="time"></ion-icon>
-                <span>{{jobOffer.schedule | date:'short'}}</span>
+                <span>{{jobOffer.schedule}}</span>
             </section>
-            <section (click)="location()">
+            <section (click)="navigateToMap()" class="location">
                 <ion-icon class="floating" name="location"></ion-icon>
                 <span>{{jobOffer.location}}</span>
 
             </section>
             <section>
                 <ion-icon name="wallet"></ion-icon>
-                <span>&#8369;{{jobOffer.rate}}.00</span>
+                <span>{{jobOffer.rate}}</span>
             </section>
             <section>
                 <ion-icon name="mail-open"></ion-icon>
@@ -44,15 +53,12 @@
 
         </ion-card-content>
     </ion-card>
-
     <ion-footer class="ion-no-border">
-        <ion-toolbar>
+        <ion-toolbar class="toolbar">
             <section class="full-width">
                 <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
-                <button class="buttonPass" (click)="cancel()">Cancel</button>
-                <!-- [disabled]="click" -->
+                <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button>
             </section>
         </ion-toolbar>
     </ion-footer>
-
 </ion-content>

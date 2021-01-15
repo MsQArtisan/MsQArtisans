@@ -1,129 +1,210 @@
-        @import "../../../global.scss";
-        * {
-            font-family: lato;
-        }
-        
-        .header {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 20px;
-            font-weight: lighter;
-            color: rgb(0, 0, 0);
-            letter-spacing: 1.5px;
-        }
-        
-        ion-card {
-            // margin: 20%;
-            margin-top: 5%;
-            display: flex;
-            margin-left: 30%;
-            width: 45%;
-            height: 81%;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 2px 4px 8px 2px rgba(48, 78, 83, 0.603);
-            transition: 0.3s;
-        }
-        
-        h2 {
-            color: rgb(73, 73, 73);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-weight: lighter;
-        }
-        
-        p {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        img {
-            border-radius: 50%;
-            width: 80%;
-            height: 75%;
-            // display: flex;
-        }
-        
-        .imageColor {
-            margin-left: 24%;
-            border-radius: 50%;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            width: 45%;
-            height: 50%;
-            background-image: url('https://static.vecteezy.com/system/resources/previews/000/257/429/non_2x/abstract-shiny-blue-technology-background-vector.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        
-        .imageBackground {
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .borderColor {
-            border-radius: 50%;
-            background-color: rgb(255, 255, 255);
-            width: 85%;
-            height: 90%;
-            margin-left: 15px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-        
-        @media only screen and (max-width: 768px) {
-            // for mobile phone
-            ion-card {
-                position: absolute;
-                margin-top: 17%;
-                padding: 20px;
-                width: 74%;
-                margin-left: 15%;
-                border-radius: 20px;
-            }
-            .imageColor {
-                margin-left: 10%;
-                border-radius: 50%;
-                padding-top: 15px;
-                padding-bottom: 15px;
-                display: flex;
-                width: 85%;
-                height: 90%;
-            }
-            .borderColor {
-                margin-left: 12px;
-            }
-            h2 {
-                margin-top: 5px;
-            }
-            // img {
-            //     margin-left: 10%;
-            // }
-        }
-        
-        @media screen and (min-device-width: 657px) and (max-device-width: 1024px) {
-            // for ipad
-            ion-card {
-                justify-content: center;
-            }
-            .borderColor {
-                margin-left: 23px;
-                display: flex;
-                padding-bottom: 9%;
-                padding-top: 10%;
-            }
-            .imageColor {
-                width: 75%;
-                padding-top: 6%;
-                padding-bottom: 7%;
-            }
-            img {
-                margin-left: 10%;
-            }
-        }
-        
-        @media (min-width:770px) {
-            .borderColor {
-                margin-left: 15px;
-            }
-            .imageColor {
-                margin-left: 30px;
-            }
-        }
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+
+
+.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1.5px;
+}
+
+ion-card{
+    margin-top: 10%;
+    padding:20px;
+    // background-color: rgb(21, 160, 224);
+    border-radius: 20px;
+    box-shadow: 2px 4px 8px 2px rgba(48, 78, 83, 0.603);
+    transition: 0.3s;
+  
+}
+
+h2{
+    color: rgb(73, 73, 73);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+}
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+img {
+    border-radius: 50%;
+    width: 80%;
+    height: 75%;
+}
+.imageColor {
+    margin-left: 15px;
+    border-radius: 50%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 85%;
+    height: 90%;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/257/429/non_2x/abstract-shiny-blue-technology-background-vector.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+.imageBackground {
+    padding: 10px;
+    text-align: center;
+}
+.borderColor {
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    width: 85%;
+    height: 90%;
+    margin-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @import "../../../global.scss";
+// * {
+//     font-family: lato;
+// }
+
+// .header {
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//     font-size: 20px;
+//     font-weight: lighter;
+//     color: rgb(0, 0, 0);
+//     letter-spacing: 1.5px;
+// }
+
+// ion-card {
+//     // margin: 20%;
+//     margin-top: 5%;
+//     display: flex;
+//     margin-left: 30%;
+//     width: 45%;
+//     height: 81%;
+//     padding: 20px;
+//     border-radius: 20px;
+//     box-shadow: 2px 4px 8px 2px rgba(48, 78, 83, 0.603);
+//     transition: 0.3s;
+// }
+
+// h2 {
+//     color: rgb(73, 73, 73);
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//     font-weight: lighter;
+// }
+
+// p {
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+// }
+
+// img {
+//     border-radius: 50%;
+//     width: 80%;
+//     height: 75%;
+//     // display: flex;
+// }
+
+// .imageColor {
+//     margin-left: 24%;
+//     border-radius: 50%;
+//     padding-top: 15px;
+//     padding-bottom: 15px;
+//     width: 45%;
+//     height: 50%;
+//     background-image: url('https://static.vecteezy.com/system/resources/previews/000/257/429/non_2x/abstract-shiny-blue-technology-background-vector.jpg');
+//     background-attachment: fixed;
+//     background-size: cover;
+// }
+
+// .imageBackground {
+//     padding: 10px;
+//     text-align: center;
+// }
+
+// .borderColor {
+//     border-radius: 50%;
+//     background-color: rgb(255, 255, 255);
+//     width: 85%;
+//     height: 90%;
+//     margin-left: 15px;
+//     padding-top: 15px;
+//     padding-bottom: 15px;
+// }
+
+// @media only screen and (max-width: 768px) {
+//     // for mobile phone
+//     ion-card {
+//         position: absolute;
+//         margin-top: 17%;
+//         padding: 20px;
+//         width: 74%;
+//         margin-left: 15%;
+//         border-radius: 20px;
+//     }
+//     .imageColor {
+//         margin-left: 10%;
+//         border-radius: 50%;
+//         padding-top: 15px;
+//         padding-bottom: 15px;
+//         display: flex;
+//         width: 85%;
+//         height: 90%;
+//     }
+//     .borderColor {
+//         margin-left: 12px;
+//     }
+//     h2 {
+//         margin-top: 5px;
+//     }
+//     // img {
+//     //     margin-left: 10%;
+//     // }
+// }
+
+// @media screen and (min-device-width: 657px) and (max-device-width: 1024px) {
+//     // for ipad
+//     ion-card {
+//         justify-content: center;
+//     }
+//     .borderColor {
+//         margin-left: 23px;
+//         display: flex;
+//         padding-bottom: 9%;
+//         padding-top: 10%;
+//     }
+//     .imageColor {
+//         width: 75%;
+//         padding-top: 6%;
+//         padding-bottom: 7%;
+//     }
+//     img {
+//         margin-left: 10%;
+//     }
+// }
+
+// @media (min-width:770px) {
+//     .borderColor {
+//         margin-left: 15px;
+//     }
+//     .imageColor {
+//         margin-left: 30px;
+//     }
+// }

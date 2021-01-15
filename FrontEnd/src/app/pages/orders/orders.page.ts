@@ -1,6 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { NavParams, ModalController, NavController } from '@ionic/angular';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from "../../services/auth.service"
 @Component({
   selector: 'app-orders',
@@ -8,33 +8,32 @@ import { AuthService } from "../../services/auth.service"
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
+  public jobOffer;
   @Input() id : string;
   @Input() name: string;
   @Input() service_booking: string;
-  @Input() schedule: string;
+  @Input() updatedAt: string;
   @Input() service_location: string;
   @Input() cost: string;
   @Input() notes: string;
-
-
-  constructor(private router: Router,public navCtrl: NavController, private modalController: ModalController, private authService: AuthService) { }
+  @Input() status: string;
+  
+  constructor(private router: Router, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getCustomersData(this.id).subscribe((data) => {
+      this.jobOffer = data
+    })
   }
 
   closeModal() {
      this.modalController.dismiss( 'cancel'); 
-    this.router.navigate(['job-orders']);
+     this.jobOffer.status = "onGoing"
+    this.router.navigate(['accepted-order/'+this.id]);
 
    }
-   acceptOrder() {
-    this.modalController.dismiss( 'cancel'); 
-   this.router.navigate(['accepted-order/'+this.id]);
-
-  }
   pass(){
-    this.modalController.dismiss( 'cancel'); 
-    this.router.navigate(['tracker']);
+    this.modalController.dismiss('cancel');
   }
  
 }
