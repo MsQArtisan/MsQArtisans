@@ -1,5 +1,5 @@
 var Orders = require('../models/Bookings');
-var userTask = require('../models/taskOfEveryUsers')
+var userTask= require('../models/taskOfEveryUsers')
 var logsOfHistory = require('../models/logsHistory')
 var incomeStats = require('../models/monthlyIncome')
 
@@ -23,6 +23,8 @@ exports.getCustomersName = (req, res) => {
             }
         })
 }
+
+//Get Customers Data
 exports.getCustomersData = (req, res) => {
     Orders.findOne({_id: req.body.userId}).populate('author')
     .exec((err, data) => {
@@ -35,6 +37,7 @@ exports.getCustomersData = (req, res) => {
 }
 
 exports.acceptedJobToCompleted = (req, res) => {
+     console.log(req.body.jobOffer+":"+req.body.state)
     var dataToAdd = {
         currentTime: new Date(),
         cost: req.body.cost.customerId.cost,
@@ -43,10 +46,12 @@ exports.acceptedJobToCompleted = (req, res) => {
     let dataAdd = new incomeStats(dataToAdd)
     dataAdd.save().then((retVal) => {
     })
-    userTask.findOneAndUpdate({_id: req.body.jobOffer}, {state: req.body.state}, (err, result) => {
+
+    userTask.findByIdAndUpdate({_id:req.body.jobOffer},{state:req.body.state}, (err, result) => {
         res.send(result)
     })
 }
+
 
 exports.statistics = (req, res) => {
     incomeStats.find({currentUser: req.body.user}, (err, result) => {
@@ -59,4 +64,33 @@ exports.allLogsHistory = (req, res) => {
     logsOfHistory.find({ logsOwner: req.body.currentUser}, (err, result) => {
         res.send(result)
     })
+}
+
+exports.deleteAllLogs = (req, res) => {
+    logsOfHistory.deleteMany({}, (err, result) => {
+        res.send(result)
+    })
+}
+
+exports.checkRejected = (req, res) =>{
+    var reject= [];
+    userTask.find({currentUser:req.body.id}, (err, user) => {
+        if (err) {
+            console.log("Can not find the id")
+            return res.send({ error: err, status: false })
+            
+        } else {
+            console.log("Successfully find the Id:"+req.body.id )
+            user.forEach(data=> {
+                  if(data.currentUser==req.body.id && data.state=='rejected'){
+                         console.log(data)
+                         reject.push(data);
+                   }     
+            });
+
+            return res.send({ status: true, data:reject})
+        }
+
+    });
+
 }

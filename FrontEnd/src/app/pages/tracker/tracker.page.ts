@@ -16,8 +16,8 @@ export class TrackerPage implements OnInit {
 
   public noTaskShow = false
 
-  public completedTask = false
-  public rejectedTask = false
+  public completedTask =false
+  public rejectedTask =false
   public jobsOffered;
   public onGoingJob = [];
 
@@ -43,11 +43,14 @@ export class TrackerPage implements OnInit {
   myOnGoingTask() {
     this.rejectedTask = false
     this.onGoingJob.length = 0
-    this.functions.onGoingTask(this.authService, {state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
+    this.functions.onGoingTask(this.authService,{state: "accept", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = false
   }
+
+  //Finish Or Completed Task
   alreadyDoneTask(index, dataId, cost) {
-    this.authService.acceptedJobsBeingCompleted({currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost}).subscribe((data) => {
+    alert(dataId)
+    this.authService.acceptedJobsBeingCompleted({currentUser:this.authService.userIDToken, state:"completed",jobOffer:dataId, cost: cost}).subscribe((data) => {
       if(data) {
         Swal.fire({
           icon: 'success',
@@ -59,22 +62,28 @@ export class TrackerPage implements OnInit {
       }
     })
   }
+
   completedTasks() {
     this.onGoingJob.length = 0
-    this.functions.completedTask(this.authService, {state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
+    this.functions.completedTask(this.authService, {state:"completed",user:this.authService.userIDToken},this.onGoingJob)
     this.completedTask = true
     this.rejectedTask = false
   }
+
 
   rejectedTasks() {
     this.completedTask = true
     this.rejectedTask = true
     this.onGoingJob.length = 0
-    this.functions.rejectedTask(this.authService, {state: "rejected"}, this.onGoingJob)
+    this.functions.rejectedTask(this.authService, {state: "rejected", user:this.authService.userIDToken}, this.onGoingJob)
   }
 
-  deleteCompletedTask() {
-    console.log("Done")
+//When you want to remove all your  completed Task under Completed Task History 
+  deleteCompletedTask(customerId){
+    alert(customerId)
+    this.authService.deletedCompletedTask(customerId).subscribe((data) => {
+
+    })
   }
 
 }

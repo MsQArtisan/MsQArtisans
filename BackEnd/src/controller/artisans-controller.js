@@ -13,6 +13,7 @@ function createToken(user) {
 }
 
 exports.registerUser = (req, res) => {
+    console.log(req.body)
 
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ 'msg': 'You need to send email and password' });
@@ -37,18 +38,42 @@ exports.registerUser = (req, res) => {
     });
 };
 
+// exports.loginUser = (req, res) => {
+//     User.findOne({ email: req.body.email }, (err, user) => {
+//         if (user == null) {
+//             res.send({ type: false, msg: 'email' })
+//         } else {
+//             console.log(user.confirmPassword)
+//             console.log(req.body.password)
+//             if (user.confirmPassword == req.body.password) {
+//                 loggedusers.push(user)
+//                 res.send({ type: true, token: createToken(user), userId: user._id })
+//             } else {
+//                 res.send({ type: false, msg: 'password' })
+//             }
+//         }
+//     })
+// };
+
 exports.loginUser = (req, res) => {
+
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (user == null) {
-            res.send({ type: false, msg: 'email' })
-        } else {
-            if (user.confirmPassword == req.body.password) {
+
+        if (err) {
+            return res.status(400).send({ 'msg': false });
+        }
+        if (!user) {
+            res.send({ type: false, msg: 'The user does not exist' });
+        }
+        user.comparePassword(req.body.password, (err, isMatch) => {
+            if (isMatch && !err) {
                 loggedusers.push(user)
                 res.send({ type: true, token: createToken(user), userId: user._id })
             } else {
-                res.send({ type: false, msg: 'password' })
+                res.send({ type: false, msg: 'The password is incorrect!' })
             }
-        }
+
+        });
     })
 };
 
@@ -63,6 +88,7 @@ exports.logoutUser = (req, res) => {
         loggedusers.pop(count)
     })
 }
+
 exports.getUser = (req, res) => {
     User.find({ _id: req.body.id }, (err, user) => {
 
@@ -76,7 +102,6 @@ exports.getUser = (req, res) => {
     });
 }
 
-
 //currentUserId, cost, currentDate
 exports.addJobOrders = (req, res) => {
     var dataTOAdd = {
@@ -85,31 +110,79 @@ exports.addJobOrders = (req, res) => {
     }
     let dataAdd = new logsOfHistory(dataTOAdd)
     dataAdd.save((err, result) => {})
-    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => {})
+
+    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id },{ status: 'Ongoing' }, (err, result) => {})
     var sampleObject = {
         currentUser: req.body.currentUser,
         state: req.body.state,
         customerId: req.body.jobOffer._id
     }
+
     let usersTask = new userTask(sampleObject)
     usersTask.save((err, result) => {
         res.send(result)
     })
 }
+
+//Rejecting the jobToOrders
+exports.rejectedJobOrders= (req, res) =>{
+    var dataTOAdd = {
+        logsOwner: req.body.currentUser,
+        jobsOfferedThroughId: req.body.jobOffer._id
+    }
+    let dataAdd = new logsOfHistory(dataTOAdd)
+    dataAdd.save((err, result) => {})
+    
+    Orders.findByIdAndUpdate({ _id:req.body.jobOffer._id },{status:'declined'}, (err, result) => {})
+    var sampleObject = {
+        currentUser: req.body.currentUser,
+        state: req.body.state,
+        customerId: req.body.jobOffer._id
+    }
+
+    let usersTask = new userTask(sampleObject)
+    usersTask.save((err, result) => {
+        res.send(result)
+    })
+}
+
 //array, request, toPassarray
+//all Accepted Job Orders in History Tracker 
 exports.allJobAccepted = (req, res) => {
-    userTask.find({ currentUser: req.body.user, state: "accept" }).populate('customerId')
+    userTask.find({ currentUser:req.body.user, state: "accept" }).populate('customerId')
         .exec((err, data) => {
             res.send(data)
         })
 }
 
+
+//all Completed Job Orders History Tracker 
 exports.completedJob = (req, res) => {
-    userTask.find({ currentUser: req.body.user, state: "completed" }).populate('customerId')
+    userTask.find({ currentUser: req.body.user,state:"completed" }).populate('customerId')
         .exec((err, data) => {
             res.send(data)
         })
 }
+
+
+//all Rejected Job Orders History Tracker
+exports.rejectedJob = (req, res) => {
+    userTask.find({currentUser:req.body.user, state: "rejected" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
+}
+
+
+//Delete Completed Task under Completed Tracker
+exports.deletedCompletedTask=(req, res) =>{
+    console.log("UserId:"+req.body.deletedId)
+    userTask.findByIdAndUpdate({_id:req.body.deletedId},{state:"deleted"}, (err, result) =>{
+        res.send(result)
+    })
+}
+
+
 exports.returnAllActiveUsers = (req, res) => {
     res.send(loggedusers)
 }

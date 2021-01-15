@@ -3,30 +3,60 @@ var express = require('express'),
 var userController = require('./controller/artisans-controller');
 var customerController = require('./controller/customer-controller');
 var orderController = require('./controller/orders-controller');
+var reviewsController = require('./controller/reviews-controller');
 const AuthCtrl = require('./controller/resetPassword-controller');
 
 routes.post('/logout', userController.logoutUser)
 routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.post('/account', userController.getUser);
-routes.get('/allCustomers', customerController.getAllCustomers);
+
+//check rejected under Usertask MOdel compared to Bookings model
+routes.post('/checkRejected',orderController.checkRejected);
+
+routes.get('/reviews', reviewsController.getReviews);
+//Finishing the job after finish (FINISH BUTTON)
 
 routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
+
 routes.post('/allLogsHistory', orderController.allLogsHistory)
 
+routes.get('/deleteAllLogs', orderController.deleteAllLogs)
+
+// // For Testing
+// routes.get('/deleteAllLogs', orderController.deleteAllLogs)
+
 routes.post('/jobOrdersData', userController.addJobOrders);
+
+//Cancelling or Rejecting the jobOrders
+routes.post('/rejectedJobOrders', userController.rejectedJobOrders);
+
+//All Accepted Jobs history
 routes.post('/allJobsAccepted', userController.allJobAccepted);
+
+//All Completed Task or Job history Tracker
 routes.post('/allCompletedJobs', userController.completedJob)
+
+//AllRejectedJobs history Tracker
+routes.post('/allRejectedJobs', userController.rejectedJob)
+
+//When you want to deleted completed Task under Completed  history Tracker
+routes.post('/deletedCompletedTask', userController.deletedCompletedTask)
+
 routes.post('/stats', orderController.statistics)
 
 routes.get('/allActiveUsers', userController.returnAllActiveUsers)
 
 routes.get('/getNewOrder', orderController.getOrders);
+
 routes.get('/getCustomersName', orderController.getCustomersName);
+
 routes.post('/getCustomersData', orderController.getCustomersData)
 
 routes.post('/reqResetPassword', AuthCtrl.ResetPassword);
+
 routes.post('/new-password', AuthCtrl.NewPassword);
+
 routes.post('/valid-password-token', AuthCtrl.ValidPasswordToken);
 
 // routes.get('/special', passport.authenticate('jwt', { session: false }), (req, res) => {

@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
+      console.log(data)
       this.dataResponse = data
       if (this.dataResponse.msg == "password") {
         this.passwordMessage = true

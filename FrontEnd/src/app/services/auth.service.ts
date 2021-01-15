@@ -48,6 +48,7 @@ export class AuthService {
         }
       }
     });
+
   }
 
   register(credentials) {
@@ -109,10 +110,22 @@ export class AuthService {
   getUser() {
     return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
   }
+
+  //Check Rejected Model and compare it into the Bookings Model(display all pending)
+  checkRejected(userIDToken){
+    return this.http.post<any>(`${this.url}/api/checkRejected`,{id:userIDToken})
+  }
+
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
 
+//RejectingJobOrderes
+rejectedJobOrders(data) {
+  return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
+}
+
+//Finishing the job after finish when button Finish is clicked
   acceptedJobsBeingCompleted(data) {
     return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
   }
@@ -121,14 +134,30 @@ export class AuthService {
     return this.http.post(`${this.url}/api/stats`, currentUser)
   }
 
+
+  //All Accepted Jobs for History
   allJobsBeingAccepted(data) {
     return this.http.post(`${this.url}/api/allJobsAccepted`, data)
   }
 
+
+  //All Completed Jobs for History
   allCompletedJobs(data) {
     return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
+  //AllRejectedJobs for History 
+  allRejectedJobs(data) {
+    return this.http.post(`${this.url}/api/allRejectedJobs`, data)
+  }
+
+  //When you clicked the Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
+  deletedCompletedTask(dataid){
+    return this.http.post(`${this.url}/api/deletedCompletedTask`,{deletedId:dataid})
+  }
+
+  //UNCOMENT THIS FOR TOMMOROW DUDE
+  
   addImageToDatabase(imageUrl) {
     return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
   }
@@ -148,6 +177,7 @@ export class AuthService {
   ValidPasswordToken(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/valid-password-token`, body);
   }
+
   getAllActiveUsers() {
     return this.http.get(`${this.url}/api/allActiveUsers`)
   }
@@ -155,14 +185,22 @@ export class AuthService {
   getOrders(){
     return this.http.get(`${this.url}/api/getNewOrder`)
   }
+  
   getCustomersName():Observable<any>{
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
+
+  //Get Customers Data
   getCustomersData(userId) {
     return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
   }
+
   // allLogsHistory
   getAllLogsHistory(id) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)
+  }
+
+  getReviews():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reviews`)
   }
 }

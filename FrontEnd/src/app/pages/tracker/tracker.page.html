@@ -26,7 +26,7 @@
     <!-- Icon top -->
     <ion-segment color="secondary" style="position: fixed; background-color: rgb(253, 253, 253);">
         <ion-segment-button id="going" class="topnavButton" value="call" (click)="myOnGoingTask()">
-            <ion-label> On Going</ion-label>
+            <ion-label> On Going</ion-label>    
             <ion-icon name="refresh-circle-outline"></ion-icon>
         </ion-segment-button>
 
@@ -42,10 +42,11 @@
 
         </ion-segment-button>
     </ion-segment>
+
     <div *ngIf="!rejectedTask">
         <div class="listOfAcceptedJobs" *ngFor="let value of onGoingJob; let i = index">
             <ul>
-                <p class="customerName"> {{value.user.author.name}} </p>
+                <p class="customerName"> {{value.user.author.name}}</p>
                 <li> {{value.user.author.email}} </li>
                 <li>{{value.jobs.customerId.service_booking}}</li>
                 <li> {{value.jobs.customerId.service_location}} </li>
@@ -53,12 +54,14 @@
                 <li> {{value.user.author.phone}} </li>
                 <li> {{value.user.cost}} </li>
                 <li> {{value.user.updatedAt}} </li><br>
-                <button *ngIf="completedTask" id="deleteTask" class="onMobile" (click)="deleteCompletedTask()">Delete Completed Task</button>
+                <button *ngIf="completedTask" id="deleteTask" class="onMobile" (click)="deleteCompletedTask(value.jobs._id)">Delete Completed Task</button>
                 <button *ngIf="!completedTask" (click)="alreadyDoneTask(i, value.jobs._id, value.jobs)" class="onMobile">Finish Service!</button>
                 <br><br>
             </ul>
         </div>
     </div>
+
+    
     <div *ngIf="rejectedTask">
         <div class="rejectedTasks" *ngFor="let value of onGoingJob">
             <ul>
@@ -75,4 +78,5 @@
             </ul>
         </div>
     </div>
+
 </ion-content>
