@@ -89,8 +89,9 @@ exports.logoutUser = (req, res) => {
     })
 }
 
+
 exports.getUser = (req, res) => {
-    User.find({ _id: req.body.id }, (err, user) => {
+    User.find({ _id:req.body.id}, (err, user) => {
 
         if (err) {
             return res.send({ error: err, status: false })
@@ -133,7 +134,7 @@ exports.rejectedJobOrders= (req, res) =>{
     let dataAdd = new logsOfHistory(dataTOAdd)
     dataAdd.save((err, result) => {})
     
-    Orders.findByIdAndUpdate({ _id:req.body.jobOffer._id },{status:'declined'}, (err, result) => {})
+    // Orders.findByIdAndUpdate({ _id:req.body.jobOffer._id },{status:'declined'}, (err, result) => {})
     var sampleObject = {
         currentUser: req.body.currentUser,
         state: req.body.state,
@@ -167,7 +168,7 @@ exports.completedJob = (req, res) => {
 
 //all Rejected Job Orders History Tracker
 exports.rejectedJob = (req, res) => {
-    userTask.find({currentUser:req.body.user, state: "rejected" }).populate('customerId')
+    userTask.find({currentUser:req.body.user, state:"rejected" }).populate('customerId')
         .exec((err, data) => {
             res.send(data)
         })

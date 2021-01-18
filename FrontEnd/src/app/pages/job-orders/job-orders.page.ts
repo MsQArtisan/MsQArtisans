@@ -4,7 +4,6 @@ import { ModalController } from '@ionic/angular';
 import { OrdersPage } from '../orders/orders.page'
 import { FunctionsToUse } from '../../functions/functions.model'
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-job-orders',
   templateUrl: './job-orders.page.html',
@@ -20,85 +19,95 @@ export class JobOrdersPage implements OnInit {
 
   public dataFromModal;
   orders: String = '';
-  public customerDetails =[];
+  public customerDetails = [];
+
+  public FinalArrayJobs = [];
+
+  //BackUp For FinalArrayJobs
+  public backupFilterJobs=[];
+
   public dataToPass;
-  public id:string;
-  constructor(private modalController: ModalController, private authService: AuthService, ) { }
+  public id: string;
+  constructor(private modalController: ModalController, private authService: AuthService,) { }
 
   ngOnInit() {
-  
+    console.log("userid:"+this.authService.userIDToken)
     this.orderData();
-    this.checkRejected();
-    
+    this.arrayOfJobs=this.customerDetails;
+    //this.checkRejected();
     this.authService.getUser().subscribe((data) => {
-      this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+      this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
         this.imageUrl = data[0].image[0]
       })
     })
-    
+
   }
 
-  
 
   orderData() {
+
     this.authService.getCustomersName().subscribe((data) => {
       data.data.forEach(element => {
-         if(element.status=='Pending'){
+        if (element.status == 'Pending') {
           this.customerDetails.push(element);
-         }
-    })
-    this.arrayOfJobs=this.customerDetails;
-    })
-    
+        }
+      })
+
+      this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
+         var arrays=[];
+         var jobs=[];
+         jobs=this.arrayOfJobs;
+         arrays=datas.data;
+         console.log("LengthRejected:" + arrays.length)
+        if (arrays.length > 0) {
+          console.log("Greater than zero")
+          arrays.forEach(element=>{
+            jobs.forEach(reject=>{
+              if (element.customerId==reject._id){
+                 jobs.splice(jobs.indexOf(reject),1)
+              }
+            })
+
+          })
+          console.log("Jobs:"+jobs.length)
+          jobs.forEach(filter=>{
+             this.FinalArrayJobs.push(filter);
+             this.backupFilterJobs.push(filter);
+          })
+         // this.FinalArrayJobs=jobs;
+          //this.backupFilterJobs=jobs;
+        }
+
+        else {
+          this.FinalArrayJobs=this.arrayOfJobs;
+          console.log("Equals Zero:" + this.FinalArrayJobs.length)
+        }
   
+      })
+
+    })
   }
 
-  checkRejected(){
-    //this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
-      //console.log("LengthRejected:"+datas.data.length)
-      //this.arrayOfJobs=this.customerDetails;
-     // console.log("ArrayJobsLength:"+this.arrayOfJobs.length)
-      // var unique = datas.data.filter((v, i, a) => a.indexOf(v) === i);
 
-      // console.log(unique); 
 
-      // if(datas.data.length==0){
-      //   this.arrayOfJobs=this.customerDetails;
-      //   console.log("ArrayJobsLength:"+this.arrayOfJobs.length)
-      // }
+  //Filtered by Job Orders Category
+  FilteredByService(items: any[], searchText: any): any[] {
 
-      // else{
-      //     //console.log(console.log(this.customerDetails[i].status))
-      //       // for (var i = 0;i<this.customerDetails.length; i++) {
-      //       //   for (var x= 0;x<datas.data.length; x++) {
-      //       //          if(this.customerDetails[i]._id!=datas.data[x].customerId){
-      //       //              this.arrayOfJobs.push(this.customerDetails[i])
-      //       //          }
-      //       //    }
-      //       // }
-      //       console.log("It has a rejected!")
-      // }
-
-  //  })
-  this.functions.checkRejectedTask(this.authService,{user:this.authService.userIDToken},this.arrayOfJobs)
-  }
-  
-//Filtered by Job Orders Category
-FilteredByService(items: any[], searchText:any): any[] {
-    if(!items) {
-     return this.arrayOfJobs=[];
-    }
-
-    if (!searchText.target.value) {
-         return this.arrayOfJobs=items;
-    }
-    
-    this.arrayOfJobs = items.filter((filtered) => {
+    this.FinalArrayJobs = items.filter((filtered) => {
       return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());
     });
 
+    if (!items) {
+      return this.FinalArrayJobs =[];
+    }
+
+    if (!searchText.target.value){
+      return this.FinalArrayJobs=this.backupFilterJobs;
+    }
+
   }
 
+  
   hideAndShow() {
     if (this.apple) {
       this.apple = false
@@ -108,26 +117,26 @@ FilteredByService(items: any[], searchText:any): any[] {
   }
 
 
-  selectedOption(){
+  selectedOption() {
     console.log(this.valueChosen)
   }
 
-  
+
   async passToOrders(item) {
     // if(item.status == "Pending") {
-      const modal = await this.modalController.create({
-        component: OrdersPage,
-        componentProps: {
-          status: item.status, id: item._id, name: item.author.name, service_booking: item.service_booking,
-          updatedAt: item.updatedAt, service_location: item.service_location,
-          cost: item.cost, notes: item.notes
-        },
-        cssClass: 'setting-modal',
-        backdropDismiss: false,
-      });
+    const modal = await this.modalController.create({
+      component: OrdersPage,
+      componentProps: {
+        status: item.status, id: item._id, name: item.author.name, service_booking: item.service_booking,
+        updatedAt: item.updatedAt, service_location: item.service_location,
+        cost: item.cost, notes: item.notes
+      },
+      cssClass: 'setting-modal',
+      backdropDismiss: false,
+    });
 
-      modal.present();
-      this.dataFromModal = await modal.onWillDismiss();
+    modal.present();
+    this.dataFromModal = await modal.onWillDismiss();
     // item.status = "onGoing"
     // }`
     // else{

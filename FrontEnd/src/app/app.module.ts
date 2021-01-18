@@ -24,9 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+//import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-import { FilterPipe } from './filter.pipe';
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -40,12 +39,11 @@ export function jwtOptionsFactory(storage) {
 @NgModule({
   declarations: [
     AppComponent,
-    FilterPipe,
   ],
   exports: [],
   entryComponents: [],
   imports: [
-    Ng2SearchPipeModule,
+    //Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule, 

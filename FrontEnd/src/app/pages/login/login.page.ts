@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+  
   onSubmit() {
     this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
@@ -59,6 +60,7 @@ export class LoginPage implements OnInit {
       password: ""
     }
   }
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',

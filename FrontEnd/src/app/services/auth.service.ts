@@ -157,7 +157,6 @@ rejectedJobOrders(data) {
   }
 
   //UNCOMENT THIS FOR TOMMOROW DUDE
-  
   addImageToDatabase(imageUrl) {
     return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
   }

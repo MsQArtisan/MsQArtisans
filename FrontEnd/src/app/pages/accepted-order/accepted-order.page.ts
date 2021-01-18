@@ -76,8 +76,7 @@ export class AcceptedOrderPage implements OnInit {
   
   //Rejecting the joborders
   rejected(){
-    alert("rejected!")
-    this.authService.rejectedJobOrders({ currentUser: this.authService.userIDToken, state:"rejected", jobOffer:this.partialUser }).subscribe((data) => {
+    this.authService.rejectedJobOrders({currentUser: this.authService.userIDToken, state:"rejected", jobOffer:this.partialUser}).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',

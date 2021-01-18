@@ -9,7 +9,7 @@
 <ion-content>
     <div class = "chilla">
         <div class="searchbar"  *ngIf=apple>
-            <ion-searchbar placeholder="Search by service category..." (keyup)="FilteredByService(customerDetails,$event)"
+            <ion-searchbar placeholder="Search by service category..." (keyup)="FilteredByService(FinalArrayJobs,$event)"
                 animated="true"></ion-searchbar>
         </div>
         <div class="toggle">
@@ -36,7 +36,7 @@
 
     <div class="wholeContent">
         <ion-grid *ngIf=apple>
-            <div class="cardContent" *ngFor="let item of arrayOfJobs">
+            <div class="cardContent" *ngFor="let item of FinalArrayJobs">
                 <div>
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
                         <ion-card-header (click)="passToOrders(item)" value="header">

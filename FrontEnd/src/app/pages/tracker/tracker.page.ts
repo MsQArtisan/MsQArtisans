@@ -26,7 +26,7 @@ export class TrackerPage implements OnInit {
     private http: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
     this.authService.getUser().subscribe((data) => {
       this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
         this.imageUrl = data[0].image[0]
@@ -65,12 +65,11 @@ export class TrackerPage implements OnInit {
 
   completedTasks() {
     this.onGoingJob.length = 0
-    this.functions.completedTask(this.authService, {state:"completed",user:this.authService.userIDToken},this.onGoingJob)
+    this.functions.completedTask(this.authService,{state:"completed",user:this.authService.userIDToken},this.onGoingJob)
     this.completedTask = true
     this.rejectedTask = false
   }
-
-
+  
   rejectedTasks() {
     this.completedTask = true
     this.rejectedTask = true

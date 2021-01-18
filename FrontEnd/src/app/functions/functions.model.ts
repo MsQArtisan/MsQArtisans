@@ -59,16 +59,4 @@ export class FunctionsToUse {
     }
 
 
-//Check Rejected Task and display all pending history
-
-checkRejectedTask(service, requestState,arrayOfJobs) {
-    service.checkRejected(requestState).subscribe((data) => {
-        data.data.forEach(element=>{
-            console.log(element)
-            arrayOfJobs.push(element);
-        })
-    })
-}
-
-
 }
