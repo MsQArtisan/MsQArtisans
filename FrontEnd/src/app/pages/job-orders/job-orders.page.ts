@@ -84,7 +84,4 @@ export class JobOrdersPage implements OnInit {
       }
     })
   }
-  hideCard(data) {
-    document.getElementById(data).style.display = "none"
-  }
 }

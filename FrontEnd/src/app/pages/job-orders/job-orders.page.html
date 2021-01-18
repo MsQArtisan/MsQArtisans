@@ -52,9 +52,6 @@
             <div class="cardContent" *ngFor="let item of customerDetails">
                 <div *ngIf="item.status === 'Pending'">
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
-                        <div>
-                            <button (click)="hideCard(item._id)">X</button>
-                        </div>
                         <ion-card-header>
                             <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                             <ion-card-subtitle
