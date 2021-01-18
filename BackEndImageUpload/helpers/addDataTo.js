@@ -1,4 +1,4 @@
-var schema = require("../modelShcema/Schema.js");
+var schema = require("../modelSchema/Schema");
 var express = require("express");
 var app = express();
 
@@ -28,6 +28,7 @@ app.post("/api/getUserProfile", (req, res) => {
 })
 app.get("/", (req, res) => {
   res.send("True");
+  
 });
 
 module.exports = app;

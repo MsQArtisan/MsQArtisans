@@ -15,21 +15,22 @@ function createToken(user) {
 
 exports.registerUser = (req, res) => {
 
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) {
-            return res.status(400).json({ 'msg': err });
-        }
-        if (user) {
-            return res.status(400).json({ 'msg': 'The email already exists' });
-        }
-        let newUser = User(req.body);
-        newUser.save((err, user) => {
-            if (err) {
-                return res.status(400).json({ 'msg': err });
-            }
-            return res.status(201).json(user);
-        });
-    });
+    // User.findOne({ email: req.body.email }, (err, user) => {
+    //     if (err) {
+    //         return res.status(400).json({ 'msg': err });
+    //     }
+    //     if (user) {
+    //         return res.status(400).json({ 'msg': 'The email already exists' });
+    //     }
+    //     let newUser = User(req.body);
+    //     newUser.save((err, user) => {
+    //         if (err) {
+    //             return res.status(400).json({ 'msg': err });
+    //         }
+            return res.status(201).send({message: "Successfully added"})
+            // .json(user);
+    //     });
+    // });
 };
 
 exports.loginUser = (req, res) => {

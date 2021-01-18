@@ -129,6 +129,19 @@ export class AuthService {
     return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
+  imgUpload(img) {
+
+    let data: any = new FormData();
+
+    data.append("image",img);
+
+    // for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    // }
+
+    return this.http.post(`${this.url}/api/upload`, data)
+  }
+
   addImageToDatabase(imageUrl) {
     return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
   }

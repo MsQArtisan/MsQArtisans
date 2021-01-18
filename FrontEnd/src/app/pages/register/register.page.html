@@ -70,7 +70,7 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie"
+						<input type="file" required name="selfie" (change)="onFileChange($event)" [(ngModel)]="credentialsForm.selfie"
 						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
 					</div>
 				</div>

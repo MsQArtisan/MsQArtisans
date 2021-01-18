@@ -1,26 +1,28 @@
 var port = process.env.PORT || 5000;
 var express = require('express');
 var bodyParser = require('body-parser');
+// var morgan = require('morgan');
+var multer = require('multer');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var config = require('./config/config');
 var cors = require('cors');
 var app = express();
+const path = require('path');
 const Pusher = require('pusher');
 const cookieParser = require('cookie-parser');
 const server = require('http').createServer(app);
 
-var messages = [];
-
 app.use(cors());
+// app.use(morgan("combined"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 
-var messages = [];
 
+// var messages = [];
 // For Pusher
 const pusher = new Pusher({
     appId: "1106641",
@@ -30,14 +32,48 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept'
-    );
-    next();
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header(
+//         'Access-Control-Allow-Headers',
+//         'Origin, X-Requested-With, Content-Type, Accept'
+//     );
+//     next();
+// });
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
 });
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+        return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    }
+}
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+
+app.post('/api/upload', upload.single('image'), (req, res, next) => {
+    console.log("File: ",req.files);
+    
+    try {
+        return res.status(201).json({
+            message: 'File uploded successfully'
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+
 
 app.post('/messages', (req, res) => {
     messages.push(req.body);
@@ -48,6 +84,9 @@ app.post('/messages', (req, res) => {
 app.get('/api/allMessages', (req, res) => {
     res.send(messages)
 })
+
+
+
 
 app.use(passport.initialize());
 var passportMiddleware = require('./middleware/passport');

@@ -1,6 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var url = "mongodb+srv://msqUserImages:msqassociates@cluster0.0jhkr.mongodb.net/imagesDatabase?retryWrites=true&w=majority"
+// var url = "mongodb+srv://msqUserImages:msqassociates@cluster0.0jhkr.mongodb.net/imagesDatabase?retryWrites=true&w=majority"
 var url = "mongodb://msqUserImages:msqassociates@cluster0-shard-00-00.0jhkr.mongodb.net:27017,cluster0-shard-00-01.0jhkr.mongodb.net:27017,cluster0-shard-00-02.0jhkr.mongodb.net:27017/imagesDatabase?ssl=true&replicaSet=atlas-11xro7-shard-0&authSource=admin&retryWrites=true&w=majority"
 var app = express();
 var cors = require("cors");
