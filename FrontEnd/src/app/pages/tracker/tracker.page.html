@@ -73,7 +73,7 @@
                 <li> {{value.user.author.phone}} </li>
                 <li> {{value.user.cost}} </li>
                 <li> {{value.user.updatedAt}} </li><br>
-                <button class="rejectToRestore">Restore Task</button>
+                <button class="rejectToRestore" (click)="restoredTask(value.user._id)">Restore Task</button>
                 <br><br>
             </ul>
         </div>

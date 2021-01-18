@@ -178,9 +178,17 @@ exports.rejectedJob = (req, res) => {
 //Delete Completed Task under Completed Tracker
 exports.deletedCompletedTask=(req, res) =>{
     console.log("UserId:"+req.body.deletedId)
-    userTask.findByIdAndUpdate({_id:req.body.deletedId},{state:"deleted"}, (err, result) =>{
+    userTask.findByIdAndUpdate({_id:req.body.deletedId},{state:"deleted"}, (err, result)=>{
         res.send(result)
     })
+}
+
+//Restore Task  under Rejected History
+exports.restoreTask=(req,res)=>{
+    console.log("RestoreId:"+req.body.restoreId)
+    // Orders.find({_id:req.body.restoreId},(err, result)=>{
+    //     res.send(result)
+    // })
 }
 
 

@@ -76,16 +76,14 @@ exports.checkRejected = (req, res) =>{
     var reject= [];
     userTask.find({currentUser:req.body.id}, (err, user) => {
         if (err) {
-            console.log("Can not find the id")
             return res.send({ error: err, status: false })
             
         } else {
-            console.log("Successfully find the Id:"+req.body.id )
             user.forEach(data=> {
                   if(data.currentUser==req.body.id && data.state=='rejected'){
                          console.log(data)
                          reject.push(data);
-                   }     
+               }     
             });
 
             return res.send({ status: true, data:reject})

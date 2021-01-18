@@ -151,9 +151,15 @@ rejectedJobOrders(data) {
     return this.http.post(`${this.url}/api/allRejectedJobs`, data)
   }
 
-  //When you clicked the Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
+
+  //Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
   deletedCompletedTask(dataid){
     return this.http.post(`${this.url}/api/deletedCompletedTask`,{deletedId:dataid})
+  }
+
+  //Restore Task under Rejected History
+  restoreTask(id){
+    return this.http.post(`${this.url}/api/restoreTask`,{restoreId:id})
   }
 
   //UNCOMENT THIS FOR TOMMOROW DUDE

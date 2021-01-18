@@ -23,7 +23,7 @@ routes.post('/allLogsHistory', orderController.allLogsHistory)
 
 routes.get('/deleteAllLogs', orderController.deleteAllLogs)
 
-// // For Testing
+//For Testing
 // routes.get('/deleteAllLogs', orderController.deleteAllLogs)
 
 routes.post('/jobOrdersData', userController.addJobOrders);
@@ -40,8 +40,12 @@ routes.post('/allCompletedJobs', userController.completedJob)
 //AllRejectedJobs history Tracker
 routes.post('/allRejectedJobs', userController.rejectedJob)
 
-//When you want to deleted completed Task under Completed  history Tracker
+
+//Deleted Task Or Store Task under Rejected  History Tracker
 routes.post('/deletedCompletedTask', userController.deletedCompletedTask)
+
+//Restore Task 
+routes.post('/restoreTask', userController.restoreTask)
 
 routes.post('/stats', orderController.statistics)
 

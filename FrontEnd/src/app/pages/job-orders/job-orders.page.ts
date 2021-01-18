@@ -19,8 +19,6 @@ export class JobOrdersPage implements OnInit {
 
   public dataFromModal;
   orders: String = '';
-  public customerDetails = [];
-
   public FinalArrayJobs = [];
 
   //BackUp For FinalArrayJobs
@@ -31,10 +29,7 @@ export class JobOrdersPage implements OnInit {
   constructor(private modalController: ModalController, private authService: AuthService,) { }
 
   ngOnInit() {
-    console.log("userid:"+this.authService.userIDToken)
     this.orderData();
-    this.arrayOfJobs=this.customerDetails;
-    //this.checkRejected();
     this.authService.getUser().subscribe((data) => {
       this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
         this.imageUrl = data[0].image[0]
@@ -48,20 +43,16 @@ export class JobOrdersPage implements OnInit {
 
     this.authService.getCustomersName().subscribe((data) => {
       data.data.forEach(element => {
-        if (element.status == 'Pending') {
-          this.customerDetails.push(element);
+        if (element.status =='Pending') {
+          this.arrayOfJobs.push(element);
         }
       })
 
-      this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
-         var arrays=[];
+      this.authService.checkRejected(this.authService.userIDToken).subscribe((datas)=>{
          var jobs=[];
          jobs=this.arrayOfJobs;
-         arrays=datas.data;
-         console.log("LengthRejected:" + arrays.length)
-        if (arrays.length > 0) {
-          console.log("Greater than zero")
-          arrays.forEach(element=>{
+        if (datas.data.length > 0) {
+          datas.data.forEach(element=>{
             jobs.forEach(reject=>{
               if (element.customerId==reject._id){
                  jobs.splice(jobs.indexOf(reject),1)
@@ -69,18 +60,16 @@ export class JobOrdersPage implements OnInit {
             })
 
           })
-          console.log("Jobs:"+jobs.length)
+
           jobs.forEach(filter=>{
              this.FinalArrayJobs.push(filter);
              this.backupFilterJobs.push(filter);
           })
-         // this.FinalArrayJobs=jobs;
-          //this.backupFilterJobs=jobs;
+      
         }
 
         else {
           this.FinalArrayJobs=this.arrayOfJobs;
-          console.log("Equals Zero:" + this.FinalArrayJobs.length)
         }
   
       })

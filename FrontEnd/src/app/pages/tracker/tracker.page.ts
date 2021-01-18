@@ -79,9 +79,16 @@ export class TrackerPage implements OnInit {
 
 //When you want to remove all your  completed Task under Completed Task History 
   deleteCompletedTask(customerId){
-    alert(customerId)
+    console.log("CustomoerId:"+customerId)
     this.authService.deletedCompletedTask(customerId).subscribe((data) => {
+    })
+  }
 
+  //Restore Task
+  restoredTask(restoreId){
+    console.log("id:"+restoreId)
+    this.authService.restoreTask(restoreId).subscribe((data) => {
+      console.log(data)
     })
   }
 
