@@ -55,7 +55,7 @@
                 <li> {{value.user.cost}} </li>
                 <li> {{value.user.updatedAt}} </li><br>
                 <button *ngIf="completedTask" id="deleteTask" class="onMobile" (click)="deleteCompletedTask(value.jobs._id)">Delete Completed Task</button>
-                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i, value.jobs._id, value.jobs)" class="onMobile">Finish Service!</button>
+                <button *ngIf="!completedTask" (click)="alreadyDoneTask(i,value.jobs._id, value.jobs)" class="onMobile">Finish Service!</button>
                 <br><br>
             </ul>
         </div>

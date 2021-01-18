@@ -19,6 +19,7 @@ export class JobOrdersPage implements OnInit {
 
   public dataFromModal;
   orders: String = '';
+  
   public FinalArrayJobs = [];
 
   //BackUp For FinalArrayJobs
@@ -29,12 +30,12 @@ export class JobOrdersPage implements OnInit {
   constructor(private modalController: ModalController, private authService: AuthService,) { }
 
   ngOnInit() {
-    this.orderData();
-    this.authService.getUser().subscribe((data) => {
-      this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
-        this.imageUrl = data[0].image[0]
-      })
-    })
+     this.orderData();
+    // this.authService.getUser().subscribe((data) => {
+    //   this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
+    //     this.imageUrl = data[0].image[0]
+    //   })
+    // })
 
   }
 
@@ -80,7 +81,7 @@ export class JobOrdersPage implements OnInit {
 
 
   //Filtered by Job Orders Category
-  FilteredByService(items: any[], searchText: any): any[] {
+  FilteredByService(items: any[], searchText: any): any[]{
 
     this.FinalArrayJobs = items.filter((filtered) => {
       return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());

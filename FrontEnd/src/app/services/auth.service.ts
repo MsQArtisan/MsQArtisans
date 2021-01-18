@@ -156,10 +156,10 @@ rejectedJobOrders(data) {
   deletedCompletedTask(dataid){
     return this.http.post(`${this.url}/api/deletedCompletedTask`,{deletedId:dataid})
   }
-
+  
   //Restore Task under Rejected History
-  restoreTask(id){
-    return this.http.post(`${this.url}/api/restoreTask`,{restoreId:id})
+  jobRestored(id){
+    return this.http.post(`${this.url}/api/jobRestored`,{restoreId:id})
   }
 
   //UNCOMENT THIS FOR TOMMOROW DUDE

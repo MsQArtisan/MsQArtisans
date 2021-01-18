@@ -22,6 +22,8 @@ routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
 routes.post('/allLogsHistory', orderController.allLogsHistory)
 
 routes.get('/deleteAllLogs', orderController.deleteAllLogs)
+routes.get('/deleteAllTasks', orderController.taskDeletion)
+routes.get('/deleteAllStats', orderController.deleteAllStats)
 
 //For Testing
 // routes.get('/deleteAllLogs', orderController.deleteAllLogs)
@@ -45,7 +47,7 @@ routes.post('/allRejectedJobs', userController.rejectedJob)
 routes.post('/deletedCompletedTask', userController.deletedCompletedTask)
 
 //Restore Task 
-routes.post('/restoreTask', userController.restoreTask)
+routes.post('/jobRestored', userController.jobRestored)
 
 routes.post('/stats', orderController.statistics)
 

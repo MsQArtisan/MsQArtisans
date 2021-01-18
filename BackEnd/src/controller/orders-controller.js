@@ -37,7 +37,6 @@ exports.getCustomersData = (req, res) => {
 }
 
 exports.acceptedJobToCompleted = (req, res) => {
-     console.log(req.body.jobOffer+":"+req.body.state)
     var dataToAdd = {
         currentTime: new Date(),
         cost: req.body.cost.customerId.cost,
@@ -81,7 +80,6 @@ exports.checkRejected = (req, res) =>{
         } else {
             user.forEach(data=> {
                   if(data.currentUser==req.body.id && data.state=='rejected'){
-                         console.log(data)
                          reject.push(data);
                }     
             });
@@ -92,3 +90,15 @@ exports.checkRejected = (req, res) =>{
     });
 
 }
+
+exports.deleteAllStats = (req, res) => {
+    incomeStats.deleteMany({}, (err, result) => {
+        res.send(result)
+    })
+}
+
+exports.taskDeletion = (req, res) => {
+    userTask.deleteMany({}, (err, result) => {
+        res.send(result)
+    })
+} 
