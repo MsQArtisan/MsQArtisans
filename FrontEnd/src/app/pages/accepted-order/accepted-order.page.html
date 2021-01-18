@@ -57,7 +57,8 @@
         <ion-toolbar class="toolbar">
             <section class="full-width">
                 <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
-                <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button>
+                <!-- <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button> -->
+                <button class="buttonPass" (click)="rejected()">Cancel</button>
             </section>
         </ion-toolbar>
     </ion-footer>

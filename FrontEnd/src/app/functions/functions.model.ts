@@ -11,6 +11,8 @@ export class FunctionsToUse {
             document.getElementById('reject').style.borderBottom = 'none'
         })
     }
+
+//Ongoing history
     onGoingTask(service, requestState, onGoingJob) {
         document.getElementById('going').style.borderBottom = '2px solid rgb(132, 208, 255)'
         document.getElementById('completed').style.borderBottom = 'none'
@@ -19,36 +21,43 @@ export class FunctionsToUse {
         service.allJobsBeingAccepted(requestState).subscribe((data) => {
             data.forEach(element => {
                 service.getCustomersData(element.customerId).subscribe((data) => {
-                    onGoingJob.push({user: data, jobs: element})
+                    onGoingJob.push({user: data,jobs: element})
                 })
             })
         })
     }
-    completedTask(service, requestState, onGoingJob) {
+   
+//Completed history
+    completedTask(service, requestState,onGoingJob) {
         document.getElementById('completed').style.borderBottom = '2px solid rgb(132, 208, 255)'
         document.getElementById('going').style.borderBottom = 'none'
         document.getElementById('reject').style.borderBottom = 'none'
 
-
         service.allCompletedJobs(requestState).subscribe((data) => {
             data.forEach(element => {
                 service.getCustomersData(element.customerId).subscribe((value) => {
-                    onGoingJob.push({user: value, jobs: element})
+                    onGoingJob.push({user:value, jobs:element})
                 })
             })
         })
-    }
+    } 
+
+
+//rejected history
     rejectedTask(service, requestState, onGoingJob) {
         document.getElementById('reject').style.borderBottom = '2px solid rgb(132, 208, 255)'
         document.getElementById('completed').style.borderBottom = 'none'
         document.getElementById('going').style.borderBottom = 'none'
 
-        service.allCompletedJobs(requestState).subscribe((data) => {
-            data.forEach(element => {
+        service.allRejectedJobs(requestState).subscribe((data) => {
+            console.log(data)
+            data.forEach(element =>{
                 service.getCustomersData(element.customerId).subscribe((value) => {
                     onGoingJob.push({user: value, jobs: element})
                 })
             })
         })
     }
+
+
 }

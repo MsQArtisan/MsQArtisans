@@ -28,9 +28,11 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+  
   onSubmit() {
     this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
+      console.log(data)
       this.dataResponse = data
       if (this.dataResponse.msg == "password") {
         this.passwordMessage = true
@@ -58,6 +60,7 @@ export class LoginPage implements OnInit {
       password: ""
     }
   }
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',

@@ -32,8 +32,9 @@ export class OrdersPage implements OnInit {
     this.router.navigate(['accepted-order/'+this.id]);
 
    }
+   
   pass(){
-    this.modalController.dismiss('cancel');
+    location.reload()
   }
  
 }

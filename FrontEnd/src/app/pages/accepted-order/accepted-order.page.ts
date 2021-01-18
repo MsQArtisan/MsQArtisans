@@ -60,7 +60,7 @@ export class AcceptedOrderPage implements OnInit {
   }
 
   addDataToDatabase() {
-    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
+    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer:this.partialUser }).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',
@@ -73,6 +73,23 @@ export class AcceptedOrderPage implements OnInit {
       }
     })
   }
+  
+  //Rejecting the joborders
+  rejected(){
+    this.authService.rejectedJobOrders({currentUser: this.authService.userIDToken, state:"rejected", jobOffer:this.partialUser}).subscribe((data) => {
+      if (data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Nice!',
+          text: 'Job Successfully rejected',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.http.navigate(['job-orders'])
+      }
+    })
+  }
+
   navigateToMap() {
     this.http.navigate(['location-select/' + this.jobOffer.location])
   }

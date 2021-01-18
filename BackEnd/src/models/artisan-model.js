@@ -29,10 +29,6 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    confirmPassword: {
-        type: String,
-        required: 'confirm password is required'
-    },
     selfie: {
         type: String,
         required: 'selfie is required'
@@ -81,18 +77,6 @@ ArtisansSchema.pre('save',  function(next) {
              if (err) return next(err);
  
              artisan.password = hash;
-             next();
-         });
-     });
-     if (!artisan.isModified('confirmPassword')) return next();
- 
-     bcrypt.genSalt(10, function(err, salt) {
-         if (err) return next(err);
- 
-         bcrypt.hash(artisan.confirmPassword, salt, function(err, hash) {
-             if (err) return next(err);
- 
-             artisan.confirmPassword = hash;
              next();
          });
      });

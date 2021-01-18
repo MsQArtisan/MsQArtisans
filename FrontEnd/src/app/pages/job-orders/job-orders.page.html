@@ -7,34 +7,22 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="toggle">
-        <label class="switch">
-            <p *ngIf="apple" class="tags">Disable Receive Work</p>
-            <p *ngIf="!apple" class="tags">Enable Receive Work</p>
-            <input type="checkbox" checked (click)="hideAndShow()">
-            <span class="slider round"></span>
-        </label>
-        <div class="checkbox">
-            <p>
-                <input type="radio" name="choice" (click)="allData('Pending')">
-                Available
-            </p>
-            <p>
-                <input type="radio" name="choice" (click)="allData('all')" checked>
-                All
-            </p>
+    <div class="chilla">
+        <div class="searchbar" *ngIf=apple>
+            <ion-searchbar placeholder="Search by service category..."
+                (keyup)="FilteredByService(FinalArrayJobs,$event)" animated="true"></ion-searchbar>
         </div>
-        <div class="dropdownChoices">
-            <ion-item>
-                <ion-select [(ngModel)]="valueChosen" (ionChange)="allData(valueChosen)" placeholder="Display By">
-                    <ion-select-option value="Pending">Available</ion-select-option>
-                    <ion-select-option value="all">All</ion-select-option>
-                </ion-select>
-            </ion-item>
+        <div class="toggle">
+            <label class="switch">
+                <p *ngIf="apple" class="tags">Disable Receive Work</p>
+                <p *ngIf="!apple" class="tags">Enable Receive Work</p>
+                <input type="checkbox" checked (click)="hideAndShow()">
+                <span class="slider round"></span>
+            </label>
         </div>
     </div>
-
     <br><br><br><br>
+
     <div class="toggleRest" *ngIf=!apple>
         <ion-card class="statusCard">
             <ion-card-content>
@@ -46,11 +34,10 @@
     </div>
 
 
-
     <div class="wholeContent">
         <ion-grid *ngIf=apple>
-            <div class="cardContent" *ngFor="let item of customerDetails">
-                <div *ngIf="item.status === 'Pending'">
+            <div class="cardContent" *ngFor="let item of FinalArrayJobs">
+                <div>
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
                         <ion-card-header>
                             <ion-card-title class="title">{{item.author.name}}</ion-card-title>
@@ -59,15 +46,31 @@
                                 Customer Name
                             </ion-card-subtitle>
                         </ion-card-header>
+                        <div *ngIf="item.service_booking =='MassageTherapist'">
+                            <ion-img src="assets/images/massage.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking =='TutorCumNanny'">
+                            <ion-img src="assets/images/tutor.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking =='Nanny'">
+                            <ion-img src="assets/images/nanny.jpg"></ion-img>
+                        </div>
+                        <div *ngIf="item.service_booking == 'Housekeeping'">
+                            <ion-img src="assets/images/housekeeping.jpg"></ion-img>
+                        </div>
+                        <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                        <ion-card-subtitle
+                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            Customer Name
+                        </ion-card-subtitle>
                         <ion-card-content (click)="passToOrders(item)">
-
-                            <section>
-                                <ion-icon name="people"></ion-icon>
-                                <span>{{item.service_booking}}</span>
-                            </section>
                             <section>
                                 <ion-icon name="time"></ion-icon>
                                 <span>{{item.updatedAt | date:'short'}}</span>
+                            </section>
+                            <section>
+                                <ion-icon name="people"></ion-icon>
+                                <span>{{item.service_booking}}</span>
                             </section>
                             <section>
                                 <ion-icon name="location"></ion-icon>
@@ -86,47 +89,8 @@
                         </ion-card-content>
                     </ion-card>
                 </div>
-                <div [id]="item._id">
-                    <div *ngIf="item.status !== 'Pending'">
-                        <ion-card id="onGoingData" class="card">
-                            <div>
-                                <button (click)="hideCard(item._id)">X</button>
-                            </div>
-                            <ion-card-header>
-                                <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                                <ion-card-subtitle class="sub-title"
-                                    style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                    Customer Name
-                                </ion-card-subtitle>
-                            </ion-card-header>
-                            <ion-card-content (click)="passToOrders(item)">
-                                <section>
-                                    <ion-icon name="people"></ion-icon>
-                                    <span>{{item.service_booking}}</span>
-                                </section>
-                                <section>
-                                    <ion-icon name="time"></ion-icon>
-                                    <span>{{item.updatedAt | date:'short'}}</span>
-                                </section>
-                                <section>
-                                    <ion-icon name="location"></ion-icon>
-                                    <span>{{item.service_location}}</span>
-                                </section>
-                                <section>
-                                    <ion-icon name="mail"></ion-icon>
-                                    <span>{{item.notes}}</span>
-                                </section>
-
-                                <div class="footer">
-                                    <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
-
-                                </div>
-
-                            </ion-card-content>
-                        </ion-card>
-                    </div>
-                </div>
             </div>
         </ion-grid>
     </div>
+
 </ion-content>
