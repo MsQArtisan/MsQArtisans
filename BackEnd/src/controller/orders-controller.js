@@ -82,7 +82,7 @@ exports.getCustomersName = (req, res) => {
 }
 
 exports.checkRejected = (req, res)=>{
-    var reject= [];
+    var reject=[];
     userTask.find({currentUser:req.body.id}, (err, user) => {
         if (err) {
             return res.send({ error: err, status: false })

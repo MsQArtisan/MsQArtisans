@@ -112,7 +112,7 @@ export class AuthService {
   }
 
   //Check Rejected Model and compare it into the Bookings Model(display all pending)
-  checkRejected(userIDToken) {
+  checkRejected(userIDToken){
     return this.http.post<any>(`${this.url}/api/checkRejected`, { id: userIDToken })
   }
 
@@ -156,7 +156,7 @@ export class AuthService {
     return this.http.post(`${this.url}/api/deletedCompletedTask`, { deletedId: dataid })
   }
   
-  //Restore Task under Rejected History
+  //Restore Task Job under Rejected History
   jobRestored(id,userTaskId){
     return this.http.post(`${this.url}/api/jobRestored`,{restoreId:id,userId:userTaskId})
   }
@@ -194,12 +194,13 @@ export class AuthService {
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
 
+
   //Get Customers Data
   getCustomersData(userId) {
     return this.http.post(`${this.url}/api/getCustomersData`, { userId: userId })
   }
 
-  // allLogsHistory
+  //AllLogsHistory
   getAllLogsHistory(id) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }

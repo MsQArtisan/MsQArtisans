@@ -100,9 +100,10 @@ export class AcceptedOrderPage implements OnInit {
       this.longitude = res.coords.longitude
       this.showMap()
     }).catch((err) => {
-      console.log("error", err)
+      console.log("error",err)
     })
   }
+  
   showMap() {
     const location = new google.maps.LatLng(this.latitude, this.longitude);
     var map = new google.maps.Map(document.getElementById('maps'), {

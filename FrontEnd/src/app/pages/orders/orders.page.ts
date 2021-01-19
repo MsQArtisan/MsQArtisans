@@ -16,7 +16,7 @@ export class OrdersPage implements OnInit {
   @Input() service_location: string;
   @Input() cost: string;
   @Input() notes: string;
-  @Input() status: string;
+  @Input() status:string;
   
   constructor(private router: Router, private modalController: ModalController, private authService: AuthService) { }
 

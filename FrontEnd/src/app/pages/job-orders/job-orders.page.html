@@ -9,8 +9,7 @@
 <ion-content>
     <div class="chilla">
         <div class="searchbar" *ngIf=apple>
-            <ion-searchbar placeholder="Search by service category..."
-                (ionChange)="FilteredByService(FinalArrayJobs,$event)" animated="true"></ion-searchbar>                
+            <ion-searchbar  placeholder="Search by service category..." [(ngModel)]="filterService" (ionChange)="FilteredByService(FinalArrayJobs,$event)" animated="true"></ion-searchbar>                
         </div>
         <div class="toggle">
             <label class="switch">
@@ -39,13 +38,6 @@
             <div class="cardContent" *ngFor="let item of FinalArrayJobs">
                 <div>
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
-                        <!-- <ion-card-header>
-                            <ion-card-title class="title">{{item.author.name}}</ion-card-title>
-                            <ion-card-subtitle
-                                style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                Customer Name
-                            </ion-card-subtitle>
-                        </ion-card-header> -->
                         <div *ngIf="item.service_booking =='MassageTherapist'">
                             <ion-img src="assets/images/massage.jpg"></ion-img>
                         </div>

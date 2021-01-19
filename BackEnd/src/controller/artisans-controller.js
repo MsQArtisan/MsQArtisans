@@ -175,10 +175,10 @@ exports.rejectedJob = (req, res) => {
 exports.deletedCompletedTask = (req, res) => {
     userTask.deleteOne({ _id: req.body.deletedId}, (err, result) => {
         if (err){
-            res.send(err);
+        res.jsonp({ success:false})
         }
         else {
-            res.send(result);
+            res.jsonp({ success: true})
         }
     })
 }

@@ -27,11 +27,6 @@ export class TrackerPage implements OnInit {
   ) { }
 
   ngOnInit(){
-    // this.authService.getUser().subscribe((data) => {
-    //   this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
-    //     this.imageUrl = data[0].image[0]
-    //   })
-    // })
     this.onGoingJob.length = 0
     this.functions.jobsAccepted(this.authService, { state: "Ongoing", user: this.authService.userIDToken }, this.onGoingJob)
     this.completedTask = true
@@ -48,9 +43,8 @@ export class TrackerPage implements OnInit {
   }
 
   //Finish Or Completed Task
-  alreadyDoneTask(index, dataId, cost) {
-    alert(dataId)
-    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost }).subscribe((data) => {
+  alreadyDoneTask(index,dataId,cost){
+    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer:dataId,cost: cost }).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',
@@ -58,7 +52,7 @@ export class TrackerPage implements OnInit {
           showConfirmButton: false,
           timer: 1000
         })
-        this.http.navigate(['job-orders'])
+        document.getElementById(dataId).style.display ='none';
       }
     })
   }
@@ -80,36 +74,63 @@ export class TrackerPage implements OnInit {
 //When you want to remove all your  completed Task under Completed Task History 
   deleteCompletedTask(customerId){
     this.authService.deletedCompletedTask(customerId).subscribe((data)=>{
+      if (data['success']){
+       Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Successfully Deleted!',
+        })
+        document.getElementById(customerId).style.display = 'none';
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          timer: 1500
+        })
+      }
+
     })
   }
+
 
   //Restore Task
   restoredTask(restoreId,userTaskId) {
     this.authService.jobRestored(restoreId,userTaskId).subscribe((result) => {
-      if (result['success']) {
-
+      if (result['success']){
         Swal.fire({
           title: 'The job is still available!',
           text: "Are you sure you want to restore this?",
-          icon: 'warning',
           showCancelButton:true,
           confirmButtonColor: '#27C641',
           cancelButtonColor: '#a8a8a8',
           confirmButtonText: 'Yes,restore it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            this.authService.deletedCompletedTask(userTaskId).subscribe((data) => {            
+            this.authService.deletedCompletedTask(userTaskId).subscribe((data) => {  
+              if (data['success']){
+                Swal.fire(
+                  'Restore!',
+                  'Job has been stored successfully.',
+                  'success'
+                ).then(res =>{
+                  document.getElementById(userTaskId).style.display = 'none';
+                })
+              }
+              else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                  timer: 1500
+                })
+              }
             })
-            Swal.fire(
-              'Restored!',
-              'The job has been stored.',
-              'success'
-            ).then(res => {
-              document.getElementById(userTaskId).style.display = 'none';
-            })
+          
           }
         })
-
+        
       }
 
       else {
@@ -123,14 +144,26 @@ export class TrackerPage implements OnInit {
           confirmButtonText: 'Yes,delete it!'
         }).then((result) => {
           if (result.isConfirmed){
-            this.authService.deletedCompletedTask(userTaskId).subscribe((data)=>{       
+            this.authService.deletedCompletedTask(userTaskId).subscribe((data)=>{
+              if (data['success']){
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                ).then(res =>{
+                  document.getElementById(userTaskId).style.display = 'none';
+                })
+              }
+              else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                  timer: 1500
+                })
+              }
             })
-            this.http.navigate(['tracker'])
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
+           
           }
         })
       }
