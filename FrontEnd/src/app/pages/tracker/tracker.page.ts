@@ -35,6 +35,7 @@ export class TrackerPage implements OnInit {
     document.getElementById('reject').style.borderBottom = 'none'
   }
 
+//All Ongoing Task Jobs
   myOnGoingTask() {
     this.rejectedTask = false
     this.onGoingJob.length = 0
@@ -42,7 +43,7 @@ export class TrackerPage implements OnInit {
     this.completedTask = false
   }
 
-  //Finish Or Completed Task
+  //Finish Service Button
   alreadyDoneTask(index,dataId,cost){
     this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer:dataId,cost: cost }).subscribe((data) => {
       if (data) {
@@ -57,6 +58,7 @@ export class TrackerPage implements OnInit {
     })
   }
 
+  //All Completed Task
   completedTasks() {
     this.onGoingJob.length = 0
     this.functions.completedTask(this.authService, { state: "completed", user: this.authService.userIDToken },this.onGoingJob)
@@ -64,6 +66,7 @@ export class TrackerPage implements OnInit {
     this.rejectedTask = false
   }
 
+//All Rejected Jobs
   rejectedTasks(){
     this.completedTask = true
     this.rejectedTask = true
@@ -71,7 +74,7 @@ export class TrackerPage implements OnInit {
     this.functions.rejectedTask(this.authService, { state: "rejected", user: this.authService.userIDToken }, this.onGoingJob)
   }
 
-//When you want to remove all your  completed Task under Completed Task History 
+//Delete Completed Task under Completed Task History 
   deleteCompletedTask(customerId){
     this.authService.deletedCompletedTask(customerId).subscribe((data)=>{
       if (data['success']){
@@ -95,7 +98,7 @@ export class TrackerPage implements OnInit {
   }
 
 
-  //Restore Task
+  //Restore Task Jobs under Rejected History
   restoredTask(restoreId,userTaskId) {
     this.authService.jobRestored(restoreId,userTaskId).subscribe((result) => {
       if (result['success']){

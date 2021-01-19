@@ -111,7 +111,7 @@ export class AuthService {
     return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
   }
 
-  //Check Rejected Model and compare it into the Bookings Model(display all pending)
+  //Check Rejected Model and compare it into the Bookings Model(display all pendings)
   checkRejected(userIDToken){
     return this.http.post<any>(`${this.url}/api/checkRejected`, { id: userIDToken })
   }
