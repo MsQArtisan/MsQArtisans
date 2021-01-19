@@ -47,7 +47,7 @@ routes.post('/allRejectedJobs', userController.rejectedJob)
 routes.post('/deletedCompletedTask', userController.deletedCompletedTask)
 
 //Restore Task 
-routes.post('/jobRestored', userController.jobRestored)
+ routes.post('/jobRestored', userController.jobRestored)
 
 routes.post('/stats', orderController.statistics)
 

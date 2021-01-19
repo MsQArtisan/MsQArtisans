@@ -13,19 +13,10 @@ exports.getOrders = (req, res) => {
         }
     })
 }
-exports.getCustomersName = (req, res) => {
-    Orders.find({}).populate('author')
-        .exec((err, data) => {
-            if (err) {
-                return res.send({ error: err, status: false })
-            } else {
-                return res.send({ status: true, data: data })
-            }
-        })
-}
+
 
 //Get Customers Data
-exports.getCustomersData = (req, res) => {
+exports.getCustomersData = (req, res) =>{
     Orders.findOne({_id: req.body.userId}).populate('author')
     .exec((err, data) => {
         if(err) {
@@ -71,7 +62,26 @@ exports.deleteAllLogs = (req, res) => {
     })
 }
 
-exports.checkRejected = (req, res) =>{
+
+//Gettings all customers
+exports.getCustomersName = (req, res) => {
+    var dataArray=[];
+    Orders.find({}).populate('author')
+        .exec((err, datas) => {
+            if (err) {
+                return res.send({ error: err, status: false })
+            } else {
+                datas.forEach(user=> {
+                    if(user.status==='Pending'){
+                        dataArray.push(user);
+                    }     
+              });
+               return res.send({ status: true, data:dataArray})
+            }
+      })
+}
+
+exports.checkRejected = (req, res)=>{
     var reject= [];
     userTask.find({currentUser:req.body.id}, (err, user) => {
         if (err) {
@@ -84,7 +94,7 @@ exports.checkRejected = (req, res) =>{
                }     
             });
 
-            return res.send({ status: true, data:reject})
+            return res.send({ status: true,data:reject})
         }
 
     });

@@ -50,6 +50,7 @@ export class FunctionsToUse {
         document.getElementById('going').style.borderBottom = 'none'
 
         service.allRejectedJobs(requestState).subscribe((data) => {
+            console.log(data)
             data.forEach(element =>{
                 service.getCustomersData(element.customerId).subscribe((value) => {
                     onGoingJob.push({user: value, jobs: element})

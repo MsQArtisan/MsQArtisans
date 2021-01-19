@@ -63,7 +63,7 @@
 
     
     <div *ngIf="rejectedTask">
-        <div class="rejectedTasks" *ngFor="let value of onGoingJob">
+        <div class="rejectedTasks" *ngFor="let value of onGoingJob" [id]="value.jobs._id">
             <ul>
                 <p class="customerName"> {{value.user.author.name}} </p>
                 <li> {{value.user.author.email}} </li>
@@ -73,7 +73,7 @@
                 <li> {{value.user.author.phone}} </li>
                 <li> {{value.user.cost}} </li>
                 <li> {{value.user.updatedAt}} </li><br>
-                <button class="rejectToRestore" (click)="restoredTask(value.user._id)">Restore Task</button>
+                <button class="rejectToRestore" (click)="restoredTask(value.user._id,value.jobs._id)">Restore Task</button>
                 <br><br>
             </ul>
         </div>

@@ -7,10 +7,10 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class = "chilla">
-        <div class="searchbar"  *ngIf=apple>
-            <ion-searchbar placeholder="Search by service category..." (keyup)="FilteredByService(FinalArrayJobs,$event)"
-                animated="true"></ion-searchbar>
+    <div class="chilla">
+        <div class="searchbar" *ngIf=apple>
+            <ion-searchbar placeholder="Search by service category..."
+                (ionChange)="FilteredByService(FinalArrayJobs,$event)" animated="true"></ion-searchbar>                
         </div>
         <div class="toggle">
             <label class="switch">
@@ -39,21 +39,23 @@
             <div class="cardContent" *ngFor="let item of FinalArrayJobs">
                 <div>
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
-                        <ion-card-header (click)="passToOrders(item)" value="header">
-                            <ion-icon name="people"></ion-icon>
-                            <span><b>{{item.service_booking}}</b></span>
-                            <button (click)="hideCard(item._id)">X</button>
-                        </ion-card-header>
-                        <div *ngIf="item.service_booking=='MassageTherapist'">
+                        <!-- <ion-card-header>
+                            <ion-card-title class="title">{{item.author.name}}</ion-card-title>
+                            <ion-card-subtitle
+                                style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                Customer Name
+                            </ion-card-subtitle>
+                        </ion-card-header> -->
+                        <div *ngIf="item.service_booking =='MassageTherapist'">
                             <ion-img src="assets/images/massage.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking=='TutorCumNanny'">
+                        <div *ngIf="item.service_booking =='TutorCumNanny'">
                             <ion-img src="assets/images/tutor.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking=='Nanny'">
+                        <div *ngIf="item.service_booking =='Nanny'">
                             <ion-img src="assets/images/nanny.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking=='Housekeeping'">
+                        <div *ngIf="item.service_booking == 'Housekeeping'">
                             <ion-img src="assets/images/housekeeping.jpg"></ion-img>
                         </div>
                         <ion-card-title class="title">{{item.author.name}}</ion-card-title>
@@ -65,6 +67,10 @@
                             <section>
                                 <ion-icon name="time"></ion-icon>
                                 <span>{{item.updatedAt | date:'short'}}</span>
+                            </section>
+                            <section>
+                                <ion-icon name="people"></ion-icon>
+                                <span>{{item.service_booking}}</span>
                             </section>
                             <section>
                                 <ion-icon name="location"></ion-icon>

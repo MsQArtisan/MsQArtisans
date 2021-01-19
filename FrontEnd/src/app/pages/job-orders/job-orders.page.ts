@@ -3,13 +3,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OrdersPage } from '../orders/orders.page'
 import { FunctionsToUse } from '../../functions/functions.model'
-import Swal from 'sweetalert2';
+
+
 @Component({
   selector: 'app-job-orders',
   templateUrl: './job-orders.page.html',
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
+  //Initial Jobs 
   public arrayOfJobs = []
   public functions = new FunctionsToUse()
   public imageUrl;
@@ -19,7 +21,8 @@ export class JobOrdersPage implements OnInit {
 
   public dataFromModal;
   orders: String = '';
-  
+
+ //Final Jobs Array To Display
   public FinalArrayJobs = [];
 
   //BackUp For FinalArrayJobs
@@ -27,32 +30,25 @@ export class JobOrdersPage implements OnInit {
 
   public dataToPass;
   public id: string;
-  constructor(private modalController: ModalController, private authService: AuthService,) { }
+  constructor(private modalController: ModalController, private authService: AuthService,) { 
+  }
 
   ngOnInit() {
-     this.orderData();
-    // this.authService.getUser().subscribe((data) => {
-    //   this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
-    //     this.imageUrl = data[0].image[0]
-    //   })
-    // })
+    this.orderData();
 
   }
 
+  hideCard(itemId){
+    console.log(itemId)
+  }
 
-  orderData() {
-
-    this.authService.getCustomersName().subscribe((data) => {
-      data.data.forEach(element => {
-        if (element.status =='Pending') {
-          this.arrayOfJobs.push(element);
-        }
-      })
-
-      this.authService.checkRejected(this.authService.userIDToken).subscribe((datas)=>{
+  orderData(){
+    this.authService.getCustomersName().subscribe((jobs) => {
+      this.arrayOfJobs=jobs.data;
+      this.authService.checkRejected(this.authService.userIDToken).subscribe((datas)=> {
          var jobs=[];
          jobs=this.arrayOfJobs;
-        if (datas.data.length > 0) {
+        if (datas.data.length>0) {
           datas.data.forEach(element=>{
             jobs.forEach(reject=>{
               if (element.customerId==reject._id){
@@ -61,12 +57,10 @@ export class JobOrdersPage implements OnInit {
             })
 
           })
-
           jobs.forEach(filter=>{
              this.FinalArrayJobs.push(filter);
              this.backupFilterJobs.push(filter);
           })
-      
         }
 
         else {
@@ -81,19 +75,24 @@ export class JobOrdersPage implements OnInit {
 
 
   //Filtered by Job Orders Category
-  FilteredByService(items: any[], searchText: any): any[]{
-
-    this.FinalArrayJobs = items.filter((filtered) => {
-      return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());
-    });
-
+  FilteredByService(items:any[],searchText:any){
+   
     if (!items) {
-      return this.FinalArrayJobs =[];
+      return this.FinalArrayJobs=[];
     }
 
     if (!searchText.target.value){
-      return this.FinalArrayJobs=this.backupFilterJobs;
+    this.FinalArrayJobs=this.backupFilterJobs;
     }
+
+    this.FinalArrayJobs=items.filter((filtered) => {
+      return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());
+    });
+    // if (searchText.target.value && searchText.target.value.trim() != '') {
+    //   this.FinalArrayJobs=items.filter((item) => {
+    //     return (item.service_booking.toLocaleLowerCase().indexOf(searchText.target.value.toLowerCase()) > -1);
+    //   })
+    // }
 
   }
 
@@ -113,7 +112,8 @@ export class JobOrdersPage implements OnInit {
 
 
   async passToOrders(item) {
-    // if(item.status == "Pending") {
+    document.getElementById(item._id).style.display = 'none'
+
     const modal = await this.modalController.create({
       component: OrdersPage,
       componentProps: {
@@ -127,34 +127,5 @@ export class JobOrdersPage implements OnInit {
 
     modal.present();
     this.dataFromModal = await modal.onWillDismiss();
-    // item.status = "onGoing"
-    // }`
-    // else{
-    //   Swal.fire('Oopss', "You can't add this because it is already taken by other job hunter", 'warning')
-    // }
   }
-
-
-
-  // allData(item){
-  //   let pending = []
-  //   this.authService.getCustomersName().subscribe((data) => {
-  //     if(item !="Pending") {
-  //       this.customerDetails = data.data
-  //     }else {
-  //       data.data.forEach(element => { 
-  //         if(element.status == item) {
-  //           pending.push(element)
-  //         }
-  //       })
-  //       this.customerDetails = pending
-  //     }
-  //   })
-  // }
-
-
-  hideCard(data) {
-    document.getElementById(data).style.display = "none"
-  }
-
 }

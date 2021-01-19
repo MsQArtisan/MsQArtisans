@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   
-  onSubmit() {
+  onSubmit(){
     this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
       this.dataResponse = data

@@ -86,8 +86,8 @@ export class AuthService {
       window.location.reload()
     });
   }
-  popTheUserAfterLogout(){
-    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
+  popTheUserAfterLogout() {
+    return this.http.post(`${this.url}/api/logout`, { user: this.userIDToken })
   }
 
   isAuthenticated() {
@@ -108,24 +108,24 @@ export class AuthService {
   }
 
   getUser() {
-    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
+    return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
   }
 
   //Check Rejected Model and compare it into the Bookings Model(display all pending)
-  checkRejected(userIDToken){
-    return this.http.post<any>(`${this.url}/api/checkRejected`,{id:userIDToken})
+  checkRejected(userIDToken) {
+    return this.http.post<any>(`${this.url}/api/checkRejected`, { id: userIDToken })
   }
 
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
   }
 
-//RejectingJobOrderes
-rejectedJobOrders(data) {
-  return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
-}
+  //RejectingJobOrderes
+  rejectedJobOrders(data) {
+    return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
+  }
 
-//Finishing the job after finish when button Finish is clicked
+  //Finishing the job after finish when button Finish is clicked
   acceptedJobsBeingCompleted(data) {
     return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
   }
@@ -151,15 +151,14 @@ rejectedJobOrders(data) {
     return this.http.post(`${this.url}/api/allRejectedJobs`, data)
   }
 
-
-  //Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
-  deletedCompletedTask(dataid){
-    return this.http.post(`${this.url}/api/deletedCompletedTask`,{deletedId:dataid})
+  //When you clicked the Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
+  deletedCompletedTask(dataid) {
+    return this.http.post(`${this.url}/api/deletedCompletedTask`, { deletedId: dataid })
   }
   
   //Restore Task under Rejected History
-  jobRestored(id){
-    return this.http.post(`${this.url}/api/jobRestored`,{restoreId:id})
+  jobRestored(id,userTaskId){
+    return this.http.post(`${this.url}/api/jobRestored`,{restoreId:id,userId:userTaskId})
   }
 
   //UNCOMENT THIS FOR TOMMOROW DUDE
@@ -170,7 +169,7 @@ rejectedJobOrders(data) {
   getTheProfileImage(usersName) {
     return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
   }
-  
+
   requestReset(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
   }
@@ -187,17 +186,17 @@ rejectedJobOrders(data) {
     return this.http.get(`${this.url}/api/allActiveUsers`)
   }
 
-  getOrders(){
+  getOrders() {
     return this.http.get(`${this.url}/api/getNewOrder`)
   }
-  
-  getCustomersName():Observable<any>{
+
+  getCustomersName(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
 
   //Get Customers Data
   getCustomersData(userId) {
-    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+    return this.http.post(`${this.url}/api/getCustomersData`, { userId: userId })
   }
 
   // allLogsHistory
@@ -205,7 +204,7 @@ rejectedJobOrders(data) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }
 
-  getReviews():Observable<any>{
+  getReviews(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/reviews`)
   }
 }

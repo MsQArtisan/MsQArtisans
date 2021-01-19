@@ -13,8 +13,6 @@ function createToken(user) {
 }
 
 exports.registerUser = (req, res) => {
-    console.log(req.body)
-
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ 'msg': 'You need to send email and password' });
     }
@@ -40,12 +38,10 @@ exports.registerUser = (req, res) => {
 
 // exports.loginUser = (req, res) => {
 //     User.findOne({ email: req.body.email }, (err, user) => {
-//         if (user == null) {
+//         if (user.toObject() == null) {
 //             res.send({ type: false, msg: 'email' })
 //         } else {
-//             console.log(user.confirmPassword)
-//             console.log(req.body.password)
-//             if (user.confirmPassword == req.body.password) {
+//             if (user.toObject().confirmPassword == req.body.password) {
 //                 loggedusers.push(user)
 //                 res.send({ type: true, token: createToken(user), userId: user._id })
 //             } else {
@@ -63,14 +59,14 @@ exports.loginUser = (req, res) => {
             return res.status(400).send({ 'msg': false });
         }
         if (!user) {
-            res.send({ type: false, msg: 'The user does not exist' });
+            res.send({ type: false, msg: 'email' });
         }
         user.comparePassword(req.body.password, (err, isMatch) => {
             if (isMatch && !err) {
                 loggedusers.push(user)
                 res.send({ type: true, token: createToken(user), userId: user._id })
             } else {
-                res.send({ type: false, msg: 'The password is incorrect!' })
+                res.send({ type: false, msg: 'password' })
             }
 
         });
@@ -177,8 +173,8 @@ exports.rejectedJob = (req, res) => {
 
 //Delete Completed Task under Completed Tracker
 exports.deletedCompletedTask = (req, res) => {
-    userTask.deleteOne({ _id: req.body.deletedId }, (err, result) => {
-        if (err) {
+    userTask.deleteOne({ _id: req.body.deletedId}, (err, result) => {
+        if (err){
             res.send(err);
         }
         else {
@@ -191,7 +187,7 @@ exports.deletedCompletedTask = (req, res) => {
 exports.jobRestored = (req, res) => {
     Orders.find({ _id: req.body.restoreId }, (err, result) => {
         result.forEach(output => {
-            if (output.status === 'Pending') {
+            if (output.status ==='Pending'){
                 res.jsonp({ success: true })
             }
             else {
@@ -205,3 +201,5 @@ exports.jobRestored = (req, res) => {
 exports.returnAllActiveUsers = (req, res) => {
     res.send(loggedusers)
 }
+
+// userTask.deleteOne({customerId: req.body.deletedId, state: 'rejected'})

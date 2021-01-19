@@ -34,8 +34,7 @@ export class OrdersPage implements OnInit {
    }
    
   pass(){
-    alert("pass")
-    //this.modalController.dismiss('cancel');
+    location.reload()
   }
  
 }

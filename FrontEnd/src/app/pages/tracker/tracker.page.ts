@@ -26,7 +26,7 @@ export class TrackerPage implements OnInit {
     private http: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
     // this.authService.getUser().subscribe((data) => {
     //   this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
     //     this.imageUrl = data[0].image[0]
@@ -43,7 +43,7 @@ export class TrackerPage implements OnInit {
   myOnGoingTask() {
     this.rejectedTask = false
     this.onGoingJob.length = 0
-    this.functions.onGoingTask(this.authService,{ state: "accept", user: this.authService.userIDToken }, this.onGoingJob)
+    this.functions.onGoingTask(this.authService, { state: "accept", user: this.authService.userIDToken }, this.onGoingJob)
     this.completedTask = false
   }
 
@@ -70,7 +70,7 @@ export class TrackerPage implements OnInit {
     this.rejectedTask = false
   }
 
-  rejectedTasks() {
+  rejectedTasks(){
     this.completedTask = true
     this.rejectedTask = true
     this.onGoingJob.length = 0
@@ -78,15 +78,14 @@ export class TrackerPage implements OnInit {
   }
 
 //When you want to remove all your  completed Task under Completed Task History 
-  deleteCompletedTask(customerId) {
-    console.log("id:"+customerId)
-    this.authService.deletedCompletedTask(customerId).subscribe((data) => {
+  deleteCompletedTask(customerId){
+    this.authService.deletedCompletedTask(customerId).subscribe((data)=>{
     })
   }
 
   //Restore Task
-  restoredTask(restoreId) {
-    this.authService.jobRestored(restoreId).subscribe((result) => {
+  restoredTask(restoreId,userTaskId) {
+    this.authService.jobRestored(restoreId,userTaskId).subscribe((result) => {
       if (result['success']) {
 
         Swal.fire({
@@ -99,12 +98,15 @@ export class TrackerPage implements OnInit {
           confirmButtonText: 'Yes,restore it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("Successfully Stored!")
+            this.authService.deletedCompletedTask(userTaskId).subscribe((data) => {            
+            })
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              'Restored!',
+              'The job has been stored.',
               'success'
-            )
+            ).then(res => {
+              document.getElementById(userTaskId).style.display = 'none';
+            })
           }
         })
 
@@ -120,8 +122,10 @@ export class TrackerPage implements OnInit {
           cancelButtonColor: '#a8a8a8',
           confirmButtonText: 'Yes,delete it!'
         }).then((result) => {
-          if (result.isConfirmed) {
-            console.log("Successfully Deleted!")
+          if (result.isConfirmed){
+            this.authService.deletedCompletedTask(userTaskId).subscribe((data)=>{       
+            })
+            this.http.navigate(['tracker'])
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
