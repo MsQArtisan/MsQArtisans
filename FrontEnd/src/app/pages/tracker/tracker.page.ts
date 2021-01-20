@@ -45,7 +45,7 @@ export class TrackerPage implements OnInit {
 
   //Finish Service Button
   alreadyDoneTask(index,dataId,cost){
-    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer:dataId,cost: cost }).subscribe((data) => {
+    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer:dataId,cost:cost}).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',

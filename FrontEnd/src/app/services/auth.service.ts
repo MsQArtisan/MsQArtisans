@@ -125,10 +125,11 @@ export class AuthService {
     return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
   }
 
-  //Finishing the job after finish when button Finish is clicked
+  //FINISH BUTTON when button Finish is clicked
   acceptedJobsBeingCompleted(data) {
     return this.http.post(`${this.url}/api/acceptedJobToCompleted`, data)
   }
+
 
   monthlyIncomeStatistics(currentUser) {
     return this.http.post(`${this.url}/api/stats`, currentUser)

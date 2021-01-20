@@ -1,7 +1,8 @@
 var Orders = require('../models/Bookings');
 var userTask= require('../models/taskOfEveryUsers')
 var logsOfHistory = require('../models/logsHistory')
-var incomeStats = require('../models/monthlyIncome')
+var incomeStats = require('../models/monthlyIncome');
+const Bookings = require('../models/Bookings');
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
@@ -27,7 +28,9 @@ exports.getCustomersData = (req, res) =>{
     })
 }
 
+//FINISH SERVICE BUTTON IS CLICKED
 exports.acceptedJobToCompleted = (req, res) => {
+
     var dataToAdd = {
         currentTime: new Date(),
         cost: req.body.cost.customerId.cost,
@@ -38,7 +41,21 @@ exports.acceptedJobToCompleted = (req, res) => {
     })
 
     userTask.findByIdAndUpdate({_id:req.body.jobOffer},{state:req.body.state}, (err, result) => {
-        res.send(result)
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.send(result)
+        }
+       
+        Bookings.findByIdAndUpdate({_id:req.body.cost.customerId._id},{status:"Completed"},(err, result) => { 
+            if(err){
+                res.send(err)
+            } 
+            else{
+                res.send(result)  
+             }
+        })
     })
 }
 
@@ -63,7 +80,7 @@ exports.deleteAllLogs = (req, res) => {
 }
 
 
-//Gettings all customers
+//All Pending Status || Gettings all customers 
 exports.getCustomersName = (req, res) => {
     var dataArray=[];
     Orders.find({}).populate('author')
@@ -81,6 +98,8 @@ exports.getCustomersName = (req, res) => {
       })
 }
 
+
+//Check if you have rejected some services in the job order component
 exports.checkRejected = (req, res)=>{
     var reject=[];
     userTask.find({currentUser:req.body.id}, (err, user) => {
