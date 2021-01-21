@@ -19,9 +19,9 @@
         <ion-card-header>
             <div class="jobPoster">
                 <u>
-                    <h2 class="name"><b>{{jobOffer.name}}</b></h2>
+                    <h2>{{jobOffer.name}}</h2>
                 </u>
-                <h3><i>Customer Name</i></h3>
+                <h3>Customer Name</h3>
             </div>
         </ion-card-header>
         <ion-card-content>
@@ -57,7 +57,8 @@
         <ion-toolbar class="toolbar">
             <section class="full-width">
                 <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
-                <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button>
+                <!-- <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button> -->
+                <button class="buttonPass" (click)="rejected()">Cancel</button>
             </section>
         </ion-toolbar>
     </ion-footer>

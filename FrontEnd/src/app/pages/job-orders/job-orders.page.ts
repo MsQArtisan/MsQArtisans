@@ -9,14 +9,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./job-orders.page.scss'],
 })
 export class JobOrdersPage implements OnInit {
-  public imageUrl;
   public valueChosen = ""
 
   public apple: boolean = true;
 
   public dataFromModal;
   orders: String = '';
-  public customerDetails = [];
+  //Initial Jobs 
+  public arrayOfJobs = []
+  //Final Jobs Array To Display
+  public FinalArrayJobs = [];
+
+  filterService: string;
   public dataToPass;
 
   constructor(private modalController: ModalController, private authService: AuthService, ) { }
@@ -24,17 +28,72 @@ export class JobOrdersPage implements OnInit {
   ngOnInit() {
     this.orderData();
     this.authService.getUser().subscribe((data) => {
-      this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
-        this.imageUrl = data[0].image[0]
-      })
+      // this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
+      //   this.imageUrl = data[0].image[0]
+      // })
     })
   }
   orderData() {
-    this.authService.getCustomersName().subscribe((data) => {
-      this.customerDetails = data.data;
+    this.authService.getCustomersName().subscribe((jobs) => {
+      this.arrayOfJobs = jobs.data;
+      this.DisplayFinalJobs();
     })
   }
 
+  //All Final Jobs Of Array
+  DisplayFinalJobs() {
+    this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
+      var jobs = this.arrayOfJobs;
+      if (datas.data.length > 0) {
+        datas.data.forEach(element => {
+          jobs.forEach(reject => {
+            if (element.customerId == reject._id) {
+              jobs.splice(jobs.indexOf(reject), 1)
+            }
+          })
+
+        })
+        this.FinalArrayJobs = jobs;
+      }
+
+      else {
+        this.FinalArrayJobs = this.arrayOfJobs;
+      }
+
+    })
+
+  }
+
+  //Filtered by JobOrders Category
+  FilteredByService(items: any[], searchText: any) {
+    if (!searchText.target.value) {
+      this.DisplayFinalJobs();
+    }
+    else {
+      if (this.FinalArrayJobs.length > 0) {
+        this.FinalArrayJobs = items.filter((filtered) => {
+          return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());
+        });
+      }
+      else {
+        this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
+          var jobs = this.arrayOfJobs;
+          datas.data.forEach(element => {
+            jobs.forEach(reject => {
+              if (element.customerId == reject._id) {
+                jobs.splice(jobs.indexOf(reject), 1)
+              }
+            })
+
+          })
+          this.FinalArrayJobs = jobs.filter((filtered) => {
+            return filtered.service_booking.toLocaleLowerCase().includes(this.filterService.toLocaleLowerCase());
+          });
+
+        })
+      }
+    }
+  }
 
   hideAndShow() {
     if (this.apple) {
@@ -44,47 +103,25 @@ export class JobOrdersPage implements OnInit {
     }
   }
 
-  selectedOption(){
+  selectedOption() {
     console.log(this.valueChosen)
   }
 
   async passToOrders(item) {
-    if(item.status == "Pending") {
-      const modal = await this.modalController.create({
-        component: OrdersPage,
-        componentProps: {
-          status: item.status, id: item._id, name: item.author.name, service_booking: item.service_booking,
-          updatedAt: item.updatedAt, service_location: item.service_location,
-          cost: item.cost, notes: item.notes
-        },
-        cssClass: 'setting-modal',
-        backdropDismiss: false,
-      });
-  
-      modal.present();
-      this.dataFromModal = await modal.onWillDismiss();
-      item.status = "onGoing"
-    }else {
-      Swal.fire('Oopss', "You can't add this because it is already taken by other job hunter", 'warning')
-    }
-  }
+    document.getElementById(item._id).style.display = 'none'
+    const modal = await this.modalController.create({
+      component: OrdersPage,
+      componentProps: {
+        status: item.status, id: item._id, name: item.author.name, service_booking: item.service_booking,
+        updatedAt: item.updatedAt, service_location: item.service_location,
+        cost: item.cost, notes: item.notes
+      },
+      cssClass: 'setting-modal',
+      backdropDismiss: false,
+    });
 
-  allData(item){
-    let pending = []
-    this.authService.getCustomersName().subscribe((data) => {
-      if(item != "Pending") {
-        this.customerDetails = data.data
-      }else {
-        data.data.forEach(element => { 
-          if(element.status == item) {
-            pending.push(element)
-          }
-        })
-        this.customerDetails = pending
-      }
-    })
+    modal.present();
+    this.dataFromModal = await modal.onWillDismiss();
   }
-  hideCard(data) {
-    document.getElementById(data).style.display = "none"
-  }
+  
 }

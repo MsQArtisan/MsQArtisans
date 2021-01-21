@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
-const forgotPassURL = 'http://localhost:5010/api';
+const forgotPassURL = 'http://localhost:5000/api';
 
 @Injectable({
   providedIn: 'root'
@@ -85,8 +85,9 @@ export class AuthService {
       window.location.reload()
     });
   }
-  popTheUserAfterLogout(){
-    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
+
+  popTheUserAfterLogout() {
+    return this.http.post(`${this.url}/api/logout`, { user: this.userIDToken })
   }
 
   isAuthenticated() {
@@ -107,10 +108,21 @@ export class AuthService {
   }
 
   getUser() {
-    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
+    return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
   }
+
+  //Check Rejected Model and compare it into the Bookings Model(display all pendings)
+  checkRejected(userIDToken) {
+    return this.http.post<any>(`${this.url}/api/checkRejected`, { id: userIDToken })
+  }
+
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
+  }
+
+  //RejectingJobOrderes
+  rejectedJobOrders(data) {
+    return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
   }
 
   acceptedJobsBeingCompleted(data) {
@@ -129,27 +141,69 @@ export class AuthService {
     return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
+
+  //AllRejectedJobs for History 
+  allRejectedJobs(data) {
+    return this.http.post(`${this.url}/api/allRejectedJobs`, data)
+  }
+
+  //When you clicked the Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
+  deletedCompletedTask(dataid) {
+    return this.http.post(`${this.url}/api/deletedCompletedTask`, { deletedId: dataid })
+  }
+
+  //Restore Task Job under Rejected History
+  jobRestored(id, userTaskId) {
+    return this.http.post(`${this.url}/api/jobRestored`, { restoreId: id, userId: userTaskId })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   imgUpload(img) {
-
     let data: any = new FormData();
-
-    data.append("image",img);
-
+    data.append("image", img);
     // for (let [key, value] of data.entries()) {
     //     console.log(key, value);
     // }
-
     return this.http.post(`${this.url}/api/upload`, data)
   }
 
-  addImageToDatabase(imageUrl) {
-    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
-  }
+  // addImageToDatabase(imageUrl) {
+  //   return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  // }
 
-  getTheProfileImage(usersName) {
-    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
-  }
-  
+  // getTheProfileImage(usersName) {
+  //   return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  // }
+
   requestReset(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
   }
@@ -165,21 +219,21 @@ export class AuthService {
     return this.http.get(`${this.url}/api/allActiveUsers`)
   }
 
-  getOrders(){
+  getOrders() {
     return this.http.get(`${this.url}/api/getNewOrder`)
   }
-  getCustomersName():Observable<any>{
+  getCustomersName(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
   getCustomersData(userId) {
-    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+    return this.http.post(`${this.url}/api/getCustomersData`, { userId: userId })
   }
   // allLogsHistory
   getAllLogsHistory(id) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }
 
-  getReviews():Observable<any>{
+  getReviews(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/reviews`)
   }
 }

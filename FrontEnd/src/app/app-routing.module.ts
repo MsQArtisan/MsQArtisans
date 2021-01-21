@@ -98,11 +98,6 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
   },
-  {
-    path: 'sidenav',
-    loadChildren: () => import('./template/sidenav/sidenav.module').then( m => m.SidenavPageModule)
-  },
-
 ];
 
 

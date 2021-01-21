@@ -1,7 +1,6 @@
 var port = process.env.PORT || 5000;
 var express = require('express');
 var bodyParser = require('body-parser');
-// var morgan = require('morgan');
 var multer = require('multer');
 var passport = require('passport');
 var mongoose = require('mongoose');
@@ -14,7 +13,6 @@ const cookieParser = require('cookie-parser');
 const server = require('http').createServer(app);
 
 app.use(cors());
-// app.use(morgan("combined"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: '50mb' }));
@@ -22,7 +20,6 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 
 
-// var messages = [];
 // For Pusher
 const pusher = new Pusher({
     appId: "1106641",
@@ -49,6 +46,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         console.log(file);
         cb(null, Date.now() + path.extname(file.originalname));
+        // cb(null, file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -62,7 +60,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 app.post('/api/upload', upload.single('image'), (req, res, next) => {
-    console.log("File: ",req.files);
+    console.log("File: ",req.file);
     
     try {
         return res.status(201).json({
@@ -72,7 +70,6 @@ app.post('/api/upload', upload.single('image'), (req, res, next) => {
         console.error(error);
     }
 });
-
 
 
 app.post('/messages', (req, res) => {
@@ -85,16 +82,12 @@ app.get('/api/allMessages', (req, res) => {
     res.send(messages)
 })
 
-
-
-
-app.use(passport.initialize());
-var passportMiddleware = require('./middleware/passport');
-passport.use(passportMiddleware);
+// app.use(passport.initialize());
+// var passportMiddleware = require('./middleware/passport');
+// passport.use(passportMiddleware);
 
 var routes = require('./routes');
 app.use('/api', routes);
-
 
 mongoose.connect(config.db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 const connection = mongoose.connection;

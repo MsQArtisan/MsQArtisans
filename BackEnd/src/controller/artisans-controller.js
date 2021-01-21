@@ -5,7 +5,6 @@ var config = require('../config/config');
 var userTask = require('../models/taskOfEveryUsers')
 var logsOfHistory = require('../models/logsHistory')
 var loggedusers = []
-var jobArray = []
 
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
@@ -15,22 +14,21 @@ function createToken(user) {
 
 exports.registerUser = (req, res) => {
 
-    // User.findOne({ email: req.body.email }, (err, user) => {
-    //     if (err) {
-    //         return res.status(400).json({ 'msg': err });
-    //     }
-    //     if (user) {
-    //         return res.status(400).json({ 'msg': 'The email already exists' });
-    //     }
-    //     let newUser = User(req.body);
-    //     newUser.save((err, user) => {
-    //         if (err) {
-    //             return res.status(400).json({ 'msg': err });
-    //         }
-            return res.status(201).send({message: "Successfully added"})
-            // .json(user);
-    //     });
-    // });
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (err) {
+            return res.status(400).json({ 'msg': err });
+        }
+        if (user) {
+            return res.status(400).json({ 'msg': 'The email already exists' });
+        }
+        let newUser = User(req.body);
+        newUser.save((err, user) => {
+            if (err) {
+                return res.status(400).json({ 'msg': err });
+            }
+            return res.status(201).json(user);
+        });
+    });
 };
 
 exports.loginUser = (req, res) => {
@@ -85,18 +83,41 @@ exports.addJobOrders = (req, res) => {
         jobsOfferedThroughId: req.body.jobOffer._id
     }
     let dataAdd = new logsOfHistory(dataTOAdd)
-    dataAdd.save((err, result) => {})
-    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => {})
+    dataAdd.save((err, result) => { })
+
+    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => { })
     var sampleObject = {
         currentUser: req.body.currentUser,
         state: req.body.state,
         customerId: req.body.jobOffer._id
     }
+
     let usersTask = new userTask(sampleObject)
     usersTask.save((err, result) => {
         res.send(result)
     })
 }
+
+//Rejecting the jobToOrders
+exports.rejectedJobOrders = (req, res) => {
+    var dataTOAdd = {
+        logsOwner: req.body.currentUser,
+        jobsOfferedThroughId: req.body.jobOffer._id
+    }
+    let dataAdd = new logsOfHistory(dataTOAdd)
+    dataAdd.save((err, result) => { })
+    var sampleObject = {
+        currentUser: req.body.currentUser,
+        state: req.body.state,
+        customerId: req.body.jobOffer._id
+    }
+
+    let usersTask = new userTask(sampleObject)
+    usersTask.save((err, result) => {
+        res.send(result)
+    })
+}
+
 //array, request, toPassarray
 exports.allJobAccepted = (req, res) => {
     userTask.find({ currentUser: req.body.user, state: "accept" }).populate('customerId')
@@ -105,16 +126,48 @@ exports.allJobAccepted = (req, res) => {
         })
 }
 
+//all Completed Job Orders History Tracker 
 exports.completedJob = (req, res) => {
     userTask.find({ currentUser: req.body.user, state: "completed" }).populate('customerId')
         .exec((err, data) => {
             res.send(data)
         })
 }
-exports.returnAllActiveUsers = (req, res) => {
-    res.send(loggedusers)
+
+//all Rejected Job Orders History Tracker
+exports.rejectedJob = (req, res) => {
+    userTask.find({ currentUser: req.body.user, state: "rejected" }).populate('customerId')
+        .exec((err, data) => {
+            res.send(data)
+        })
 }
 
-exports.deleteItem = (req, res) => {
-    jobArray.splice(req.body.index, 1)
+//Delete Completed Task under Completed Tracker
+exports.deletedCompletedTask = (req, res) => {
+    userTask.deleteOne({ _id: req.body.deletedId }, (err, result) => {
+        if (err) {
+            res.jsonp({ success: false })
+        }
+        else {
+            res.jsonp({ success: true })
+        }
+    })
+}
+
+//Restore Task  under Rejected History
+exports.jobRestored = (req, res) => {
+    Orders.find({ _id: req.body.restoreId }, (err, result) => {
+        result.forEach(output => {
+            if (output.status === 'Pending') {
+                res.jsonp({ success: true })
+            }
+            else {
+                res.jsonp({ success: false })
+            }
+        })
+    })
+}
+
+exports.returnAllActiveUsers = (req, res) => {
+    res.send(loggedusers)
 }

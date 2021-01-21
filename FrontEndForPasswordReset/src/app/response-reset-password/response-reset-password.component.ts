@@ -45,7 +45,7 @@ export class ResponseResetPasswordComponent implements OnInit {
     this.ResponseResetForm = this.fb.group(
       {
         resettoken: [this.resetToken],
-        newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]],
+        newPassword: ['', [Validators.required, Validators.minLength(8)]], //, Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
       }
     );
