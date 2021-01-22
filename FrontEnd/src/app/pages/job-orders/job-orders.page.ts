@@ -92,7 +92,7 @@ export class JobOrdersPage implements OnInit {
             })
 
           })
-          this.FinalArrayJobs = jobs.filter((filtered) => {
+          this.FinalArrayJobs=jobs.filter((filtered) =>{
             return filtered.service_booking.toLocaleLowerCase().includes(this.filterService.toLocaleLowerCase());
           });
 

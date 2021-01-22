@@ -76,6 +76,7 @@ export class TrackerPage implements OnInit {
 
 //Delete Completed Task under Completed Task History 
   deleteCompletedTask(customerId){
+    console.log(customerId)
     this.authService.deletedCompletedTask(customerId).subscribe((data)=>{
       if (data['success']){
        Swal.fire({

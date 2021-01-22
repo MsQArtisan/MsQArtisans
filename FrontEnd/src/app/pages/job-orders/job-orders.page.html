@@ -38,22 +38,29 @@
             <div class="cardContent" *ngFor="let item of FinalArrayJobs">
                 <div>
                     <ion-card [id]="item._id" style="background-color: rgb(255, 255, 255);" class="card">
-                        <div *ngIf="item.service_booking =='MassageTherapist'">
+                        <div class="bar bar-header bar-stable">
+                            <ion-card-header (click)="passToOrders(item)">
+                                <ion-icon name="people"></ion-icon>
+                                <span class="work"><b>{{item.service_booking}}</b></span>
+                                <button (click)="hideCard(item._id)">X</button>
+                            </ion-card-header>
+                        </div>
+                        <div *ngIf="item.service_booking=='MassageTherapist'">
                             <ion-img src="assets/images/massage.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking =='TutorCumNanny'">
+                        <div *ngIf="item.service_booking=='TutorCumNanny'">
                             <ion-img src="assets/images/tutor.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking =='Nanny'">
+                        <div *ngIf="item.service_booking=='Nanny'">
                             <ion-img src="assets/images/nanny.jpg"></ion-img>
                         </div>
-                        <div *ngIf="item.service_booking == 'Housekeeping'">
+                        <div *ngIf="item.service_booking=='Housekeeping'">
                             <ion-img src="assets/images/housekeeping.jpg"></ion-img>
                         </div>
                         <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                         <ion-card-subtitle
-                            style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                            Customer Name
+                            style="color:black; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            <i>Customer Name</i>
                         </ion-card-subtitle>
                         <ion-card-content (click)="passToOrders(item)">
                             <section>

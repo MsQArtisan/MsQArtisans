@@ -17,7 +17,7 @@ routes.post('/checkRejected',orderController.checkRejected);
 routes.get('/reviews', reviewsController.getReviews);
 
 //Finishing the job after finish (FINISH BUTTON)
-routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
+routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted)
 
 routes.post('/allLogsHistory', orderController.allLogsHistory)
 
