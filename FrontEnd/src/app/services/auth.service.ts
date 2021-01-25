@@ -157,36 +157,6 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobRestored`, { restoreId: id, userId: userTaskId })
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   imgUpload(img) {
     let data: any = new FormData();
     data.append("image", img);
@@ -196,13 +166,22 @@ export class AuthService {
     return this.http.post(`${this.url}/api/upload`, data)
   }
 
-  // addImageToDatabase(imageUrl) {
-  //   return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
-  // }
-
-  // getTheProfileImage(usersName) {
-  //   return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
-  // }
+  imgUpload1(img) {
+    let data: any = new FormData();
+    data.append("image", img);
+    // for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    // }
+    return this.http.post(`${this.url}/api/upload`, data)
+  }
+  imgUpload2(img) {
+    let data: any = new FormData();
+    data.append("image", img);
+    // for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    // }
+    return this.http.post(`${this.url}/api/upload`, data)
+  }
 
   requestReset(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/reqResetPassword`, body);

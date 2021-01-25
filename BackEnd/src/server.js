@@ -46,11 +46,10 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         console.log(file);
         cb(null, Date.now() + path.extname(file.originalname));
-        // cb(null, file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" ) {
         cb(null, true);
     } else {
         cb(null, false);
@@ -61,7 +60,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 app.post('/api/upload', upload.single('image'), (req, res, next) => {
     console.log("File: ",req.file);
-    
+
     try {
         return res.status(201).json({
             message: 'File uploded successfully'
@@ -70,6 +69,7 @@ app.post('/api/upload', upload.single('image'), (req, res, next) => {
         console.error(error);
     }
 });
+
 
 
 app.post('/messages', (req, res) => {
