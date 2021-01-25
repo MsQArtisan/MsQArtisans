@@ -104,8 +104,7 @@ export class TrackerPage implements OnInit {
     this.authService.jobRestored(restoreId,userTaskId).subscribe((result) => {
       if (result['success']){
         Swal.fire({
-          title: 'The job is still available!',
-          text: "Are you sure you want to restore this?",
+          text: "Are you sure you want to restore this job?",
           showCancelButton:true,
           confirmButtonColor: '#27C641',
           cancelButtonColor: '#a8a8a8',
