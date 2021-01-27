@@ -52,8 +52,6 @@ exports.ResetPassword = (req, res) => {
                 if (error) {
                     return console.log(error);
                 }
-                // console.log('Message sent: ' + info.response);
-                console.log('Message Sent Successfully')
             });
         })
     })
@@ -95,7 +93,6 @@ exports.NewPassword = (req, res) => {
                     .json({ message: 'User does not exist' });
             }
             return bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
-                console.log("hash in the db ", req.body.newPassword)
                 if (err) {
                     return res
                         .status(400)

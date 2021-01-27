@@ -2,9 +2,8 @@ var port = process.env.PORT || 5000;
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var passport = require('passport');
 var mongoose = require('mongoose');
-var config = require('./config/config');
+var config = require('./src/config/config');
 var cors = require('cors');
 var app = express();
 const path = require('path');
@@ -19,7 +18,6 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 
-
 // For Pusher
 const pusher = new Pusher({
     appId: "1106641",
@@ -29,23 +27,13 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header(
-//         'Access-Control-Allow-Headers',
-//         'Origin, X-Requested-With, Content-Type, Accept'
-//     );
-//     next();
-// });
-
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads');
     },
     filename: (req, file, cb) => {
-        console.log(file);
-        cb(null, Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -58,9 +46,7 @@ const fileFilter = (req, file, cb) => {
 }
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-app.post('/api/upload', upload.single('image'), (req, res, next) => {
-    console.log("File: ",req.file);
-
+app.post('/api/upload', upload.array('image[]'), (req, res, next) => {
     try {
         return res.status(201).json({
             message: 'File uploded successfully'
@@ -70,9 +56,8 @@ app.post('/api/upload', upload.single('image'), (req, res, next) => {
     }
 });
 
-
-
-app.post('/messages', (req, res) => {
+var messages = [];
+app.post('/api/messages', (req, res) => {
     messages.push(req.body);
     pusher.trigger('chat', 'message', messages);
     res.send(messages);
@@ -82,11 +67,7 @@ app.get('/api/allMessages', (req, res) => {
     res.send(messages)
 })
 
-// app.use(passport.initialize());
-// var passportMiddleware = require('./middleware/passport');
-// passport.use(passportMiddleware);
-
-var routes = require('./routes');
+var routes = require('./src/routes');
 app.use('/api', routes);
 
 mongoose.connect(config.db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });

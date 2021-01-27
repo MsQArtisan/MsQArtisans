@@ -48,7 +48,6 @@ export class LocationSelectPage implements OnInit {
     });
 
     var input = document.getElementById('pac-input');
-    console.log(input)
     var searchBox = new google.maps.places.SearchBox(input);
 
     map.addListener('bounds_changed', function() {
@@ -72,7 +71,6 @@ export class LocationSelectPage implements OnInit {
         // LocationSelectPage.lat = place.geometry.viewport.Ya;
         // LocationSelectPage.lon = place.geometry.viewport.Ua;
         if (!place.geometry) {
-          console.log('No geometry');
           return;
         }
 

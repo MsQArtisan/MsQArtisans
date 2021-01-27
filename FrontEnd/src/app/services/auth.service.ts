@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
@@ -25,7 +26,7 @@ export class AuthService {
   authenticationState = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
-    private plt: Platform, private alertController: AlertController) {
+    private plt: Platform, private alertController: AlertController, private router: Router) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -36,7 +37,6 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
-
         if (!isExpired) {
           this.storage.get(userToken).then((token) => {
             this.userIDToken = token
@@ -51,6 +51,7 @@ export class AuthService {
   }
 
   register(credentials) {
+    console.log(credentials)
     return this.http.post(`${this.url}/api/register`, credentials).pipe(
       catchError(e => {
         this.showAlert(e.error.msg);
@@ -70,6 +71,8 @@ export class AuthService {
             this.storage.set(TOKEN_KEY, res['token']);
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
+            this.router.navigate(['job-orders']);
+
           } else {
             // this.returnTheStatus()
           }
@@ -82,7 +85,6 @@ export class AuthService {
       this.storage.remove(userToken).then(() => {
         this.authenticationState.next(false);
       })
-      window.location.reload()
     });
   }
 
@@ -141,7 +143,6 @@ export class AuthService {
     return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
-
   //AllRejectedJobs for History 
   allRejectedJobs(data) {
     return this.http.post(`${this.url}/api/allRejectedJobs`, data)
@@ -157,29 +158,11 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobRestored`, { restoreId: id, userId: userTaskId })
   }
 
-  imgUpload(img) {
+  imgUpload(selfie, primaryIdPic, nbi) {
     let data: any = new FormData();
-    data.append("image", img);
-    // for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    // }
-    return this.http.post(`${this.url}/api/upload`, data)
-  }
-
-  imgUpload1(img) {
-    let data: any = new FormData();
-    data.append("image", img);
-    // for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    // }
-    return this.http.post(`${this.url}/api/upload`, data)
-  }
-  imgUpload2(img) {
-    let data: any = new FormData();
-    data.append("image", img);
-    // for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    // }
+    data.append("image[]", selfie.image, selfie.imageName);
+    data.append("image[]", primaryIdPic.image, primaryIdPic.imageName);
+    data.append("image[]", nbi.image, nbi.imageName);
     return this.http.post(`${this.url}/api/upload`, data)
   }
 

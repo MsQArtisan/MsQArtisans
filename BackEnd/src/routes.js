@@ -43,8 +43,4 @@ routes.post('/valid-password-token', AuthCtrl.ValidPasswordToken);
 // Reviews Controller
 routes.get('/reviews', reviewsController.getReviews);
 
-// routes.get('/special', passport.authenticate('jwt', { session: false }), (req, res) => {
-//     return res.json({ msg: `Hey ${req.user.email}! I open at the close.` });
-// });
-
 module.exports = routes;

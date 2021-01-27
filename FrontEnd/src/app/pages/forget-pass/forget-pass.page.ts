@@ -33,7 +33,6 @@ export class ForgetPassPage implements OnInit {
 
 
   RequestResetUser(form) {
-    console.log(form)
     if (form.valid) {
       this.IsvalidForm = true;
       this.authService.requestReset(this.RequestResetForm.value).subscribe(
@@ -48,7 +47,6 @@ export class ForgetPassPage implements OnInit {
         err => {
 
           if (err.error.message) {
-            console.log("error mga fre")
             this.errorMessage = err.error.message;
           }
         }

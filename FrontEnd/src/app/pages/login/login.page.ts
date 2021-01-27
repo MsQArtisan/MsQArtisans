@@ -16,30 +16,23 @@ export class LoginPage implements OnInit {
   public booleanIdentify = true
   public passwordOrText = "password"
 
+  // for testing only
   public credentialsForm = {
-    email: "star808fer@gmail.com",
+    email: "test@gmail.com",
     password: "Vl@ck48cAl!"
   }
+  
+  // public credentialsForm = {
+  //   email: "",
+  //   password: ""
+  // }
+
   constructor(private authService: AuthService,
     private loadingController: LoadingController,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
-
-  // onSubmit() {
-  //   this.authService.login(this.credentialsForm).subscribe((data) => {
-  //     this.situationHandler = data
-  //     if (this.situationHandler.msg == 'email') {
-  //       this.emailMessage = true
-  //       this.passwordMessage = this.situationHandler.type
-  //     } else {
-  //       this.passwordMessage = true
-  //       this.emailMessage = this.situationHandler.type
-  //     }
-  //     this.resetForm()
-  //   })
-  // }
 
   onSubmit(){
     this.presentLoading()

@@ -41,11 +41,10 @@ export class LivechatPage implements OnInit {
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.fullTime,
-        // user: this.currentUser.name
       };
 
       this.http
-        .post(`http://localhost:5000/messages`, data)
+        .post(`http://localhost:5000/api/messages`, data)
         .subscribe((res: Message) => {
           this.messages = res
 

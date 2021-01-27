@@ -7,13 +7,12 @@ var logsOfHistory = require('../models/logsHistory')
 var loggedusers = []
 
 function createToken(user) {
-    return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
-        expiresIn: 86400 //expires in 24 hours
+    return jwt.sign({ _id: user.id, email: user.email }, config.jwtSecret, {
+        expiresIn: 200 //expires in 24 hours
     });
 }
 
 exports.registerUser = (req, res) => {
-
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) {
             return res.status(400).json({ 'msg': err });
@@ -21,8 +20,13 @@ exports.registerUser = (req, res) => {
         if (user) {
             return res.status(400).json({ 'msg': 'The email already exists' });
         }
-        let newUser = User(req.body);
-        newUser.save((err, user) => {
+        const url = req.protocol + "://" + req.hostname + ':' + 5000 + '/' + 'uploads/';
+        let artisan = new User(req.body);
+    
+        artisan['selfie'] = url + req.body.selfie;
+        artisan['primaryIdPic'] = url +req.body.primaryIdPic;
+        artisan['nbi'] = url + req.body.nbi;
+        artisan.save((err, user) => {
             if (err) {
                 return res.status(400).json({ 'msg': err });
             }
@@ -30,6 +34,7 @@ exports.registerUser = (req, res) => {
         });
     });
 };
+
 
 exports.loginUser = (req, res) => {
 
@@ -66,7 +71,6 @@ exports.logoutUser = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-
     User.find({ _id: req.body.id }, (err, user) => {
         if (err) {
             return res.send({ error: err, status: false })
@@ -142,6 +146,7 @@ exports.rejectedJob = (req, res) => {
         })
 }
 
+
 //Delete Completed Task under Completed Tracker
 exports.deletedCompletedTask = (req, res) => {
     userTask.deleteOne({ _id: req.body.deletedId }, (err, result) => {
@@ -153,6 +158,7 @@ exports.deletedCompletedTask = (req, res) => {
         }
     })
 }
+
 
 //Restore Task  under Rejected History
 exports.jobRestored = (req, res) => {

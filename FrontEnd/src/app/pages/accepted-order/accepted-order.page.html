@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-        <!-- <ion-buttons slot="start">
-            <ion-back-button [routerLink]="['/job-orders']"></ion-back-button>
-        </ion-buttons> -->
         <h2 style="margin-left: 20px;">Accepted Order</h2>
     </ion-toolbar>
 </ion-header>
@@ -57,7 +54,6 @@
         <ion-toolbar class="toolbar">
             <section class="full-width">
                 <button class="buttonAccept" (click)="addDataToDatabase()">Start Service</button>
-                <!-- <button class="buttonPass" [routerLink]="['/job-orders']">Cancel</button> -->
                 <button class="buttonPass" (click)="rejected()">Cancel</button>
             </section>
         </ion-toolbar>

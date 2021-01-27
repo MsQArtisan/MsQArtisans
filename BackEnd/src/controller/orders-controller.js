@@ -60,7 +60,6 @@ exports.acceptedJobToCompleted = (req, res) => {
 
 exports.statistics = (req, res) => {
     incomeStats.find({ currentUser: req.body.user }, (err, result) => {
-        console.log(result)
         res.send(result)
     })
 }

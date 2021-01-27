@@ -16,12 +16,9 @@ export class AccInfoPage implements OnInit {
   }
   
   account() {
-    this.authService.getUser().subscribe((data: any) => {
+    this.authService.getUser().subscribe((data:any) => {
       this.userAccount = data.data[0];
       this.userName = data.data[0]
-      // this.authService.getTheProfileImage({ name: this.userName.name }).subscribe((data) => {
-      //   this.imageUrl = data[0].image[0]
-      // })
     })
   }
 

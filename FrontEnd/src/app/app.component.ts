@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -14,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
-    private authService: AuthService, 
     private storage: Storage,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,25 +28,26 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
  
-      this.auth.authenticationState.subscribe(state => {
-        if (state) {
-          this.router.navigate(['job-orders']);
-        } else {
-          this.router.navigate(['home']);
-        }
-      });
+      // this.auth.authenticationState.subscribe(state => {
+      //   if (state) {
+      //     this.router.navigate(['job-orders']);
+      //   } 
+      //   else {
+      //     // this.router.navigate(['home']);
+      //   }
+      // });
     });
   }
 
   
   logout() {
-    this.authService.logout();
+    this.auth.logout();
     this.storage.remove('access_token');
     this.auth.authenticationState.subscribe(state => {
       if (state) {
         this.router.navigate(['job-orders']);
       } else {
-        this.router.navigate(['login']);
+        this.router.navigate(['home']);
       }
     });
   }

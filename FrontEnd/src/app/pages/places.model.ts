@@ -45,9 +45,6 @@ export class places {
                 { val: "tub", muni: "TUBURAN" },
                 { val: "tud", muni: "TUDELA" },
             ]
-
-
-
         )
     }
 }

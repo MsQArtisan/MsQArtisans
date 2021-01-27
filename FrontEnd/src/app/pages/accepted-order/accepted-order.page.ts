@@ -34,6 +34,7 @@ export class AcceptedOrderPage implements OnInit {
     rate: "",
     notes: ""
   };
+  
   constructor(
     public navCtrl: NavController,
     public geo: Geolocation,
@@ -100,7 +101,7 @@ export class AcceptedOrderPage implements OnInit {
       this.longitude = res.coords.longitude
       this.showMap()
     }).catch((err) => {
-      console.log("error", err)
+      console.log("error", err) 
     })
   }
 
@@ -133,10 +134,7 @@ export class AcceptedOrderPage implements OnInit {
       markers = [];
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function (place) {
-        // LocationSelectPage.lat = place.geometry.viewport.Ya;
-        // LocationSelectPage.lon = place.geometry.viewport.Ua;
         if (!place.geometry) {
-          console.log('No geometry');
           return;
         }
 

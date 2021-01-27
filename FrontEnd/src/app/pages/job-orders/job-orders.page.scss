@@ -78,11 +78,10 @@ ion-card {
 }
 
 .cardContent {
-    width: 40%;
-    float: left;
+    width: 100%;
     text-align: center;
-    margin: 3%;
-    min-width: 400px;
+    margin-left: 10%;
+    margin-right: auto;
 }
 .cardContent:hover {
     button {

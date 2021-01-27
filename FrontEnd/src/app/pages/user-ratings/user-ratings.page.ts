@@ -9,21 +9,18 @@ import { AuthService } from "../../services/auth.service"
 
 export class UserRatingsPage implements OnInit {
   rating = 4.5
-  rateArray=[]
+  rateArray = []
   public rateSum;
   public aveRate;
   constructor(
     private authService: AuthService,
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.authService.getReviews().subscribe((reviews:any)=>{
-      console.log("reviews",reviews.data.length);
-      this.rateArray = reviews.data.ratings
-      this.rateSum = this.rateArray.reduce((a, b) => a + b, 0);
-      console.log(this.rateArray);
-
-      this.aveRate = this.rateSum / reviews.data.ratings.length
+    this.authService.getReviews().subscribe((reviews: any) => {
+      // this.rateArray = reviews.data.ratings
+      // this.rateSum = this.rateArray.reduce((a, b) => a + b, 0);
+      // this.aveRate = this.rateSum / reviews.data.ratings.length
     })
   }
 

@@ -36,10 +36,6 @@ export class SettingsPage implements OnInit {
     this.authService.getUser().subscribe((data:any)=>{
       this.userAccount=data.data[0];
       this.userName = data.data[0]
-      // this.authService.getTheProfileImage({name: this.userName.name}).subscribe((data) => {
-      //   console.log("safasf", data[0])
-      //   this.imageUrl = data[0].image[0]
-      // })
     })
   }
  
