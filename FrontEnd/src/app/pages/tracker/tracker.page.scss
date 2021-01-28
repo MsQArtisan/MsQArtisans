@@ -1,64 +1,22 @@
-.header {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
-    font-weight: lighter;
-    color: rgb(0, 0, 0);
+@import "../../../global.scss";
+* {
+    font-family: lato;
+}
+ion-title {
+    color: white;
     letter-spacing: 1.5px;
 }
-
-ul {
-    list-style-type: none;
-    padding: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgb(248, 248, 248);
-    border-radius: 10px;
-}
-
-li {
-    padding: 10px;
-}
-
-li:nth-child(even) {
-    background-color: rgba(214, 213, 213, 0.5);
-}
-
 .customerName {
     margin: 0;
     padding: 10px;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
+    font-weight: bolder;
+    color: rgb(41, 89, 135);
+    letter-spacing: 1.5;
 }
 
-.listOfAcceptedJobs {
-    background-color: rgba(211, 211, 211, 0.5);
-    padding: 20px;
-    margin-left: 20%;
-    margin-top: 5%;
-    width: 50%;
-    margin-bottom: 5%;
-}
-.rejectedTasks {
-    background-color: rgba(211, 211, 211, 0.5);
-    padding: 10px;
-    margin-left: 2%;
-    margin-top: 25%;
-    width: 50%;
-    margin-bottom: 5%;
-    min-width: 396px;
-}
-.onMobile {
-    outline: none;
-    padding: 15px;
-    border-radius: 10px;
-    width: 100%;
-    background-color: rgb(64, 252, 80);
-}
-
-.onMobile:active {
-    background-color: rgb(56, 163, 65);
-}
 .topnavButton {
     display: none;
 }
@@ -123,8 +81,17 @@ li:nth-child(even) {
   .topClick {
     display: none;
 }
-  
-  @media only screen and (max-width: 768px) {
+
+@media only screen and (min-width: 790px) {
+    ion-card{
+        width: 50%;
+        padding: 3%;
+        margin-top: 5%;
+        margin-right: 10%;
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 768px) {
     .topClick {
         display: block;
     }
@@ -135,7 +102,7 @@ li:nth-child(even) {
         display: block;
         position: relative;
     }
-    .listOfAcceptedJobs {
+    ion-card {
         padding: 2%;
         margin: 0;
         width: 90%;
@@ -143,9 +110,7 @@ li:nth-child(even) {
         margin-left: auto;
         margin-right: auto;
     }
-    ul {
-        margin: 0;
-    }
+  
     img {
         display: block;
         width: 40px;
@@ -155,4 +120,19 @@ li:nth-child(even) {
         position: fixed;
     }
 
+}
+
+ion-icon{
+    font-size: 18px;
+    color: rgb(23, 46, 73);
+    margin-right: 10px;
+}
+
+ion-card{
+    background-color: rgb(212, 236, 243);
+}
+span{
+    color: rgb(47, 63, 79);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
 }

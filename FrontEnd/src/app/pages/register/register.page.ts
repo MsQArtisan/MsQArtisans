@@ -14,36 +14,17 @@ export class RegisterPage implements OnInit {
   public nbi: any;
 
   // for testing only
-  credentialsForm = {
-    email: "test@gmail.com",
-    password: "Vl@ck48cAl!",
-    name: "Test101",
-    address: "Cebu City",
-    bday: "",
-    phone: "09968817703",
-    confirmPassword: "Vl@ck48cAl!",
-    selfie: "",
-    primaryIdPic: "",
-    primaryIdNum: "18106154",
-    nbi: "",
-    applyJob: "",
-    tutorFile: "",
-    nannyFile: "",
-    housekeepingFile: "",
-    haircutMassageFile: ""
-  }
-
   // credentialsForm = {
-  //   email: "",
-  //   password: "",
-  //   name: "",
-  //   address: "",
+  //   email: "test@gmail.com",
+  //   password: "Vl@ck48cAl!",
+  //   name: "Test101",
+  //   address: "Cebu City",
   //   bday: "",
-  //   phone: "",
-  //   confirmPassword: "",
+  //   phone: "09968817703",
+  //   confirmPassword: "Vl@ck48cAl!",
   //   selfie: "",
   //   primaryIdPic: "",
-  //   primaryIdNum: "",
+  //   primaryIdNum: "18106154",
   //   nbi: "",
   //   applyJob: "",
   //   tutorFile: "",
@@ -51,6 +32,25 @@ export class RegisterPage implements OnInit {
   //   housekeepingFile: "",
   //   haircutMassageFile: ""
   // }
+
+  credentialsForm = {
+    email: "",
+    password: "",
+    name: "",
+    address: "",
+    bday: "",
+    phone: "",
+    confirmPassword: "",
+    selfie: "",
+    primaryIdPic: "",
+    primaryIdNum: "",
+    nbi: "",
+    applyJob: "",
+    tutorFile: "",
+    nannyFile: "",
+    housekeepingFile: "",
+    haircutMassageFile: ""
+  }
 
   constructor(
     private authService: AuthService,

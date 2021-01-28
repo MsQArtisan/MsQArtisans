@@ -2,11 +2,10 @@
 * {
     font-family: lato;
 }
-
 ion-title {
+    color: white;
     letter-spacing: 1.5px;
 }
-
 span {
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -290,12 +289,6 @@ p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.header {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
-    font-weight: lighter;
-}
- 
 .dropdownChoices {
     display: none;
 }

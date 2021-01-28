@@ -17,15 +17,15 @@ export class LoginPage implements OnInit {
   public passwordOrText = "password"
 
   // for testing only
-  public credentialsForm = {
-    email: "test@gmail.com",
-    password: "Vl@ck48cAl!"
-  }
-  
   // public credentialsForm = {
-  //   email: "",
-  //   password: ""
+  //   email: "test@gmail.com",
+  //   password: "Vl@ck48cAl!"
   // }
+  
+  public credentialsForm = {
+    email: "",
+    password: ""
+  }
 
   constructor(private authService: AuthService,
     private loadingController: LoadingController,

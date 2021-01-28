@@ -25,11 +25,7 @@ export class TrackerPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.authService.getUser().subscribe((data) => {
-    //   this.authService.getTheProfileImage({ name: data.data[0].name }).subscribe((data) => {
-    //     this.imageUrl = data[0].image[0]
-    //   })
-    // })
+  
     this.onGoingJob.length = 0
     this.functions.jobsAccepted(this.authService, { state: "Ongoing", user: this.authService.userIDToken }, this.onGoingJob)
     this.completedTask = true
@@ -52,7 +48,7 @@ export class TrackerPage implements OnInit {
       if (data) {
         Swal.fire({
           icon: 'success',
-          title: 'Thank you for using our app!',
+          title: 'Congrats! You have done an excellent service!',
           showConfirmButton: false,
           timer: 1000
         })
