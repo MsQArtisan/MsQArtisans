@@ -51,6 +51,9 @@
                         <div *ngIf="item.service_booking == 'Housekeeping'">
                             <ion-img src="assets/images/housekeeping.png"></ion-img>
                         </div>
+                        <div *ngIf="item.service_booking == 'Haircut'">
+                            <ion-img src="assets/images/haircut.png"></ion-img>
+                        </div>
                         <ion-card-title class="title">{{item.author.name}}</ion-card-title>
                         <ion-card-subtitle style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                             Customer Name
@@ -77,7 +80,6 @@
                                 <p class="peso">Price rate: <span>&nbsp; &#8369; {{item.cost}}.00</span> </p>
 
                             </div>
-
                         </ion-card-content>
                     </ion-card>
                 </div>

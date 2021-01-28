@@ -1,12 +1,16 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-        <ion-title>Select Location</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button (click)="toAccepted()"></ion-back-button>
+            <ion-back-button routerLink="/job-orders"></ion-back-button>
         </ion-buttons>
+        <ion-title>Select Location</ion-title>
+        <!-- <ion-buttons slot="start"> -->
+        <!-- <button routerLink="/job-orders">Back</button> -->
+        <!-- </ion-buttons> -->
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <input style="width: 100%; height: 50px" type="text" id="pac-input" value="{{location}}" class="controls" placeholder="Search Location">
+    <input style="width: 100%; height: 50px" type="text" id="pac-input" value="{{ location }}" class="controls"
+        placeholder="Search Location">
     <div #maps id="maps"></div>
 </ion-content>

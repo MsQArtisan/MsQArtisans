@@ -34,11 +34,12 @@
                 <ion-icon name="time"></ion-icon>
                 <span>{{jobOffer.schedule}}</span>
             </section>
-            <section (click)="navigateToMap()" class="location">
+            <section  class="location" (click)="navigateToMap()">
                 <ion-icon class="floating" name="location"></ion-icon>
                 <span>{{jobOffer.location}}</span>
 
             </section>
+          
             <section>
                 <ion-icon name="wallet"></ion-icon>
                 <span>{{jobOffer.rate}}</span>

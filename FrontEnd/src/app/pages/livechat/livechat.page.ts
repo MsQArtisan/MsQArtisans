@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 interface Message {
   id: string;
   text: string;
-  timeStamp:Date;
+  timeStamp: Date;
   type: string;
   user: String;
 }
@@ -68,7 +68,7 @@ export class LivechatPage implements OnInit {
       this.activeUsers = data
     })
     const channel = this.pusher.init();
-    channel.bind ('message', (data) => {
+    channel.bind('message', (data) => {
       this.messages = data
     })
     this.account();

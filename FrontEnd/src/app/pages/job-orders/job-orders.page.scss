@@ -36,7 +36,7 @@ ion-card {
     text-align: left;
     padding: 5%;
     margin-top: 5%;
-    margin-right:14%;
+    margin-right:3%;
 }
 
 
@@ -312,6 +312,14 @@ img {
     .toggle{
         margin-top:-4%;
     }
+    
+ion-card {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    padding: 5%;
+    margin-top: 5%;
+    margin-right:15%;
+}
 }
 @media only screen and (min-width: 768px)and (max-width: 1024px){
     .toggle{
@@ -384,4 +392,5 @@ img {
         width:auto;
         margin-left: 10%;
     }
+    
 }
