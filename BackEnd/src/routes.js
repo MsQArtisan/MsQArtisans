@@ -21,11 +21,11 @@ routes.post('/deletedCompletedTask', userController.deletedCompletedTask) //Dele
 routes.get('/allActiveUsers', userController.returnAllActiveUsers)
 
 // Customer Controller
-routes.post('/checkRejected',orderController.checkRejected); //check rejected under Usertask MOdel compared to Bookings model
+routes.post('/checkRejected', orderController.checkRejected); //check rejected under Usertask MOdel compared to Bookings model
 routes.get('/allCustomers', customerController.getAllCustomers);
 
 // Order Controller
-routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted )
+routes.post('/acceptedJobToCompleted', orderController.acceptedJobToCompleted)
 routes.post('/getCustomersData', orderController.getCustomersData)
 routes.post('/allLogsHistory', orderController.allLogsHistory)
 routes.post('/stats', orderController.statistics)

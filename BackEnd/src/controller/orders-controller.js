@@ -3,6 +3,7 @@ var userTask = require('../models/taskOfEveryUsers')
 var logsOfHistory = require('../models/logsHistory')
 var incomeStats = require('../models/monthlyIncome');
 const Bookings = require('../models/Bookings');
+const resetToken = require('../models/resetToken');
 
 exports.getOrders = (req, res) => {
     Orders.find({}, (err, orders) => {
@@ -36,7 +37,7 @@ exports.acceptedJobToCompleted = (req, res) => {
         currentUser: req.body.currentUser
     }
     let dataAdd = new incomeStats(dataToAdd)
-    dataAdd.save().then((retVal) => {
+    dataAdd.save().then(() => {
     })
 
     userTask.findByIdAndUpdate({ _id: req.body.jobOffer }, { state: req.body.state }, (err, result) => {
@@ -46,15 +47,15 @@ exports.acceptedJobToCompleted = (req, res) => {
         else {
             res.send(result)
         }
+    })
 
-        Bookings.findByIdAndUpdate({ _id: req.body.cost.customerId._id }, { status: "Completed" }, (err, result) => {
-            if (err) {
-                res.send(err)
-            }
-            else {
-                res.send(result)
-            }
-        })
+    Bookings.findByIdAndUpdate({ _id: req.body.cost.customerId},{ status:"Completed" },(err, result) => {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send(result)
+        }
     })
 }
 
@@ -78,26 +79,29 @@ exports.deleteAllLogs = (req, res) => {
 
 //All Pending Status || Gettings all customers 
 exports.getCustomersName = (req, res) => {
-    var dataArray = [];
-    Orders.find({}).populate('author')
+    Orders.find({status:'Pending'}).populate('author')
         .exec((err, datas) => {
             if (err) {
                 return res.send({ error: err, status: false })
             } else {
-                datas.forEach(user => {
-                    if (user.status === 'Pending') {
-                        dataArray.push(user);
-                    }
-                });
-                return res.send({ status: true, data: dataArray })
+                return res.send({ status: true, data:datas})
             }
         })
+    // Orders.find({status:'Pending'}, (err, result) => {
+    //     if(err){
+    //         return res.send({ error: err, status: false })
+    //     }
+    //     else{
+    //         res.send({data:result})
+    //     }
+    // })
 }
+
 
 //Check if you have rejected some services in the job order component
 exports.checkRejected = (req, res) => {
     var reject = [];
-    userTask.find({ currentUser: req.body.id }, (err, user) => {
+    userTask.find({currentUser:req.body.id}, (err, user) => {
         if (err) {
             return res.send({ error: err, status: false })
 

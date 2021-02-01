@@ -16,10 +16,10 @@ const forgotPassURL = 'http://localhost:5000/api';
   providedIn: 'root'
 })
 export class AuthService {
-  public userIDToken = ""
+  public userIDToken:string;
   public situationHandler;
-  public situation = true
-  public messageFromEnd = ""
+  public situation = true;
+  public messageFromEnd = "";
 
   url = environment.url;
   user = null;
@@ -38,8 +38,8 @@ export class AuthService {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
         if (!isExpired) {
-          this.storage.get(userToken).then((token) => {
-            this.userIDToken = token
+          this.storage.get(userToken).then((token)=> {
+            this.userIDToken=token
           })
           this.user = decoded;
           this.authenticationState.next(true);
@@ -60,14 +60,14 @@ export class AuthService {
     );
   }
 
-  login(credentials) {
+  login(credentials){
     return this.http.post(`${this.url}/api/login`, credentials)
       .pipe(
         tap(res => {
           this.situationHandler = res
           if (this.situationHandler.type) {
-            this.storage.set(userToken, this.situationHandler.userId)
-            this.userIDToken = this.situationHandler.userId
+            this.storage.set(userToken,this.situationHandler.userId)
+            this.userIDToken=this.situationHandler.userId;
             this.storage.set(TOKEN_KEY, res['token']);
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
@@ -187,9 +187,11 @@ export class AuthService {
   getCustomersName(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
+
   getCustomersData(userId) {
     return this.http.post(`${this.url}/api/getCustomersData`, { userId: userId })
   }
+  
   // allLogsHistory
   getAllLogsHistory(id) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)

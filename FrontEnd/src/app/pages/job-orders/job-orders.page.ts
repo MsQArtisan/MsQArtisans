@@ -27,14 +27,12 @@ export class JobOrdersPage implements OnInit {
 
   ngOnInit() {
     this.orderData();
-    this.authService.getUser().subscribe((data) => {
-      // this.authService.getTheProfileImage({name: data.data[0].name}).subscribe((data) => {
-      //   this.imageUrl = data[0].image[0]
-      // })
-    })
   }
+
   orderData() {
     this.authService.getCustomersName().subscribe((jobs) => {
+      console.log(jobs);
+      
       this.arrayOfJobs = jobs.data;
       this.DisplayFinalJobs();
     })
@@ -43,8 +41,10 @@ export class JobOrdersPage implements OnInit {
   //All Final Jobs Of Array
   DisplayFinalJobs() {
     this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
-      var jobs = this.arrayOfJobs;
+      console.log(datas)
+      var jobs=this.arrayOfJobs;
       if (datas.data.length > 0) {
+        console.log("greater than zero")
         datas.data.forEach(element => {
           jobs.forEach(reject => {
             if (element.customerId == reject._id) {
@@ -57,7 +57,8 @@ export class JobOrdersPage implements OnInit {
       }
 
       else {
-        this.FinalArrayJobs = this.arrayOfJobs;
+        console.log("zero")
+        this.FinalArrayJobs=this.arrayOfJobs;
       }
 
     })

@@ -61,7 +61,8 @@ export class AcceptedOrderPage implements OnInit {
   }
 
   addDataToDatabase() {
-    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
+    alert(this.authService.userIDToken)
+    this.authService.addDataToJobOrders({currentUser:this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
     console.log(data)
       
       if (data) {

@@ -24,10 +24,9 @@ export class TrackerPage implements OnInit {
     private http: Router
   ) { }
 
-  ngOnInit() {
-  
+  ngOnInit(){
     this.onGoingJob.length = 0
-    this.functions.jobsAccepted(this.authService, { state: "Ongoing", user: this.authService.userIDToken }, this.onGoingJob)
+    this.functions.jobsAccepted(this.authService, { state: "Ongoing", user: this.authService.userIDToken}, this.onGoingJob)
     this.completedTask = true
     document.getElementById('completed').style.borderBottom = '2px solid rgb(132, 208, 255)'
     document.getElementById('going').style.borderBottom = 'none'
@@ -44,7 +43,7 @@ export class TrackerPage implements OnInit {
 
   //Finish Service Button
   alreadyDoneTask(index, dataId, cost) {
-    this.authService.acceptedJobsBeingCompleted({ currentUser: this.authService.userIDToken, state: "completed", jobOffer: dataId, cost: cost }).subscribe((data) => {
+    this.authService.acceptedJobsBeingCompleted({ currentUser:this.authService.userIDToken, state:"completed",jobOffer: dataId, cost: cost }).subscribe((data) => {
       if (data) {
         Swal.fire({
           icon: 'success',
