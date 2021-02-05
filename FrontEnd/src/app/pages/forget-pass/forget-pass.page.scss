@@ -1,49 +1,112 @@
-.divider {
-    display: flex;
-    &:before,
-    &:after {
-        content: "";
-        flex: 1;
-    }
+@import "../../../global.scss";
+#successMsg {
+    color: green;
+    font-size: 18px;
+    margin-top: 13%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: -18%;
+    padding: 10%;
+    font-family: lato, cursive;
 }
 
-.line {
-    align-items: center;
-    margin: 1em -1em;
-    color: #cccccc;
-    &:before,
-    &:after {
-        height: 1px;
-        margin: 0 1em;
-    }
+.help-block {
+    margin-top: 10px;
+    color: red;
+    font-size: 15px;
 }
 
-.one-line {
-    &:before,
-    &:after {
-        background: #cccccc;
-    }
-}
-.resetCard {
-    width: 50%;
-    padding: 5%;
-    float: right;
-}
-.leftPart {
-    width: 50%;
+p {
     text-align: center;
-    position: fixed;
-    z-index: 10;
+    font-family: lato, cursive;
+    font-style: oblique;
 }
 
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    .resetCard {
-        margin-top: 40%;
-        width: 100%;
-        padding: 0;
-    }
-    .leftPart {
-        display: none;
-    }
-  }
+button {
+    font-family: lato, cursive;
+    font-style: oblique;
+}
+
+.reset_text {
+    color: red;
+}
+
+h4 {
+    font-weight: bold;
+    padding: 3%;
+    position: relative;
+    font-family: lato;
+    font-size: 19px;
+    text-align: center;
+}
+
+.user_card {
+    background: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.user_card1 {
+    height: auto;
+    max-height: 800%;
+    width: 375px;
+    margin-top: 8%;
+}
+
+.title_card {
+    height: 100px;
+    max-width: 350px;
+    background-color: #079bd8;
+    margin: -3% !important;
+    width: auto;
+    max-width: 106%;
+    position: relative;
+    height: 63px;
+    ;
+}
+
+.email_card {
+    margin-top: 10%;
+    margin-bottom: 14%;
+}
+
+input {
+    width: 80%;
+    color: #000;
+    padding: 15px;
+    left: -6%;
+    font-size: 16px;
+    text-indent: 1px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #03a8f5c7;
+}
+
+i {
+    border-bottom: 1px solid #03a8f5c7;
+    background-color: transparent;
+}
+
+.input-group-text {
+    border: none;
+    border-radius: none;
+    background-color: transparent;
+}
+
+.fa-lg {
+    padding-bottom: 39%;
+}
+
+#con {
+    margin-top: 56%;
+}
+
+.form {
+    margin-top: 29%;
+    display: flex
+}

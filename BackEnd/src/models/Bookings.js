@@ -18,6 +18,10 @@ let Booking = new mongoose.Schema({
     notes: {
         type: String,
     },
+    schedule: {
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         required: true,
@@ -26,8 +30,10 @@ let Booking = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: Customers,
     }
-}, {
-    timestamps: true
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 module.exports = mongoose.model('Bookings', Booking)

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -12,11 +13,15 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
   },
   {
     path: 'forget-pass',
@@ -24,15 +29,19 @@ const routes: Routes = [
   },
   {
     path: 'job-orders',
-    loadChildren: () => import('./pages/job-orders/job-orders.module').then( m => m.JobOrdersPageModule)
+    loadChildren: () => import('./pages/job-orders/job-orders.module').then(m => m.JobOrdersPageModule)
   },
   {
     path: 'finance',
-    loadChildren: () => import('./pages/finance/finance.module').then( m => m.FinancePageModule)
+    loadChildren: () => import('./pages/finance/finance.module').then(m => m.FinancePageModule)
   },
   {
     path: 'tracker',
-    loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
+    loadChildren: () => import('./pages/tracker/tracker.module').then(m => m.TrackerPageModule)
+  },
+  {
+    path: 'livechat',
+    loadChildren: () => import('./pages/livechat/livechat.module').then(m => m.LivechatPageModule)
   },
   {
     path: 'livechat',
@@ -40,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
     path: 'all-settings',
@@ -48,18 +57,18 @@ const routes: Routes = [
   },
   {
     path: 'acc-info',
-    loadChildren: () => import('./pages/acc-info/acc-info.module').then( m => m.AccInfoPageModule)
+    loadChildren: () => import('./pages/acc-info/acc-info.module').then(m => m.AccInfoPageModule)
   },
   {
-    path: 'location-select/:place',
-    loadChildren: () => import('./pages/location-select/location-select.module').then( m => m.LocationSelectPageModule)
+    path: 'location-select/:location',
+    loadChildren: () => import('./pages/location-select/location-select.module').then(m => m.LocationSelectPageModule)
   },
   {
     path: 'accepted-order/:id',
     loadChildren: () => import('./pages/accepted-order/accepted-order.module').then( m => m.AcceptedOrderPageModule)
   }, {
     path: 'orders',
-    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+    loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersPageModule)
   },
   {
     path: 'user-ratings',
@@ -86,14 +95,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
   },
   {
-    path: 'forget-pass',
-    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then(m => m.ForgetPassPageModule)
-  },
-  {
-    path: 'response-reset-password/',
-    loadChildren: () => import('./pages/response-reset-password/response-reset-password.module').then( m => m.ResponseResetPasswordPageModule)
-  },
-  {
     path: 'cash-out',
     loadChildren: () => import('./pages/cash-out/cash-out.module').then( m => m.CashOutPageModule)
   },
@@ -104,14 +105,8 @@ const routes: Routes = [
   {
     path: 'history',
     loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
-  },  {
-    path: 'sidenav',
-    loadChildren: () => import('./template/sidenav/sidenav.module').then( m => m.SidenavPageModule)
   },
-
-
 ];
-
 
 
 @NgModule({

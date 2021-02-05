@@ -1,26 +1,26 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
-      <ion-title class="header">Account Information</ion-title>
-      <ion-buttons slot="start">
-        <ion-back-button [routerLink]="['/settings']"></ion-back-button>
-      </ion-buttons>
+        <ion-title class="header">Account Information</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
+</ion-header>
+
+<ion-content>
     <ion-card>
-      <ion-card-content>
-        <div class="imageBackground">
-          <div class="imageColor">
-            <div class="borderColor">
-              <img [src]="imageUrl">
+        <ion-card-content>
+            <div class="imageBackground">
+                <div class="imageColor">
+                    <div class="borderColor">
+                        <img [src]="userAccount.selfie">
+                    </div>
+                </div><br>
+                <h2>{{userAccount.name}}</h2>
+                <br>
+                <h2> {{userAccount.phone}}</h2>
+                <u></u>
             </div>
-          </div><br>
-          <h2>{{userAccount.name}}</h2>
-          <br>
-          <h2> {{userAccount.phone}}</h2>
-          <u></u>
-        </div>
-      </ion-card-content>
+        </ion-card-content>
     </ion-card>
-  </ion-content>
+</ion-content>

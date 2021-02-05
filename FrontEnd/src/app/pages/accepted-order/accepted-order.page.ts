@@ -3,7 +3,7 @@ import { NavController } from "@ionic/angular";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AuthService } from '../../services/auth.service'
 import { Router, ActivatedRoute } from "@angular/router";
-import Swal  from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 declare var google: any
 
@@ -12,17 +12,17 @@ declare var google: any
   templateUrl: './accepted-order.page.html',
   styleUrls: ['./accepted-order.page.scss'],
 })
-export class AcceptedOrderPage implements OnInit {  
+export class AcceptedOrderPage implements OnInit {
   //For the map
-  @ViewChild ('maps', {static: true})
+  @ViewChild('maps', { static: true })
   public mapref: ElementRef;
   public latitude: any;
   public longitude: any;
 
   public static lat;
-  public static lon;  
+  public static lon;
 
-  //For the posted user
+  // For the posted user
   public userId;
   public partialUser;
   public jobOffer = {
@@ -34,13 +34,14 @@ export class AcceptedOrderPage implements OnInit {
     rate: "",
     notes: ""
   };
+  
   constructor(
     public navCtrl: NavController,
     public geo: Geolocation,
     private authService: AuthService,
     private http: Router,
     private router: ActivatedRoute
-  ) { 
+  ) {
     this.getGeolocation()
   }
 
@@ -56,11 +57,12 @@ export class AcceptedOrderPage implements OnInit {
       this.jobOffer.rate = this.partialUser.cost
       this.jobOffer.notes = this.partialUser.notes
     })
-    
+
   }
 
   addDataToDatabase() {
-    this.authService.addDataToJobOrders({ currentUser: this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
+    this.authService.addDataToJobOrders({currentUser:this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
+    
       if (data) {
         Swal.fire({
           icon: 'success',
@@ -73,19 +75,37 @@ export class AcceptedOrderPage implements OnInit {
       }
     })
   }
+
+  //Rejecting the joborders
+  rejected() {
+    this.authService.rejectedJobOrders({ currentUser: this.authService.userIDToken, state: "rejected", jobOffer: this.partialUser }).subscribe((data) => {
+      if (data) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Rejected!',
+          text: 'Job Successfully rejected',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.http.navigate(['job-orders'])
+      }
+    })
+  }
+
   navigateToMap() {
     this.http.navigate(['location-select/' + this.jobOffer.location])
   }
 
-  getGeolocation(){
+  getGeolocation() {
     this.geo.getCurrentPosition().then((res) => {
       this.latitude = res.coords.latitude
       this.longitude = res.coords.longitude
       this.showMap()
     }).catch((err) => {
-      console.log("error", err)
+      console.log("error", err) 
     })
   }
+
   showMap() {
     const location = new google.maps.LatLng(this.latitude, this.longitude);
     var map = new google.maps.Map(document.getElementById('maps'), {
@@ -97,37 +117,34 @@ export class AcceptedOrderPage implements OnInit {
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
 
-    map.addListener('bounds_changed', function() {
+    map.addListener('bounds_changed', function () {
       searchBox.setBounds(map.getBounds());
     });
 
     var markers = [];
-    searchBox.addListener('places_changed', function() {
+    searchBox.addListener('places_changed', function () {
       var places = searchBox.getPlaces();
       if (places.length == 0) {
         return;
       }
 
-      markers.forEach(function(marker) {
+      markers.forEach(function (marker) {
         marker.setMap(null);
       });
 
       markers = [];
       var bounds = new google.maps.LatLngBounds();
-      places.forEach(function(place){
-        // LocationSelectPage.lat = place.geometry.viewport.Ya;
-        // LocationSelectPage.lon = place.geometry.viewport.Ua;
+      places.forEach(function (place) {
         if (!place.geometry) {
-          console.log('No geometry');
           return;
         }
 
         var icon = {
           url: place.icon,
-          size: new google.maps.Size(72,71),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(17,34),
-          scaledSize: new google.maps.Size(25,25)
+          size: new google.maps.Size(72, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
         };
 
         markers.push(new google.maps.Marker({

@@ -1,19 +1,17 @@
 <ion-content class="background">
+    <div class="web"></div>
 
-    <body>
-        <div id="container">
-            <center><img alt="logo" id="header_logo" height="100" float-left src="assets/images/logo.png"><br></center>
-        </div>
-        <div id="container1">
+    <div class="mobile">
+        <div class="container">
+            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/logo.png"><br>
             <strong><h1>Ms.Q Artisans</h1></strong>
             <p>We serve at your pleasure</p>
         </div>
-        <div id="container2">
-            <span class="divider line one-line"></span>
-            <center>
+        <div class="container2">
+            <div class="spinner">
                 <ion-spinner *ngIf="show" class="loader"></ion-spinner>
-            </center>
-          </div>
-    </body>
-  
-  </ion-content>
+            </div>
+
+        </div>
+    </div>
+</ion-content>

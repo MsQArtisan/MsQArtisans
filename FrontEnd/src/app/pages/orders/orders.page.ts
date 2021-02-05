@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavParams, ModalController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from "../../services/auth.service"
@@ -9,7 +9,7 @@ import { AuthService } from "../../services/auth.service"
 })
 export class OrdersPage implements OnInit {
   public jobOffer;
-  @Input() id : string;
+  @Input() id: string;
   @Input() name: string;
   @Input() service_booking: string;
   @Input() updatedAt: string;
@@ -17,7 +17,6 @@ export class OrdersPage implements OnInit {
   @Input() cost: string;
   @Input() notes: string;
   @Input() status: string;
-  
   constructor(private router: Router, private modalController: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
@@ -27,13 +26,13 @@ export class OrdersPage implements OnInit {
   }
 
   closeModal() {
-     this.modalController.dismiss( 'cancel'); 
-     this.jobOffer.status = "onGoing"
-    this.router.navigate(['accepted-order/'+this.id]);
-
-   }
-  pass(){
     this.modalController.dismiss('cancel');
+    this.jobOffer.status = "onGoing"
+    this.router.navigate(['accepted-order/' + this.id]);
+
   }
- 
+  pass() {
+    location.reload()
+  }
+
 }

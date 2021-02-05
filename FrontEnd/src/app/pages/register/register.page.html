@@ -1,5 +1,5 @@
 <div class="leftText">
-	<img class="leftImage" src="https://static.wixstatic.com/media/bc9755_a8db4691b3ec4afc9620c8259fa72030~mv2.jpg/v1/fit/w_2500,h_1330,al_c/bc9755_a8db4691b3ec4afc9620c8259fa72030~mv2.jpg">
+	<img class="leftImage" src="../../../assets/images/backgroundImage.jpg">
 </div>
 <div class="wholePart">
 	<div class="card">
@@ -67,7 +67,7 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="selfie" (change)="userProfile($event)" [(ngModel)]="credentialsForm.selfie"
+						<input type="file" required name="selfie" (change)="onFileChange($event, 'selfie')" [(ngModel)]="credentialsForm.selfie"
 						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
 					</div>
 				</div>
@@ -77,8 +77,8 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="primaryIdPic" [(ngModel)]="credentialsForm.primaryIdPic" #primaryIdPic="ngModel"
-						 placeholder="Primary" accept="image/*" />
+						<input type="file" required name="primaryIdPic" (change)="onFileChange($event, 'primaryIdPic')" [(ngModel)]="credentialsForm.primaryIdPic"
+						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
 					</div>
 				</div>
 				<div class="input-group mb-1">
@@ -94,7 +94,8 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="nbi" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel" placeholder="NBI" />
+						<input type="file" required name="nbi" (change)="onFileChange($event, 'nbi')" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
+						 placeholder="NBI" accept="image/*" />
 					</div>
 				</div>
 
@@ -117,7 +118,7 @@
 								<i class="fa fa-file-image"></i>
 							</span>
 							<input type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
-							 placeholder="TutorFile" />
+							 placeholder="TutorFile" accept="image/*" />
 						</div>
 					</div>
 				</div>
@@ -129,7 +130,7 @@
 								<i class="fa fa-file-image"></i>
 							</span>
 							<input type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
-							 placeholder="NannyFile" />
+							 placeholder="NannyFile" accept="image/*" />
 						</div>
 					</div>
 				</div>
@@ -141,7 +142,7 @@
 								<i class="fa fa-file-image"></i>
 							</span>
 							<input type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeppingFile" #tutor="ngModel"
-							 placeholder="HouseKeepingFile" />
+							 placeholder="HouseKeepingFile" accept="image/*" />
 						</div>
 					</div>
 				</div>
@@ -153,7 +154,7 @@
 								<i class="fa fa-file-image"></i>
 							</span>
 							<input type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel"
-							 placeholder="HaricutMassageFile" />
+							 placeholder="HaricutMassageFile" accept="image/*" />
 						</div>
 					</div>
 				</div><br>

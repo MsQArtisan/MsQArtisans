@@ -10,7 +10,8 @@
 <ion-content>
     <div class="displays">
         <ul class="w3-ul w3-card-4">
-            <li *ngFor="let value of arrayToRender" class="w3-display-container">You've accepted a {{ value.service_booking }} that cost {{ value.cost }} at {{ value.service_location }} 
+            <li *ngFor="let value of arrayToRender" class="w3-display-container">You've accepted a {{
+                value.service_booking }} that cost {{ value.cost }} at {{ value.service_location }}
                 <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span>
             </li>
         </ul>

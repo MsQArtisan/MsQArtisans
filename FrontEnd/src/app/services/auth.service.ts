@@ -6,26 +6,28 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
-const forgotPassURL = 'http://localhost:5010/api';
+const forgotPassURL = 'http://localhost:5000/api';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public userIDToken = ""
+  public userIDToken: string;
   public situationHandler;
-  public situation = true
-  public messageFromEnd = ""
+  public situation = true;
+  public messageFromEnd = "";
 
   url = environment.url;
   user = null;
   authenticationState = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
-    private plt: Platform, private alertController: AlertController) {
+    private plt: Platform, private alertController: AlertController, private router: Router) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -36,7 +38,6 @@ export class AuthService {
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
-
         if (!isExpired) {
           this.storage.get(userToken).then((token) => {
             this.userIDToken = token
@@ -51,6 +52,7 @@ export class AuthService {
   }
 
   register(credentials) {
+    console.log(credentials)
     return this.http.post(`${this.url}/api/register`, credentials).pipe(
       catchError(e => {
         this.showAlert(e.error.msg);
@@ -66,27 +68,30 @@ export class AuthService {
           this.situationHandler = res
           if (this.situationHandler.type) {
             this.storage.set(userToken, this.situationHandler.userId)
-            this.userIDToken = this.situationHandler.userId
+            this.userIDToken = this.situationHandler.userId;
             this.storage.set(TOKEN_KEY, res['token']);
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
-          } else {
-            // this.returnTheStatus()
+            this.router.navigate(['job-orders']);
           }
+        }),
+        catchError(e => {
+          this.showAlert(e.error.msg);
+          throw new Error(e);
         })
       )
   }
-
+  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.storage.remove(userToken).then(() => {
         this.authenticationState.next(false);
       })
-      window.location.reload()
     });
   }
-  popTheUserAfterLogout(){
-    return this.http.post(`${this.url}/api/logout`, {user: this.userIDToken})
+
+  popTheUserAfterLogout() {
+    return this.http.post(`${this.url}/api/logout`, { user: this.userIDToken })
   }
 
   isAuthenticated() {
@@ -103,14 +108,25 @@ export class AuthService {
   }
 
   getAllMessages() {
-    return this.http.get("http://localhost:5005/api/allMessages")
+    return this.http.get(`${this.url}/api/allMessages`)
   }
 
   getUser() {
-    return this.http.post<any>(`${this.url}/api/account`, {id: this.userIDToken})
+    return this.http.post<any>(`${this.url}/api/account`, { id: this.userIDToken })
   }
+
+  //Check Rejected Model and compare it into the Bookings Model(display all pendings)
+  checkRejected(userIDToken) {
+    return this.http.post<any>(`${this.url}/api/checkRejected`, { id: userIDToken })
+  }
+
   addDataToJobOrders(data) {
     return this.http.post(`${this.url}/api/jobOrdersData`, data)
+  }
+
+  //RejectingJobOrderes
+  rejectedJobOrders(data) {
+    return this.http.post(`${this.url}/api/rejectedJobOrders`, data)
   }
 
   acceptedJobsBeingCompleted(data) {
@@ -129,14 +145,29 @@ export class AuthService {
     return this.http.post(`${this.url}/api/allCompletedJobs`, data)
   }
 
-  addImageToDatabase(imageUrl) {
-    return this.http.post("http://localhost:3000/api/imageUpload", imageUrl)
+  //AllRejectedJobs for History 
+  allRejectedJobs(data) {
+    return this.http.post(`${this.url}/api/allRejectedJobs`, data)
   }
 
-  getTheProfileImage(usersName) {
-    return this.http.post("http://localhost:3000/api/getUserProfile", usersName)
+  //When you clicked the Deleted Task Completed or When you want to remove all your completed Task under Completed Task History
+  deletedCompletedTask(dataid) {
+    return this.http.post(`${this.url}/api/deletedCompletedTask`, { deletedId: dataid })
   }
-  
+
+  //Restore Task Job under Rejected History
+  jobRestored(id, userTaskId) {
+    return this.http.post(`${this.url}/api/jobRestored`, { restoreId: id, userId: userTaskId })
+  }
+
+  imgUpload(selfie, primaryIdPic, nbi) {
+    let data: any = new FormData();
+    data.append("image[]", selfie.image, selfie.imageName);
+    data.append("image[]", primaryIdPic.image, primaryIdPic.imageName);
+    data.append("image[]", nbi.image, nbi.imageName);
+    return this.http.post(`${this.url}/api/upload`, data)
+  }
+
   requestReset(body): Observable<any> {
     return this.http.post(`${forgotPassURL}/reqResetPassword`, body);
   }
@@ -152,21 +183,23 @@ export class AuthService {
     return this.http.get(`${this.url}/api/allActiveUsers`)
   }
 
-  getOrders(){
+  getOrders() {
     return this.http.get(`${this.url}/api/getNewOrder`)
   }
-  getCustomersName():Observable<any>{
+  getCustomersName(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/getCustomersName`)
   }
+
   getCustomersData(userId) {
-    return this.http.post(`${this.url}/api/getCustomersData`, {userId: userId})
+    return this.http.post(`${this.url}/api/getCustomersData`, { userId: userId })
   }
+
   // allLogsHistory
   getAllLogsHistory(id) {
     return this.http.post(`${this.url}/api/allLogsHistory`, id)
   }
 
-  getReviews():Observable<any>{
+  getReviews(): Observable<any> {
     return this.http.get<any>(`${this.url}/api/reviews`)
   }
 }

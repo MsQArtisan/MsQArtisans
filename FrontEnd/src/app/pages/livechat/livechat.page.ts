@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 interface Message {
   id: string;
   text: string;
-  timeStamp:Date;
+  timeStamp: Date;
   type: string;
   user: String;
 }
@@ -41,11 +41,10 @@ export class LivechatPage implements OnInit {
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.fullTime,
-        // user: this.currentUser.name
       };
 
       this.http
-        .post(`http://localhost:5005/messages`, data)
+        .post(`http://localhost:5000/api/messages`, data)
         .subscribe((res: Message) => {
           this.messages = res
 
@@ -69,7 +68,7 @@ export class LivechatPage implements OnInit {
       this.activeUsers = data
     })
     const channel = this.pusher.init();
-    channel.bind ('message', (data) => {
+    channel.bind('message', (data) => {
       this.messages = data
     })
     this.account();

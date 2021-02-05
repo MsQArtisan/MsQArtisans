@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { places } from '../places.model';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-
-
 @Component({
   selector: 'app-all-settings',
   templateUrl: './all-settings.page.html',
@@ -58,6 +56,5 @@ export class AllSettingsPage implements OnInit {
   SendInstagram() {
     this.socialSharing.shareViaInstagram(this.text, this.imgurl)
   }
-
 
 }

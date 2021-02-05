@@ -7,18 +7,17 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./suki.page.scss'],
 })
 export class SukiPage implements OnInit {
-suki = 10;
-public sukiCount;
+  suki = 10;
+  public sukiCount;
 
-constructor(
-  private authService: AuthService,
-) {}
+  constructor(
+    private authService: AuthService,
+  ) { }
 
-ngOnInit() {
-  this.authService.getReviews().subscribe((reviews:any)=>{
-    // console.log("reviews",reviews.data.length);
-    // this.sukiCount = reviews.data.suki.length
-   })
-}
+  ngOnInit() {
+    this.authService.getReviews().subscribe((reviews: any) => {
+      console.log("reviews", reviews.data.length);
+    })
+  }
 
 }

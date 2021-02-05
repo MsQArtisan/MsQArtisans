@@ -9,4 +9,3 @@ exports.getReviews = (req, res) => {
         }
     })
 }
-

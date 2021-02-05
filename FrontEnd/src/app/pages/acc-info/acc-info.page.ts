@@ -7,22 +7,19 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AccInfoPage implements OnInit {
   public imageUrl;
-  userAccount:string = '';
+  userAccount: string = '';
   public userName;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.account()
   }
-  account(){
-    this.authService.getUser().subscribe((data:any)=>{
-      this.userAccount=data.data[0];
+  
+  account() {
+    this.authService.getUser().subscribe((data:any) => {
+      this.userAccount = data.data[0];
       this.userName = data.data[0]
-      this.authService.getTheProfileImage({name: this.userName.name}).subscribe((data) => {
-        this.imageUrl = data[0].image[0]
-      })
     })
   }
-  
 
 }

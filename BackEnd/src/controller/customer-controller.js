@@ -1,7 +1,5 @@
 var Customers = require('../models/User');
 
-
-
 exports.getAllCustomers = (req, res) => {
     Customers.find((err, customer) => {
         if (err) {

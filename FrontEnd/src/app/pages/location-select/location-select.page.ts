@@ -29,6 +29,14 @@ export class LocationSelectPage implements OnInit {
     this.getGeoLocation();
   }
 
+  ngOnInit() {
+    let place = this.router.snapshot.paramMap.get("location")
+    this.location = place
+    
+  }
+
+
+  
   getGeoLocation() {
     this.geo.getCurrentPosition().then((response)=> {
       this.latitude = response.coords.latitude;
@@ -41,14 +49,13 @@ export class LocationSelectPage implements OnInit {
 
   showMap() {
     const location = new google.maps.LatLng(this.latitude, this.longitude);
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('maps'), {
       center: location,
       zoom: 13,
       mapTypeId: 'roadmap'
     });
 
     var input = document.getElementById('pac-input');
-    console.log(input)
     var searchBox = new google.maps.places.SearchBox(input);
 
     map.addListener('bounds_changed', function() {
@@ -72,7 +79,6 @@ export class LocationSelectPage implements OnInit {
         // LocationSelectPage.lat = place.geometry.viewport.Ya;
         // LocationSelectPage.lon = place.geometry.viewport.Ua;
         if (!place.geometry) {
-          console.log('No geometry');
           return;
         }
 
@@ -100,11 +106,6 @@ export class LocationSelectPage implements OnInit {
 
       map.fitBounds(bounds);
     });
-  }
-
-  ngOnInit() {
-    let place = this.router.snapshot.paramMap.get("place")
-    this.location = place
   }
 
 }

@@ -13,32 +13,30 @@ export class LoginPage implements OnInit {
   public passwordMessage = false
   public message = ""
   public dataResponse;
-
   public booleanIdentify = true
   public passwordOrText = "password"
 
+  // for testing only
+  // public credentialsForm = {
+  //   email: "test@gmail.com",
+  //   password: "P@ssw0rd"
+  // }
+  
   public credentialsForm = {
     email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private loadingController: LoadingController
-    ) { }
+
+  constructor(private authService: AuthService,
+    private loadingController: LoadingController,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
-  onSubmit() {
+
+  onSubmit(){
     this.presentLoading()
     this.authService.login(this.credentialsForm).subscribe((data) => {
-      this.dataResponse = data
-      if (this.dataResponse.msg == "password") {
-        this.passwordMessage = true
-        this.emailMessage = false
-      } else {
-        this.emailMessage = true
-        this.passwordMessage = false
-      }
     });
     this.resetForm()
   }
@@ -58,6 +56,7 @@ export class LoginPage implements OnInit {
       password: ""
     }
   }
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
@@ -68,4 +67,5 @@ export class LoginPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
   }
+  
 }

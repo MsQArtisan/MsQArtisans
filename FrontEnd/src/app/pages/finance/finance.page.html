@@ -1,50 +1,50 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-      <ion-title class="header">Finance</ion-title>
-      <ion-buttons slot="start">
-          <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="secondary">
+        <ion-title class="header">Finance</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="finance">
-      <ion-card>
-          <ion-card-content>
+    <div class="finance">
+        <ion-card>
+            <ion-card-content>
 
-              <h2>{{currentMoney}} Pesos</h2>
-              <p>Current Balance</p>
-          </ion-card-content>
+                <h2>{{currentMoney}} Pesos</h2>
+                <p>Current Balance</p>
+            </ion-card-content>
 
-      </ion-card>
-      <!-- Icon top -->
-      <ion-segment color="tertiary" value="favorite">
-          <ion-segment-button [routerLink]="['/cash-out']" value="favorite">
-              <ion-label>Cash Out</ion-label>
-              <ion-icon name="card-outline"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button [routerLink]="['/cash-in']" value="map">
-              <ion-label>Cash In</ion-label>
-              <ion-icon name="wallet-outline"></ion-icon>
-          </ion-segment-button>
-      </ion-segment>
-      <ion-segment>
-          <ion-segment-button [routerLink]="['/history']" value="favorite">
-              <ion-label>History</ion-label>
-              <ion-icon name="time-outline"></ion-icon>
-          </ion-segment-button>
+        </ion-card>
+        <!-- Icon top -->
+        <ion-segment color="tertiary" value="favorite">
+            <ion-segment-button [routerLink]="['/cash-out']" value="favorite">
+                <ion-label>Cash Out</ion-label>
+                <ion-icon name="card-outline"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button [routerLink]="['/cash-in']" value="map">
+                <ion-label>Cash In</ion-label>
+                <ion-icon name="wallet-outline"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+        <ion-segment>
+            <ion-segment-button [routerLink]="['/history']" value="favorite">
+                <ion-label>History</ion-label>
+                <ion-icon name="time-outline"></ion-icon>
+            </ion-segment-button>
 
-          <ion-segment-button value="map" (click)="showStatistics()">
-              <ion-label>Statistics</ion-label>
-              <ion-icon name="stats-chart-outline"></ion-icon>
-          </ion-segment-button>
-      </ion-segment>
-  </div>
-  <div id="statistics">
-      <ion-card class="charts">
-          <ion-card-content>
-              <canvas #barGraph></canvas>
-          </ion-card-content>
-      </ion-card>
-  </div>
+            <ion-segment-button value="map" (click)="showStatistics()">
+                <ion-label>Statistics</ion-label>
+                <ion-icon name="stats-chart-outline"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div id="statistics">
+        <ion-card class="charts">
+            <ion-card-content>
+                <canvas #barGraph></canvas>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>
