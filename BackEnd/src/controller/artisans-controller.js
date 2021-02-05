@@ -8,7 +8,7 @@ var loggedusers = []
 
 function createToken(user) {
     return jwt.sign({ _id: user.id, email: user.email }, config.jwtSecret, {
-        expiresIn:   86400 //expires in 24 hours
+        expiresIn: 86400 //expires in 24 hours
     });
 }
 
@@ -22,9 +22,9 @@ exports.registerUser = (req, res) => {
         }
         const url = req.protocol + "://" + req.hostname + ':' + 5000 + '/' + 'uploads/';
         let artisan = new User(req.body);
-    
+
         artisan['selfie'] = url + req.body.selfie;
-        artisan['primaryIdPic'] = url +req.body.primaryIdPic;
+        artisan['primaryIdPic'] = url + req.body.primaryIdPic;
         artisan['nbi'] = url + req.body.nbi;
         artisan.save((err, user) => {
             if (err) {
@@ -83,48 +83,24 @@ exports.getUser = (req, res) => {
 //currentUserId, cost, currentDate
 exports.addJobOrders = (req, res) => {
     var sampleObject = {
-        currentUser:req.body.currentUser,
+        currentUser: req.body.currentUser,
         state: req.body.state,
         customerId: req.body.jobOffer._id
     }
-
     let usersTask = new userTask(sampleObject)
-    usersTask.save((err,result) => {
-        if(err){
-            return res.send({ error: err, status:false})
-        }
-        else{
-            return res.send({ error: err, data:result})
-        }
-       
-    })
-
+    usersTask.save()
     var dataTOAdd = {
         logsOwner: req.body.currentUser,
         jobsOfferedThroughId: req.body.jobOffer._id
     }
-
     let dataAdd = new logsOfHistory(dataTOAdd)
-    dataAdd.save((err, result) =>{ 
-        if(err){
-            return res.send({ error: err, status: false })
-        }
-        else{
-            return res.send({ error: err, data:result})
-         }
+    dataAdd.save()
+
+    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id }, { status: 'Ongoing' }, (err, result) => {
+        res.send({ error: err, data: result })
     })
 
-    Orders.findByIdAndUpdate({ _id: req.body.jobOffer._id },{status:'Ongoing'}, (err, result) => {
-        if(err){
-            return res.send({ error: err, status: false })
-        }
-        else{
-            return res.send({ error: err, data:result})
-        }
-       
-    })
 
-    
 }
 
 //Rejecting the jobToOrders
@@ -135,7 +111,7 @@ exports.rejectedJobOrders = (req, res) => {
     }
     let dataAdd = new logsOfHistory(dataTOAdd)
 
-    dataAdd.save((err, result) => { })
+    dataAdd.save()
     var sampleObject = {
         currentUser: req.body.currentUser,
         state: req.body.state,
@@ -150,11 +126,11 @@ exports.rejectedJobOrders = (req, res) => {
 
 //array, request, toPassarray
 exports.allJobAccepted = (req, res) => {
-    userTask.find({ currentUser: req.body.user, state:"accept"}, (err, result) => {
-        if(err){
+    userTask.find({ currentUser: req.body.user, state: "accept" }, (err, result) => {
+        if (err) {
             return res.send({ error: err, status: false })
         }
-        else{
+        else {
             res.send(result)
         }
     })
@@ -163,23 +139,23 @@ exports.allJobAccepted = (req, res) => {
 
 //all Completed Job Orders History Tracker 
 exports.completedJob = (req, res) => {
-        userTask.find({ currentUser: req.body.user, state:"completed"}, (err, result) => {
-            if(err){
-                return res.send({ error: err, status: false })
-            }
-            else{
-                res.send(result)
-            }
-        })
+    userTask.find({ currentUser: req.body.user, state: "completed" }, (err, result) => {
+        if (err) {
+            return res.send({ error: err, status: false })
+        }
+        else {
+            res.send(result)
+        }
+    })
 }
 
 //all Rejected Job Orders History Tracker
 exports.rejectedJob = (req, res) => {
-    userTask.find({ currentUser: req.body.user, state:"rejected"}, (err, result) => {
-        if(err){
+    userTask.find({ currentUser: req.body.user, state: "rejected" }, (err, result) => {
+        if (err) {
             return res.send({ error: err, status: false })
         }
-        else{
+        else {
             res.send(result)
         }
     })
@@ -187,10 +163,10 @@ exports.rejectedJob = (req, res) => {
 
 
 //Delete Completed Task under Completed Tracker
-exports.deletedCompletedTask = (req, res) =>{
-    userTask.deleteOne({ _id: req.body.deletedId },(err, result) => {
+exports.deletedCompletedTask = (req, res) => {
+    userTask.deleteOne({ _id: req.body.deletedId }, (err, result) => {
         if (err) {
-            res.jsonp({ success:false})
+            res.jsonp({ success: false })
         }
         else {
             res.jsonp({ success: true })
@@ -200,10 +176,10 @@ exports.deletedCompletedTask = (req, res) =>{
 
 
 //Restore Task  under Rejected History
-exports.jobRestored =(req, res)=>{
+exports.jobRestored = (req, res) => {
     Orders.find({ _id: req.body.restoreId }, (err, result) => {
-        result.forEach(output=> {
-            if (output.status ==='Pending'){
+        result.forEach(output => {
+            if (output.status === 'Pending') {
                 res.jsonp({ success: true })
             }
             else {

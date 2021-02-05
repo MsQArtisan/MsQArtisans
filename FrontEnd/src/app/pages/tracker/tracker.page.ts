@@ -62,6 +62,7 @@ export class TrackerPage implements OnInit {
     this.functions.completedTask(this.authService, { state: "completed", user: this.authService.userIDToken }, this.onGoingJob)
     this.completedTask = true
     this.rejectedTask = false
+    
   }
 
   //All Rejected Jobs

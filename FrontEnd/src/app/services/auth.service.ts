@@ -12,6 +12,7 @@ const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
 const forgotPassURL = 'http://localhost:5000/api';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -62,6 +63,7 @@ export class AuthService {
 
   login(credentials){
     return this.http.post(`${this.url}/api/login`, credentials)
+    // return this.http.post('http://172.16.33.3:5000/api/login', credentials)
       .pipe(
         tap(res => {
           this.situationHandler = res

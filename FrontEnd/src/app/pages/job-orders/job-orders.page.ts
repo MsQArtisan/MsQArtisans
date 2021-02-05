@@ -31,7 +31,6 @@ export class JobOrdersPage implements OnInit {
 
   orderData() {
     this.authService.getCustomersName().subscribe((jobs) => {
-      console.log(jobs);
       
       this.arrayOfJobs = jobs.data;
       this.DisplayFinalJobs();
@@ -41,10 +40,8 @@ export class JobOrdersPage implements OnInit {
   //All Final Jobs Of Array
   DisplayFinalJobs() {
     this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
-      console.log(datas)
       var jobs=this.arrayOfJobs;
       if (datas.data.length > 0) {
-        console.log("greater than zero")
         datas.data.forEach(element => {
           jobs.forEach(reject => {
             if (element.customerId == reject._id) {
@@ -57,7 +54,6 @@ export class JobOrdersPage implements OnInit {
       }
 
       else {
-        console.log("zero")
         this.FinalArrayJobs=this.arrayOfJobs;
       }
 
@@ -105,7 +101,7 @@ export class JobOrdersPage implements OnInit {
   }
 
   selectedOption() {
-    console.log(this.valueChosen)
+    // console.log(this.valueChosen)
   }
 
   async passToOrders(item) {

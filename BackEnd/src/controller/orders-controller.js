@@ -41,12 +41,12 @@ exports.acceptedJobToCompleted = (req, res) => {
     })
 
     userTask.findByIdAndUpdate({ _id: req.body.jobOffer }, { state: req.body.state }, (err, result) => {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send(result)
-        }
+        // if (err) {
+        //     res.send(err)
+        // }
+        // else {
+        //     res.send(result)
+        // }
     })
 
     Bookings.findByIdAndUpdate({ _id: req.body.cost.customerId},{ status:"Completed" },(err, result) => {
@@ -54,7 +54,7 @@ exports.acceptedJobToCompleted = (req, res) => {
             res.send(err)
         }
         else {
-            res.send(result)
+            res.send({data: result})
         }
     })
 }

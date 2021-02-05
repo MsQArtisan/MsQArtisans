@@ -61,10 +61,8 @@ export class AcceptedOrderPage implements OnInit {
   }
 
   addDataToDatabase() {
-    alert(this.authService.userIDToken)
     this.authService.addDataToJobOrders({currentUser:this.authService.userIDToken, state: "accept", jobOffer: this.partialUser }).subscribe((data) => {
-    console.log(data)
-      
+    
       if (data) {
         Swal.fire({
           icon: 'success',
@@ -83,8 +81,8 @@ export class AcceptedOrderPage implements OnInit {
     this.authService.rejectedJobOrders({ currentUser: this.authService.userIDToken, state: "rejected", jobOffer: this.partialUser }).subscribe((data) => {
       if (data) {
         Swal.fire({
-          icon: 'success',
-          title: 'Nice!',
+          icon: 'info',
+          title: 'Rejected!',
           text: 'Job Successfully rejected',
           showConfirmButton: false,
           timer: 1000
