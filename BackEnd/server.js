@@ -66,6 +66,7 @@ app.post('/api/messages', (req, res) => {
 app.get('/api/allMessages', (req, res) => {
     res.send(messages)
 })
+app.get('/' ,(req,res)=>res.send("Server is running..."));
 
 var routes = require('./src/routes');
 app.use('/api', routes);
@@ -83,3 +84,4 @@ connection.on('error', (err) => {
 // Start the server
 server.listen(port);
 console.log('MsQArtisan is running on port :' + port);
+
