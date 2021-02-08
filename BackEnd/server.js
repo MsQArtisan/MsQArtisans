@@ -83,4 +83,8 @@ connection.on('error', (err) => {
 
 // Start the server
 server.listen(port);
+<<<<<<< HEAD
 console.log('MsQArtisan is listening on http://localhost:' + port);
+=======
+console.log('MsQArtisan is running on port:' + port);
+>>>>>>> 1aab093de691ab7eed179025018a6b995c9817f6
