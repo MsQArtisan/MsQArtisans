@@ -66,6 +66,7 @@ app.post('/api/messages', (req, res) => {
 app.get('/api/allMessages', (req, res) => {
     res.send(messages)
 })
+app.get('/' ,(req,res)=>res.send("Server is running..."));
 
 var routes = require('./src/routes');
 app.use('/api', routes);
