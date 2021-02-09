@@ -8,7 +8,7 @@ var loggedusers = []
 
 function createToken(user) {
     return jwt.sign({ _id: user.id, email: user.email }, config.jwtSecret, {
-        expiresIn: 86400 //expires in 24 hours
+        expiresIn: 86400 //expires in 24 hour
     });
 }
 
