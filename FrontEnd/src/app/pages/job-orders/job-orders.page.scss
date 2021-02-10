@@ -208,23 +208,23 @@ section {
     color: rgb(74, 140, 216);
 }
 
-.toggle {
-    font-weight: lighter;
-    position: fixed;
-    background-color: white;
-    height: 10%;
-    top: 13%;
-    left: 1%;
-    width: 12%;
-    display: flex;
+// .toggle {
+//     font-weight: lighter;
+//     position: fixed;
+//     background-color: white;
+//     height: 10%;
+//     top: 13%;
+//     left: 1%;
+//     width: 12%;
+//     display: flex;
 
-}
-.searchbar{
-    position: fixed;
-    background-color: white;
-    width: 100%;
-    z-index:1;
-}
+// }
+// .searchbar{
+//     position: fixed;
+//     background-color: white;
+//     width: 100%;
+//     z-index:1;
+// }
 .statusCard {
     width: 50%;
     text-align: center;
@@ -300,9 +300,14 @@ img {
 .topClick {
     display: none;
 }
+.div1{
+    position:sticky;
+    z-index: 1;
+    background-color: white;
+}
 @media only screen and (min-width: 411px)and (max-width: 731px){
     .toggle{
-        margin-top:-4%;
+        // margin-top:-4%;
     }
     
 ion-card {
@@ -315,7 +320,8 @@ ion-card {
 }
 @media only screen and (min-width: 768px)and (max-width: 1024px){
     .toggle{
-        margin-top:-10%;
+        // margin-top:-10%;
+
     }
 }
 
@@ -344,7 +350,6 @@ ion-card {
         z-index: 1;
         background-color: white;
         width: 98%;
-        top: 17%;
         height: 8%;
     }
     .statusCard {
@@ -368,8 +373,9 @@ ion-card {
     .searchbar{
         position: fixed;
         z-index: 1;
-        width: 100%;
-
+        width: 102%;
+        top: 15%;
+        left: -1%;
     }
   }
   @media only screen and (min-width: 411px) and (max-width:823px){

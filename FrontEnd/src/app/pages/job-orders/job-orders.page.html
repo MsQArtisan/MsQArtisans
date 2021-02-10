@@ -8,11 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="chilla">
-        <div class="searchbar" *ngIf=apple>
-            <ion-searchbar placeholder="Search by service category..." [(ngModel)]="filterService" (ionChange)="FilteredByService(FinalArrayJobs,$event)"
-                animated="true"></ion-searchbar>
-        </div>
+    <div class="div1">
         <div class="toggle">
             <label class="switch">
                 <p *ngIf="apple" class="tags">Disable Receive Work</p>
@@ -21,6 +17,11 @@
                 <span class="slider round"></span>
             </label>
         </div>
+        <div class="searchbar" *ngIf=apple>
+            <ion-searchbar placeholder="Search by service category..." [(ngModel)]="filterService" (ionChange)="FilteredByService(FinalArrayJobs,$event)"
+                animated="true"></ion-searchbar>
+        </div>
+        
     </div>
     <br><br><br><br>
 
