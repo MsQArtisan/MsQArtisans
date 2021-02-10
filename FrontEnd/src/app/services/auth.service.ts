@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
-import { environment } from '../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
-const forgotPassURL = 'http://localhost:5000/api';
+const forgotPassURL = 'http://3.141.1.241:5000/api';
 
 
 @Injectable({
@@ -22,7 +21,7 @@ export class AuthService {
   public situation = true;
   public messageFromEnd = "";
 
-  url = environment.url;
+  url = 'http://3.141.1.241:5000';
   user = null;
   authenticationState = new BehaviorSubject(false);
 
@@ -72,7 +71,7 @@ export class AuthService {
             this.storage.set(TOKEN_KEY, res['token']);
             this.user = this.helper.decodeToken(res['token']);
             this.authenticationState.next(true);
-            this.router.navigate(['job-orders']);
+            this.router.navigate(['/side-bar/job-orders']);
           }
         }),
         catchError(e => {

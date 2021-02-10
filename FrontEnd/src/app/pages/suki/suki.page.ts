@@ -16,7 +16,7 @@ export class SukiPage implements OnInit {
 
   ngOnInit() {
     this.authService.getReviews().subscribe((reviews: any) => {
-      console.log("reviews", reviews.data.length);
+      //console.log("reviews", reviews.data.length);
     })
   }
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f2a78dd2-27eb-41d2-b775-a3caa2b75b6b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/FrontEnd/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/acc-info/acc-info.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/acc-info/acc-info.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/acc-info/acc-info.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/acc-info/acc-info.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/all-settings/all-settings.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/all-settings/all-settings.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/all-settings/all-settings.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/all-settings/all-settings.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/job-orders/job-orders.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/job-orders/job-orders.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/livechat/livechat.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/livechat/livechat.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/livechat/livechat.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/livechat/livechat.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/login/login.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/login/login.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/orders/orders.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/orders/orders.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/orders/orders.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/orders/orders.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/privacy-policy/privacy-policy.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/privacy-policy/privacy-policy.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/privacy-policy/privacy-policy.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/privacy-policy/privacy-policy.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/register/register.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/register/register.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password.page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password.page.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password.page.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/response-reset-password/response-reset-password.page.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/settings/settings.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/settings/settings.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/settings/settings.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/settings/settings.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/suki/suki.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/suki/suki.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/suki/suki.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/suki/suki.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/terms-conditions/terms-conditions.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/terms-conditions/terms-conditions.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/terms-conditions/terms-conditions.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/terms-conditions/terms-conditions.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/user-ratings/user-ratings.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/user-ratings/user-ratings.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/pages/user-ratings/user-ratings.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/pages/user-ratings/user-ratings.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/app/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/environments/environment.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oEx1PFCMP2aMKFPB6WXHpk0hGF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2a78dd2-27eb-41d2-b775-a3caa2b75b6b" name="Default Changelist" comment="" />
+      <created>1612865334733</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612865334733</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1612922125039">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1612922125039" />
+  </component>
+</project>

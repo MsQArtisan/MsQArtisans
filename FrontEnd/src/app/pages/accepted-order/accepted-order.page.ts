@@ -71,7 +71,7 @@ export class AcceptedOrderPage implements OnInit {
           showConfirmButton: false,
           timer: 1000
         })
-        this.http.navigate(['job-orders'])
+        this.http.navigate(['/side-bar/job-orders'])
       }
     })
   }
@@ -87,13 +87,13 @@ export class AcceptedOrderPage implements OnInit {
           showConfirmButton: false,
           timer: 1000
         })
-        this.http.navigate(['job-orders'])
+        this.http.navigate(['/side-bar/job-orders'])
       }
     })
   }
 
   navigateToMap() {
-    this.http.navigate(['location-select/' + this.jobOffer.location])
+    this.http.navigate(['/side-bar/location-select/' + this.jobOffer.location])
   }
 
   getGeolocation() {

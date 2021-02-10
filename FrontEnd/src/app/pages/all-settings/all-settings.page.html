@@ -2,7 +2,7 @@
     <ion-toolbar color="secondary">
         <ion-title class="header">All Settings</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+            <ion-back-button [routerLink]="['/side-bar/settings']"></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -41,34 +41,34 @@
     <ion-grid>
         <ion-row class="ion-align-items-center">
             <ion-col size="4">
-                <ion-button class="link" color="light" (click)="ShareLink('text')">
+                <ion-button class="link" color="light">
                     <ion-icon name="share-social-outline"></ion-icon>
                 </ion-button>
             </ion-col>
             <ion-col size=4>
-                <ion-button class="link" color="warning" (click)="SendEmail()">
+                <ion-button class="link" color="warning">
                     <ion-icon name="mail-outline"></ion-icon>
                 </ion-button>
             </ion-col>
             <ion-col size="4">
-                <ion-button class="link" color="primary" (click)="ShareFacebook()">
+                <ion-button class="link" color="primary">
                     <ion-icon name="logo-facebook"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center">
             <ion-col size="4">
-                <ion-button class="link" color="success" (click)="ShareWhatsapp()">
+                <ion-button class="link" color="success" >
                     <ion-icon name="logo-whatsapp"></ion-icon>
                 </ion-button>
             </ion-col>
             <ion-col size="4">
-                <ion-button class="link" color="secondary" (click)="SendTwitter()">
+                <ion-button class="link" color="secondary">
                     <ion-icon name="logo-twitter"></ion-icon>
                 </ion-button>
             </ion-col>
             <ion-col size=4>
-                <ion-button class="link" color="tertiary" (click)="SendInstagram()">
+                <ion-button class="link" color="tertiary">
                     <ion-icon name="logo-instagram"></ion-icon>
                 </ion-button>
             </ion-col>

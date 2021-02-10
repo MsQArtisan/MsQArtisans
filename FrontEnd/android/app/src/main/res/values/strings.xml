@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">msqartisan</string>
+    <string name="title_activity_main">msqartisan</string>
+    <string name="package_name">io.msqassociates.msqartisan</string>
+    <string name="custom_url_scheme">io.msqassociates.msqartisan</string>
+</resources>

@@ -41,10 +41,10 @@ export class JobOrdersPage implements OnInit {
   DisplayFinalJobs() {
     this.authService.checkRejected(this.authService.userIDToken).subscribe((datas) => {
       var jobs=this.arrayOfJobs;
-      if (datas.data.length > 0) {
+      if (datas.data.length>0){
         datas.data.forEach(element => {
           jobs.forEach(reject => {
-            if (element.customerId == reject._id) {
+            if (element.customerId == reject._id){
               jobs.splice(jobs.indexOf(reject), 1)
             }
           })

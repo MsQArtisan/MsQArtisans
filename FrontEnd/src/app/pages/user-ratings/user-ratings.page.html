@@ -2,7 +2,7 @@
     <ion-toolbar color="secondary">
         <ion-title class="header">User Ratings</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+            <ion-back-button [routerLink]="['/side-bar/settings']"></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -10,9 +10,9 @@
 <ion-content>
     <ion-card>
         <ion-card-header>
-            <center> <img src="assets/images/rating.png" alt="" class="rate"></center>
+            <img src="assets/images/rating.png" alt="" class="rate">
         </ion-card-header>
-        <center>
+        
             <ion-card-content>
                 <span class="ratingLabel">{{rating}} %</span><br>
                 <div class="content">
@@ -20,6 +20,6 @@
                 </div>
 
             </ion-card-content>
-        </center>
+
     </ion-card>
 </ion-content>

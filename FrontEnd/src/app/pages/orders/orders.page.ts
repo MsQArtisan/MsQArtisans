@@ -28,7 +28,7 @@ export class OrdersPage implements OnInit {
   closeModal() {
     this.modalController.dismiss('cancel');
     this.jobOffer.status = "onGoing"
-    this.router.navigate(['accepted-order/' + this.id]);
+    this.router.navigate(['/side-bar/accepted-order/' + this.id]);
 
   }
   pass() {

@@ -9,35 +9,25 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  public imageUrl;
-  userAccount:string = '';
-  public userName;
-  public user = {
-    name: "",
-    phone: "",
-    email: ""
-  }
-
+  userAccount
+  userName;
+  userEmail
   dataFromModal;
   constructor(  public navCtrl: NavController,public menuCtrl: MenuController, 
     public alertController: AlertController,
     private authService: AuthService)
-     {this.menuCtrl.enable(true, 'main-menu'); }
+    
+     {this.menuCtrl.enable(true, 'content-id'); }
+
   ngOnInit() {
-    this.account()
     this.authService.getUser().subscribe((data) => {
-      this.user.name = data.data[0].name
-      this.user.phone = data.data[0].phone
-      this.user.email = data.data[0].email
+      data.data.forEach(element => {
+        this.userAccount = element.selfie
+        this.userName = element.name
+        this.userEmail = element.email
+      });
     })
   } 
 
-  account(){
-    this.authService.getUser().subscribe((data:any)=>{
-      this.userAccount=data.data[0];
-      this.userName = data.data[0]
-    })
-  }
- 
-
+  
 }

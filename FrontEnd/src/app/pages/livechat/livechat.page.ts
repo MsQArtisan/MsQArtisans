@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { Socket } from 'ngx-socket-io';
-// import { ToastController } from '@ionic/angular';
-
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';
 import { PusherService } from '../../services/pusher.service';
@@ -10,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 interface Message {
   id: string;
   text: string;
-  timeStamp: Date;
+  timeStamp:Date;
   type: string;
   user: String;
 }
@@ -21,9 +18,12 @@ interface Message {
   styleUrls: ['./livechat.page.scss'],
 })
 export class LivechatPage implements OnInit {
-  public activeUsers;
 
-  constructor(private http: HttpClient, private pusher: PusherService, private authservice: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private pusher: PusherService,
+    private authService: AuthService
+  ) { }
 
   public messages;
   message: string = '';
@@ -37,10 +37,10 @@ export class LivechatPage implements OnInit {
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
       this.lastMessageId = v4();
       const data = {
-        user: this.userAccount,
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.fullTime,
+        user: this.currentUser.name
       };
 
       this.http
@@ -64,9 +64,6 @@ export class LivechatPage implements OnInit {
   }
 
   ngOnInit() {
-    this.authservice.getAllActiveUsers().subscribe((data) => {
-      this.activeUsers = data
-    })
     const channel = this.pusher.init();
     channel.bind('message', (data) => {
       this.messages = data
@@ -76,7 +73,7 @@ export class LivechatPage implements OnInit {
   }
 
   account() {
-    this.authservice.getUser().subscribe((data: any) => {
+    this.authService.getUser().subscribe((data: any) => {
       this.userAccount = data.data[0];
       let name = this.userAccount;
       this.currentUser = name;
@@ -85,7 +82,7 @@ export class LivechatPage implements OnInit {
   }
 
   allRecentMessages() {
-    this.authservice.getAllMessages().subscribe((messages) => {
+    this.authService.getAllMessages().subscribe((messages) => {
       this.messages = messages
     })
   }

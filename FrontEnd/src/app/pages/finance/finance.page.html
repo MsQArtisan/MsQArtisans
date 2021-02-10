@@ -2,7 +2,7 @@
     <ion-toolbar color="secondary">
         <ion-title class="header">Finance</ion-title>
         <ion-buttons slot="start">
-            <ion-menu-button menu="main-menu"></ion-menu-button>
+            <ion-menu-button content-id="main-content"></ion-menu-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -19,17 +19,17 @@
         </ion-card>
         <!-- Icon top -->
         <ion-segment color="tertiary" value="favorite">
-            <ion-segment-button [routerLink]="['/cash-out']" value="favorite">
+            <ion-segment-button [routerLink]="['/side-bar/cash-out']" value="favorite">
                 <ion-label>Cash Out</ion-label>
                 <ion-icon name="card-outline"></ion-icon>
             </ion-segment-button>
-            <ion-segment-button [routerLink]="['/cash-in']" value="map">
+            <ion-segment-button [routerLink]="['/side-bar/cash-in']" value="map">
                 <ion-label>Cash In</ion-label>
                 <ion-icon name="wallet-outline"></ion-icon>
             </ion-segment-button>
         </ion-segment>
         <ion-segment>
-            <ion-segment-button [routerLink]="['/history']" value="favorite">
+            <ion-segment-button [routerLink]="['/side-bar/history']" value="favorite">
                 <ion-label>History</ion-label>
                 <ion-icon name="time-outline"></ion-icon>
             </ion-segment-button>

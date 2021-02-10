@@ -1,15 +1,12 @@
 <ion-header [translucent]="true">
-    <div>
+    <div >
         <ion-img src="assets/images/service.png" class="service"></ion-img>
-        <center>
             <div class="booking">
                 <u>
                     <h2><b>{{service_booking}}</b></h2>
                 </u>
                 <h3><i>Service Booking</i></h3>
             </div>
-
-        </center>
     </div>
 </ion-header>
 
@@ -24,7 +21,7 @@
                 <ion-icon name="time"></ion-icon>
                 <span>{{updatedAt | date:'short'}}</span>
             </section>
-            <section (click)="navigateToMap()" class="location">
+            <section  class="location">
                 <ion-icon name="location"></ion-icon>
                 <span>{{service_location}}</span>
 

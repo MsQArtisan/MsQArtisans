@@ -2,7 +2,7 @@
     <ion-toolbar color="secondary">
         <ion-title class="header">Account Information</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button [routerLink]="['/settings']"></ion-back-button>
+            <ion-back-button [routerLink]="['/side-bar/settings']"></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -13,12 +13,12 @@
             <div class="imageBackground">
                 <div class="imageColor">
                     <div class="borderColor">
-                        <img [src]="userAccount.selfie">
+                        <img [src]="userAccount">
                     </div>
                 </div><br>
-                <h2>{{userAccount.name}}</h2>
+                <h2>{{userName}}</h2>
                 <br>
-                <h2> {{userAccount.phone}}</h2>
+                <h2> {{userPhone}}</h2>
                 <u></u>
             </div>
         </ion-card-content>
