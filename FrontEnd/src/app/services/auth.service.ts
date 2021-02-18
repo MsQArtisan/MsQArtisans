@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
-const forgotPassURL = 'http://3.141.1.241:5000/api';
+const forgotPassURL = 'http://18.219.68.191:5000/api';
 
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
   public situation = true;
   public messageFromEnd = "";
 
-  url = 'http://3.141.1.241:5000';
+  url = 'http://18.219.68.191:5000';
   user = null;
   authenticationState = new BehaviorSubject(false);
 
@@ -80,7 +80,7 @@ export class AuthService {
         })
       )
   }
-  
+
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.storage.remove(userToken).then(() => {
