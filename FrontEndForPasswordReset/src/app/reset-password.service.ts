@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class ResetPasswordService {
 
-  url = 'http://18.191.145.150:5000';
+  url = 'http://18.220.197.206:5000';
 
 
   constructor(private http: HttpClient) { }
