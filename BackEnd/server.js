@@ -1,3 +1,4 @@
+
 var port = process.env.PORT || 5000;
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -27,7 +28,8 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+//app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads');
@@ -36,6 +38,7 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     }
 });
+
 const fileFilter = (req, file, cb) => {
     if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" ) {
         cb(null, true);
@@ -46,7 +49,8 @@ const fileFilter = (req, file, cb) => {
 }
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-app.post('/api/upload', upload.array('image[]'), (req, res, next) => {
+
+app.post('/api/upload', upload.array('image[]'), (req, res, next) =>{
     try {
         return res.status(201).json({
             message: 'File uploded successfully'
@@ -81,7 +85,8 @@ connection.on('error', (err) => {
     process.exit();
 });
 
+
 // Start the server
-server.listen(port);
+//server.listen(port);
 console.log('MsQArtisan is running on port :' + port);
 

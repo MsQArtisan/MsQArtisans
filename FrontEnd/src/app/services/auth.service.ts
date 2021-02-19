@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 const userToken = 'user_token';
-const forgotPassURL = 'http://18.219.68.191:5000/api';
+const forgotPassURL = 'http://18.191.145.150:5000/api';
 
 
 @Injectable({
@@ -21,7 +21,8 @@ export class AuthService {
   public situation = true;
   public messageFromEnd = "";
 
-  url = 'http://18.219.68.191:5000';
+  url = 'http://18.191.145.150:5000';
+ //url = 'http://localhost:5000';
   user = null;
   authenticationState = new BehaviorSubject(false);
 
@@ -159,12 +160,13 @@ export class AuthService {
     return this.http.post(`${this.url}/api/jobRestored`, { restoreId: id, userId: userTaskId })
   }
 
-  imgUpload(selfie, primaryIdPic, nbi) {
+  imgUpload(selfie, primaryIdPic, nbi){
     let data: any = new FormData();
     data.append("image[]", selfie.image, selfie.imageName);
     data.append("image[]", primaryIdPic.image, primaryIdPic.imageName);
     data.append("image[]", nbi.image, nbi.imageName);
-    return this.http.post(`${this.url}/api/upload`, data)
+    return this.http.post(`${this.url}/api/upload`,data)
+     //return this.http.post(`${this.url_local}/api/upload`, data)
   }
 
   requestReset(body): Observable<any> {

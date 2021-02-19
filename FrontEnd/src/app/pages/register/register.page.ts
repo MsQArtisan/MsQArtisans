@@ -57,6 +57,14 @@ export class RegisterPage implements OnInit {
     private router: Router) { }
 
   onFileChange(fileChangeEvent, type) {
+    // if (event.target.files && event.target.files[0]) {
+    //   var reader = new FileReader();
+
+    //   reader.readAsDataURL(event.target.files[0]); // read file as data url
+    //   reader.onload = (event) => { // called once readAsDataURL is completed
+    //     this.images = event.target.result as string;
+    //   }
+    // }
     if (fileChangeEvent.target.files.length == 0) {
       console.log("No file selected!");
       return
@@ -66,7 +74,6 @@ export class RegisterPage implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(fileChangeEvent.target.files[0])
       reader.onload = () => {
-
       }
       if (type == 'selfie') {
         this.selfie = file
@@ -82,6 +89,19 @@ export class RegisterPage implements OnInit {
     }
   }
 
+// onFileChange(event, type){
+//   const reader = new FileReader()
+//   if(event.target.files && event.target.files.length){
+//     const [file] = event.target.files;
+//     reader.readAsDataURL(file);
+//     reader.onload =() =>{
+//       this.data.patchValue({
+//         tso: reader.result
+//       })
+//     }
+//   }
+// }
+
   ngOnInit() {
   }
 
@@ -91,7 +111,7 @@ export class RegisterPage implements OnInit {
         { image: this.selfie, imageName: this.credentialsForm.selfie },
         { image: this.primaryIdPic, imageName: this.credentialsForm.primaryIdPic },
         { image: this.nbi, imageName: this.credentialsForm.nbi }
-      ).subscribe((data) => {
+      ).subscribe((data) =>{
         // this.authService.imgUpload1(this.primaryIdPic).subscribe(res => {
         //   this.authService.imgUpload2(this.nbi).subscribe((data) => {
         if (data) {

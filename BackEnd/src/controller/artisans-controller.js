@@ -20,7 +20,7 @@ exports.registerUser = (req, res) => {
         if (user) {
             return res.status(400).json({ 'msg': 'The email already exists' });
         }
-        const url = req.protocol + "://" + '18.219.68.191' + ':' + 5000 + '/' + 'uploads/';
+        const url = req.protocol + "://" + '18.191.145.150' + ':' + 5000 + '/' + 'uploads/';
         let artisan = new User(req.body);
 
         artisan['selfie'] = url + req.body.selfie;

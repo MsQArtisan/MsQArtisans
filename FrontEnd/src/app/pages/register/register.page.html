@@ -67,18 +67,30 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="selfie" (change)="onFileChange($event, 'selfie')" [(ngModel)]="credentialsForm.selfie"
-						 #selfie="ngModel" placeholder="Selfie" accept="image/*" />
+						<label htmlFor='image'>
+							Image
+							<input 
+								type='file' 
+								id='file' 
+								name="file"
+								placeholder="Upload an Image" 
+								required 
+								value={this.state.image}
+								onChange={this.uploadFile}
+								/>
+						</label>
+						<input type="file" required name="selfie" (change)="onFileChange($event, 'selfie')" 
+						 placeholder="Selfie" accept="image/*" />
 					</div>
 				</div>
-				<h6>Primary ID:</h6>
+				<h6>Primary ID:</h6> 
 				<div class="input-group mb-1">
 					<div class="input-group-append" id="fileInput">
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="primaryIdPic" (change)="onFileChange($event, 'primaryIdPic')" [(ngModel)]="credentialsForm.primaryIdPic"
-						 #primaryIdPic="ngModel" placeholder="Primary" accept="image/*" />
+						<input type="file" required name="primaryIdPic" (change)="onFileChange($event, 'primaryIdPic')" 
+						  placeholder="Primary" accept="image/*" />
 					</div>
 				</div>
 				<div class="input-group mb-1">
@@ -94,7 +106,7 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<input type="file" required name="nbi" (change)="onFileChange($event, 'nbi')" [(ngModel)]="credentialsForm.nbi" #nbi="ngModel"
+						<input type="file" required name="nbi" (change)="onFileChange($event, 'nbi')" 
 						 placeholder="NBI" accept="image/*" />
 					</div>
 				</div>
@@ -117,7 +129,7 @@
 							<span class="input-group-text">
 								<i class="fa fa-file-image"></i>
 							</span>
-							<input type="file" required name="tutorFile" [(ngModel)]="credentialsForm.tutorFile" #tutor="ngModel"
+							<input type="file" required name="tutorFile"  
 							 placeholder="TutorFile" accept="image/*" />
 						</div>
 					</div>
@@ -129,7 +141,7 @@
 							<span class="input-group-text">
 								<i class="fa fa-file-image"></i>
 							</span>
-							<input type="file" required name="nannyFile" [(ngModel)]="credentialsForm.nannyFile" #tutor="ngModel"
+							<input type="file" required name="nannyFile"  
 							 placeholder="NannyFile" accept="image/*" />
 						</div>
 					</div>
@@ -141,7 +153,7 @@
 							<span class="input-group-text">
 								<i class="fa fa-file-image"></i>
 							</span>
-							<input type="file" required name="housekeepingFile" [(ngModel)]="credentialsForm.housekeepingFile" #tutor="ngModel"
+							<input type="file" required name="housekeepingFile"  
 							 placeholder="HouseKeepingFile" accept="image/*" />
 						</div>
 					</div>
@@ -153,7 +165,7 @@
 							<span class="input-group-text">
 								<i class="fa fa-file-image"></i>
 							</span>
-							<input type="file" required name="haircutMassageFile" [(ngModel)]="credentialsForm.haircutMassageFile" #tutor="ngModel"
+							<input type="file" required name="haircutMassageFile"  
 							 placeholder="HaricutMassageFile" accept="image/*" />
 						</div>
 					</div>
