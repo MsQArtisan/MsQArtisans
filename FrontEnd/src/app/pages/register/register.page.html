@@ -67,7 +67,7 @@
 						<span class="input-group-text">
 							<i class="fa fa-file-image"></i>
 						</span>
-						<label htmlFor='image'>
+						<!-- <label htmlFor='image'>
 							Image
 							<input 
 								type='file' 
@@ -78,7 +78,7 @@
 								value={this.state.image}
 								onChange={this.uploadFile}
 								/>
-						</label>
+						</label> -->
 						<input type="file" required name="selfie" (change)="onFileChange($event, 'selfie')" 
 						 placeholder="Selfie" accept="image/*" />
 					</div>
